@@ -108,14 +108,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.lightbox-close');
     const triggers = document.querySelectorAll('.lightbox-trigger');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    let currentImageIndex = 0;
 
     if (lightbox && lightboxImg && closeBtn) {
-        triggers.forEach(img => {
+        triggers.forEach((img, index) => {
             img.addEventListener('click', () => {
+                currentImageIndex = index;
                 lightbox.classList.add('active');
                 lightboxImg.src = img.src;
             });
         });
+
+        const showImage = (index) => {
+            if (index < 0) currentImageIndex = triggers.length - 1;
+            else if (index >= triggers.length) currentImageIndex = 0;
+            else currentImageIndex = index;
+            
+            lightboxImg.src = triggers[currentImageIndex].src;
+        };
+
+        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex + 1); });
 
         const closeLightbox = () => {
             lightbox.classList.remove('active');
@@ -133,10 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close on Escape key
+        // Close on Escape key, and navigate with arrows
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+                if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
             }
         });
     }

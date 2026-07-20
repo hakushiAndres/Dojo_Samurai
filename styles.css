@@ -267,7 +267,7 @@ a {
 
 .hero-image-box {
     flex: 1.2;
-    background-image: url('assets/yo.JPG');
+    background-image: url('assets/ui/yo.JPG');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -867,6 +867,36 @@ a {
     color: var(--primary-color);
     text-decoration: none;
     cursor: pointer;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    padding: 15px 20px;
+    transition: 0.3s;
+    border-radius: 5px;
+    z-index: 2001;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background-color: var(--primary-color);
 }
 
 .lightbox-trigger {

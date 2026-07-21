@@ -22,6 +22,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#about">Nosotros</a></li>
+                <li><a href="#shotokan">Shotokan JKA</a></li>
                 <li><a href="#dojokun">Dojo Kun</a></li>
                 <li><a href="#classes">Clases</a></li>
                 <li><a href="#gallery">Galería</a></li>
@@ -90,6 +91,28 @@
         </div>
     </section>
 
+    <!-- Shotokan JKA Section -->
+    <section id="shotokan" class="about section" style="background-color: var(--gray-light);">
+        <div class="container about-container">
+            <div class="about-image-container modern-image">
+                <img src="assets/ui/Funakoshi1.webp" alt="Gichin Funakoshi" class="about-img" style="border-radius: 12px; box-shadow: var(--shadow-lg);">
+            </div>
+            <div class="about-text">
+                <h2 class="section-title">Historia del Shotokan</h2>
+                <div class="title-underline"></div>
+                <p class="lead-text">Fundado por el maestro <strong>Gichin Funakoshi</strong> (1868-1957), considerado
+                    ampliamente como el padre del karate moderno.</p>
+                <p>Nacido en Okinawa, Funakoshi introdujo el arte del karate en Japón continental en 1922. El nombre
+                    "Shotokan" proviene de <em>Shoto</em>, el seudónimo con el que firmaba su poesía (que significa
+                    "ondas de pino" o "pinos ondulando al viento"), y <em>kan</em> (escuela o dojo).</p>
+                <p>Nuestro estilo se caracteriza por posturas sólidas y profundas, y técnicas lineales potentes. Sin
+                    embargo, más allá de lo físico, Funakoshi enfatizó que el objetivo supremo del karate no es la
+                    victoria, sino el perfeccionamiento del carácter, inmortalizado en su máxima: <em>"Karate ni sente
+                        nashi"</em> (En el karate no hay primer ataque).</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Dojo Kun Section -->
     <section id="dojokun" class="dojokun section dark-card">
         <div class="container">
@@ -147,8 +170,8 @@
                     <div class="card-body">
                         <p>Desarrollo psicomotriz a través del juego marcial.</p>
                         <div class="schedule modern-schedule">
-                            <span>Mar y Jue: 17:00 - 18:00</span>
-                            <span>Sáb: 10:00 - 11:30</span>
+                            <strong>Horario</strong>
+                            <span>Mar y Jue: 19:00 - 20:00</span>
                         </div>
                     </div>
                 </div>
@@ -188,7 +211,7 @@
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery section">
-        <div class="container-fluid">
+        <div class="container">
             <div class="section-header center" style="margin-bottom: 2rem;">
                 <h2 class="section-title">Galería</h2>
                 <p class="section-desc">Conoce nuestro entrenamiento e instalaciones.</p>
@@ -293,11 +316,14 @@
                         <input type="email" id="email" required placeholder="tu@email.com">
                     </div>
                     <div class="form-group">
-                        <input type="tel" id="phone" placeholder="+56 9 4282 5617">
+                        <input type="tel" id="phone" required placeholder="+56 9 4282 5617 (Teléfono)">
                     </div>
                     <div class="form-group">
                         <textarea id="message" rows="4" required
                             placeholder="Me gustaría saber más sobre las clases..."></textarea>
+                        <div class="word-counter-box">
+                            <span id="word-count">0</span> / 200 palabras
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary full-width">Enviar Mensaje</button>
                     <div id="form-message" class="form-message hidden">¡Gracias! Tu mensaje ha sido enviado

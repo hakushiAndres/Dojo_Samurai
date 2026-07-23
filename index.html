@@ -267,78 +267,91 @@
     </section>
 
     <!-- Contact Section -->
+    <!-- Contact Section -->
     <footer id="contact" class="contact section">
-        <div class="container contact-container">
-            <div class="contact-info">
+        <div class="container">
+            <div class="section-header center" style="margin-bottom: 3.5rem;">
                 <h2 class="section-title text-light">Ubicación y Contacto</h2>
-                <p class="text-light desc">Comienza tu viaje marcial hoy. Escríbenos para reservar tu primera clase o
-                    resolver tus dudas.</p>
-
-                <div class="info-list">
-                    <div class="info-item modern-info">
-                        <span class="icon">📍</span>
-                        <div>
-                            <strong>Dirección</strong>
-                            <span>Los Arrayanes, parcela 7, Centro Deportivo ATT, Peñablanca</span>
-                        </div>
-                    </div>
-                    <div class="info-item modern-info">
-                        <span class="icon">📞</span>
-                        <div>
-                            <strong>Teléfono</strong>
-                            <span>+56 9 4282 5617</span>
-                        </div>
-                    </div>
-                    <div class="info-item modern-info">
-                        <span class="icon">✉️</span>
-                        <div>
-                            <strong>Email</strong>
-                            <span>Dojo.samurai.penablanca@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://www.instagram.com/dojo_samurai__penablanca/" target="_blank"
-                        rel="noopener noreferrer" class="social-btn">Instagram</a>
-                    <a href="https://maps.google.com/?q=Los+Arrayanes+parcela+7+Centro+Deportivo+ATT+Penablanca" target="_blank"
-                        rel="noopener noreferrer" class="social-btn">📍 Abrir en Google Maps</a>
-                </div>
-
-                <div class="map-container">
-                    <iframe
-                        src="https://maps.google.com/maps?q=Los+Arrayanes+parcela+7+Centro+Deportivo+ATT+Penablanca&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Ubicación Dojo Samurai Peñablanca en Google Maps">
-                    </iframe>
-                </div>
+                <div class="title-underline" style="margin: 0 auto 1.5rem auto;"></div>
+                <p class="section-desc text-light" style="color: #94a3b8; max-width: 650px; margin: 0 auto;">
+                    Comienza tu viaje marcial hoy. Visítanos en Peñablanca o envíanos un mensaje para reservar tu primera clase.
+                </p>
             </div>
 
-            <div class="contact-form-container modern-form">
-                <form id="contactForm" class="contact-form">
-                    <h3>Envíanos un mensaje</h3>
-                    <div class="form-group">
-                        <input type="text" id="name" required placeholder="Tu nombre">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" required placeholder="tu@email.com">
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" required placeholder="+56 9 4282 5617 (Teléfono)">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="4" required
-                            placeholder="Me gustaría saber más sobre las clases..."></textarea>
-                        <div class="word-counter-box">
-                            <span id="word-count">0</span> / 200 palabras
+            <div class="contact-grid">
+                <!-- Left Side: Interactive Map & Info Cards -->
+                <div class="location-card-wrapper">
+                    <div class="info-cards-grid">
+                        <div class="info-card">
+                            <span class="info-card-icon">📍</span>
+                            <div class="info-card-text">
+                                <strong>Dirección</strong>
+                                <span>Los Arrayanes, parcela 7, Centro Deportivo ATT, Peñablanca</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-card-icon">📞</span>
+                            <div class="info-card-text">
+                                <strong>Teléfono</strong>
+                                <span>+56 9 4282 5617</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <span class="info-card-icon">✉️</span>
+                            <div class="info-card-text">
+                                <strong>Email</strong>
+                                <span>Dojo.samurai.penablanca@gmail.com</span>
+                            </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary full-width">Enviar Mensaje</button>
-                    <div id="form-message" class="form-message hidden">¡Gracias! Tu mensaje ha sido enviado
-                        exitosamente. Nos pondremos en contacto pronto.</div>
-                </form>
+
+                    <!-- Prominent Map Card -->
+                    <div class="map-card">
+                        <div class="map-header-badge">
+                            <span class="pulse-dot"></span>
+                            <span>Dojo Samurai Peñablanca</span>
+                        </div>
+                        <iframe
+                            src="https://maps.google.com/maps?q=Los+Arrayanes+parcela+7+Centro+Deportivo+ATT+Penablanca&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Ubicación Dojo Samurai Peñablanca en Google Maps">
+                        </iframe>
+                        <div class="map-footer-bar">
+                            <a href="https://www.instagram.com/dojo_samurai__penablanca/" target="_blank"
+                                rel="noopener noreferrer" class="social-btn">Instagram</a>
+                            <a href="https://maps.google.com/?q=Los+Arrayanes+parcela+7+Centro+Deportivo+ATT+Penablanca" target="_blank"
+                                rel="noopener noreferrer" class="social-btn map-btn">📍 Abrir en Google Maps</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Contact Form -->
+                <div class="contact-form-container modern-form">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" required placeholder="+56 9 4282 5617 (Teléfono)">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="4" required
+                                placeholder="Me gustaría saber más sobre las clases..."></textarea>
+                            <div class="word-counter-box">
+                                <span id="word-count">0</span> / 200 palabras
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width">Enviar Mensaje</button>
+                        <div id="form-message" class="form-message hidden">¡Gracias! Tu mensaje ha sido enviado
+                            exitosamente. Nos pondremos en contacto pronto.</div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">

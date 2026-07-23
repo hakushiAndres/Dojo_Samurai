@@ -803,38 +803,33 @@ a {
     text-align: center;
 }
 
-/* CTA Banner (Full Width - Borde a borde) */
-.cta-banner-full {
+/* CTA Banner (Contained - Mismo ancho que el mapa y formulario) */
+.cta-banner {
     width: 100%;
-    background: linear-gradient(135deg, #881337 0%, #1e1b4b 50%, #0f172a 100%);
-    border-top: 1px solid rgba(239, 68, 68, 0.4);
-    border-bottom: 1px solid rgba(239, 68, 68, 0.4);
-    padding: 3.5rem 0;
-    margin-top: 1rem;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(185, 28, 28, 0.3);
-}
-
-.cta-banner-full::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(0,0,0,0) 70%);
-    pointer-events: none;
-    border-radius: 50%;
-}
-
-.cta-banner-inner {
+    background: linear-gradient(135deg, #881337 0%, #1e1b4b 50%, #0f172a 100%) !important;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    border-radius: 24px;
+    padding: 2.75rem 3rem;
+    margin-top: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+    box-shadow: 0 15px 35px rgba(185, 28, 28, 0.25);
     position: relative;
-    z-index: 2;
+    overflow: hidden;
+}
+
+.cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    border-radius: 50%;
 }
 
 .cta-content {
@@ -842,11 +837,12 @@ a {
     flex-direction: column;
     gap: 0.6rem;
     max-width: 650px;
+    z-index: 2;
 }
 
 .cta-tag {
     display: inline-block;
-    color: #fca5a5;
+    color: #fca5a5 !important;
     font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -854,25 +850,26 @@ a {
 }
 
 .cta-title {
-    font-size: clamp(1.7rem, 3.2vw, 2.3rem);
-    color: #ffffff;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: #ffffff !important;
     font-weight: 800;
     line-height: 1.2;
 }
 
 .cta-desc {
-    color: #e2e8f0;
+    color: #e2e8f0 !important;
     font-size: 1.05rem;
     margin: 0;
 }
 
 .cta-action {
+    z-index: 2;
     flex-shrink: 0;
 }
 
 .btn-cta {
-    background: #ffffff;
-    color: #b91c1c;
+    background: #ffffff !important;
+    color: #b91c1c !important;
     font-weight: 800;
     font-size: 1.1rem;
     padding: 1.1rem 2.4rem;
@@ -887,9 +884,9 @@ a {
 }
 
 .btn-cta:hover {
-    background: #f8fafc;
-    color: #991b1b;
-    transform: translateY(-3px) scale(1.04);
+    background: #f8fafc !important;
+    color: #991b1b !important;
+    transform: translateY(-3px) scale(1.03);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
@@ -1276,13 +1273,14 @@ a {
         padding: 0.45rem 0.9rem;
         font-size: 0.78rem;
     }
-    .cta-banner-inner {
+    .cta-banner {
         flex-direction: column;
         text-align: center;
+        padding: 2.25rem 1.5rem;
         gap: 1.5rem;
-    }
-    .cta-banner-full {
-        padding: 2.75rem 0;
+        margin-top: 2rem;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #881337 0%, #1e1b4b 50%, #0f172a 100%) !important;
     }
     .cta-content {
         align-items: center;

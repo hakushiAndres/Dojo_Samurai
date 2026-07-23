@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = 'Enviando...';
             btn.disabled = true;
 
-            fetch("https://formsubmit.co/ajax/andresalonso.castro@gmail.com", {
+            fetch("https://formsubmit.co/ajax/Dojo.samurai.penablanca@gmail.com", {
                 method: "POST",
                 headers: { 
                     'Content-Type': 'application/json',

@@ -722,6 +722,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    overflow: hidden;
 }
 
 .info-card-text strong {
@@ -733,8 +734,27 @@ a {
 
 .info-card-text span {
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+a.info-card-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a.info-card-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(225, 48, 108, 0.5);
+    transform: translateY(-2px);
+}
+
+.info-card-icon.instagram-icon {
+    background: rgba(225, 48, 108, 0.15);
+    color: #e1306c;
 }
 
 /* Map Card */
@@ -1296,9 +1316,13 @@ a {
     }
     .hero-title {
         font-size: 2.1rem;
+        color: #ffffff !important;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
     }
     .hero-subtitle {
         font-size: 1rem;
+        color: #f1f5f9 !important;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
     }
     .hero-image-box {
         min-height: 280px;

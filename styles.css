@@ -329,19 +329,23 @@ a {
     line-height: 1.1;
     margin-bottom: 1.5rem;
     letter-spacing: -1px;
+    color: #ffffff !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: #cbd5e1;
+    color: #e2e8f0 !important;
     margin-bottom: 2.5rem;
     max-width: 90%;
     line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .text-highlight {
-    color: #ef4444;
+    color: #ff4d4d !important;
     font-weight: 800;
+    text-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
 }
 
 .red-badge {

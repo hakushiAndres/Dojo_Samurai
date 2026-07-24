@@ -529,24 +529,29 @@ a {
 }
 
 .selection-badges .badge {
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    height: auto;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1.2 !important;
+    height: auto !important;
+    align-self: center !important;
+    padding: 0.35rem 0.85rem !important;
+    border-radius: 50px !important;
 }
 
 .badge {
-    padding: 0.35rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.2;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    align-self: center;
+    height: auto;
 }
 
 .badge-outline {
@@ -1492,12 +1497,13 @@ a.info-card-link:hover {
 
     .selection-badges .badge {
         font-size: 0.78rem;
-        padding: 0.32rem 0.7rem;
-        white-space: nowrap;
-        line-height: 1;
-        height: auto;
-        display: inline-flex;
-        align-items: center;
+        padding: 0.35rem 0.75rem !important;
+        white-space: nowrap !important;
+        line-height: 1.2 !important;
+        height: auto !important;
+        align-self: center !important;
+        display: inline-flex !important;
+        align-items: center !important;
     }
 
     .lightbox-prev, .lightbox-next {
@@ -1560,12 +1566,13 @@ a.info-card-link:hover {
     }
     .selection-badges .badge {
         font-size: 0.75rem;
-        padding: 0.3rem 0.65rem;
-        white-space: nowrap;
-        line-height: 1;
-        height: auto;
-        display: inline-flex;
-        align-items: center;
+        padding: 0.32rem 0.7rem !important;
+        white-space: nowrap !important;
+        line-height: 1.2 !important;
+        height: auto !important;
+        align-self: center !important;
+        display: inline-flex !important;
+        align-items: center !important;
     }
     .modern-form {
         padding: 1.25rem;

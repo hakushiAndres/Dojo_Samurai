@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Real-time SVG Kanji Stroke Animation (Shotokan / 松濤館)
+    const kanjiSvg = document.querySelector('.kanji-svg');
+    if (kanjiSvg) {
+        const paths = kanjiSvg.querySelectorAll('path');
+        paths.forEach((path, index) => {
+            const length = Math.ceil(path.getTotalLength());
+            path.style.setProperty('--path-length', length);
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            path.style.animationDelay = `${index * 0.07}s`;
+        });
+
+        setTimeout(() => {
+            kanjiSvg.classList.add('animated');
+        }, 150);
+    }
+
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     

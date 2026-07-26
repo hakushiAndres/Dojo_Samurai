@@ -126,29 +126,51 @@ a {
     width: 100%;
 }
 
-/* Floating Navbar */
-.floating-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1000px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 100px;
-    padding: 0.8rem 2rem;
-    z-index: 1000;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    transition: var(--transition);
+/* Main Header Navigation (Static & Uncluttered) */
+.main-nav {
+    position: relative;
+    top: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 1.1rem 2rem;
+    z-index: 100;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.floating-nav.scrolled {
-    width: 95%;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+/* Scroll to Top Floating Button */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 48px;
+    height: 48px;
+    background: #b91c1c;
+    color: #ffffff;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(185, 28, 28, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #dc2626;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(220, 38, 38, 0.5);
 }
 
 .nav-container {
@@ -406,37 +428,88 @@ a {
 
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-top: 3rem;
 }
 
 .value-card {
-    background: var(--gray-light);
-    padding: 1.5rem;
-    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 2.2rem 1.8rem;
+    min-height: 195px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: var(--transition);
+}
+
+.value-card-bg1 {
+    background-image: url('assets/galeria/Clases1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.value-card-bg2 {
+    background-image: url('assets/galeria/adultos.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.value-card-bg3 {
+    background-image: url('assets/galeria/Clases4.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.value-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.88) 100%);
+    z-index: 1;
     transition: var(--transition);
 }
 
 .value-card:hover {
     transform: translateY(-5px);
-    background: white;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.value-card:hover .value-card-overlay {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.82) 100%);
+}
+
+.value-card-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
 }
 
 .value-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
     display: block;
 }
 
 .value-card h4 {
-    margin-bottom: 0.5rem;
+    color: #ffffff !important;
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+    font-weight: 800;
 }
 
 .value-card p {
-    font-size: 0.9rem;
+    color: #cbd5e1 !important;
+    font-size: 0.95rem;
     margin-bottom: 0;
+    line-height: 1.4;
 }
 
 .modern-image {
@@ -1065,10 +1138,21 @@ a.info-card-link:hover {
     text-align: center;
 }
 
-/* CTA Banner (Contained - Mismo ancho que el mapa y formulario) */
+/* Disabled Button State */
+.btn:disabled,
+.btn[disabled] {
+    opacity: 0.45 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    background: #475569 !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+/* CTA Banner (Harmonized Palette & Mobile Safe) */
 .cta-banner {
     width: 100%;
-    background: linear-gradient(135deg, #881337 0%, #1e1b4b 50%, #0f172a 100%) !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #881337 100%) !important;
     border: 1px solid rgba(239, 68, 68, 0.4);
     border-radius: 24px;
     padding: 2.75rem 3rem;
@@ -1077,7 +1161,7 @@ a.info-card-link:hover {
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    box-shadow: 0 15px 35px rgba(185, 28, 28, 0.25);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.4);
     position: relative;
     overflow: hidden;
 }
@@ -1127,14 +1211,15 @@ a.info-card-link:hover {
 .cta-action {
     z-index: 2;
     flex-shrink: 0;
+    max-width: 100%;
 }
 
 .btn-cta {
     background: #ffffff !important;
     color: #b91c1c !important;
     font-weight: 800;
-    font-size: 1.1rem;
-    padding: 1.1rem 2.4rem;
+    font-size: 1.05rem;
+    padding: 1rem 2rem;
     border-radius: 50px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transition: var(--transition);
@@ -1142,7 +1227,11 @@ a.info-card-link:hover {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    white-space: nowrap;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    text-align: center;
+    word-break: break-word;
 }
 
 .btn-cta:hover {
@@ -1604,22 +1693,30 @@ a.info-card-link:hover {
         padding: 0.45rem 0.9rem;
         font-size: 0.78rem;
     }
+    .kanji-svg {
+        width: 180px !important;
+        max-height: 55px !important;
+    }
     .cta-banner {
         flex-direction: column;
         text-align: center;
-        padding: 2.25rem 1.5rem;
+        padding: 2rem 1.25rem;
         gap: 1.5rem;
         margin-top: 2rem;
         border-radius: 20px;
-        background: linear-gradient(135deg, #881337 0%, #1e1b4b 50%, #0f172a 100%) !important;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #881337 100%) !important;
     }
     .cta-content {
         align-items: center;
     }
     .btn-cta {
         width: 100%;
-        font-size: 1rem;
-        padding: 1rem 1.6rem;
+        max-width: 100%;
+        font-size: 0.95rem;
+        padding: 0.85rem 1.2rem;
+        box-sizing: border-box;
+        white-space: normal;
+        word-break: break-word;
     }
     .whatsapp-btn {
         width: 52px;
@@ -1630,5 +1727,12 @@ a.info-card-link:hover {
     .whatsapp-btn svg {
         width: 26px;
         height: 26px;
+    }
+    .back-to-top {
+        left: 18px;
+        bottom: 22px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
     }
 }

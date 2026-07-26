@@ -16,99 +16,123 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     // Mobile menu toggle
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links a');
 
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking a link
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
-    });
 
-    // Word counter and form submission handling
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // Form Validation & Dynamic Submit Button State
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('form-message');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
     const messageInput = document.getElementById('message');
-    const wordCountSpan = document.getElementById('word-count');
+    const charCountSpan = document.getElementById('char-count');
+    const submitBtn = document.getElementById('submit-btn');
 
-    // Function to calculate word count
-    const getWordCount = (str) => {
-        const trimmed = str.trim();
-        return trimmed ? trimmed.split(/\s+/).length : 0;
+    // Email validation regex
+    const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
-    // Live word count listener
-    if (messageInput && wordCountSpan) {
-        const updateWordCount = () => {
-            const words = messageInput.value.trim().split(/\s+/).filter(w => w.length > 0);
-            if (words.length > 200) {
-                // Limit to 200 words
-                const truncated = words.slice(0, 200).join(' ');
-                messageInput.value = truncated;
-                wordCountSpan.textContent = 200;
-                wordCountSpan.classList.add('limit-reached');
-            } else {
-                wordCountSpan.textContent = words.length;
-                if (words.length >= 200) {
-                    wordCountSpan.classList.add('limit-reached');
-                } else {
-                    wordCountSpan.classList.remove('limit-reached');
-                }
-            }
-        };
+    // Dynamic Form Validation Function
+    const validateForm = () => {
+        if (!nameInput || !emailInput || !phoneInput || !messageInput || !submitBtn) return false;
 
-        messageInput.addEventListener('input', updateWordCount);
-        messageInput.addEventListener('keyup', updateWordCount);
+        const nameVal = nameInput.value.trim();
+        const emailVal = emailInput.value.trim();
+        const phoneVal = phoneInput.value.trim();
+        const messageVal = messageInput.value.trim();
+
+        const isNameValid = nameVal.length >= 2;
+        const isEmailValid = isValidEmail(emailVal);
+        const isPhoneValid = phoneVal.length >= 8;
+        const isMessageValid = messageVal.length > 0 && messageVal.length <= 500;
+
+        const isFormValid = isNameValid && isEmailValid && isPhoneValid && isMessageValid;
+
+        if (isFormValid) {
+            submitBtn.removeAttribute('disabled');
+        } else {
+            submitBtn.setAttribute('disabled', 'true');
+        }
+
+        return isFormValid;
+    };
+
+    // Live character counter & input validation listeners
+    if (messageInput && charCountSpan) {
+        messageInput.addEventListener('input', () => {
+            const charLength = messageInput.value.length;
+            charCountSpan.textContent = charLength;
+            if (charLength >= 500) {
+                charCountSpan.classList.add('limit-reached');
+            } else {
+                charCountSpan.classList.remove('limit-reached');
+            }
+            validateForm();
+        });
     }
+
+    [nameInput, emailInput, phoneInput].forEach(input => {
+        if (input) {
+            input.addEventListener('input', validateForm);
+            input.addEventListener('blur', validateForm);
+        }
+    });
 
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const nameVal = document.getElementById('name').value.trim();
-            const emailVal = document.getElementById('email').value.trim();
-            const phoneVal = document.getElementById('phone').value.trim();
-            const messageVal = document.getElementById('message').value.trim();
-
-            // 1. Check all fields filled out
-            if (!nameVal || !emailVal || !phoneVal || !messageVal) {
-                formMessage.textContent = 'Por favor completa todas las casillas del formulario.';
+            if (!validateForm()) {
+                formMessage.textContent = 'Por favor completa todos los campos correctamente.';
                 formMessage.className = 'form-message error';
                 return;
             }
 
-            // 2. Check 200 word limit
-            const wordCount = getWordCount(messageVal);
-            if (wordCount > 200) {
-                formMessage.textContent = 'El mensaje no puede exceder las 200 palabras (actual: ' + wordCount + ').';
-                formMessage.className = 'form-message error';
-                return;
-            }
+            const nameVal = nameInput.value.trim();
+            const emailVal = emailInput.value.trim();
+            const phoneVal = phoneInput.value.trim();
+            const messageVal = messageInput.value.trim();
 
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Enviando...';
-            btn.disabled = true;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.setAttribute('disabled', 'true');
 
             fetch("https://formsubmit.co/ajax/Dojo.samurai.penablanca@gmail.com", {
                 method: "POST",
@@ -125,23 +149,22 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
-                btn.textContent = originalText;
-                btn.disabled = false;
+                submitBtn.textContent = originalText;
                 contactForm.reset();
-                if (wordCountSpan) wordCountSpan.textContent = '0';
+                if (charCountSpan) charCountSpan.textContent = '0';
+                validateForm(); // Re-disable submit button after reset
                 
                 formMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado exitosamente. Nos pondremos en contacto pronto.';
                 formMessage.className = 'form-message';
                 
-                // Hide message after 5 seconds
                 setTimeout(() => {
                     formMessage.className = 'form-message hidden';
                 }, 5000);
             })
             .catch(error => {
                 console.error('Error:', error);
-                btn.textContent = originalText;
-                btn.disabled = false;
+                submitBtn.textContent = originalText;
+                validateForm();
                 formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.';
                 formMessage.className = 'form-message error';
             });

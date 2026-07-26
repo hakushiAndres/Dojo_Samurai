@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     formMessage.className = 'form-message hidden';
+                    formMessage.textContent = '';
                 }, 5000);
             })
             .catch(error => {

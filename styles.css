@@ -1872,6 +1872,36 @@ a.info-card-link:hover {
     line-height: 1.4;
 }
 
+.footer-institution-list li a.footer-active-link {
+    color: #b91c1c;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1.5px solid rgba(185, 28, 28, 0.35);
+    padding-bottom: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.footer-institution-list li a.footer-active-link:hover {
+    color: #dc2626;
+    border-bottom-color: #dc2626;
+}
+
+.link-arrow {
+    font-size: 0.85rem;
+    font-weight: 800;
+    opacity: 0.85;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-institution-list li a.footer-active-link:hover .link-arrow {
+    transform: translate(2px, -2px);
+    opacity: 1;
+}
+
 .footer-institution-list li strong {
     color: #0f172a;
 }

@@ -465,6 +465,12 @@ a {
     background-position: center;
 }
 
+.value-card-bg4 {
+    background-image: url('assets/galeria/Clases6.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
 .value-card-overlay {
     position: absolute;
     top: 0;

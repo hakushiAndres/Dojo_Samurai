@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://samuraipeñablanca.cl/sitemap.xml
+Sitemap: https://www.xn--samuraipeablanca-fub.cl/sitemap.xml

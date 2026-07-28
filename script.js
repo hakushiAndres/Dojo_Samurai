@@ -16,6 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
+    // Promotional Top Bar Handler
+    const promoBanner = document.getElementById('promo-banner');
+    const closePromoBtn = document.getElementById('close-promo');
+
+    if (promoBanner && closePromoBtn) {
+        document.body.classList.add('has-promo-bar');
+
+        closePromoBtn.addEventListener('click', () => {
+            promoBanner.classList.add('hidden');
+            document.body.classList.remove('has-promo-bar');
+        });
+    }
+
     // Back to Top Button Functionality
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {

@@ -1539,15 +1539,18 @@ a.info-card-link:hover {
         padding-top: 85px;
         min-height: 100vh;
         align-items: center;
-        background-position: center 15% !important;
-        background-size: cover !important;
+        background-image: url('assets/ui/yo.JPG');
+        background-position: center 5% !important;
+        background-size: 100% auto !important;
+        background-repeat: no-repeat !important;
+        background-color: #0f172a !important;
     }
     .hero-banner-overlay {
         background: linear-gradient(
             180deg,
-            rgba(15, 23, 42, 0.88) 0%,
-            rgba(15, 23, 42, 0.82) 55%,
-            rgba(15, 23, 42, 0.96) 100%
+            rgba(15, 23, 42, 0.5) 0%,
+            rgba(15, 23, 42, 0.82) 45%,
+            rgba(15, 23, 42, 0.98) 100%
         ) !important;
     }
     .hero-content {
@@ -1735,7 +1738,8 @@ a.info-card-link:hover {
     }
     .hero-banner {
         padding-top: 80px;
-        background-position: center 12% !important;
+        background-position: center 5% !important;
+        background-size: 100% auto !important;
     }
     .logo {
         font-size: 0.85rem;

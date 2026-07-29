@@ -1918,8 +1918,10 @@ a.info-card-link:hover {
         left: 5%;
         width: 90%;
         max-width: none;
-        padding: 1.25rem 1.1rem 1.1rem 1.1rem;
-        transform: translateY(150%);
+        padding: 1.25rem 1.1rem 1.15rem 1.1rem;
+        transform: translateY(160%);
+        border-radius: 14px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(239, 68, 68, 0.25);
     }
 
     .promo-flyout-card.active {
@@ -1928,22 +1930,29 @@ a.info-card-link:hover {
 
     .flyout-title {
         font-size: 1.05rem;
+        padding-right: 1.5rem;
+        line-height: 1.35;
     }
 
     .flyout-subtitle {
         font-size: 0.85rem;
         margin-bottom: 1rem;
+        line-height: 1.4;
     }
 
     .flyout-cta-btn {
         font-size: 0.85rem;
-        padding: 0.65rem 0.85rem;
+        padding: 0.7rem 0.85rem;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
     }
 
     .promo-reopen-bubble {
         bottom: 16px;
         right: 16px;
         padding: 0.45rem 0.9rem;
+        font-size: 0.82rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.65);
     }
 }
     .section {

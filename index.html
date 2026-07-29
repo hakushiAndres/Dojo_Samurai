@@ -47,7 +47,14 @@
 
     <!-- Hero Background Image Preload Directive -->
     <link rel="preload" as="image" href="assets/ui/yo.JPG">
-    <link rel="stylesheet" href="styles.css?v=23.0">
+    <link rel="stylesheet" href="styles.css?v=24.0">
+
+    <!-- Vercel Analytics Integration -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script type="module">
+        import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@2.0.1/+esm';
+        inject();
+    </script>
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsClub) -->
     <script type="application/ld+json">

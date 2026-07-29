@@ -52,8 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inyo Symbol Tooltip Touch/Click Toggle
     const inyoContainer = document.querySelector('.inyo-symbol-container');
+    const inyoTooltip = document.querySelector('.inyo-tooltip');
+
     if (inyoContainer) {
         inyoContainer.addEventListener('click', (e) => {
+            // If clicking on the tooltip card itself while open, close it immediately
+            if (inyoTooltip && inyoTooltip.contains(e.target)) {
+                e.stopPropagation();
+                inyoContainer.classList.remove('active');
+                return;
+            }
             inyoContainer.classList.toggle('active');
         });
 

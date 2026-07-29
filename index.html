@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=18.0">
+    <link rel="stylesheet" href="styles.css?v=19.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsClub) -->
     <script type="application/ld+json">
@@ -91,20 +91,23 @@
 </head>
 
 <body>
-    <!-- Promotional Top Bar Banner -->
-    <div id="promo-banner" class="promo-top-bar">
-        <div class="container promo-container">
-            <div class="promo-content-wrapper">
-                <span class="promo-badge">🔥 ¡Promoción Especial!</span>
-                <span class="promo-text"><strong>25% de descuento</strong> en tu primera mensualidad. <span class="promo-subtext">Asegura tu cupo inscribiéndote hoy.</span></span>
-            </div>
-            <a href="https://wa.me/56942825617?text=Hola,%20quiero%20aprovechar%20el%2025%25%20de%20descuento%20en%20la%20mensualidad%20para%20inscribirme%20en%20Dojo%20Peñablanca"
-                target="_blank" rel="noopener noreferrer" class="promo-btn-cta">
-                Obtener 25% OFF 💬
-            </a>
-            <button id="close-promo" class="promo-close-btn" aria-label="Cerrar promoción" title="Cerrar">✕</button>
-        </div>
+    <!-- Promotional Flyout Widget (Bottom-Right Glassmorphic Card) -->
+    <div id="promo-flyout-widget" class="promo-flyout-card" aria-label="Promoción Dojo Peñablanca">
+        <button id="close-flyout" class="flyout-close-btn" aria-label="Cerrar ventana promocional" title="Cerrar">✕</button>
+        <div class="flyout-badge">🔥 25% DE DESCUENTO</div>
+        <h3 class="flyout-title">¡Asegura tu cupo en Dojo Peñablanca!</h3>
+        <p class="flyout-subtitle">Obtén un 25% OFF en tu primera mensualidad inscribiéndote hoy.</p>
+        <a href="https://wa.me/56942825617?text=Hola,%20quiero%20aprovechar%20el%2025%25%20de%20descuento%20en%20la%20mensualidad%20para%20inscribirme%20en%20Dojo%20Peñablanca"
+            target="_blank" rel="noopener noreferrer" class="flyout-cta-btn">
+            💬 Reclamar descuento por WhatsApp
+        </a>
     </div>
+
+    <!-- Re-open Floating Bubble Trigger Button -->
+    <button id="promo-reopen-bubble" class="promo-reopen-bubble" aria-label="Reabrir promoción 25% OFF" title="Ver 25% OFF">
+        <span class="bubble-gift-icon">🎁</span>
+        <span class="bubble-label">25% OFF</span>
+    </button>
 
     <!-- Main Navigation Header -->
     <nav id="navbar" class="main-nav">

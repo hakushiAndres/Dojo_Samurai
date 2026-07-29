@@ -16,16 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
-    // Promotional Top Bar Handler
-    const promoBanner = document.getElementById('promo-banner');
-    const closePromoBtn = document.getElementById('close-promo');
+    // Promotional Flyout Widget Logic
+    const flyoutCard = document.getElementById('promo-flyout-widget');
+    const closeFlyoutBtn = document.getElementById('close-flyout');
+    const reopenBubble = document.getElementById('promo-reopen-bubble');
 
-    if (promoBanner && closePromoBtn) {
-        document.body.classList.add('has-promo-bar');
+    if (flyoutCard && closeFlyoutBtn && reopenBubble) {
+        // 1.5 seconds delay before entrance animation
+        setTimeout(() => {
+            flyoutCard.classList.add('active');
+        }, 1500);
 
-        closePromoBtn.addEventListener('click', () => {
-            promoBanner.classList.add('hidden');
-            document.body.classList.remove('has-promo-bar');
+        // Close flyout card & show reopen bubble
+        closeFlyoutBtn.addEventListener('click', () => {
+            flyoutCard.classList.remove('active');
+            setTimeout(() => {
+                reopenBubble.classList.add('visible');
+            }, 300);
+        });
+
+        // Re-open flyout card from bubble trigger
+        reopenBubble.addEventListener('click', () => {
+            reopenBubble.classList.remove('visible');
+            flyoutCard.classList.add('active');
         });
     }
 

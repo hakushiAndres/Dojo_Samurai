@@ -187,139 +187,165 @@ a {
     width: 100%;
 }
 
-/* Promotional Floating Top Bar Banner */
-.promo-top-bar {
+/* Promotional Flyout Widget (Bottom-Right Glassmorphic Card) */
+.promo-flyout-card {
     position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-    max-width: 1100px;
-    background: linear-gradient(90deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.96) 50%, rgba(136, 19, 55, 0.96) 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(239, 68, 68, 0.45);
-    border-radius: 50px;
+    bottom: 24px;
+    right: 24px;
+    width: 360px;
+    max-width: 90vw;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 1.5rem 1.35rem 1.35rem 1.35rem;
     color: #ffffff;
-    z-index: 1002;
-    padding: 0.45rem 1.2rem;
-    transition: all 0.35s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(239, 68, 68, 0.25);
-    overflow: hidden;
+    z-index: 1005;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(239, 68, 68, 0.2);
+    transform: translateX(140%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.34, 1.25, 0.64, 1), opacity 0.5s ease, visibility 0.5s;
 }
 
-.promo-top-bar::after {
-    content: '';
+.promo-flyout-card.active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.flyout-close-btn {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #ef4444, #4ade80, #ef4444);
-    background-size: 200% 100%;
-    animation: shimmerBar 3s linear infinite;
-}
-
-@keyframes shimmerBar {
-    0% { background-position: 0% 0; }
-    100% { background-position: 200% 0; }
-}
-
-.promo-top-bar.hidden {
-    display: none !important;
-}
-
-.promo-container {
+    top: 10px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-right: 2.2rem;
-    position: relative;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
-.promo-content-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.9rem;
+.flyout-close-btn:hover {
+    color: #ffffff;
+    background: rgba(239, 68, 68, 0.8);
+    transform: scale(1.1);
 }
 
-.promo-badge {
+.flyout-badge {
+    display: inline-block;
     background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
     color: #ffffff;
     font-weight: 800;
-    font-size: 0.78rem;
-    text-transform: uppercase;
+    font-size: 0.75rem;
     letter-spacing: 0.5px;
     padding: 0.28rem 0.7rem;
     border-radius: 20px;
-    white-space: nowrap;
+    margin-bottom: 0.75rem;
     box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
-    animation: badgeWiggle 4s infinite ease-in-out;
+    animation: flyoutBadgePulse 2.5s infinite ease-in-out;
 }
 
-@keyframes badgeWiggle {
-    0%, 90%, 100% {
-        transform: rotate(0deg);
-    }
-    93% {
-        transform: rotate(-3deg) scale(1.05);
-    }
-    96% {
-        transform: rotate(3deg) scale(1.05);
-    }
-}
-
-.promo-text {
-    color: #f8fafc;
-    font-size: 0.9rem;
-}
-
-.promo-text strong {
-    color: #4ade80;
-    font-size: 0.95rem;
-    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-}
-
-.promo-subtext {
-    color: #cbd5e1;
-    font-size: 0.85rem;
-}
-
-.promo-btn-cta {
-    background: #25d366;
-    color: #0f172a;
-    font-weight: 800;
-    font-size: 0.85rem;
-    padding: 0.45rem 1.15rem;
-    border-radius: 50px;
-    text-decoration: none;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    box-shadow: 0 0 15px rgba(37, 211, 102, 0.55);
-    animation: promoPulse 2.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
-    transition: all 0.25s ease;
-}
-
-@keyframes promoPulse {
+@keyframes flyoutBadgePulse {
     0%, 100% {
-        box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 25px rgba(37, 211, 102, 0.9);
-        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.85);
+        transform: scale(1.03);
     }
 }
 
-.promo-btn-cta:hover {
+.flyout-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.flyout-subtitle {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 1.2rem;
+    line-height: 1.45;
+}
+
+.flyout-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: #25d366;
+    color: #0f172a;
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 0.75rem 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.flyout-cta-btn:hover {
     background: #1eb855;
     color: #ffffff;
-    transform: translateY(-2px) scale(1.06) !important;
-    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.75) !important;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.65);
+}
+
+/* Floating Re-open Bubble */
+.promo-reopen-bubble {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #ffffff;
+    padding: 0.55rem 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1004;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(239, 68, 68, 0.3);
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s;
+}
+
+.promo-reopen-bubble.visible {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.promo-reopen-bubble:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #881337 100%);
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5);
+}
+
+.bubble-gift-icon {
+    font-size: 1.1rem;
+}
+
+.bubble-label {
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #4ade80;
 }
 
 .hero-badges-row {
@@ -348,36 +374,6 @@ a {
     color: #0f172a !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4) !important;
-}
-
-.promo-close-btn {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    color: #cbd5e1;
-    font-size: 1.1rem;
-    font-weight: 800;
-    cursor: pointer;
-    padding: 0.3rem 0.5rem;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-}
-
-.promo-close-btn:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
-}
-
-/* Adjust main-nav position when promo bar is active */
-body.has-promo-bar .main-nav {
-    top: 42px;
-}
-
-body.has-promo-bar .hero-banner {
-    padding-top: 130px;
 }
 
 /* Main Header Navigation (Fixed Glassmorphic Header) */
@@ -1915,38 +1911,41 @@ a.info-card-link:hover {
     .lightbox-content { max-width: 95%; max-height: 80vh; }
 }
 
-@media (max-width: 480px) {
-    .promo-top-bar {
-        padding: 0.35rem 0;
+@media (max-width: 600px) {
+    .promo-flyout-card {
+        bottom: 16px;
+        right: 5%;
+        left: 5%;
+        width: 90%;
+        max-width: none;
+        padding: 1.25rem 1.1rem 1.1rem 1.1rem;
+        transform: translateY(150%);
     }
-    .promo-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        gap: 0.35rem;
-        padding-right: 2.2rem;
+
+    .promo-flyout-card.active {
+        transform: translateY(0);
     }
-    .promo-content-wrapper {
-        font-size: 0.78rem;
-        gap: 0.35rem;
-        flex-wrap: wrap;
-        justify-content: center;
+
+    .flyout-title {
+        font-size: 1.05rem;
     }
-    .promo-badge {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.5rem;
+
+    .flyout-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
     }
-    .promo-btn-cta {
-        font-size: 0.78rem;
-        padding: 0.3rem 0.8rem;
+
+    .flyout-cta-btn {
+        font-size: 0.85rem;
+        padding: 0.65rem 0.85rem;
     }
-    body.has-promo-bar .main-nav {
-        top: 66px;
+
+    .promo-reopen-bubble {
+        bottom: 16px;
+        right: 16px;
+        padding: 0.45rem 0.9rem;
     }
-    body.has-promo-bar .hero-banner {
-        padding-top: 145px;
-    }
+}
     .section {
         padding: 3.5rem 0;
     }

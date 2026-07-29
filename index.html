@@ -44,7 +44,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=21.0">
+
+    <!-- Hero Background Image Preload Directive -->
+    <link rel="preload" as="image" href="assets/ui/yo.JPG">
+    <link rel="stylesheet" href="styles.css?v=22.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsClub) -->
     <script type="application/ld+json">
@@ -437,8 +440,8 @@
                 <!-- Right: Tournament Photos Showcase -->
                 <div class="tournament-photos-grid">
                     <div class="gallery-item tournament-photo-item">
-                        <img src="assets/galeria/adultos2.png" alt="Entrenamiento y Preparación Torneo JKA"
-                            class="lightbox-trigger">
+                        <img src="assets/galeria/adultos2.jpg" alt="Entrenamiento y Preparación Torneo JKA"
+                            class="lightbox-trigger" loading="lazy" decoding="async">
                         <div class="photo-caption-tag">Equipo de Competidores</div>
                     </div>
                 </div>
@@ -464,41 +467,41 @@
 
             <div class="modern-gallery-grid" id="photos-grid">
                 <div class="gallery-item">
-                    <img src="assets/galeria/Clases6.jpg" alt="Entrenamiento práctico de Karate Shotokan JKA en Dojo Samurai Peñablanca" class="lightbox-trigger">
+                    <img src="assets/galeria/Clases6.jpg" alt="Entrenamiento práctico de Karate Shotokan JKA en Dojo Samurai Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/ui/yo.JPG" alt="Sensei instructor principal de Karate en Dojo Samurai Peñablanca" class="lightbox-trigger">
+                    <img src="assets/ui/yo.JPG" alt="Sensei instructor principal de Karate en Dojo Samurai Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/galeria/Clases1.jpg" alt="Clase infantil de Karate JKA en Dojo Samurai Peñablanca" class="lightbox-trigger">
+                    <img src="assets/galeria/Clases1.jpg" alt="Clase infantil de Karate JKA en Dojo Samurai Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/galeria/adultos.png" alt="Clase de Karate Shotokan JKA para adultos en Peñablanca" class="lightbox-trigger">
+                    <img src="assets/galeria/adultos.jpg" alt="Clase de Karate Shotokan JKA para adultos en Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/galeria/adultos2.png" alt="Entrenamiento y preparación de competidores JKA en Dojo Samurai Peñablanca" class="lightbox-trigger">
+                    <img src="assets/galeria/adultos2.jpg" alt="Entrenamiento y preparación de competidores JKA en Dojo Samurai Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/galeria/Clases4.jpg" alt="Práctica de Katas y técnicas de Karate Shotokan en Peñablanca" class="lightbox-trigger">
+                    <img src="assets/galeria/Clases4.jpg" alt="Práctica de Katas y técnicas de Karate Shotokan en Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/galeria/Clases5.jpg" alt="Alumnos y practicantes de Karate Shotokan JKA Peñablanca" class="lightbox-trigger">
+                    <img src="assets/galeria/Clases5.jpg" alt="Alumnos y practicantes de Karate Shotokan JKA Peñablanca" class="lightbox-trigger" loading="lazy" decoding="async">
                 </div>
             </div>
 
             <div class="modern-gallery-grid" id="videos-grid" style="display: none;">
                 <div class="gallery-item video-item">
-                    <video controls preload="metadata">
+                    <video controls preload="none">
                         <source src="assets/galeria/VID-20260219-WA0062.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="gallery-item video-item">
-                    <video controls preload="metadata">
+                    <video controls preload="none">
                         <source src="assets/galeria/VID-20260219-WA0063.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="gallery-item video-item">
-                    <video controls preload="metadata">
+                    <video controls preload="none">
                         <source src="assets/galeria/VID_20260317_080835_877.mp4" type="video/mp4">
                     </video>
                 </div>

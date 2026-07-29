@@ -1,23 +1,18 @@
 {
   "name": "dojo_samurai",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
+  "description": "Dojo Samurai Peñablanca - Karate Shotokan JKA",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'Static build ready'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hakushiAndres/Dojo_Samurai.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dojo Samurai Peñablanca",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/hakushiAndres/Dojo_Samurai/issues"
-  },
-  "homepage": "https://github.com/hakushiAndres/Dojo_Samurai#readme",
   "dependencies": {
     "@vercel/analytics": "^2.0.1"
   }

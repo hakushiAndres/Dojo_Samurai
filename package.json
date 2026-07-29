@@ -4,7 +4,7 @@
   "description": "Dojo Samurai Peñablanca - Karate Shotokan JKA",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Static build ready'"
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",

@@ -16,20 +16,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
-    // Promotional Flyout Widget Logic
+    // Promotional Flyout Widget Logic (with localStorage persistence)
     const flyoutCard = document.getElementById('promo-flyout-widget');
     const closeFlyoutBtn = document.getElementById('close-flyout');
     const reopenBubble = document.getElementById('promo-reopen-bubble');
 
     if (flyoutCard && closeFlyoutBtn && reopenBubble) {
-        // 1.5 seconds delay before entrance animation
-        setTimeout(() => {
-            flyoutCard.classList.add('active');
-        }, 1500);
+        const isClosed = localStorage.getItem('dojo_promo_closed') === 'true';
 
-        // Close flyout card & show reopen bubble
+        if (isClosed) {
+            // User previously closed the card; show minimized bubble directly
+            reopenBubble.classList.add('visible');
+        } else {
+            // 1.5 seconds delay before entrance animation for first-time visitors
+            setTimeout(() => {
+                flyoutCard.classList.add('active');
+            }, 1500);
+        }
+
+        // Close flyout card, save preference in localStorage & show reopen bubble
         closeFlyoutBtn.addEventListener('click', () => {
             flyoutCard.classList.remove('active');
+            localStorage.setItem('dojo_promo_closed', 'true');
             setTimeout(() => {
                 reopenBubble.classList.add('visible');
             }, 300);

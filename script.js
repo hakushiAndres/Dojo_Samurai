@@ -50,6 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Inyo Symbol Tooltip Touch/Click Toggle
+    const inyoContainer = document.querySelector('.inyo-symbol-container');
+    if (inyoContainer) {
+        inyoContainer.addEventListener('click', (e) => {
+            inyoContainer.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!inyoContainer.contains(e.target)) {
+                inyoContainer.classList.remove('active');
+            }
+        });
+    }
+
     // Back to Top Button Functionality
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {

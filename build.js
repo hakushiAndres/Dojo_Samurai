@@ -20,6 +20,7 @@ const staticItems = [
     'robots.txt',
     'sitemap.xml',
     'og-image.jpg',
+    'comunicado_oficial_popup.jpg',
     'assets',
     'public'
 ];

@@ -49,7 +49,7 @@
 
     <!-- Hero Background Image Preload Directive -->
     <link rel="preload" as="image" href="assets/ui/yo.JPG">
-    <link rel="stylesheet" href="styles.css?v=30.0">
+    <link rel="stylesheet" href="styles.css?v=31.0">
 
     <!-- Vercel Analytics Integration -->
     <script defer src="/_vercel/insights/script.js"></script>
@@ -103,6 +103,25 @@
 </head>
 
 <body>
+    <!-- Notice Modal Pop-up Overlay (Aviso Importante al Cargar) -->
+    <div id="notice-modal-overlay" class="notice-modal-overlay" aria-modal="true" role="dialog" aria-labelledby="notice-modal-title">
+        <div class="notice-modal-card">
+            <button id="close-notice-modal" class="notice-modal-close-btn" aria-label="Cerrar comunicado" title="Cerrar">✕</button>
+            <div class="notice-modal-header">
+                <span class="notice-modal-badge">📢 COMUNICADO OFICIAL</span>
+                <h3 id="notice-modal-title" class="notice-modal-title">Aviso Importante</h3>
+            </div>
+            <div class="notice-modal-body">
+                <p>Por el momento <strong>Dojo Samurai Peñablanca</strong> tiene habilitadas clases solo para <strong>Jóvenes y adultos desde los 18 años de edad</strong>.</p>
+                <p>Las clases para niños desde los 8 años por el momento no estarán habilitadas y comenzaremos a promocionarlas e inscripciones a partir de <strong>Noviembre del 2026</strong>.</p>
+                <p class="notice-modal-footer-msg">Muchas gracias por su comprensión y los esperamos en el <strong>DOJO</strong>.</p>
+            </div>
+            <div class="notice-modal-actions">
+                <button id="confirm-notice-btn" class="notice-modal-btn">Entendido / Continuar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Promotional Flyout Widget (Bottom-Right Glassmorphic Card) -->
     <div id="promo-flyout-widget" class="promo-flyout-card" aria-label="Promoción Dojo Peñablanca">
         <button id="close-flyout" class="flyout-close-btn" aria-label="Cerrar ventana promocional" title="Cerrar">✕</button>
@@ -368,17 +387,17 @@
             </div>
 
             <div class="bento-grid">
-                <!-- Infantil (Small Bento) -->
-                <div class="bento-card bento-small">
+                <!-- Infantil (Small Bento - Próximamente) -->
+                <div class="bento-card bento-small bento-proximamente">
                     <div class="card-header">
-                        <h3>Infantil</h3>
-                        <span class="badge badge-outline">8 - 12 años</span>
+                        <h3>Infantil (Niños)</h3>
+                        <span class="badge badge-proximamente">⏳ PRÓXIMAMENTE</span>
                     </div>
                     <div class="card-body">
-                        <p>Desarrollo psicomotriz, coordinación, equilibrio y autoconfianza a través de dinámicas marciales tradicionales especialmente adaptadas para niños de 8 a 12 años.</p>
+                        <p>Las clases para niños desde los 8 años por el momento no están habilitadas. Comenzaremos a promocionarlas e inscripciones a partir de <strong>Noviembre del 2026</strong>.</p>
                         <div class="schedule modern-schedule">
-                            <strong>Horario</strong>
-                            <span>Mar y Jue: 19:00 - 20:00</span>
+                            <strong>Apertura e Inscripciones</strong>
+                            <span>Noviembre 2026</span>
                         </div>
                     </div>
                 </div>

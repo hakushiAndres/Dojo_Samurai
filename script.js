@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Notice Modal Pop-up (Aviso Importante al Cargar)
+    const noticeOverlay = document.getElementById('notice-modal-overlay');
+    const closeNoticeBtn = document.getElementById('close-notice-modal');
+    const confirmNoticeBtn = document.getElementById('confirm-notice-btn');
+
+    if (noticeOverlay) {
+        const isNoticeClosed = sessionStorage.getItem('dojo_notice_closed') === 'true';
+
+        if (!isNoticeClosed) {
+            setTimeout(() => {
+                noticeOverlay.classList.add('active');
+            }, 300);
+        }
+
+        const dismissNotice = () => {
+            noticeOverlay.classList.remove('active');
+            sessionStorage.setItem('dojo_notice_closed', 'true');
+        };
+
+        if (closeNoticeBtn) closeNoticeBtn.addEventListener('click', dismissNotice);
+        if (confirmNoticeBtn) confirmNoticeBtn.addEventListener('click', dismissNotice);
+
+        noticeOverlay.addEventListener('click', (e) => {
+            if (e.target === noticeOverlay) {
+                dismissNotice();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && noticeOverlay.classList.contains('active')) {
+                dismissNotice();
+            }
+        });
+    }
+
     // Real-time SVG Kanji Stroke Animation (Shotokan / 松濤館)
     const kanjiSvg = document.querySelector('.kanji-svg');
     if (kanjiSvg) {

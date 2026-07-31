@@ -416,8 +416,29 @@ a {
 .flyout-subtitle {
     font-size: 0.9rem;
     color: #cbd5e1;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
     line-height: 1.45;
+}
+
+.flyout-spots-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background: rgba(239, 68, 68, 0.16);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.45);
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1.1rem;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.flyout-spots-tag strong {
+    color: #ffffff;
 }
 
 .flyout-cta-btn {

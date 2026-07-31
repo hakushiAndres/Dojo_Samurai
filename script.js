@@ -34,6 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Automatic Crossfade Hero Background Slider (4.5s Interval)
+    const heroSlides = document.querySelectorAll('.hero-bg-slide');
+    if (heroSlides.length > 1) {
+        let currentSlide = 0;
+        setInterval(() => {
+            heroSlides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % heroSlides.length;
+            heroSlides[currentSlide].classList.add('active');
+        }, 4500);
+    }
+
     // Real-time SVG Kanji Stroke Animation (Shotokan / 松濤館)
     const kanjiSvg = document.querySelector('.kanji-svg');
     if (kanjiSvg) {

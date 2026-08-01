@@ -49,7 +49,7 @@
 
     <!-- Hero Background Image Preload Directive -->
     <link rel="preload" as="image" href="assets/ui/yo.JPG">
-    <link rel="stylesheet" href="styles.css?v=41.0">
+    <link rel="stylesheet" href="styles.css?v=42.0">
 
     <!-- Vercel Analytics Integration -->
     <script defer src="/_vercel/insights/script.js"></script>
@@ -154,6 +154,7 @@
                 <li><a href="#classes">Clases</a></li>
                 <li><a href="#tournaments">Torneos</a></li>
                 <li><a href="#gallery">Galería</a></li>
+                <li><a href="#location">Ubicación</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
@@ -544,45 +545,98 @@
                 </div>
             </div>
         </div>
-        <a href="#contact" class="scroll-chevron-down" aria-label="Ir a Ubicación y Contacto">
+        <a href="#location" class="scroll-chevron-down" aria-label="Ir a Ubicación">
             <span class="chevron-icon">⌄</span>
         </a>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Location Section (Dónde Encontrarnos & Universo Vipalu) -->
+    <section id="location" class="location section">
+        <div class="container">
+            <div class="section-header center" style="margin-bottom: 3rem;">
+                <h2 class="section-title text-light">Dónde Encontrarnos</h2>
+                <div class="title-underline" style="margin: 0 auto 1.5rem auto;"></div>
+                <p class="section-desc text-light" style="color: #94a3b8; max-width: 720px; margin: 0 auto; line-height: 1.65; font-size: 1.05rem;">
+                    Nos alegra recibirte en nuestro espacio marcial. Estamos ubicados dentro del acogedor complejo <strong>Universo Vipalu</strong> en Villa Alemana, un espacio pensado para el bienestar, la actividad física y el encuentro de nuestra comunidad. ¡Te esperamos con las puertas abiertas!
+                </p>
+            </div>
+
+            <div class="location-grid">
+                <!-- Google Maps Card -->
+                <div class="map-card">
+                    <div class="map-header-badge">
+                        <span class="pulse-dot"></span>
+                        <span>Dojo Samurai Villa Alemana</span>
+                    </div>
+                    <iframe
+                        src="https://maps.google.com/maps?q=Balmaceda+188+casa+2+Universo+Vipalu+Villa+Alemana&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación Dojo Samurai Villa Alemana en Google Maps">
+                    </iframe>
+                    <div class="map-footer-bar">
+                        <a href="https://maps.google.com/?q=Balmaceda+188+casa+2+Universo+Vipalu+Villa+Alemana"
+                            target="_blank" rel="noopener noreferrer" class="social-btn map-btn">📍 Abrir en Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Universo Vipalu Showcase Card -->
+                <div class="vipalu-showcase-card">
+                    <div class="vipalu-card-header">
+                        <div class="vipalu-card-badge">✨ NUESTRO ESPACIO</div>
+                        <h3 class="vipalu-card-title">Universo Vipalu</h3>
+                        <p class="vipalu-card-text">
+                            Un lugar cálido y seguro en el corazón de Villa Alemana, diseñado para fomentar la salud, el deporte y el compartir en familia. En este excelente entorno impartimos nuestras clases de Karate Shotokan tradicional JKA.
+                        </p>
+                    </div>
+
+                    <div class="vipalu-card-footer">
+                        <div class="vipalu-address-pill">
+                            <span class="pill-icon">📍</span>
+                            <span>Balmaceda 188, casa 2, Villa Alemana</span>
+                        </div>
+                        <a href="https://www.instagram.com/universovipalu/#" target="_blank" rel="noopener noreferrer" class="vipalu-insta-btn">
+                            <span class="vipalu-insta-icon">📷</span>
+                            <div class="vipalu-btn-text">
+                                <strong>Conoce Universo Vipalu en Instagram</strong>
+                                <span>@universovipalu</span>
+                            </div>
+                            <span class="vipalu-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#contact" class="scroll-chevron-down" aria-label="Ir a Contacto">
+            <span class="chevron-icon">⌄</span>
+        </a>
+    </section>
+
+    <!-- Contact Section (Canales de Contacto & Formulario) -->
     <section id="contact" class="contact section">
         <div class="container">
             <div class="section-header center" style="margin-bottom: 3.5rem;">
-                <h2 class="section-title text-light">Ubicación y Contacto</h2>
+                <h2 class="section-title text-light">Contacto</h2>
                 <div class="title-underline" style="margin: 0 auto 1.5rem auto;"></div>
                 <p class="section-desc text-light" style="color: #94a3b8; max-width: 650px; margin: 0 auto;">
-                    Comienza tu viaje marcial hoy. Visítanos en Villa Alemana o envíanos un mensaje para reservar tu
-                    primera clase.
+                    ¿Tienes preguntas sobre horarios o quieres agendar tu primera clase? Ponte en contacto directo con nosotros a través del formulario o nuestros canales oficiales.
                 </p>
             </div>
 
             <div class="contact-grid">
-                <!-- Left Side: Interactive Map & Info Cards -->
-                <div class="location-card-wrapper">
+                <!-- Left Side: Contact Info Cards -->
+                <div class="contact-cards-wrapper">
                     <div class="info-cards-grid">
-                        <div class="info-card">
-                            <span class="info-card-icon">📍</span>
-                            <div class="info-card-text">
-                                <strong>Dirección</strong>
-                                <span>Balmaceda 188, casa 2, Universo Vipalu, Villa Alemana</span>
-                            </div>
-                        </div>
                         <div class="info-card">
                             <span class="info-card-icon">📞</span>
                             <div class="info-card-text">
-                                <strong>Teléfono</strong>
+                                <strong>Teléfono / WhatsApp</strong>
                                 <span>+56 9 4282 5617</span>
                             </div>
                         </div>
                         <div class="info-card">
                             <span class="info-card-icon">✉️</span>
                             <div class="info-card-text">
-                                <strong>Email</strong>
+                                <strong>Correo Electrónico</strong>
                                 <span>Dojo.samurai.penablanca@gmail.com</span>
                             </div>
                         </div>
@@ -590,28 +644,10 @@
                             rel="noopener noreferrer" class="info-card info-card-link">
                             <span class="info-card-icon instagram-icon">📷</span>
                             <div class="info-card-text">
-                                <strong>Instagram</strong>
+                                <strong>Instagram Dojo</strong>
                                 <span>@dojo_samuraijka__valemana</span>
                             </div>
                         </a>
-                    </div>
-
-                    <!-- Prominent Map Card -->
-                    <div class="map-card">
-                        <div class="map-header-badge">
-                            <span class="pulse-dot"></span>
-                            <span>Dojo Samurai Villa Alemana</span>
-                        </div>
-                        <iframe
-                            src="https://maps.google.com/maps?q=Balmaceda+188+casa+2+Universo+Vipalu+Villa+Alemana&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                            title="Ubicación Dojo Samurai Villa Alemana en Google Maps">
-                        </iframe>
-                        <div class="map-footer-bar">
-                            <a href="https://maps.google.com/?q=Balmaceda+188+casa+2+Universo+Vipalu+Villa+Alemana"
-                                target="_blank" rel="noopener noreferrer" class="social-btn map-btn">📍 Abrir en Google
-                                Maps</a>
-                        </div>
                     </div>
                 </div>
 
@@ -620,7 +656,7 @@
                     <h3>Envíanos un mensaje</h3>
                     <form id="contactForm" class="contact-form">
                         <div class="form-group">
-                            <input type="text" id="name" required placeholder="Tu nombre completos">
+                            <input type="text" id="name" required placeholder="Tu nombre completo">
                         </div>
                         <div class="form-group">
                             <input type="email" id="email" required placeholder="tu@email.com">
@@ -641,13 +677,12 @@
                 </div>
             </div>
 
-            <!-- CTA Free Trial Banner (Mismo ancho que el mapa y formulario) -->
+            <!-- CTA Free Trial Banner -->
             <div class="cta-banner">
                 <div class="cta-content">
                     <span class="cta-tag">✨ Primera Clase de Prueba</span>
                     <h3 class="cta-title">¡Empieza tu camino en el Karate Shotokan!</h3>
-                    <p class="cta-desc">Ven a conocer nuestro dojo, instructores e instalaciones sin costo ni
-                        compromiso.</p>
+                    <p class="cta-desc">Ven a conocer nuestro dojo, instructores e instalaciones sin costo ni compromiso.</p>
                 </div>
                 <div class="cta-action">
                     <a href="https://wa.me/56942825617?text=¡Hola!%20Me%20gustaría%20agendar%20mi%20clase%20de%20prueba%20gratis%20en%20el%20Dojo%20Samurai"

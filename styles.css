@@ -1398,6 +1398,136 @@ a {
     background: #000;
 }
 
+/* Location Section Layout */
+.location {
+    background-color: #0f172a;
+    color: var(--text-light);
+    padding: 5rem 0;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: stretch;
+}
+
+.vipalu-showcase-card {
+    background: rgba(30, 41, 59, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.vipalu-showcase-card:hover {
+    border-color: rgba(220, 38, 38, 0.4);
+    transform: translateY(-3px);
+}
+
+.vipalu-card-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(220, 38, 38, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(220, 38, 38, 0.35);
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+}
+
+.vipalu-card-title {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.vipalu-card-text {
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: #cbd5e1;
+    margin-bottom: 1.8rem;
+}
+
+.vipalu-address-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.85rem 1.2rem;
+    border-radius: 14px;
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+}
+
+.vipalu-address-pill .pill-icon {
+    font-size: 1.1rem;
+}
+
+.vipalu-insta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+    color: #ffffff !important;
+    padding: 0.95rem 1.4rem;
+    border-radius: 14px;
+    text-decoration: none !important;
+    box-shadow: 0 8px 25px rgba(253, 29, 29, 0.35);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vipalu-insta-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(253, 29, 29, 0.55);
+}
+
+.vipalu-insta-icon {
+    font-size: 1.4rem;
+}
+
+.vipalu-btn-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.1rem;
+}
+
+.vipalu-btn-text strong {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.vipalu-btn-text span {
+    font-size: 0.82rem;
+    opacity: 0.92;
+    font-weight: 400;
+    color: #f1f5f9;
+}
+
+.vipalu-arrow {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
 /* Contact Footer */
 .contact {
     background-color: var(--dark-bg);
@@ -2073,9 +2203,43 @@ a.info-card-link:hover {
     }
     
     .about-container,
+    .location-grid,
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
+    }
+
+    .vipalu-showcase-card {
+        padding: 1.75rem 1.4rem;
+        border-radius: 18px;
+    }
+
+    .vipalu-card-title {
+        font-size: 1.6rem;
+    }
+
+    .vipalu-card-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.4rem;
+    }
+
+    .vipalu-address-pill {
+        font-size: 0.88rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .vipalu-insta-btn {
+        padding: 0.85rem 1.1rem;
+        border-radius: 12px;
+    }
+
+    .vipalu-btn-text strong {
+        font-size: 0.86rem;
+    }
+
+    .vipalu-btn-text span {
+        font-size: 0.78rem;
     }
 
     .map-card {

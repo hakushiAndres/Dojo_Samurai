@@ -1,7 +1,7 @@
 {
   "name": "dojo_samurai",
   "version": "1.0.0",
-  "description": "Dojo Samurai Peñablanca - Karate Shotokan JKA",
+  "description": "Dojo Samurai Villa Alemana - Karate Shotokan JKA",
   "main": "index.html",
   "scripts": {
     "build": "node build.js"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/hakushiAndres/Dojo_Samurai.git"
   },
   "keywords": [],
-  "author": "Dojo Samurai Peñablanca",
+  "author": "Dojo Samurai Villa Alemana",
   "license": "ISC",
   "dependencies": {
     "@vercel/analytics": "^2.0.1"

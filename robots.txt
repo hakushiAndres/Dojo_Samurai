@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.xn--samuraipeablanca-fub.cl/sitemap.xml
+Sitemap: https://www.samuraijkavalemana.cl/sitemap.xml

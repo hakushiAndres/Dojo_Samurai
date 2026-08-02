@@ -55,13 +55,16 @@
 
     <!-- Hero Background Image Preload Directive -->
     <link rel="preload" as="image" href="assets/ui/yo.JPG">
-    <link rel="stylesheet" href="styles.css?v=45.0">
+    <link rel="stylesheet" href="styles.css?v=46.0">
 
-    <!-- Vercel Analytics Integration -->
+    <!-- Vercel Analytics & Speed Insights Integration -->
     <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
     <script type="module">
         import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@2.0.1/+esm';
+        import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/+esm';
         inject();
+        injectSpeedInsights();
     </script>
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsClub) -->

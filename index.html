@@ -48,14 +48,15 @@
         content="Aprende Karate Shotokan JKA en Villa Alemana. Clases para niños, jóvenes y adultos. ¡Reserva tu primera clase gratis!" />
     <meta name="twitter:image" content="https://www.samuraijkavalemana.cl/og-image.jpg" />
 
-    <!-- Favicon & Typography -->
+    <!-- Favicon & Typography (Non-render-blocking async load) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
-    <!-- Hero Background Image Preload Directive -->
-    <link rel="preload" as="image" href="assets/ui/yo.JPG">
-    <link rel="stylesheet" href="styles.css?v=46.0">
+    <!-- Hero Background Image Preload Directive (LCP priority high) -->
+    <link rel="preload" as="image" href="assets/ui/yo.JPG" fetchpriority="high">
+    <link rel="stylesheet" href="styles.css?v=47.0">
 
     <!-- Vercel Analytics & Speed Insights Integration -->
     <script defer src="/_vercel/insights/script.js"></script>
@@ -174,7 +175,7 @@
     <nav id="navbar" class="main-nav">
         <div class="nav-container">
             <a href="#hero" class="logo">
-                <span class="logo-icon"><img src="assets/ui/animacion/jka.png" alt="Logo JKA"></span> Dojo Samurai JKA Villa Alemana
+                <span class="logo-icon"><img src="assets/ui/animacion/jka_logo.png" alt="Logo JKA" width="35" height="35" decoding="async"></span> Dojo Samurai JKA Villa Alemana
             </a>
             <ul class="nav-links">
                 <li><a href="#about">Nosotros</a></li>
@@ -805,7 +806,7 @@
         <button class="lightbox-next">&#10095;</button>
     </div>
 
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 </body>
 
 </html>

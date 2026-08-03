@@ -850,7 +850,39 @@ a {
     display: block;
 }
 
-/* About Section */
+/* About Section (Dark Obsidian Theme) */
+#about {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    color: #f8fafc;
+    position: relative;
+}
+
+#about .section-title {
+    color: #ffffff !important;
+}
+
+#about .lead-text {
+    color: #f1f5f9 !important;
+}
+
+#about .lead-text strong {
+    color: #ffffff !important;
+}
+
+#about .about-text p {
+    color: #cbd5e1 !important;
+}
+
+#about .about-text strong {
+    color: #ffffff !important;
+}
+
+#about .scroll-chevron-down {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
 .about-container {
     display: grid;
     grid-template-columns: 1fr 1fr;

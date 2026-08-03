@@ -663,9 +663,9 @@ a {
     position: relative;
     display: flex;
     align-items: center;
-    background-image: url('assets/ui/yo.JPG');
+    background-image: url('assets/ui/Logo_hero.jpg');
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
     background-repeat: no-repeat;
     overflow: hidden;
     padding-top: 110px;
@@ -678,14 +678,14 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(15, 23, 42, 0.92) 0%,
-        rgba(15, 23, 42, 0.75) 50%,
-        rgba(185, 28, 28, 0.45) 100%
+    background: radial-gradient(
+        circle at 50% 35%,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(15, 23, 42, 0.35) 45%,
+        rgba(15, 23, 42, 0.8) 100%
     );
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     z-index: 1;
 }
 
@@ -2117,18 +2117,18 @@ a.info-card-link:hover {
         padding-top: 85px;
         min-height: 100vh;
         align-items: center;
-        background-image: url('assets/ui/yo.JPG');
-        background-position: center 5% !important;
-        background-size: 100% auto !important;
+        background-image: url('assets/ui/Logo_hero.jpg');
+        background-position: center center !important;
+        background-size: cover !important;
         background-repeat: no-repeat !important;
         background-color: #0f172a !important;
     }
     .hero-banner-overlay {
         background: linear-gradient(
             180deg,
-            rgba(15, 23, 42, 0.5) 0%,
-            rgba(15, 23, 42, 0.82) 45%,
-            rgba(15, 23, 42, 0.98) 100%
+            rgba(15, 23, 42, 0.25) 0%,
+            rgba(15, 23, 42, 0.5) 45%,
+            rgba(15, 23, 42, 0.85) 100%
         ) !important;
     }
     .hero-content {
@@ -2149,8 +2149,8 @@ a.info-card-link:hover {
     }
 
     .hero-banner {
-        background-position: center 5% !important;
-        background-size: 100% auto !important;
+        background-position: center center !important;
+        background-size: cover !important;
     }
     
     .main-nav {

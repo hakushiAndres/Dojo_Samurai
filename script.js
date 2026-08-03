@@ -206,9 +206,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Helper function to sanitize user inputs against XSS injections
+    const sanitizeInput = (str) => {
+        if (typeof str !== 'string') return '';
+        return str.replace(/[<>]/g, '').trim();
+    };
+
+    let lastSubmitTime = 0;
+
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            // 1. Anti-Spam Honeypot Verification
+            const hpInput = document.getElementById('website_hp');
+            if (hpInput && hpInput.value !== '') {
+                // Silent block for automated bots
+                formMessage.textContent = '¡Gracias! Tu mensaje ha sido procesado.';
+                formMessage.className = 'form-message';
+                contactForm.reset();
+                return;
+            }
+
+            // 2. Client-Side Submission Cooldown (Rate Limiting)
+            const now = Date.now();
+            if (now - lastSubmitTime < 15000) { // 15 seconds cooldown
+                formMessage.textContent = 'Por favor espera unos segundos antes de enviar otro mensaje.';
+                formMessage.className = 'form-message error';
+                return;
+            }
             
             if (!validateForm()) {
                 formMessage.textContent = 'Por favor completa todos los campos correctamente.';
@@ -216,14 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const nameVal = nameInput.value.trim();
-            const emailVal = emailInput.value.trim();
-            const phoneVal = phoneInput.value.trim();
-            const messageVal = messageInput.value.trim();
+            // 3. Input Sanitization
+            const nameVal = sanitizeInput(nameInput.value);
+            const emailVal = sanitizeInput(emailInput.value);
+            const phoneVal = sanitizeInput(phoneInput.value);
+            const messageVal = sanitizeInput(messageInput.value);
 
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Enviando...';
             submitBtn.setAttribute('disabled', 'true');
+            lastSubmitTime = Date.now();
 
             fetch("https://formsubmit.co/ajax/Dojo.samurai.penablanca@gmail.com", {
                 method: "POST",

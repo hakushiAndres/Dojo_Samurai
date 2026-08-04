@@ -2444,7 +2444,6 @@ a.info-card-link:hover {
     .promo-reopen-bubble.visible {
         transform: translateY(-50%) scale(1);
     }
-}
     .section {
         padding: 3.5rem 0;
     }
@@ -2459,18 +2458,9 @@ a.info-card-link:hover {
     }
     .hero-title {
         font-size: 2.1rem;
-        color: #ffffff !important;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
     }
     .hero-subtitle {
         font-size: 1rem;
-        color: #f1f5f9 !important;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
-    }
-    .hero-banner {
-        padding-top: 80px;
-        background-position: center 5% !important;
-        background-size: 100% auto !important;
     }
     .logo {
         font-size: 0.85rem;

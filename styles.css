@@ -665,12 +665,12 @@ a {
     align-items: center;
     justify-content: center;
     background-image: url('assets/ui/Logo_hero.jpg');
-    background-size: contain;
-    background-position: center 25%;
+    background-size: 100% auto !important;
+    background-position: center center !important;
     background-repeat: no-repeat;
     background-color: #ffffff;
     overflow: hidden;
-    padding-top: 95px;
+    padding-top: 80px;
     padding-bottom: 4rem;
 }
 

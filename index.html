@@ -62,19 +62,8 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
-    <!-- Hero Background Image Preload Directive (LCP priority high) -->
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="styles.css?v=69.0">
-
-    <!-- Vercel Analytics & Speed Insights Integration -->
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
-    <script type="module">
-        import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@2.0.1/+esm';
-        import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/+esm';
-        inject();
-        injectSpeedInsights();
-    </script>
+    <link rel="stylesheet" href="styles.css?v=70.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -816,6 +805,18 @@
         <img class="lightbox-content" id="lightbox-img">
         <button class="lightbox-next">&#10095;</button>
     </div>
+
+    <!-- Vercel Analytics & Speed Insights Integration (Mounted inside <body> for accurate route tracking) -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script type="module">
+        import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@2.0.1/+esm';
+        import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/+esm';
+        inject();
+        injectSpeedInsights({
+            route: window.location.pathname || '/'
+        });
+    </script>
 
     <script defer src="script.js"></script>
 </body>

@@ -991,6 +991,97 @@ a {
     font-size: 1.1rem;
 }
 
+/* Grados JKA Section */
+.grados-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.grados-image-box {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    padding: 1.25rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.grados-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.grados-img:hover {
+    transform: scale(1.02);
+}
+
+.grados-img-caption {
+    margin-top: 0.85rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #475569;
+}
+
+.grados-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.grados-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.6rem 1.8rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: var(--transition);
+}
+
+.grados-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.highlight-grados-card {
+    border-left: 4px solid #b91c1c;
+    background: #f8fafc;
+}
+
+.grados-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.grados-card h3 {
+    font-size: 1.15rem;
+    color: #0f172a;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.grados-card p {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .grados-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
 .values-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

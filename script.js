@@ -520,13 +520,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const encodedText = encodeURIComponent(messageText);
             
-            // Universal WhatsApp Share URL
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const waUrl = isMobile 
-                ? `https://api.whatsapp.com/send?text=${encodedText}`
-                : `https://web.whatsapp.com/send?text=${encodedText}`;
+            // Universal WhatsApp URL that works on Desktop & Mobile without popup blocking
+            const waUrl = `https://api.whatsapp.com/send?text=${encodedText}`;
 
-            window.open(waUrl, '_blank', 'noopener,noreferrer');
+            const tempLink = document.createElement('a');
+            tempLink.href = waUrl;
+            tempLink.target = '_blank';
+            tempLink.rel = 'noopener noreferrer';
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
             return;
         }
 

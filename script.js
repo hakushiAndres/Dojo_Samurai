@@ -459,7 +459,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentOpenArticle = null;
 
     const openArticleModal = (articleId) => {
-        const article = allNewsArticles.find(a => a.id === articleId || a.slug === articleId);
+        let article = allNewsArticles.find(a => a.id === articleId || a.slug === articleId);
+        if (!article) {
+            article = defaultNewsData.find(a => a.id === articleId || a.slug === articleId) || defaultNewsData[0];
+        }
         if (!article) return;
 
         const modal = document.getElementById('article-reader-modal');
@@ -487,6 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.remove('hidden');
         modal.classList.add('active');
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     };
 
@@ -496,12 +500,25 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('active');
         setTimeout(() => {
             modal.classList.add('hidden');
+            modal.style.display = 'none';
             document.body.style.overflow = '';
         }, 300);
     };
 
     document.addEventListener('click', (e) => {
         const modal = document.getElementById('article-reader-modal');
+
+        // Global News Card / Read More Button Click Delegate
+        const newsCardOrBtn = e.target.closest('[data-id]');
+        if (newsCardOrBtn && (!modal || !modal.classList.contains('active'))) {
+            const articleId = newsCardOrBtn.getAttribute('data-id');
+            if (articleId && articleId !== 'null' && articleId !== '') {
+                e.preventDefault();
+                e.stopPropagation();
+                openArticleModal(articleId);
+                return;
+            }
+        }
         
         // Article Modal Image Click -> Open Fullscreen Carousel
         if (modal && modal.classList.contains('active')) {
@@ -516,14 +533,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 openLightboxWithImages(modalImages, clickedIndex !== -1 ? clickedIndex : 0);
                 return;
             }
-        }
 
-        if (!modal) return;
-
-        if (e.target.id === 'close-article-modal' || e.target.id === 'modal-close-bottom' || e.target.closest('#close-article-modal') || e.target.closest('#modal-close-bottom')) {
-            closeArticleModal();
-        } else if (e.target === modal) {
-            closeArticleModal();
+            if (e.target.id === 'close-article-modal' || e.target.id === 'modal-close-bottom' || e.target.closest('#close-article-modal') || e.target.closest('#modal-close-bottom')) {
+                closeArticleModal();
+            } else if (e.target === modal) {
+                closeArticleModal();
+            }
         }
     });
 

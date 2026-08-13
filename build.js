@@ -15,6 +15,7 @@ fs.mkdirSync(distDir, { recursive: true });
 // List of files and folders to include in dist output
 const staticItems = [
     'index.html',
+    'noticias.html',
     'styles.css',
     'script.js',
     'robots.txt',
@@ -28,7 +29,8 @@ const staticItems = [
     'og-image.jpg',
     'comunicado_oficial_popup.jpg',
     'assets',
-    'public'
+    'public',
+    'data'
 ];
 
 staticItems.forEach(item => {

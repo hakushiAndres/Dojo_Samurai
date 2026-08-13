@@ -63,7 +63,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="styles.css?v=77.0">
+    <link rel="stylesheet" href="styles.css?v=78.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -181,6 +181,7 @@
                 <li><a href="#dojokun">Dojo Kun</a></li>
                 <li><a href="#classes">Horarios</a></li>
                 <li><a href="#tournaments">Torneos</a></li>
+                <li><a href="#noticias">Noticias</a></li>
                 <li><a href="#gallery">Galería</a></li>
                 <li><a href="#location">Ubicación</a></li>
                 <li><a href="#contact">Contacto</a></li>
@@ -547,6 +548,35 @@
                         <div class="photo-caption-tag">Equipo de Competidores</div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <a href="#noticias" class="scroll-chevron-down" aria-label="Ir a Últimas Novedades">
+            <span class="chevron-icon">⌄</span>
+        </a>
+    </section>
+
+    <!-- Latest News Component Section (Landing Page Summary) -->
+    <section id="noticias" class="noticias section" style="background-color: #ffffff;">
+        <div class="container">
+            <div class="section-header center" style="margin-bottom: 3rem;">
+                <span class="badge red-badge" style="margin-bottom: 0.75rem;">📰 BLOG & COMUNICADOS</span>
+                <h2 class="section-title">Últimas Novedades</h2>
+                <div class="title-underline" style="margin: 0 auto 1.5rem auto;"></div>
+                <p class="section-desc" style="max-width: 780px; margin: 0 auto;">
+                    Entérate de las actividades recientes, reconocimientos en torneos, fechas de exámenes y comunicados oficiales del Dojo Samurai Villa Alemana.
+                </p>
+            </div>
+
+            <!-- Dynamic Homepage News Cards Container (Renders 3 latest articles) -->
+            <div id="home-news-grid" class="news-cards-grid home-news-grid">
+                <div class="news-loading-spinner">Cargando últimas novedades...</div>
+            </div>
+
+            <!-- News CTA Link to Full Blog Page -->
+            <div class="news-home-cta-wrapper" style="text-align: center; margin-top: 3rem;">
+                <a href="noticias.html" class="btn btn-primary news-cta-btn">
+                    Ver todas las noticias 📰
+                </a>
             </div>
         </div>
         <a href="#gallery" class="scroll-chevron-down" aria-label="Ir a Galería">

@@ -632,14 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Try fetching external JSON data asynchronously
-    fetch('data/noticias.json')
+    // Try fetching external JSON data asynchronously with cache buster
+    fetch('data/noticias.json?v=' + Date.now())
         .then(res => {
             if (!res.ok) throw new Error('Noticias JSON offline');
             return res.json();
         })
         .then(data => {
-            if (Array.isArray(data)) {
+            if (Array.isArray(data) && data.length > 0) {
                 allNewsArticles = data;
                 renderHomeNews();
                 if (noticiasGridContainer) {
@@ -648,6 +648,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(err => {
-            console.log('Using local news state.');
+            console.log('Using pre-bundled news articles data.');
         });
 });

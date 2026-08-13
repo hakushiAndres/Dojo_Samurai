@@ -63,7 +63,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="styles.css?v=81.0">
+    <link rel="stylesheet" href="styles.css?v=82.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -888,6 +888,31 @@
             route: window.location.pathname || '/'
         });
     </script>
+
+    <!-- Full Article Reader Modal -->
+    <div id="article-reader-modal" class="article-modal-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="modal-article-title">
+        <div class="article-modal-card">
+            <button id="close-article-modal" class="article-modal-close-btn" title="Cerrar noticia">✕</button>
+            <div class="article-modal-header">
+                <span id="modal-article-category" class="badge badge-solid">Categoría</span>
+                <span id="modal-article-date" class="modal-article-date">Fecha</span>
+            </div>
+            <h2 id="modal-article-title" class="article-modal-title">Título de la noticia</h2>
+            <div class="article-modal-author-box">
+                <span class="modal-author-icon">✍️</span> <span id="modal-article-author">Autor</span> • <span id="modal-article-time">Lectura</span>
+            </div>
+            <div class="article-modal-img-container">
+                <img id="modal-article-image" src="" alt="Imagen de la noticia" class="article-modal-img">
+            </div>
+            <div id="modal-article-body" class="article-modal-body">
+                <!-- Dynamic body HTML -->
+            </div>
+            <div class="article-modal-footer">
+                <button id="modal-share-wa" class="btn btn-cta">💬 Compartir por WhatsApp</button>
+                <button id="modal-close-bottom" class="btn btn-outline-dark">Cerrar Noticia</button>
+            </div>
+        </div>
+    </div>
 
     <script defer src="script.js"></script>
 </body>

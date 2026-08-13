@@ -444,38 +444,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openArticleModal = (articleId) => {
         const article = allNewsArticles.find(a => a.id === articleId || a.slug === articleId);
-        if (!article || !articleModal) return;
+        if (!article) return;
+
+        const modal = document.getElementById('article-reader-modal');
+        if (!modal) {
+            window.location.href = `noticias.html?article=${articleId}`;
+            return;
+        }
 
         currentOpenArticle = article;
-        document.getElementById('modal-article-category').textContent = article.category;
-        document.getElementById('modal-article-date').textContent = article.dateFormatted;
-        document.getElementById('modal-article-title').textContent = article.title;
-        document.getElementById('modal-article-author').textContent = article.author;
-        document.getElementById('modal-article-time').textContent = article.readTime;
-        document.getElementById('modal-article-image').src = article.image;
-        document.getElementById('modal-article-body').innerHTML = article.content;
+        const catEl = document.getElementById('modal-article-category');
+        const dateEl = document.getElementById('modal-article-date');
+        const titleEl = document.getElementById('modal-article-title');
+        const authorEl = document.getElementById('modal-article-author');
+        const timeEl = document.getElementById('modal-article-time');
+        const imgEl = document.getElementById('modal-article-image');
+        const bodyEl = document.getElementById('modal-article-body');
 
-        articleModal.classList.remove('hidden');
-        articleModal.classList.add('active');
+        if (catEl) catEl.textContent = article.category;
+        if (dateEl) dateEl.textContent = article.dateFormatted;
+        if (titleEl) titleEl.textContent = article.title;
+        if (authorEl) authorEl.textContent = article.author;
+        if (timeEl) timeEl.textContent = article.readTime;
+        if (imgEl) imgEl.src = article.image;
+        if (bodyEl) bodyEl.innerHTML = article.content;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     };
 
     const closeArticleModal = () => {
-        if (!articleModal) return;
-        articleModal.classList.remove('active');
+        const modal = document.getElementById('article-reader-modal');
+        if (!modal) return;
+        modal.classList.remove('active');
         setTimeout(() => {
-            articleModal.classList.add('hidden');
+            modal.classList.add('hidden');
             document.body.style.overflow = '';
         }, 300);
     };
 
-    if (closeArticleBtn) closeArticleBtn.addEventListener('click', closeArticleModal);
-    if (closeArticleBottomBtn) closeArticleBottomBtn.addEventListener('click', closeArticleModal);
-    if (articleModal) {
-        articleModal.addEventListener('click', (e) => {
-            if (e.target === articleModal) closeArticleModal();
-        });
-    }
+    document.addEventListener('click', (e) => {
+        const modal = document.getElementById('article-reader-modal');
+        if (!modal) return;
+
+        if (e.target.id === 'close-article-modal' || e.target.id === 'modal-close-bottom' || e.target.closest('#close-article-modal') || e.target.closest('#modal-close-bottom')) {
+            closeArticleModal();
+        } else if (e.target === modal) {
+            closeArticleModal();
+        }
+    });
 
     if (shareWaBtn) {
         shareWaBtn.addEventListener('click', () => {

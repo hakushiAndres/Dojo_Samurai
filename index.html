@@ -63,7 +63,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="styles.css?v=89.0">
+    <link rel="stylesheet" href="styles.css?v=90.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -569,10 +569,38 @@
 
             <!-- Dynamic Homepage News Cards Container (Renders 3 latest articles) -->
             <div id="home-news-grid" class="news-cards-grid home-news-grid">
-                <article class="news-card" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar" style="cursor: pointer;">
+                <!-- Featured Lead News Card -->
+                <article class="news-card news-hero-card" data-id="xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue" style="cursor: pointer; grid-column: 1 / -1;">
+                    <div class="news-hero-badge-strip">
+                        <span>🔥 NOTICIA DESTACADA</span>
+                        <span>JKA CHILE 2026</span>
+                    </div>
+                    <div class="news-hero-grid">
+                        <div class="news-hero-img-wrapper">
+                            <img src="assets/noticias/Seminario/INOUE_2026.jpg" alt="XV Seminario Técnico JKA Viña del Mar 2026 Shihan Mitsuo Inoue" class="news-hero-img" loading="lazy">
+                            <span class="news-category-badge badge-red">📜 Eventos</span>
+                        </div>
+                        <div class="news-hero-body">
+                            <div class="news-card-meta">
+                                <span class="news-date">📅 13 de Agosto, 2026</span>
+                                <span class="news-read-time">⏱️ 3 min de lectura</span>
+                            </div>
+                            <h3 class="news-hero-title">¡Todo listo para el XV Seminario Técnico JKA Viña del Mar 2026 junto a Shihan Mitsuo Inoue!</h3>
+                            <p class="news-hero-excerpt">Confirmada la fecha para el magno evento del Karate JKA con la presencia del maestro Shihan Mitsuo Inoue (8° Dan JKA y Senior Advisor). Exámenes de Dan, Instructor y Juez.</p>
+                            <div class="news-card-footer-action">
+                                <button class="btn btn-primary news-read-more-btn" data-id="xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue">
+                                    Leer noticia completa ➔
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 50th Anniversary Secondary Card -->
+                <article class="news-card modern-card" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar" style="cursor: pointer;">
                     <div class="news-card-img-wrapper">
                         <img src="assets/noticias/Aniversario/IMG-20260810-WA0001.webp" alt="50 Años de Dojo Samurai JKA Viña del Mar" class="news-card-img" loading="lazy">
-                        <span class="news-category-badge">Eventos</span>
+                        <span class="news-category-badge">🏆 Aniversario</span>
                     </div>
                     <div class="news-card-body">
                         <div class="news-card-meta">
@@ -928,7 +956,7 @@
         </div>
     </div>
 
-    <script defer src="script.js?v=89.0"></script>
+    <script defer src="script.js?v=90.0"></script>
 </body>
 
 </html>

@@ -51,7 +51,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
-    <link rel="stylesheet" href="styles.css?v=84.0">
+    <link rel="stylesheet" href="styles.css?v=85.0">
 
     <!-- Vercel Analytics Integration -->
     <script defer src="/_vercel/insights/script.js"></script>
@@ -117,8 +117,21 @@
 
             <!-- Dynamic Articles Grid -->
             <div id="noticias-grid-container" class="news-cards-grid">
-                <!-- Articles rendered dynamically via script.js -->
-                <div class="news-loading-spinner">Cargando noticias oficiales...</div>
+                <article class="news-card" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar" style="cursor: pointer;">
+                    <div class="news-card-img-wrapper">
+                        <img src="assets/noticias/Aniversario/IMG-20260810-WA0001.webp" alt="50 Años de Dojo Samurai JKA Viña del Mar" class="news-card-img" loading="lazy">
+                        <span class="news-category-badge">Eventos</span>
+                    </div>
+                    <div class="news-card-body">
+                        <div class="news-card-meta">
+                            <span class="news-date">📅 8 de Agosto, 2026</span>
+                            <span class="news-read-time">⏱️ 2 min de lectura</span>
+                        </div>
+                        <h3 class="news-card-title">50 Años de Dojo Samurai JKA Viña del Mar: Clase Especial y Convivencia con Sensei Raúl Puchi</h3>
+                        <p class="news-card-excerpt">Celebración de los 50 años del Honbu Dojo con una clase especial impartida por Sensei Raúl Puchi (6to Dan JKA) y una emotiva convivencia entre alumnos y maestros.</p>
+                        <button class="news-read-more-btn" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar">Leer noticia completa ➔</button>
+                    </div>
+                </article>
             </div>
         </div>
     </main>
@@ -212,7 +225,7 @@
         <button class="lightbox-next">&#10095;</button>
     </div>
 
-    <script defer src="script.js?v=84.0"></script>
+    <script defer src="script.js?v=85.0"></script>
 </body>
 
 </html>

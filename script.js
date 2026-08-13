@@ -508,6 +508,28 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         const modal = document.getElementById('article-reader-modal');
 
+        // WhatsApp Share Button Click Delegate
+        const waShareBtn = e.target.closest('#modal-share-wa');
+        if (waShareBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const title = document.getElementById('modal-article-title')?.textContent || "50 Años de Dojo Samurai JKA Viña del Mar";
+            const currentUrl = window.location.href;
+            const messageText = `🥋 *${title}*\n\nLee la noticia completa en Dojo Samurai JKA Villa Alemana:\n${currentUrl}`;
+
+            const encodedText = encodeURIComponent(messageText);
+            
+            // Universal WhatsApp Share URL
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const waUrl = isMobile 
+                ? `https://api.whatsapp.com/send?text=${encodedText}`
+                : `https://web.whatsapp.com/send?text=${encodedText}`;
+
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+            return;
+        }
+
         // Global News Card / Read More Button Click Delegate
         const newsCardOrBtn = e.target.closest('[data-id]');
         if (newsCardOrBtn && (!modal || !modal.classList.contains('active'))) {
@@ -541,28 +563,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-        // WhatsApp Share Button Click Delegate
-        const waShareBtn = e.target.closest('#modal-share-wa');
-        if (waShareBtn) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const title = document.getElementById('modal-article-title')?.textContent || "50 Años de Dojo Samurai JKA Viña del Mar";
-            const currentUrl = window.location.href;
-            const messageText = `🥋 *${title}*\n\nLee la noticia completa en Dojo Samurai JKA Villa Alemana:\n${currentUrl}`;
-
-            const encodedText = encodeURIComponent(messageText);
-            
-            // Universal WhatsApp Share URL
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const waUrl = isMobile 
-                ? `https://api.whatsapp.com/send?text=${encodedText}`
-                : `https://web.whatsapp.com/send?text=${encodedText}`;
-
-            window.open(waUrl, '_blank', 'noopener,noreferrer');
-            return;
-        }
 
     // Render Homepage 3 Latest Articles
     const homeNewsContainer = document.getElementById('home-news-grid');

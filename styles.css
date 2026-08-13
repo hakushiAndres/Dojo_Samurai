@@ -3158,6 +3158,18 @@ a.info-card-link:hover {
     margin-bottom: 1.6rem;
 }
 
+.news-hero-card.gold-theme {
+    border: 1px solid rgba(234, 179, 8, 0.4) !important;
+}
+
+.news-hero-card.gold-theme .news-hero-badge-strip {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+.news-hero-card.gold-theme:hover .news-hero-title {
+    color: #fde047 !important;
+}
+
 @media (max-width: 850px) {
     .news-hero-grid {
         grid-template-columns: 1fr;

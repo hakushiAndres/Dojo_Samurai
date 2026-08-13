@@ -395,7 +395,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // Hybrid News / Blog System Module
     // ==========================================
-    const defaultNewsData = [];
+    const defaultNewsData = [
+        {
+            "id": "50-aniversario-dojo-samurai-jka-vina-del-mar",
+            "slug": "50-aniversario-dojo-samurai-jka-vina-del-mar",
+            "title": "50 Años de Dojo Samurai JKA Viña del Mar: Clase Especial y Convivencia con Sensei Raúl Puchi",
+            "date": "2026-08-08",
+            "dateFormatted": "8 de Agosto, 2026",
+            "category": "Eventos",
+            "author": "Dojo Samurai Villa Alemana",
+            "image": "assets/noticias/Aniversario/IMG-20260810-WA0001.webp",
+            "excerpt": "Celebración de los 50 años del Honbu Dojo con una clase especial impartida por Sensei Raúl Puchi (6to Dan JKA) y una emotiva convivencia entre alumnos y maestros.",
+            "readTime": "2 min de lectura",
+            "featured": true,
+            "content": "<p>El sábado 8 de agosto se realizó una clase especial con motivo de los <strong>50 años de Dojo Samurai JKA Viña del Mar</strong>. La clase estuvo dirigida por <strong>Sensei Raúl Puchi (6to Dan JKA)</strong>, su presencia trajo mucha energía y motivación a todos los alumnos asistentes; luego de la clase se realizó una convivencia para todos los presentes.</p><p>En este mes de aniversario queremos expresar nuestros mejores deseos para el <strong>Honbu Dojo</strong> y para Sensei Raúl Puchi, y felicitarlo por tantos años de trayectoria y compromiso con la enseñanza del Karate Do Shotokan JKA, <em>Ossu</em>.</p><div class=\"news-gallery-grid\" style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0001.webp\" alt=\"50 Años Dojo Samurai JKA\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0002.webp\" alt=\"Clase Especial Sensei Raúl Puchi\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0005.webp\" alt=\"Convivencia 50 Aniversario Dojo Samurai\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0006.webp\" alt=\"Alumnos en Clase Aniversario\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0007.webp\" alt=\"Celebración Honbu Dojo Samurai\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0008.webp\" alt=\"Sensei Raúl Puchi 6to Dan JKA\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"></div>"
+        }
+    ];
     let allNewsArticles = [...defaultNewsData];
 
     // Helper to render a single news card HTML

@@ -337,58 +337,79 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lightbox Functionality
+    // Lightbox & Dynamic Carousel Functionality
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.lightbox-close');
-    const triggers = document.querySelectorAll('.lightbox-trigger');
     const prevBtn = document.querySelector('.lightbox-prev');
     const nextBtn = document.querySelector('.lightbox-next');
+    
+    let currentCarouselImages = [];
     let currentImageIndex = 0;
 
-    if (lightbox && lightboxImg && closeBtn) {
-        triggers.forEach((img, index) => {
-            img.addEventListener('click', () => {
-                currentImageIndex = index;
-                lightbox.classList.add('active');
-                lightboxImg.src = img.src;
-            });
-        });
+    const openLightboxWithImages = (imagesArray, startIndex = 0) => {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        if (!lb || !lbImg || !imagesArray || imagesArray.length === 0) return;
 
-        const showImage = (index) => {
-            if (index < 0) currentImageIndex = triggers.length - 1;
-            else if (index >= triggers.length) currentImageIndex = 0;
-            else currentImageIndex = index;
-            
-            lightboxImg.src = triggers[currentImageIndex].src;
-        };
+        currentCarouselImages = imagesArray;
+        currentImageIndex = startIndex < 0 ? 0 : (startIndex >= imagesArray.length ? 0 : startIndex);
 
-        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex - 1); });
-        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex + 1); });
+        lbImg.src = currentCarouselImages[currentImageIndex];
+        lb.style.zIndex = '10005';
+        lb.classList.add('active');
+    };
 
-        const closeLightbox = () => {
-            lightbox.classList.remove('active');
-            setTimeout(() => {
-                lightboxImg.src = '';
-            }, 300);
-        };
+    const showCarouselImage = (index) => {
+        const lbImg = document.getElementById('lightbox-img');
+        if (currentCarouselImages.length === 0 || !lbImg) return;
 
-        closeBtn.addEventListener('click', closeLightbox);
+        if (index < 0) currentImageIndex = currentCarouselImages.length - 1;
+        else if (index >= currentCarouselImages.length) currentImageIndex = 0;
+        else currentImageIndex = index;
         
-        // Close on clicking outside the image
+        lbImg.src = currentCarouselImages[currentImageIndex];
+    };
+
+    const closeLightbox = () => {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        if (!lb) return;
+        lb.classList.remove('active');
+        setTimeout(() => {
+            if (lbImg) lbImg.src = '';
+        }, 300);
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showCarouselImage(currentImageIndex - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showCarouselImage(currentImageIndex + 1); });
+
+    if (lightbox) {
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
                 closeLightbox();
             }
         });
+    }
 
-        // Close on Escape key, and navigate with arrows
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
-                if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
-            }
+    document.addEventListener('keydown', (e) => {
+        const lb = document.getElementById('lightbox');
+        if (lb && lb.classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showCarouselImage(currentImageIndex - 1);
+            if (e.key === 'ArrowRight') showCarouselImage(currentImageIndex + 1);
+        }
+    });
+
+    // Gallery Triggers on Homepage
+    const galleryTriggers = document.querySelectorAll('.lightbox-trigger');
+    if (galleryTriggers.length > 0) {
+        const galleryImageSrcs = Array.from(galleryTriggers).map(img => img.src);
+        galleryTriggers.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                openLightboxWithImages(galleryImageSrcs, index);
+            });
         });
     }
 
@@ -416,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper to render a single news card HTML
     const createNewsCardHTML = (article) => {
         return `
-            <article class="news-card" data-id="${article.id}">
+            <article class="news-card" data-id="${article.id}" style="cursor: pointer;">
                 <div class="news-card-img-wrapper">
                     <img src="${article.image}" alt="${article.title}" class="news-card-img" loading="lazy">
                     <span class="news-category-badge">${article.category}</span>
@@ -435,11 +456,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Modal Reader Logic
-    const articleModal = document.getElementById('article-reader-modal');
-    const closeArticleBtn = document.getElementById('close-article-modal');
-    const closeArticleBottomBtn = document.getElementById('modal-close-bottom');
-    const shareWaBtn = document.getElementById('modal-share-wa');
-
     let currentOpenArticle = null;
 
     const openArticleModal = (articleId) => {
@@ -486,6 +502,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('click', (e) => {
         const modal = document.getElementById('article-reader-modal');
+        
+        // Article Modal Image Click -> Open Fullscreen Carousel
+        if (modal && modal.classList.contains('active')) {
+            const imgTarget = e.target.closest('#modal-article-image, .article-modal-body img');
+            if (imgTarget) {
+                e.stopPropagation();
+                const modalImages = Array.from(modal.querySelectorAll('#modal-article-image, .article-modal-body img'))
+                    .map(img => img.src)
+                    .filter(src => src && src.length > 0 && !src.includes('jka_logo'));
+                
+                const clickedIndex = modalImages.indexOf(imgTarget.src);
+                openLightboxWithImages(modalImages, clickedIndex !== -1 ? clickedIndex : 0);
+                return;
+            }
+        }
+
         if (!modal) return;
 
         if (e.target.id === 'close-article-modal' || e.target.id === 'modal-close-bottom' || e.target.closest('#close-article-modal') || e.target.closest('#modal-close-bottom')) {

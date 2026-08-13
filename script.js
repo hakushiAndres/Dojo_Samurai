@@ -253,20 +253,28 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.setAttribute('disabled', 'true');
             lastSubmitTime = Date.now();
 
+            const formData = new FormData();
+            formData.append('name', nameVal);
+            formData.append('email', emailVal);
+            formData.append('phone', phoneVal);
+            formData.append('message', messageVal);
+            formData.append('_subject', 'Nuevo Mensaje de Contacto - Dojo Samurai Villa Alemana');
+            formData.append('_template', 'table');
+            formData.append('_captcha', 'false');
+
             fetch("https://formsubmit.co/ajax/samurai.jka.valemana@gmail.com", {
                 method: "POST",
                 headers: { 
-                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
-                    nombre: nameVal,
-                    email: emailVal,
-                    telefono: phoneVal,
-                    mensaje: messageVal
-                })
+                body: formData
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('FormSubmit HTTP status: ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 submitBtn.textContent = originalText;
                 contactForm.reset();
@@ -279,14 +287,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     formMessage.className = 'form-message hidden';
                     formMessage.textContent = '';
-                }, 5000);
+                }, 6000);
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('FormSubmit Error:', error);
                 submitBtn.textContent = originalText;
                 validateForm();
-                formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.';
-                formMessage.className = 'form-message error';
+                
+                // Show fallback message and open WhatsApp automatically as instant backup
+                formMessage.textContent = 'Procesando mensaje por WhatsApp... Redirigiendo...';
+                formMessage.className = 'form-message';
+
+                setTimeout(() => {
+                    const waMsg = encodeURIComponent(`Hola Dojo Samurai, me gustaría enviar una consulta:\n- Nombre: ${nameVal}\n- Correo: ${emailVal}\n- Teléfono: ${phoneVal}\n- Mensaje: ${messageVal}`);
+                    window.open(`https://wa.me/56942825617?text=${waMsg}`, '_blank');
+                    contactForm.reset();
+                    if (charCountSpan) charCountSpan.textContent = '0';
+                    validateForm();
+                }, 1200);
             });
         });
     }

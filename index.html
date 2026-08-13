@@ -63,7 +63,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="styles.css?v=76.0">
+    <link rel="stylesheet" href="styles.css?v=77.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -721,21 +721,22 @@
                     <form id="contactForm" class="contact-form" action="https://formsubmit.co/samurai.jka.valemana@gmail.com" method="POST">
                         <input type="hidden" name="_subject" value="Nuevo Mensaje de Contacto - Dojo Samurai Villa Alemana">
                         <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
                         <!-- Anti-Spam Honeypot Field -->
                         <div style="display:none !important; visibility:hidden !important;" aria-hidden="true">
                             <input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="name" required placeholder="Tu nombre completo">
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" required placeholder="tu@email.com">
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" required placeholder="+56 9 1234 5678 (Teléfono)" pattern="[0-9+ ]{8,15}" title="Ingresa un número válido de teléfono">
+                            <input type="tel" id="phone" name="phone" required placeholder="+56 9 1234 5678 (Teléfono)" pattern="[0-9+ ]{8,15}" title="Ingresa un número válido de teléfono">
                         </div>
                         <div class="form-group">
-                            <textarea id="message" rows="4" required maxlength="500"
+                            <textarea id="message" name="message" rows="4" required maxlength="500"
                                 placeholder="Escribe tu mensaje aquí (máximo 500 caracteres)..."></textarea>
                             <div class="word-counter-box">
                                 <span id="char-count">0</span> / 500 caracteres

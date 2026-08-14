@@ -63,7 +63,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
 
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
-    <link rel="stylesheet" href="styles.css?v=91.0">
+    <link rel="stylesheet" href="styles.css?v=92.0">
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -556,7 +556,7 @@
     </section>
 
     <!-- Latest News Component Section (Landing Page Summary) -->
-    <section id="noticias" class="noticias section" style="background-color: #ffffff;">
+    <section id="noticias" class="noticias section" style="background-color: #ffffff; position: relative; padding-bottom: 7rem;">
         <div class="container">
             <div class="section-header center" style="margin-bottom: 3rem;">
                 <span class="badge red-badge" style="margin-bottom: 0.75rem;">📰 BLOG & COMUNICADOS</span>
@@ -570,7 +570,7 @@
             <!-- Dynamic Homepage News Cards Container (Renders 3 latest articles) -->
             <div id="home-news-grid" class="news-cards-grid home-news-grid">
                 <!-- Featured Lead News Card -->
-                <article class="news-card news-hero-card" data-id="xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue" style="cursor: pointer; grid-column: 1 / -1;">
+                <article class="news-card news-hero-card" data-id="xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue" onclick="window.openArticleModal('xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue')" style="cursor: pointer; grid-column: 1 / -1;">
                     <div class="news-hero-badge-strip">
                         <span>🔥 DESTACADO JKA 2026</span>
                         <span>JKA CHILE 2026</span>
@@ -588,7 +588,7 @@
                             <h3 class="news-hero-title">¡Todo listo para el XV Seminario Técnico JKA Viña del Mar 2026 junto a Shihan Mitsuo Inoue!</h3>
                             <p class="news-hero-excerpt">Confirmada la fecha para el magno evento del Karate JKA con la presencia del maestro Shihan Mitsuo Inoue (8° Dan JKA y Senior Advisor). Exámenes de Dan, Instructor y Juez.</p>
                             <div class="news-card-footer-action">
-                                <button class="btn btn-primary news-read-more-btn" data-id="xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue">
+                                <button class="btn btn-primary news-read-more-btn" data-id="xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue" onclick="window.openArticleModal('xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue')">
                                     Leer noticia completa ➔
                                 </button>
                             </div>
@@ -597,7 +597,7 @@
                 </article>
 
                 <!-- 50th Anniversary Featured Hero Card of the Month (Gold Theme) -->
-                <article class="news-card news-hero-card gold-theme" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar" style="cursor: pointer; grid-column: 1 / -1;">
+                <article class="news-card news-hero-card gold-theme" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar" onclick="window.openArticleModal('50-aniversario-dojo-samurai-jka-vina-del-mar')" style="cursor: pointer; grid-column: 1 / -1;">
                     <div class="news-hero-badge-strip">
                         <span>🏆 DESTACADO DEL MES</span>
                         <span>JKA CHILE 2026</span>
@@ -615,7 +615,7 @@
                             <h3 class="news-hero-title">50 Años de Dojo Samurai JKA Viña del Mar: Clase Especial y Convivencia con Sensei Raúl Puchi</h3>
                             <p class="news-hero-excerpt">Celebración histórica de medio siglo del Honbu Dojo Samurai JKA Viña del Mar con una multitudinaria clase máster impartida por Sensei Raúl Puchi (6to Dan JKA) y una emotiva jornada de camaradería.</p>
                             <div class="news-card-footer-action">
-                                <button class="btn btn-primary news-read-more-btn" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar">
+                                <button class="btn btn-primary news-read-more-btn" data-id="50-aniversario-dojo-samurai-jka-vina-del-mar" onclick="window.openArticleModal('50-aniversario-dojo-samurai-jka-vina-del-mar')">
                                     Leer noticia completa ➔
                                 </button>
                             </div>
@@ -625,7 +625,7 @@
             </div>
 
             <!-- News CTA Link to Full Blog Page -->
-            <div class="news-home-cta-wrapper" style="text-align: center; margin-top: 3rem;">
+            <div class="news-home-cta-wrapper" style="text-align: center; margin-top: 3.5rem; margin-bottom: 3.5rem;">
                 <a href="noticias.html" class="btn btn-primary news-cta-btn">
                     Ver todas las noticias 📰
                 </a>
@@ -966,7 +966,7 @@
         </div>
     </div>
 
-    <script defer src="script.js?v=91.0"></script>
+    <script defer src="script.js?v=92.0"></script>
 </body>
 
 </html>

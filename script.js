@@ -132,16 +132,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.nav-links a');
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
 
         links.forEach(link => {
             link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
             });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     }
 
@@ -507,25 +522,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
-        return `
-            <article class="news-card modern-card" data-id="${article.id}" style="cursor: pointer;">
-                <div class="news-card-img-wrapper">
-                    <img src="${article.image}" alt="${article.title}" class="news-card-img" loading="lazy">
-                    <span class="news-category-badge">🏆 ${article.category}</span>
-                </div>
-                <div class="news-card-body">
-                    <div class="news-card-meta">
-                        <span class="news-date">📅 ${article.dateFormatted}</span>
-                        <span class="news-read-time">⏱️ ${article.readTime}</span>
-                    </div>
-                    <h3 class="news-card-title">${article.title}</h3>
-                    <p class="news-card-excerpt">${article.excerpt}</p>
-                    <button class="news-read-more-btn" data-id="${article.id}">Leer noticia completa ➔</button>
-                </div>
-            </article>
-        `;
-    };
-
     // Modal Reader Logic
     let currentOpenArticle = null;
 
@@ -562,8 +558,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('hidden');
         modal.classList.add('active');
         modal.style.display = 'flex';
+        modal.style.opacity = '1';
+        modal.style.visibility = 'visible';
+        modal.style.pointerEvents = 'auto';
         document.body.style.overflow = 'hidden';
     };
+
+    window.openArticleModal = openArticleModal;
 
     const closeArticleModal = () => {
         const modal = document.getElementById('article-reader-modal');

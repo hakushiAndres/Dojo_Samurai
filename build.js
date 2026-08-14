@@ -19,7 +19,6 @@ const staticItems = [
     'styles.css',
     'script.js',
     'robots.txt',
-    'sitemap.xml',
     'site.webmanifest',
     'favicon.ico',
     'favicon-48x48.png',
@@ -64,6 +63,8 @@ function copyDirSync(src, dest) {
 
 // Generate individual static HTML pages for news articles
 const noticiasJsonPath = path.join(rootDir, 'data', 'noticias.json');
+const compiledArticles = [];
+
 if (fs.existsSync(noticiasJsonPath)) {
     try {
         const newsArticles = JSON.parse(fs.readFileSync(noticiasJsonPath, 'utf-8'));
@@ -81,11 +82,68 @@ if (fs.existsSync(noticiasJsonPath)) {
             const articleHtml = generateArticleHtml(article);
             const articleFilePath = path.join(articleDir, 'index.html');
             fs.writeFileSync(articleFilePath, articleHtml, 'utf-8');
+            
+            compiledArticles.push(article);
             console.log(`✓ Generated article page -> dist/noticias/${slug}/index.html`);
         });
     } catch (err) {
         console.error('Error generating static article pages:', err);
     }
+}
+
+// Dynamically generate dist/sitemap.xml during build
+try {
+    const sitemapUrls = [];
+
+    // 1. Home page URL (omitting lastmod as no explicit modification date field exists for Home)
+    sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/</loc>\n  </url>`);
+
+    const validArticles = [];
+    const dates = [];
+
+    compiledArticles.forEach(article => {
+        const slug = article.slug || article.id;
+        const generatedFilePath = path.join(distDir, 'noticias', slug, 'index.html');
+        
+        // Verify physical file existence before adding to sitemap
+        if (fs.existsSync(generatedFilePath)) {
+            validArticles.push(article);
+            if (article.date) {
+                dates.push(article.date);
+            }
+        } else {
+            console.error(`❌ Error: Article page dist/noticias/${slug}/index.html missing. Excluded from sitemap.`);
+        }
+    });
+
+    // Find latest date among valid articles for /noticias/ hub lastmod
+    dates.sort((a, b) => b.localeCompare(a));
+    const latestDate = dates.length > 0 ? dates[0] : null;
+
+    // 2. News hub URL (/noticias/)
+    if (latestDate) {
+        sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/noticias/</loc>\n    <lastmod>${latestDate}</lastmod>\n  </url>`);
+    } else {
+        sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/noticias/</loc>\n  </url>`);
+    }
+
+    // 3. Individual news article URLs
+    validArticles.forEach(article => {
+        const slug = article.slug || article.id;
+        const articleUrl = `https://www.samuraijkavalemana.cl/noticias/${slug}/`;
+        if (article.date) {
+            sitemapUrls.push(`  <url>\n    <loc>${articleUrl}</loc>\n    <lastmod>${article.date}</lastmod>\n  </url>`);
+        } else {
+            sitemapUrls.push(`  <url>\n    <loc>${articleUrl}</loc>\n  </url>`);
+        }
+    });
+
+    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.join('\n')}\n</urlset>\n`;
+    const sitemapDistPath = path.join(distDir, 'sitemap.xml');
+    fs.writeFileSync(sitemapDistPath, sitemapContent, 'utf-8');
+    console.log(`✓ Generated dynamic sitemap -> dist/sitemap.xml (${validArticles.length + 2} URLs)`);
+} catch (err) {
+    console.error('Error generating dynamic sitemap.xml:', err);
 }
 
 function generateArticleHtml(article) {

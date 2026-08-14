@@ -472,10 +472,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const themeClass = isGoldTheme ? 'gold-theme' : '';
         const badgeStripText = article.badgeText || (isGoldTheme ? '🏆 DESTACADO DEL MES' : '🔥 NOTICIA DESTACADA');
         const badgeTag = isGoldTheme ? '🏆' : '📜';
+        const articleSlug = article.slug || article.id;
+        const articleUrl = `/noticias/${articleSlug}/`;
 
         if (isFeatured) {
             return `
-                <article class="news-card news-hero-card ${themeClass}" data-id="${article.id}" style="cursor: pointer; grid-column: 1 / -1;">
+                <article class="news-card news-hero-card ${themeClass}" data-id="${article.id}" style="grid-column: 1 / -1;">
                     <div class="news-hero-badge-strip">
                         <span>${badgeStripText}</span>
                         <span>JKA CHILE 2026</span>
@@ -493,9 +495,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h3 class="news-hero-title">${article.title}</h3>
                             <p class="news-hero-excerpt">${article.excerpt}</p>
                             <div class="news-card-footer-action">
-                                <button class="btn btn-primary news-read-more-btn" data-id="${article.id}">
+                                <a href="${articleUrl}" class="btn btn-primary news-read-more-btn">
                                     Leer noticia completa ➔
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -504,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return `
-            <article class="news-card modern-card" data-id="${article.id}" style="cursor: pointer;">
+            <article class="news-card modern-card" data-id="${article.id}">
                 <div class="news-card-img-wrapper">
                     <img src="${article.image}" alt="${article.title}" class="news-card-img" loading="lazy">
                     <span class="news-category-badge">🏆 ${article.category}</span>
@@ -516,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <h3 class="news-card-title">${article.title}</h3>
                     <p class="news-card-excerpt">${article.excerpt}</p>
-                    <button class="news-read-more-btn" data-id="${article.id}">Leer noticia completa ➔</button>
+                    <a href="${articleUrl}" class="btn btn-primary news-read-more-btn">Leer noticia completa ➔</a>
                 </div>
             </article>
         `;
@@ -606,7 +608,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Global News Card / Read More Button Click Delegate
-        const newsCardOrBtn = e.target.closest('[data-id]');
+        const isAnchorBtn = e.target.closest('a.news-read-more-btn, a[href^="/noticias/"]');
+        if (isAnchorBtn) {
+            // Allow natural browser navigation to static article page
+            return;
+        }
+
+        const newsCardOrBtn = e.target.closest('button[data-id]');
         if (newsCardOrBtn && (!modal || !modal.classList.contains('active'))) {
             const articleId = newsCardOrBtn.getAttribute('data-id');
             if (articleId && articleId !== 'null' && articleId !== '') {
@@ -719,7 +727,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         noticiasGridContainer.addEventListener('click', (e) => {
-            const btn = e.target.closest('[data-id]');
+            if (e.target.closest('a')) {
+                // Allow natural anchor link navigation
+                return;
+            }
+            const btn = e.target.closest('button[data-id]');
             if (btn) {
                 const id = btn.getAttribute('data-id');
                 openArticleModal(id);

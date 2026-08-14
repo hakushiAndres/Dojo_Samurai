@@ -18,11 +18,6 @@
     <meta name="geo.position" content="-33.0427;-71.3731">
     <meta name="ICBM" content="-33.0427, -71.3731">
 
-    <!-- Anti-Cache Directives for Instant Mobile Refresh -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-
     <!-- Canonical URL -->
     <link rel="canonical" href="https://www.samuraijkavalemana.cl/" />
 
@@ -64,6 +59,10 @@
 
     <link rel="preload" as="image" href="assets/ui/Logo_hero.jpg" fetchpriority="high">
     <link rel="stylesheet" href="styles.css?v=92.0">
+
+    <!-- Vercel Analytics & Speed Insights Integration -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <!-- Structured Data (Schema.org LocalBusiness / SportsActivityLocation / SportsClub / ExerciseGym) -->
     <script type="application/ld+json">
@@ -928,18 +927,6 @@
         <img class="lightbox-content" id="lightbox-img">
         <button class="lightbox-next">&#10095;</button>
     </div>
-
-    <!-- Vercel Analytics & Speed Insights Integration (Mounted inside <body> for accurate route tracking) -->
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
-    <script type="module">
-        import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@2.0.1/+esm';
-        import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/+esm';
-        inject();
-        injectSpeedInsights({
-            route: window.location.pathname || '/'
-        });
-    </script>
 
     <!-- Full Article Reader Modal -->
     <div id="article-reader-modal" class="article-modal-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="modal-article-title">

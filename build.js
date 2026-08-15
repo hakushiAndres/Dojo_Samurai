@@ -187,6 +187,37 @@ function generateArticleHtml(article) {
         );
     }
 
+    // Enrich article body images with explicit dimensions, loading="lazy", and decoding="async"
+    resolvedContent = resolvedContent
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Seminario\/INOUE_2026\.jpg["']/g,
+            'src="../../assets/noticias/Seminario/INOUE_2026.jpg" width="2160" height="2700" loading="lazy" decoding="async"'
+        )
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Aniversario\/IMG-20260810-WA0001\.webp["']/g,
+            'src="../../assets/noticias/Aniversario/IMG-20260810-WA0001.webp" width="1600" height="1204" loading="lazy" decoding="async"'
+        )
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Aniversario\/IMG-20260810-WA0002\.webp["']/g,
+            'src="../../assets/noticias/Aniversario/IMG-20260810-WA0002.webp" width="1204" height="1600" loading="lazy" decoding="async"'
+        )
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Aniversario\/IMG-20260810-WA0005\.webp["']/g,
+            'src="../../assets/noticias/Aniversario/IMG-20260810-WA0005.webp" width="1600" height="1204" loading="lazy" decoding="async"'
+        )
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Aniversario\/IMG-20260810-WA0006\.webp["']/g,
+            'src="../../assets/noticias/Aniversario/IMG-20260810-WA0006.webp" width="1600" height="1204" loading="lazy" decoding="async"'
+        )
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Aniversario\/IMG-20260810-WA0007\.webp["']/g,
+            'src="../../assets/noticias/Aniversario/IMG-20260810-WA0007.webp" width="1600" height="1204" loading="lazy" decoding="async"'
+        )
+        .replace(
+            /src=["']\.\.\/\.\.\/assets\/noticias\/Aniversario\/IMG-20260810-WA0008\.webp["']/g,
+            'src="../../assets/noticias/Aniversario/IMG-20260810-WA0008.webp" width="1204" height="1600" loading="lazy" decoding="async"'
+        );
+
     const ldJson = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
@@ -561,7 +592,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                         2. Orígenes e Historia: El Legado de Gichin Funakoshi
                     </h2>
                     <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin: 1.5rem 0;">
-                        <img src="../assets/ui/animacion/Funakoshi1.webp" alt="Maestro Gichin Funakoshi promotor del Karate Shotokan tradicional" style="max-width: 240px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="../assets/ui/animacion/Funakoshi1.webp" alt="Maestro Gichin Funakoshi promotor del Karate Shotokan tradicional" width="473" height="648" loading="lazy" decoding="async" style="max-width: 240px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                         <div style="flex: 1; min-width: 260px;">
                             <p style="margin-top: 0;">
                                 El maestro <strong>Gichin Funakoshi</strong> (1868-1957), nacido en Shuri, Okinawa, fue la figura fundamental en la transmisión y desarrollo del arte que posteriormente se consolidó como Shotokan. Tras formarse en Okinawa bajo la tutela de los maestros Ankō Asato y Ankō Itosu, Funakoshi dedicó su vida a sistematizar la enseñanza del karate e integrarlo en la educación física e intelectual.
@@ -700,7 +731,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                         </a>
                     </div>
                     <div style="text-align: center; margin: 1.5rem 0 2rem 0;">
-                        <img src="../assets/ui/grados_jka.png" alt="Esquema oficial de grados Kyu y Dan Karate Shotokan JKA Chile" style="max-width: 100%; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                        <img src="../assets/ui/grados_jka.png" alt="Esquema oficial de grados Kyu y Dan Karate Shotokan JKA Chile" width="551" height="513" loading="lazy" decoding="async" style="max-width: 100%; height: auto; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                     </div>
 
                     <!-- Section 8: What Karate Develops -->

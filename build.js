@@ -525,12 +525,16 @@ ${JSON.stringify(graphSchema, null, 4)}
             <a href="../index.html#hero" class="logo">
                 <span class="logo-icon"><img src="../assets/ui/animacion/jka_logo.png" alt="Logo JKA" width="35" height="35" decoding="async"></span> Dojo Samurai JKA Villa Alemana
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="../index.html#about">Nosotros</a></li>
                 <li><a href="/karate-shotokan-jka/" class="active-nav">Shotokan JKA</a></li>
                 <li><a href="../index.html#grados">Grados</a></li>
+                <li><a href="../index.html#dojokun">Dojo Kun</a></li>
                 <li><a href="../index.html#classes">Horarios</a></li>
-                <li><a href="/noticias">Noticias y Blog</a></li>
+                <li><a href="../index.html#tournaments">Torneos</a></li>
+                <li><a href="/noticias">Noticias</a></li>
+                <li><a href="../index.html#gallery">Galería</a></li>
+                <li><a href="../index.html#location">Ubicación</a></li>
                 <li><a href="../index.html#contact">Contacto</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu" role="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links" tabindex="0">

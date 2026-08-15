@@ -120,11 +120,11 @@ try {
     dates.sort((a, b) => b.localeCompare(a));
     const latestDate = dates.length > 0 ? dates[0] : null;
 
-    // 2. News hub URL (/noticias/)
+    // 2. News hub URL (/noticias)
     if (latestDate) {
-        sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/noticias/</loc>\n    <lastmod>${latestDate}</lastmod>\n  </url>`);
+        sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/noticias</loc>\n    <lastmod>${latestDate}</lastmod>\n  </url>`);
     } else {
-        sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/noticias/</loc>\n  </url>`);
+        sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/noticias</loc>\n  </url>`);
     }
 
     // 3. Individual news article URLs
@@ -245,7 +245,7 @@ ${JSON.stringify(ldJson, null, 4)}
                 <li><a href="../../index.html#shotokan">Shotokan JKA</a></li>
                 <li><a href="../../index.html#grados">Grados</a></li>
                 <li><a href="../../index.html#classes">Horarios</a></li>
-                <li><a href="../../noticias.html">Noticias y Blog</a></li>
+                <li><a href="/noticias">Noticias y Blog</a></li>
                 <li><a href="../../index.html#contact">Contacto</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
@@ -261,7 +261,7 @@ ${JSON.stringify(ldJson, null, 4)}
         <div class="container" style="max-width: 860px; margin: 0 auto; padding: 0 1.5rem;">
             <!-- Navigation Back Breadcrumb -->
             <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; font-size: 0.95rem; flex-wrap: wrap;">
-                <a href="../../noticias.html" style="color: #b91c1c; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+                <a href="/noticias" style="color: #b91c1c; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
                     ← Volver a Noticias y Blog
                 </a>
                 <span style="color: #94a3b8;">|</span>
@@ -330,7 +330,7 @@ ${JSON.stringify(ldJson, null, 4)}
                         <li><a href="../../index.html#shotokan">Shotokan JKA</a></li>
                         <li><a href="../../index.html#grados">Grados</a></li>
                         <li><a href="../../index.html#classes">Horarios</a></li>
-                        <li><a href="../../noticias.html">Noticias y Blog</a></li>
+                        <li><a href="/noticias">Noticias y Blog</a></li>
                         <li><a href="../../index.html#contact">Contacto</a></li>
                     </ul>
                 </div>

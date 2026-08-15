@@ -278,7 +278,7 @@ ${JSON.stringify(ldJson, null, 4)}
                 <li><a href="/noticias">Noticias y Blog</a></li>
                 <li><a href="../../index.html#contact">Contacto</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
+            <div class="menu-toggle" id="mobile-menu" role="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links" tabindex="0">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -502,7 +502,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                 <li><a href="/noticias">Noticias y Blog</a></li>
                 <li><a href="../index.html#contact">Contacto</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
+            <div class="menu-toggle" id="mobile-menu" role="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links" tabindex="0">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>

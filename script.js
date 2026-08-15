@@ -132,30 +132,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.nav-links a');
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menuToggle.classList.toggle('active');
+        const toggleMenu = (e) => {
+            if (e) e.stopPropagation();
+            const isActive = menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
+            menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            if (isActive) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
             }
+        };
+
+        const closeMenu = () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        };
+
+        menuToggle.addEventListener('click', toggleMenu);
+
+        menuToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu(e);
+            }
         });
 
         links.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', closeMenu);
         });
 
         document.addEventListener('click', (e) => {
             if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                document.body.style.overflow = '';
+                closeMenu();
             }
         });
     }

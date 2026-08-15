@@ -527,8 +527,9 @@ ${JSON.stringify(graphSchema, null, 4)}
 
                 <div class="single-article-body" style="color: #334155; font-size: 1.05rem; line-height: 1.8;">
                     
+                    <!-- Lead Paragraph -->
                     <p class="news-lead-paragraph" style="font-size: 1.15rem; color: #0f172a; line-height: 1.8; margin-bottom: 2rem;">
-                        <strong>El Karate-Do Shotokan es uno de los estilos marciales más practicados y respetados en el mundo. Fundamentado en la autoconfianza, el rigor técnico y la superación personal, el Shotokan preserva el principio fundamental del Budo: formar seres humanos integrales antes que competidores.</strong>
+                        <strong>El Karate-Do Shotokan JKA es una disciplina marcial tradicional orientada a la formación integral del ser humano. A través del rigor técnico, la etiqueta marcial y la superación constante, el Shotokan preserva el espíritu genuino del Budo: perfeccionar el carácter y promover el autocontrol antes que la confrontación.</strong>
                     </p>
 
                     <!-- Section 1 -->
@@ -536,10 +537,10 @@ ${JSON.stringify(graphSchema, null, 4)}
                         1. ¿Qué es el Karate Shotokan Tradicional?
                     </h2>
                     <p>
-                        El Karate-Do Shotokan es un arte marcial tradicional originario de Okinawa y perfeccionado en Japón continental. Se distingue técnicamente por sus posturas sólidas, movimientos lineales potentes, expansivos y una dinámica biomecánica enfocada en la transmisión eficiente de la energía corporal (<em>Kime</em>).
+                        El Karate-Do Shotokan es una de las escuelas marciales más difundidas y respetadas globalmente. Originado en Okinawa y estructurado metodológicamente en Japón continental, se caracteriza por sus posturas estables, la generación biomecánica de potencia (<em>Kime</em>), el uso dinámico de la cadera (<em>Koshi no Kaiten</em>) y la ejecución limpia de técnicas lineales de ataque y defensa.
                     </p>
                     <p>
-                        A diferencia de enfoques puramente deportivos, el Shotokan tradicional mantiene como eje orientador la formación moral y el dominio propio. La palabra <em>Karate-Do</em> se traduce como "El camino de la mano vacía", enfatizando la autodefensa sin armas y la purificación del ego.
+                        El término <em>Karate-Do</em> significa literalmente "El camino de la mano vacía", reflejando tanto la naturaleza de un sistema de autodefensa sin armas como una filosofía de desapego del ego. Más allá del ámbito físico, la práctica busca cultivar la compostura mental, la templanza y el respeto mutuo en todo momento.
                     </p>
 
                     <!-- Section 2 -->
@@ -547,21 +548,21 @@ ${JSON.stringify(graphSchema, null, 4)}
                         2. Orígenes e Historia: El Legado de Gichin Funakoshi
                     </h2>
                     <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; margin: 1.5rem 0;">
-                        <img src="../assets/ui/animacion/Funakoshi1.webp" alt="Maestro Gichin Funakoshi fundador del Karate Shotokan tradicional" style="max-width: 240px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <img src="../assets/ui/animacion/Funakoshi1.webp" alt="Maestro Gichin Funakoshi promotor del Karate Shotokan tradicional" style="max-width: 240px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                         <div style="flex: 1; min-width: 260px;">
                             <p style="margin-top: 0;">
-                                El maestro <strong>Gichin Funakoshi</strong> (1868-1957) es reconocido mundialmente como el padre del Karate-Do moderno. Nacido en Shuri, Okinawa, sintetizó las enseñanzas de los grandes maestros Ankō Asato y Ankō Itosu.
+                                El maestro <strong>Gichin Funakoshi</strong> (1868-1957), nacido en Shuri, Okinawa, fue la figura fundamental en la transmisión y desarrollo del arte que posteriormente se consolidó como Shotokan. Tras formarse en Okinawa bajo la tutela de los maestros Ankō Asato y Ankō Itosu, Funakoshi dedicó su vida a sistematizar la enseñanza del karate e integrarlo en la educación física e intelectual.
                             </p>
                             <p>
-                                En <strong>1922</strong>, Funakoshi realizó la primera demostración pública oficial de karate en Tokio por invitación del Ministerio de Educación de Japón, dando inicio a la difusión masiva del arte.
+                                En <strong>1922</strong>, Funakoshi realizó la primera demostración pública oficial de karate en Tokio por invitación del Ministerio de Educación de Japón, hito que marcó el inicio de la expansión masiva del arte marcial en Japón continental.
                             </p>
                         </div>
                     </div>
                     <p>
-                        El nombre <strong>Shotokan</strong> nació del seudónimo poético <em>Shoto</em> ("ondas de pino" o "viento entre los pinos") con el que Funakoshi firmaba sus escritos, y <em>kan</em> ("dojo" o "sala de entrenamiento"). En <strong>1939</strong> se erigió el primer dojo oficial bajo este nombre en Tokio.
+                        Etimológicamente, la palabra <strong>Shotokan</strong> combina el seudónimo poético <em>Shoto</em> (松濤, que se traduce como "ondas de pino" o "el viento entre los pinos"), con el cual Funakoshi firmaba sus escritos y poemas de juventud, y el vocablo <em>Kan</em> (館, que significa "edificio", "salón" o "casa de entrenamiento"). De este modo, <em>Shotokan</em> se entiende literalmente como <strong>"La casa o el salón de Shoto"</strong>, nombre con el que sus estudiantes bautizaron el primer dojo oficial establecido en Tokio en <strong>1939</strong>.
                     </p>
                     <p>
-                        Funakoshi resumió la esencia espiritual de su enseñanza en la famosa premisa: <em>"Karate ni sente nashi"</em> (En el Karate no existe el primer ataque), recordando que el practicante debe ser siempre un defensor de la paz.
+                        Funakoshi inmortalizó el propósito moral de su instrucción en la premisa: <em>"Karate ni sente nashi"</em> (En el Karate no existe el primer ataque), subrayando que el conocimiento técnico debe acompañarse siempre de la prudencia, la cortesía y la búsqueda de la paz.
                     </p>
 
                     <!-- Section 3 -->
@@ -569,108 +570,156 @@ ${JSON.stringify(graphSchema, null, 4)}
                         3. La Japan Karate Association (JKA)
                     </h2>
                     <p>
-                        La <strong>Japan Karate Association (JKA)</strong> (<em>Nihon Karate Kyokai</em>) fue constituida oficialmente en <strong>noviembre de 1948</strong> por prominentes alumnos senior del maestro Funakoshi (entre ellos Masatoshi Nakayama), con el propósito de institucionalizar, preservar y regular los estándares técnicos y de juzgamiento del Karate Shotokan en Japón y el mundo.
+                        La <strong>Japan Karate Association (JKA)</strong> (<em>Nihon Karate Kyokai</em>) fue establecida formalmente en <strong>noviembre de 1948</strong> por discípulos senior del maestro Funakoshi —liderados por el maestro Masatoshi Nakayama— para organizar, preservar y difundir el Karate Shotokan con estándares pedagógicos y científicos rigurosos.
                     </p>
-                    <div class="news-highlight-box" style="background: rgba(185,28,28,0.04); border-left: 4px solid #b91c1c; padding: 1.25rem 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
-                        <h4 style="margin-top: 0; color: #b91c1c; font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem;">🎌 La JKA como Estándar Internacional</h4>
-                        <p style="margin: 0; color: #0f172a; font-size: 0.98rem; line-height: 1.6;">
-                            La JKA es reconocida mundialmente como la guardiana suprema de la tradición Shotokan (<em>The Keeper of Karate's Highest Tradition</em>). Sus programas de acreditación rigurosa garantizan la uniformidad en examinaciones de grado Dan, licencias de instructor, juez y examinador internacional.
-                        </p>
-                    </div>
+                    <p>
+                        A través de su histórico programa de formación de instructores profesionales y su normativa técnica uniforme, la JKA se constituyó en una institución clave para la internacionalización del Karate-Do, manteniendo vivas las tradiciones del Budo y la exigencia técnica en exámenes y licencias internacionales de grado.
+                    </p>
 
                     <!-- Section 4 -->
                     <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
                         4. Los Tres Pilares del Entrenamiento: Kihon, Kata y Kumite
                     </h2>
                     <p>
-                        La metodología de la JKA concibe la formación marcial como un trípode indisoluble donde cada elemento nutre y valida a los demás:
+                        La práctica del Karate Shotokan JKA se estructura sobre tres pilares interconectados que aseguran un desarrollo técnico progresivo y seguro:
                     </p>
                     
                     <h3 style="color: #0f172a; font-size: 1.25rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">
-                        🥋 Kihon: Fundamentos Técnicos
+                        🥋 Kihon: Fundamentos y Construcción Técnica
                     </h3>
                     <p>
-                        Es la práctica repetitiva y consciente de las técnicas básicas: posturas (<em>dachi</em>), bloqueos (<em>uke</em>), golpes de puño (<em>tsuki</em>) y patadas (<em>geri</em>). El Kihon desarrolla alineación estructural, potencia, velocidad y memoria neuromuscular.
+                        El <strong>Kihon</strong> es la práctica consciente y repetitiva de las técnicas básicas: posturas (<em>dachi</em>), desplazamientos, bloqueos (<em>uke</em>), golpes de puño (<em>tsuki</em>), ataques de mano abierta (<em>uchi</em>) y patadas (<em>geri</em>). En el Kihon se ejercitan la alineación corporal, la trayectoria precisa, el equilibrio, la velocidad, la potencia, la coordinación y el control del impacto. Constituye la base indispensable sobre la que se construyen la forma y el combate.
                     </p>
 
                     <h3 style="color: #0f172a; font-size: 1.25rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">
-                        📜 Kata: Forma y Aplicación
+                        📜 Kata: Estructura, Expresión y Aplicación
                     </h3>
                     <p>
-                        Los Katas son secuencias predeterminadas de movimientos defensivos y ofensivos contra oponentes imaginarios. En el Shotokan JKA se estudian 26 Katas principales. El análisis de su aplicación práctica real se conoce como <em>Bunkai</em>.
+                        El <strong>Kata</strong> es una secuencia formal predeterminada que integra desplazamientos, giros, cambios de dirección, ritmo, control de la respiración y concentración mental. Lejos de ser una rutina estática, el Kata encierra la memoria técnica y táctica de la escuela. El estudio de sus aplicaciones prácticas reales frente a situaciones de autodefensa se denomina <em>Bunkai</em> o <em>Oyo</em>.
                     </p>
 
                     <h3 style="color: #0f172a; font-size: 1.25rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem;">
-                        ⚔️ Kumite: Distancia, Control y Combate
+                        ⚔️ Kumite: Aplicación Práctica y Etiqueta Marcial
                     </h3>
                     <p>
-                        Es el trabajo con compañero para aplicar las técnicas bajo escenarios de presión progresiva. Inicia con formas estructuradas a tres o cinco pasos (<em>Gohon / Sanbon Kumite</em>), evoluciona al combate a un paso (<em>Ippon Kumite</em>) y culmina en el combate libre controlado (<em>Jiyu Kumite</em>).
+                        El <strong>Kumite</strong> es el trabajo con compañero donde se ponen a prueba la distancia adecuada (<em>Ma-ai</em>), la oportunidad o timing (<em>De-ai</em>), la capacidad de reacción, la precisión técnica y el autocontrol absoluto para no causar daño.
                     </p>
+                    <p style="margin-bottom: 0.5rem;">
+                        La JKA aplica una progresión pedagógica gradual que garantiza el aprendizaje seguro:
+                    </p>
+                    <ul style="margin-top: 0.25rem; margin-bottom: 1.5rem;">
+                        <li><strong>Gohon / Sanbon Kumite:</strong> Combate estructurado a cinco o tres pasos para fijar distancia y bloqueos básicos.</li>
+                        <li><strong>Kihon Ippon Kumite:</strong> Combate básico a un paso con ataque prefijado para entrenar la respuesta inmediata con máxima potencia y control.</li>
+                        <li><strong>Jiyu Ippon Kumite:</strong> Combate semi-libre a un paso con movilidad continua y distancia real.</li>
+                        <li><strong>Jiyu Kumite:</strong> Combate libre supervisado donde se aplican combinaciones tácticas bajo estricto autocontrol y normas de etiqueta marcial.</li>
+                    </ul>
 
-                    <!-- Section 5 -->
+                    <!-- Section 5: Unity -->
+                    <div class="news-highlight-box" style="background: rgba(15, 23, 42, 0.03); border-left: 4px solid #0f172a; padding: 1.25rem 1.5rem; border-radius: 12px; margin: 2rem 0;">
+                        <h3 style="margin-top: 0; color: #0f172a; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.5rem;">
+                            🔄 La Unidad Formativa: Kihon + Kata + Kumite
+                        </h3>
+                        <p style="margin: 0; color: #334155; font-size: 1rem; line-height: 1.7;">
+                            Kihon, Kata y Kumite no representan disciplinas aisladas ni independientes. Forman una <strong>tríada pedagógica indivisible</strong>: el <em>Kihon</em> construye la técnica, el <em>Kata</em> la organiza y expresa en movimiento formal, y el <em>Kumite</em> la valida en el intercambio dinámico con un compañero. El dominio en uno fortalece inevitablemente a los otros dos.
+                        </p>
+                    </div>
+
+                    <!-- Section 6: Dojo Kun -->
                     <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
                         5. El Dojo Kun: Filosofía y Código Marcial
                     </h2>
                     <p>
-                        El <strong>Dojo Kun</strong> es el código ético establecido para guiar la conducta de los practicantes dentro y fuera del dojo. Consta de cinco principios, precedidos tradicionalmente por la palabra <em>Hitotsu</em> (Uno/Primero), señalando que todos los principios tienen igual jerarquía e importancia:
+                        El <strong>Dojo Kun</strong> es el conjunto de principios filosóficos formulados para orientar el comportamiento del estudiante tanto dentro del dojo como en su vida personal y social. Cada precepto comienza con el término <em>Hitotsu</em> (Uno / Primero), denotando que cada principio posee la misma máxima prioridad espiritual:
                     </p>
 
                     <div class="dojokun-list" style="margin: 1.5rem 0;">
-                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 0.75rem; padding: 0.85rem; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;">
-                            <span style="background: #b91c1c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">1</span>
-                            <p style="margin: 0; font-weight: 700; color: #0f172a;">Intentar perfeccionar el carácter (一、人格完成に努むること)</p>
+                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <span style="background: #b91c1c; color: white; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; margin-top: 0.2rem;">1</span>
+                            <div>
+                                <p style="margin: 0; font-weight: 800; color: #0f172a; font-size: 1.05rem;">Intentar perfeccionar el carácter (一、人格完成に努むること)</p>
+                                <p style="margin: 0.35rem 0 0 0; color: #64748b; font-size: 0.95rem; line-height: 1.5;">El objetivo final del Karate-Do no reside en la victoria física, sino en el cultivo del honor, la madurez emocional y la integridad personal.</p>
+                            </div>
                         </div>
-                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 0.75rem; padding: 0.85rem; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;">
-                            <span style="background: #b91c1c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">2</span>
-                            <p style="margin: 0; font-weight: 700; color: #0f172a;">Ser correcto, leal y puntual (一、誠の道を守ること)</p>
+                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <span style="background: #b91c1c; color: white; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; margin-top: 0.2rem;">2</span>
+                            <div>
+                                <p style="margin: 0; font-weight: 800; color: #0f172a; font-size: 1.05rem;">Ser sincero y leal (一、誠の道を守ること)</p>
+                                <p style="margin: 0.35rem 0 0 0; color: #64748b; font-size: 0.95rem; line-height: 1.5;">Actuar con honestidad en la palabra y el compromiso técnico, manteniendo la lealtad hacia la enseñanza, los compañeros y la verdad.</p>
+                            </div>
                         </div>
-                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 0.75rem; padding: 0.85rem; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;">
-                            <span style="background: #b91c1c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">3</span>
-                            <p style="margin: 0; font-weight: 700; color: #0f172a;">Tratar de superarse (一、努力の精神を養うこと)</p>
+                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <span style="background: #b91c1c; color: white; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; margin-top: 0.2rem;">3</span>
+                            <div>
+                                <p style="margin: 0; font-weight: 800; color: #0f172a; font-size: 1.05rem;">Cultivar el espíritu del esfuerzo (一、努力の精神を養うこと)</p>
+                                <p style="margin: 0.35rem 0 0 0; color: #64748b; font-size: 0.95rem; line-height: 1.5;">Perseverar ante las dificultades físicas y mentales con constancia, dedicación y voluntad inquebrantable (<em>Persistencia / Doryoku</em>).</p>
+                            </div>
                         </div>
-                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 0.75rem; padding: 0.85rem; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;">
-                            <span style="background: #b91c1c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">4</span>
-                            <p style="margin: 0; font-weight: 700; color: #0f172a;">Respetar a los demás (一、礼儀を重んずること)</p>
+                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <span style="background: #b91c1c; color: white; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; margin-top: 0.2rem;">4</span>
+                            <div>
+                                <p style="margin: 0; font-weight: 800; color: #0f172a; font-size: 1.05rem;">Respetar a los demás (一、礼儀を重んずること)</p>
+                                <p style="margin: 0.35rem 0 0 0; color: #64748b; font-size: 0.95rem; line-height: 1.5;">Demostrar cortesía sincera, amabilidad y respeto irrestricto hacia los instructores, compañeros y la sociedad en general.</p>
+                            </div>
                         </div>
-                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 0.75rem; padding: 0.85rem; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0;">
-                            <span style="background: #b91c1c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem;">5</span>
-                            <p style="margin: 0; font-weight: 700; color: #0f172a;">Abstenerse de procederes violentos (一、血気の勇を戒むること)</p>
+                        <div class="dojokun-item" style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; padding: 1rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <span style="background: #b91c1c; color: white; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; margin-top: 0.2rem;">5</span>
+                            <div>
+                                <p style="margin: 0; font-weight: 800; color: #0f172a; font-size: 1.05rem;">Desarrollar el autocontrol (一、血気の勇を戒むること)</p>
+                                <p style="margin: 0.35rem 0 0 0; color: #64748b; font-size: 0.95rem; line-height: 1.5;">Refrenar los impulsos de violencia e impulsividad irreflexiva, encauzando la fuerza propia con serenidad y responsabilidad moral.</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Section 6 -->
+                    <!-- Section 7: Grados -->
                     <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
                         6. Sistema de Grados y Progresión Técnica JKA
                     </h2>
                     <p>
-                        La progresión del practicante se rige por un riguroso sistema de evaluaciones:
+                        El avance en Karate Shotokan JKA simboliza la evolución integral del estudiante mediante evaluaciones técnicas estandarizadas:
                     </p>
                     <ul>
-                        <li><strong>Grados Kyu (Cinturones de Aprendizaje):</strong> Desde 10º Kyu (blanco) hasta 1º Kyu (marrón). Reflejan la adquisición progresiva del temario técnico oficial de la JKA.</li>
-                        <li><strong>Grados Dan (Cinturón Negro):</strong> Inician en 1er Dan (<em>Shodan</em>). Representan el comienzo de la madurez marcial y el compromiso permanente con la práctica.</li>
+                        <li><strong>Grados Kyu (Cinturones de Aprendizaje):</strong> Se inician en 10º Kyu (cinturón blanco) y progresan secuencialmente hasta 1º Kyu (cinturón marrón). En esta etapa se fijan los fundamentos biomecánicos, la coordinación y los primeros katas del programa.</li>
+                        <li><strong>Grados Dan (Cinturón Negro):</strong> Inician en 1er Dan (<em>Shodan</em>). Lejos de representar la conclusión del aprendizaje, el cinturón negro marca la madurez requerida para profundizar conscientemente en el estudio del Budo y la maestría técnica.</li>
                     </ul>
                     <div style="text-align: center; margin: 2rem 0;">
-                        <img src="../assets/ui/grados_jka.png" alt="Esquema oficial de grados Karate Shotokan JKA Chile" style="max-width: 100%; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                        <img src="../assets/ui/grados_jka.png" alt="Esquema oficial de grados Kyu y Dan Karate Shotokan JKA Chile" style="max-width: 100%; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                     </div>
 
-                    <!-- Section 7 -->
+                    <!-- Section 8: Target Audience -->
                     <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
-                        7. Formación en Dojo Samurai JKA Villa Alemana
+                        7. ¿Para quién es el Karate Shotokan JKA?
                     </h2>
                     <p>
-                        <strong>Dojo Samurai JKA Villa Alemana</strong> es una organización deportiva marcial dedicada a la enseñanza del Karate-Do Shotokan tradicional. Como filial oficial del <strong>Honbu Dojo Samurai Viña del Mar</strong>, nuestras actividades y exámenes están respaldados por la supervisión técnica de <strong>Sensei Raúl Puchi Zarecht (6to Dan JKA)</strong>.
+                        La metodología del Karate-Do Shotokan JKA es progresiva y adaptable, convirtiéndola en una práctica de alto valor formativo para diversos perfiles de practicantes:
                     </p>
-                    <p>
-                        Nuestras clases presenciales se imparten en las instalaciones del <strong>Centro Universo VIPALU</strong>, ubicado en <em>Balmaceda 188, Casa 2, Villa Alemana</em>. Actualmente, nuestro programa de entrenamiento está dirigido a <strong>jóvenes y adultos desde los 18 años de edad</strong>.
+                    <ul>
+                        <li><strong>Personas sin experiencia previa:</strong> Quienes desean iniciarse desde cero en un arte marcial tradicional bajo una enseñanza paso a paso estructurada y segura.</li>
+                        <li><strong>Practicantes que retoman el camino:</strong> Quienes entrenaron en el pasado y buscan reacondicionarse y reencontrarse con la disciplina marcial.</li>
+                        <li><strong>Practicantes de otros estilos:</strong> Quienes provienen de otras escuelas y desean explorar la biomecánica, precisión y profundidad técnica del Shotokan JKA.</li>
+                        <li><strong>Adultos enfocados en salud y superación personal:</strong> Personas interesadas en fortalecer la condición física, flexibilidad, coordinación motor, templanza y manejo del estrés diario.</li>
+                    </ul>
+                    <p style="background: #fff1f2; border: 1px solid #fecdd3; padding: 0.85rem 1.25rem; border-radius: 10px; color: #9f1239; font-size: 0.95rem; font-weight: 600;">
+                        ℹ️ <strong>Información importante sobre nuestra oferta actual:</strong> Las clases en Dojo Samurai JKA Villa Alemana están dirigidas de forma exclusiva a <strong>jóvenes y adultos desde los 18 años de edad</strong>.
                     </p>
 
-                    <!-- Section 8 -->
+                    <!-- Section 9: Dojo Samurai vs VIPALU -->
+                    <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
+                        8. Formación en Dojo Samurai JKA Villa Alemana
+                    </h2>
+                    <p>
+                        <strong>Dojo Samurai JKA Villa Alemana</strong> es una organización deportiva y escuela marcial dedicada a la enseñanza técnica del Karate-Do Shotokan tradicional. Como filial oficial del <strong>Honbu Dojo Samurai Viña del Mar</strong>, nuestra práctica y evaluaciones cuentan con el respaldo y la supervisión técnica directa de <strong>Sensei Raúl Puchi Zarecht (6to Dan JKA)</strong>.
+                    </p>
+                    <p>
+                        Nuestras clases presenciales se desarrollan en las instalaciones del <strong>Centro Universo VIPALU</strong>, ubicado en <em>Balmaceda 188, Casa 2, Villa Alemana</em>. El recinto Centro Universo VIPALU actúa como la sede anfitriona que acoge el espacio de entrenamiento de nuestro dojo.
+                    </p>
+
+                    <!-- CTA Box -->
                     <div style="margin-top: 3rem; padding: 2rem; background: rgba(185, 28, 28, 0.04); border-left: 4px solid #b91c1c; border-radius: 14px; display: flex; flex-direction: column; gap: 1rem;">
                         <h3 style="margin: 0; color: #b91c1c; font-size: 1.35rem; font-weight: 800;">
                             🥋 Entrena Karate Shotokan JKA en Villa Alemana
                         </h3>
                         <p style="margin: 0; color: #334155; font-size: 1.05rem; line-height: 1.6;">
-                            Te invitamos a formar parte de nuestras clases de Karate Shotokan JKA para jóvenes y adultos (Martes y Jueves 21:00 - 22:00 hrs). ¡Tu primera clase de prueba es totalmente gratuita!
+                            Te invitamos a integrarte a nuestras clases para jóvenes y adultos (Martes y Jueves de 21:00 a 22:00 hrs). ¡Solicita tu clase de prueba sin costo!
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
                             <a href="https://wa.me/56942825617?text=Hola,%20le%C3%AD%20la%20gu%C3%ADa%20educativa%20de%20Karate%20Shotokan%20JKA%20y%20me%20gustar%C3%ADa%20consultar%20por%20clases" 

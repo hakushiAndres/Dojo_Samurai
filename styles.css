@@ -828,6 +828,178 @@ a {
     letter-spacing: 1px;
 }
 
+/* Hero 2.0 Badges, Info Strip & CTAs */
+.main-dojo-badge {
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1.1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.hero-quick-info-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0.5rem auto 1.75rem auto;
+    width: 100%;
+}
+
+.info-pill {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.info-pill strong {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.cta-primary-hero {
+    background-color: #b91c1c !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(185, 28, 28, 0.35);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-primary-hero:hover {
+    background-color: #991b1b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(185, 28, 28, 0.45);
+}
+
+.btn-whatsapp-hero {
+    background-color: #16a34a !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-whatsapp-hero:hover {
+    background-color: #15803d !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+}
+
+/* Bloque Comercial Inmediato Post-Hero */
+.commercial-summary-section {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 2.25rem 0;
+    border-top: 3px solid #b91c1c;
+    border-bottom: 1px solid #1e293b;
+    position: relative;
+    z-index: 10;
+}
+
+.commercial-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.commercial-card {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.commercial-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(220, 38, 38, 0.4);
+}
+
+.commercial-card.promo-card {
+    background: linear-gradient(135deg, rgba(185, 28, 28, 0.25) 0%, rgba(30, 41, 59, 0.8) 100%);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+}
+
+.commercial-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commercial-info h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.commercial-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #f8fafc;
+    line-height: 1.35;
+}
+
+.commercial-info p strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Responsive Media Queries for Commercial Grid & Hero 2.0 */
+@media (max-width: 992px) {
+    .commercial-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .commercial-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-quick-info-strip {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .info-pill {
+        text-align: center;
+    }
+    .hero-cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-cta-buttons .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
 .word-counter-box {
     text-align: right;
     font-size: 0.85rem;

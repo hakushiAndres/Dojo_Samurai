@@ -2544,6 +2544,20 @@ a.info-card-link:hover {
         width: 100%;
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
     }
+}
+@media (max-width: 380px) {
+    .promo-flyout-card {
+        top: 42%;
+        padding: 1rem 0.9rem;
+    }
+    .flyout-title {
+        font-size: 0.98rem;
+    }
+    .flyout-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+}
 
     .promo-reopen-bubble {
         top: auto;

@@ -170,9 +170,22 @@ function generateArticleHtml(article) {
     const authorName = article.author || 'Dojo Samurai Villa Alemana';
     
     // Resolve relative asset paths in content HTML
-    const resolvedContent = (article.content || '')
+    let resolvedContent = (article.content || '')
         .replace(/src=["']assets\//g, 'src="../../assets/')
         .replace(/src=["']\/assets\//g, 'src="../../assets/');
+
+    // Contextual internal link (max 1 per article) to pillar page /karate-shotokan-jka/
+    if (slug === 'xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue') {
+        resolvedContent = resolvedContent.replace(
+            'Japan Karate Association',
+            '<a href="/karate-shotokan-jka/" style="color: #b91c1c; font-weight: 600; text-decoration: underline;">Japan Karate Association</a>'
+        );
+    } else if (slug === '50-aniversario-dojo-samurai-jka-vina-del-mar') {
+        resolvedContent = resolvedContent.replace(
+            'Karate Do Shotokan JKA',
+            '<a href="/karate-shotokan-jka/" style="color: #b91c1c; font-weight: 600; text-decoration: underline;">Karate Do Shotokan JKA</a>'
+        );
+    }
 
     const ldJson = {
         "@context": "https://schema.org",
@@ -259,7 +272,7 @@ ${JSON.stringify(ldJson, null, 4)}
             </a>
             <ul class="nav-links">
                 <li><a href="../../index.html#about">Nosotros</a></li>
-                <li><a href="../../index.html#shotokan">Shotokan JKA</a></li>
+                <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                 <li><a href="../../index.html#grados">Grados</a></li>
                 <li><a href="../../index.html#classes">Horarios</a></li>
                 <li><a href="/noticias">Noticias y Blog</a></li>
@@ -344,7 +357,7 @@ ${JSON.stringify(ldJson, null, 4)}
                     <h4 class="footer-col-title">NAVEGACIÓN</h4>
                     <ul class="footer-links-list">
                         <li><a href="../../index.html#about">Nosotros</a></li>
-                        <li><a href="../../index.html#shotokan">Shotokan JKA</a></li>
+                        <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                         <li><a href="../../index.html#grados">Grados</a></li>
                         <li><a href="../../index.html#classes">Horarios</a></li>
                         <li><a href="/noticias">Noticias y Blog</a></li>

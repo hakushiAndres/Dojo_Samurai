@@ -570,10 +570,10 @@ ${JSON.stringify(graphSchema, null, 4)}
                         3. La Japan Karate Association (JKA)
                     </h2>
                     <p>
-                        La <strong>Japan Karate Association (JKA)</strong> (<em>Nihon Karate Kyokai</em>) fue establecida formalmente en <strong>noviembre de 1948</strong> por discípulos senior del maestro Funakoshi —liderados por el maestro Masatoshi Nakayama— para organizar, preservar y difundir el Karate Shotokan con estándares pedagógicos y científicos rigurosos.
+                        La <strong>Japan Karate Association (JKA)</strong> (<em>Nihon Karate Kyokai</em>) fue fundada en <strong>noviembre de 1948</strong> y desempeñó un papel fundamental en la sistematización, enseñanza y difusión internacional del Karate Shotokan.
                     </p>
                     <p>
-                        A través de su histórico programa de formación de instructores profesionales y su normativa técnica uniforme, la JKA se constituyó en una institución clave para la internacionalización del Karate-Do, manteniendo vivas las tradiciones del Budo y la exigencia técnica en exámenes y licencias internacionales de grado.
+                        A través de su histórico programa de formación de instructores y su normativa técnica uniforme, la JKA ha impulsado la preservación de los valores tradicionales del Budo, promoviendo estándares de exigencia en la práctica, evaluaciones de grado y capacitación marcial a nivel global.
                     </p>
 
                     <!-- Section 4 -->
@@ -675,19 +675,46 @@ ${JSON.stringify(graphSchema, null, 4)}
                         6. Sistema de Grados y Progresión Técnica JKA
                     </h2>
                     <p>
-                        El avance en Karate Shotokan JKA simboliza la evolución integral del estudiante mediante evaluaciones técnicas estandarizadas:
+                        El sistema de grados estandariza la progresión técnica y personal del estudiante a lo largo de su formación:
                     </p>
                     <ul>
-                        <li><strong>Grados Kyu (Cinturones de Aprendizaje):</strong> Se inician en 10º Kyu (cinturón blanco) y progresan secuencialmente hasta 1º Kyu (cinturón marrón). En esta etapa se fijan los fundamentos biomecánicos, la coordinación y los primeros katas del programa.</li>
-                        <li><strong>Grados Dan (Cinturón Negro):</strong> Inician en 1er Dan (<em>Shodan</em>). Lejos de representar la conclusión del aprendizaje, el cinturón negro marca la madurez requerida para profundizar conscientemente en el estudio del Budo y la maestría técnica.</li>
+                        <li><strong>Grados Kyu (Etapas de Aprendizaje):</strong> Etapas formacionales previas a los grados Dan, desde 10º Kyu (cinturón blanco) hasta 1º Kyu (cinturón marrón). En esta fase se adquieren las bases biomecánicas, la coordinación y las formas iniciales.</li>
+                        <li><strong>Grados Dan (Cinturón Negro):</strong> Niveles avanzados de desarrollo técnico y conocimiento marcial que inician en 1er Dan (<em>Shodan</em>), marcando el comienzo del estudio profundo del Budo.</li>
                     </ul>
-                    <div style="text-align: center; margin: 2rem 0;">
+                    <div style="margin: 1.5rem 0;">
+                        <a href="../index.html#grados" style="color: #b91c1c; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+                            🥋 Ver esquema detallado de grados en la Home ➔
+                        </a>
+                    </div>
+                    <div style="text-align: center; margin: 1.5rem 0 2rem 0;">
                         <img src="../assets/ui/grados_jka.png" alt="Esquema oficial de grados Kyu y Dan Karate Shotokan JKA Chile" style="max-width: 100%; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                     </div>
 
-                    <!-- Section 8: Target Audience -->
+                    <!-- Section 8: What Karate Develops -->
                     <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
-                        7. ¿Para quién es el Karate Shotokan JKA?
+                        7. ¿Qué desarrolla la práctica del Karate Shotokan?
+                    </h2>
+                    <p>
+                        La práctica continuada y metódica del Karate Shotokan JKA —a través del trabajo integrado de Kihon, Kata y Kumite— contribuye de manera progresiva al desarrollo integral del practicante en múltiples dimensiones:
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: #f8fafc; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="margin: 0 0 0.35rem 0; color: #b91c1c; font-size: 1.05rem;">💪 Desarrollo Físico</h4>
+                            <p style="margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.5;">Mejora la coordinación motriz, el equilibrio, la fuerza funcional, la flexibilidad articular, la movilidad corporal y la condición física general.</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="margin: 0 0 0.35rem 0; color: #b91c1c; font-size: 1.05rem;">🧠 Enfoque Mental</h4>
+                            <p style="margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.5;">Favorece la concentración, la capacidad de reacción rápida, la memoria neuromuscular y la claridad bajo presión.</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem 1.25rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="margin: 0 0 0.35rem 0; color: #b91c1c; font-size: 1.05rem;">🛡️ Formación del Carácter</h4>
+                            <p style="margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.5;">Fomenta la disciplina, la perseverancia, el respeto ético, la autoconfianza y el autocontrol emocional.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 9: Target Audience -->
+                    <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
+                        8. ¿Para quién es el Karate Shotokan JKA?
                     </h2>
                     <p>
                         La metodología del Karate-Do Shotokan JKA es progresiva y adaptable, convirtiéndola en una práctica de alto valor formativo para diversos perfiles de practicantes:
@@ -702,15 +729,15 @@ ${JSON.stringify(graphSchema, null, 4)}
                         ℹ️ <strong>Información importante sobre nuestra oferta actual:</strong> Las clases en Dojo Samurai JKA Villa Alemana están dirigidas de forma exclusiva a <strong>jóvenes y adultos desde los 18 años de edad</strong>.
                     </p>
 
-                    <!-- Section 9: Dojo Samurai vs VIPALU -->
+                    <!-- Section 10: Dojo Samurai vs VIPALU -->
                     <h2 style="color: #0f172a; font-weight: 800; font-size: 1.6rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #fee2e2; padding-bottom: 0.5rem;">
-                        8. Formación en Dojo Samurai JKA Villa Alemana
+                        9. Formación en Dojo Samurai JKA Villa Alemana
                     </h2>
                     <p>
-                        <strong>Dojo Samurai JKA Villa Alemana</strong> es una organización deportiva y escuela marcial dedicada a la enseñanza técnica del Karate-Do Shotokan tradicional. Como filial oficial del <strong>Honbu Dojo Samurai Viña del Mar</strong>, nuestra práctica y evaluaciones cuentan con el respaldo y la supervisión técnica directa de <strong>Sensei Raúl Puchi Zarecht (6to Dan JKA)</strong>.
+                        <strong>Dojo Samurai JKA Villa Alemana</strong> es una organización deportiva y escuela marcial dedicada a la enseñanza técnica del Karate-Do Shotokan tradicional. Se encuentra vinculada a la tradición técnica del Dojo Samurai de Viña del Mar, contando con la supervisión técnica de <strong>Sensei Raúl Puchi Zarecht (6to Dan JKA)</strong>.
                     </p>
                     <p>
-                        Nuestras clases presenciales se desarrollan en las instalaciones del <strong>Centro Universo VIPALU</strong>, ubicado en <em>Balmaceda 188, Casa 2, Villa Alemana</em>. El recinto Centro Universo VIPALU actúa como la sede anfitriona que acoge el espacio de entrenamiento de nuestro dojo.
+                        Nuestras clases presenciales se desarrollan en las instalaciones del <strong>Centro Universo VIPALU</strong>, ubicado en <em>Balmaceda 188, Casa 2, Villa Alemana</em>. El recinto Centro Universo VIPALU actúa únicamente como el recinto físico anfitrión que acoge el espacio de entrenamiento de nuestro dojo.
                     </p>
 
                     <!-- CTA Box -->

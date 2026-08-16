@@ -1009,16 +1009,40 @@ a {
     }
 }
 
+@media (max-width: 768px) {
+    .hero-banner {
+        min-height: auto !important;
+        align-items: flex-start !important;
+        padding-top: 110px !important; /* Prevents 25% OFF promo badge from overlapping under 80px fixed navbar */
+        padding-bottom: 2.5rem !important;
+    }
+}
+
 @media (max-width: 640px) {
+    .kanji-svg {
+        width: 220px !important;
+    }
+    .hero-title {
+        font-size: clamp(1.75rem, 6.5vw, 2.4rem) !important;
+        margin-bottom: 0.75rem !important;
+    }
+    .hero-subtitle {
+        font-size: 0.98rem !important;
+        margin-bottom: 1.25rem !important;
+    }
     .commercial-grid {
         grid-template-columns: 1fr;
     }
     .hero-quick-info-strip {
         flex-direction: column;
         align-items: stretch;
+        margin: 0.5rem auto 1.25rem auto !important;
+        gap: 0.5rem !important;
     }
     .info-pill {
         text-align: center;
+        font-size: 0.86rem !important;
+        padding: 0.4rem 0.75rem !important;
     }
     .hero-cta-buttons {
         flex-direction: column;
@@ -1029,12 +1053,18 @@ a {
     .btn-whatsapp-hero {
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box;
-        font-size: 1.02rem;
-        padding: 0.85rem 0.75rem;
-        white-space: nowrap;
-        justify-content: center;
-        min-height: 52px;
+        height: 48px !important;
+        min-height: 48px !important;
+        max-height: 48px !important;
+        padding: 0 0.5rem !important;
+        font-size: clamp(0.85rem, 3.8vw, 0.98rem) !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        box-sizing: border-box !important;
+        line-height: 48px !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 }
 

@@ -126,6 +126,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Hero IntersectionObserver: Manage floating elements while Hero is in viewport
+    const heroElem = document.getElementById('hero');
+    if (heroElem && 'IntersectionObserver' in window) {
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.body.classList.add('in-hero-view');
+                } else {
+                    document.body.classList.remove('in-hero-view');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        heroObserver.observe(heroElem);
+    }
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');

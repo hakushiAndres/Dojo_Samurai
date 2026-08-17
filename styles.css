@@ -878,6 +878,15 @@ a {
     font-weight: 800;
 }
 
+.info-day-short {
+    display: none;
+}
+
+.info-day-full,
+.info-pill-extra {
+    display: inline;
+}
+
 .hero-cta-buttons {
     display: flex;
     gap: 1rem;
@@ -1163,31 +1172,69 @@ a {
     }
 }
 
+/* Hide Floating WhatsApp & Floating Promo Widget while Hero is in View (Mobile/Tablet) */
+@media (max-width: 992px) {
+    body.in-hero-view .whatsapp-btn {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: scale(0.8) !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+    }
+    body.in-hero-view .promo-flyout-card,
+    body.in-hero-view .promo-reopen-bubble {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateY(-50%) scale(0) !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+    }
+}
+
 @media (max-width: 640px) {
+    .kanji-draw-box {
+        padding: 0.25rem 0.75rem !important;
+        gap: 0.2rem !important;
+    }
     .kanji-svg {
-        width: 220px !important;
+        width: 165px !important;
+    }
+    .kanji-sublabel {
+        font-size: 0.72rem !important;
+        letter-spacing: 2.5px !important;
     }
     .hero-title {
-        font-size: clamp(1.75rem, 6.5vw, 2.4rem) !important;
-        margin-bottom: 0.75rem !important;
+        font-size: clamp(1.7rem, 6.2vw, 2.3rem) !important;
+        margin-bottom: 0.65rem !important;
     }
     .hero-subtitle {
-        font-size: 0.98rem !important;
-        margin-bottom: 1.25rem !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 1rem !important;
     }
     .commercial-grid {
         grid-template-columns: 1fr;
     }
+    .info-day-short {
+        display: inline !important;
+    }
+    .info-day-full,
+    .info-pill-extra {
+        display: none !important;
+    }
     .hero-quick-info-strip {
-        flex-direction: column;
-        align-items: stretch;
-        margin: 0.5rem auto 1.25rem auto !important;
-        gap: 0.5rem !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0.4rem !important;
+        margin: 0.35rem auto 1rem auto !important;
     }
     .info-pill {
-        text-align: center;
-        font-size: 0.86rem !important;
-        padding: 0.4rem 0.75rem !important;
+        text-align: center !important;
+        font-size: 0.8rem !important;
+        padding: 0.35rem 0.6rem !important;
+        border-radius: 6px !important;
+        border-left-width: 3px !important;
     }
     .hero-cta-buttons {
         flex-direction: column;

@@ -1198,9 +1198,10 @@ a {
     line-height: 1.3;
 }
 
-.diferenciador-card p {
+.diferenciador-card p,
+#about .diferenciador-card p {
     font-size: 0.91rem;
-    color: #334155;
+    color: #334155 !important;
     line-height: 1.5;
     margin: 0;
 }
@@ -1392,7 +1393,7 @@ a {
     color: #ffffff !important;
 }
 
-#about .about-text p {
+#about .about-text > p {
     color: #cbd5e1 !important;
 }
 

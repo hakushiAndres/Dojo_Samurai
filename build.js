@@ -782,7 +782,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                         9. Formación en Dojo Samurai JKA Villa Alemana
                     </h2>
                     <p>
-                        <strong>Dojo Samurai JKA Villa Alemana</strong> es una organización deportiva y escuela marcial dedicada a la enseñanza técnica del Karate-Do Shotokan tradicional. La enseñanza del dojo está a cargo de <strong>Andrés Castro Fernández (2.º Dan JKA)</strong>, siguiendo la línea de formación en Karate Shotokan JKA que tiene como maestro y referente técnico a <strong>Sensei Raúl Puchi Zarecht (6to Dan JKA)</strong>.
+                        <strong>Dojo Samurai JKA Villa Alemana</strong> es una organización deportiva y escuela marcial dedicada a la enseñanza técnica del Karate-Do Shotokan tradicional. La enseñanza del dojo está a cargo de <strong>Andrés Castro Fernández, 2.º Dan JKA</strong>, siguiendo la línea de formación en Karate Shotokan JKA que tiene como maestro y referente técnico a <strong>Sensei Raúl Puchi Zarecht, 6.º Dan JKA</strong>.
                     </p>
                     <p>
                         Nuestras clases presenciales se desarrollan en las instalaciones del <strong>Centro Universo VIPALU</strong>, ubicado en <em>Balmaceda 188, Casa 2, Villa Alemana</em>. El recinto Centro Universo VIPALU actúa únicamente como el recinto físico anfitrión que acoge el espacio de entrenamiento de nuestro dojo.

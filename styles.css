@@ -1143,18 +1143,63 @@ a {
 }
 
 @media (max-width: 640px) {
+    /* Unified Mobile Container Width & Gutter Architecture */
     .hero-banner {
-        padding-left: 0.85rem !important;
-        padding-right: 0.85rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        box-sizing: border-box !important;
+    }
+    .hero-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
     .hero-content,
     .hero-text-box {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
-        padding-left: 0.25rem !important;
-        padding-right: 0.25rem !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
+
+    /* Badges Layout & Text Wrapping (Prevents Clipping & Edge Overflow) */
+    .hero-badges-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 0.5rem !important;
+        margin: 0.25rem auto 0.85rem auto !important;
+    }
+    .main-dojo-badge {
+        font-size: clamp(0.75rem, 3.2vw, 0.84rem) !important;
+        padding: 0.4rem 0.85rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        display: inline-flex !important;
+        justify-content: center !important;
+    }
+    .promo-hero-pill {
+        font-size: clamp(0.72rem, 3vw, 0.8rem) !important;
+        padding: 0.4rem 0.8rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        line-height: 1.35 !important;
+        display: inline-block !important;
+    }
+
     .kanji-draw-box {
         padding: 0.25rem 0.75rem !important;
         gap: 0.2rem !important;
@@ -1166,18 +1211,27 @@ a {
         font-size: 0.72rem !important;
         letter-spacing: 2.5px !important;
     }
+
+    /* Hero Typography */
     .hero-title {
-        font-size: clamp(1.65rem, 6vw, 2.25rem) !important;
+        font-size: clamp(1.65rem, 5.8vw, 2.25rem) !important;
+        line-height: 1.18 !important;
         margin-bottom: 0.65rem !important;
-        padding-left: 0.25rem !important;
-        padding-right: 0.25rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
     .hero-subtitle {
         font-size: 0.95rem !important;
+        line-height: 1.5 !important;
         margin-bottom: 1rem !important;
-        padding-left: 0.25rem !important;
-        padding-right: 0.25rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
+
     .commercial-grid {
         grid-template-columns: 1fr;
     }
@@ -1193,6 +1247,8 @@ a {
     .info-pill-extra {
         display: none !important;
     }
+
+    /* Hero Quick Info Strip */
     .hero-quick-info-strip {
         flex-direction: row !important;
         flex-wrap: wrap !important;
@@ -1200,6 +1256,9 @@ a {
         align-items: center !important;
         gap: 0.4rem !important;
         margin: 0.35rem auto 1rem auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
     .info-pill {
         text-align: center !important;
@@ -1207,41 +1266,35 @@ a {
         padding: 0.35rem 0.6rem !important;
         border-radius: 6px !important;
         border-left-width: 3px !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
+
+    /* Hero CTA Buttons */
     .hero-cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 90% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 340px !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        align-items: center;
-        gap: 0.75rem;
+        align-items: center !important;
+        gap: 0.75rem !important;
+        box-sizing: border-box !important;
     }
-    .cta-primary-hero {
+    .cta-primary-hero,
+    .btn-whatsapp-hero {
         width: 100% !important;
         max-width: 100% !important;
         min-height: 48px !important;
         padding: 0.85rem 1.25rem !important;
-        font-size: 1.02rem !important;
+        font-size: 1rem !important;
         white-space: nowrap !important;
         box-sizing: border-box !important;
         justify-content: center !important;
         align-items: center !important;
         display: inline-flex !important;
-    }
-    .btn-whatsapp-hero {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        min-height: 46px !important;
-        padding: 0.75rem 1.2rem !important;
-        font-size: 0.94rem !important;
-        white-space: nowrap !important;
-        box-sizing: border-box !important;
-        justify-content: center !important;
-        align-items: center !important;
-        display: inline-flex !important;
+        margin: 0 !important;
     }
 }
 

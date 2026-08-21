@@ -289,6 +289,20 @@ function generateArticleHtml(article) {
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
     <link rel="stylesheet" href="../../styles.css?v=92.0">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J390P89D7E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J390P89D7E');
+    </script>
+
+    <!-- Vercel Analytics Integration -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+
     <!-- Schema.org NewsArticle JSON-LD -->
     <script type="application/ld+json">
 ${JSON.stringify(ldJson, null, 4)}
@@ -512,6 +526,20 @@ function generateShotokanPillarHtml() {
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
     <link rel="stylesheet" href="../styles.css?v=92.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J390P89D7E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J390P89D7E');
+    </script>
+
+    <!-- Vercel Analytics Integration -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <!-- Schema.org WebPage & BreadcrumbList JSON-LD -->
     <script type="application/ld+json">

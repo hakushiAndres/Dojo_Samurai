@@ -315,6 +315,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(data => {
+                const isSubmissionSuccessful = data && (data.success === true || data.success === 'true');
+                if (!isSubmissionSuccessful) {
+                    throw new Error('FormSubmit reported unsuccessful submission');
+                }
+
                 // GA4 Macroconversion: Lead confirmed via successful FormSubmit response
                 trackGA4Event('generate_lead', {
                     form_name: 'contact',

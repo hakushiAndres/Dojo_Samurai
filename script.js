@@ -1,4 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // GA4 Event Tracking Helper (Safe execution check)
+    const trackGA4Event = (eventName, params = {}) => {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, params);
+        }
+    };
+
+    // Delegated Click Event Listener for [data-track-event] semantic attributes
+    document.addEventListener('click', (e) => {
+        const trackElem = e.target.closest('[data-track-event]');
+        if (!trackElem) return;
+
+        // Do NOT process contact form elements via click delegation
+        if (trackElem.tagName.toLowerCase() === 'form' || trackElem.id === 'contactForm') return;
+
+        const eventName = trackElem.getAttribute('data-track-event');
+        if (!eventName) return;
+
+        const params = {};
+        const intent = trackElem.getAttribute('data-track-intent');
+        const placement = trackElem.getAttribute('data-track-placement');
+        const network = trackElem.getAttribute('data-track-network');
+        const account = trackElem.getAttribute('data-track-account');
+
+        if (intent) params.intent = intent;
+        if (placement) params.placement = placement;
+        if (network) params.network = network;
+        if (account) params.account = account;
+
+        trackGA4Event(eventName, params);
+    });
+
     // Real-time SVG Kanji Stroke Animation (Shotokan / 松濤館)
     const kanjiSvg = document.querySelector('.kanji-svg');
     if (kanjiSvg) {
@@ -283,6 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(data => {
+                // GA4 Macroconversion: Lead confirmed via successful FormSubmit response
+                trackGA4Event('generate_lead', {
+                    form_name: 'contact',
+                    placement: 'contact_section'
+                });
+
                 submitBtn.textContent = originalText;
                 contactForm.reset();
                 if (charCountSpan) charCountSpan.textContent = '0';
@@ -298,6 +336,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('FormSubmit Error:', error);
+
+                // GA4 Diagnostic Event (Not a macroconversion)
+                trackGA4Event('form_submit_error', {
+                    form_name: 'contact',
+                    placement: 'contact_section'
+                });
+
                 submitBtn.textContent = originalText;
                 validateForm();
                 
@@ -306,6 +351,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 formMessage.className = 'form-message';
 
                 setTimeout(() => {
+                    // GA4 Intent Event: Form fallback to WhatsApp (Not a confirmed lead)
+                    trackGA4Event('click_whatsapp', {
+                        intent: 'form_fallback',
+                        placement: 'contact_form_fallback'
+                    });
+
                     const waMsg = encodeURIComponent(`Hola Dojo Samurai, me gustaría enviar una consulta:\n- Nombre: ${nameVal}\n- Correo: ${emailVal}\n- Teléfono: ${phoneVal}\n- Mensaje: ${messageVal}`);
                     window.open(`https://wa.me/56942825617?text=${waMsg}`, '_blank');
                     contactForm.reset();

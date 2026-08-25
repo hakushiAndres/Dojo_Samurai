@@ -769,7 +769,8 @@ a {
 }
 
 .cta-primary-hero,
-.btn-whatsapp-hero {
+.btn-whatsapp-hero,
+.btn-secondary-hero {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -799,6 +800,33 @@ a {
     border-color: #991b1b !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(185, 28, 28, 0.45);
+}
+
+.btn-secondary-hero {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+    border: 2px solid #cbd5e1 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary-hero:hover {
+    background-color: #e2e8f0 !important;
+    border-color: #94a3b8 !important;
+    color: #0f172a !important;
+    transform: translateY(-2px);
+}
+
+.hero-promo-secondary-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.single-offer-grid {
+    max-width: 840px;
+    margin: 0 auto;
 }
 
 .btn-whatsapp-hero {
@@ -1283,7 +1311,8 @@ a {
         box-sizing: border-box !important;
     }
     .cta-primary-hero,
-    .btn-whatsapp-hero {
+    .btn-whatsapp-hero,
+    .btn-secondary-hero {
         width: 100% !important;
         max-width: 100% !important;
         min-height: 48px !important;

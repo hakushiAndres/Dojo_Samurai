@@ -3015,6 +3015,66 @@ a.info-card-link:hover {
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
     }
 }
+
+/* Privacy and optional analytics consent */
+.consent-banner {
+    position: fixed;
+    z-index: 10000;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: 980px;
+    margin: 0 auto;
+    color: #f8fafc;
+    background: rgba(15, 23, 42, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 3px solid #b91c1c;
+    border-radius: 12px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+}
+
+.consent-banner__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem 1.25rem;
+}
+
+.consent-banner__copy { max-width: 650px; }
+.consent-banner__copy p { margin: 0; color: #e2e8f0; line-height: 1.55; }
+.consent-banner__copy .consent-banner__title { margin-bottom: 0.25rem; color: #fff; font-weight: 800; }
+.consent-banner__copy a { display: inline-block; margin-top: 0.45rem; color: #fecaca; font-weight: 600; }
+.consent-banner__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.65rem; min-width: 280px; }
+.consent-btn { min-height: 44px; padding: 0.7rem 1rem; border: 1px solid #cbd5e1; border-radius: 7px; font: inherit; font-weight: 700; cursor: pointer; }
+.consent-btn--accept { color: #fff; background: #b91c1c; border-color: #b91c1c; }
+.consent-btn--reject { color: #f8fafc; background: transparent; }
+.consent-btn:focus-visible, .footer-consent-link:focus-visible, .privacy-preferences-btn:focus-visible { outline: 3px solid #fca5a5; outline-offset: 3px; }
+
+.footer-consent-link { padding: 0; color: inherit; background: none; border: 0; font: inherit; text-decoration: underline; cursor: pointer; }
+.privacy-page { background: #f4f1eb; }
+.privacy-main { padding: 8rem 1rem 4rem; }
+.privacy-document { max-width: 840px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3.5rem); background: #fff; border-top: 5px solid #b91c1c; box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08); }
+.privacy-header { padding-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; }
+.privacy-eyebrow { color: #b91c1c; font-weight: 800; letter-spacing: 0.12em; }
+.privacy-header h1 { margin: 0.25rem 0 0.75rem; color: #0f172a; font-size: clamp(2rem, 5vw, 3.2rem); }
+.privacy-lead { color: #334155; font-size: 1.15rem; line-height: 1.7; }
+.privacy-updated { color: #64748b; font-size: 0.9rem; }
+.privacy-document section { margin-top: 2rem; }
+.privacy-document h2 { color: #0f172a; font-size: 1.35rem; }
+.privacy-document p, .privacy-document li { color: #334155; line-height: 1.75; }
+.privacy-document a { color: #991b1b; font-weight: 600; }
+.privacy-preferences-btn { min-height: 44px; padding: 0.75rem 1rem; color: #fff; background: #0f172a; border: 0; border-radius: 7px; font: inherit; font-weight: 700; cursor: pointer; }
+.privacy-back-link { color: #fff; font-weight: 700; text-decoration: none; }
+.privacy-footer { margin-top: 0; }
+
+@media (max-width: 720px) {
+    .consent-banner__content { align-items: stretch; flex-direction: column; gap: 1rem; }
+    .consent-banner__actions { min-width: 0; justify-content: stretch; }
+    .consent-btn { flex: 1 1 150px; }
+    .privacy-main { padding-top: 6.5rem; }
+    .privacy-page .logo { font-size: 0.8rem; }
+}
 @media (max-width: 380px) {
     .promo-flyout-card {
         top: 42%;

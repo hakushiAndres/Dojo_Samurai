@@ -18,6 +18,8 @@ const staticItems = [
     'noticias.html',
     'styles.css',
     'script.js',
+    'analytics-consent.js',
+    'politica-de-privacidad.html',
     'robots.txt',
     'site.webmanifest',
     'favicon.ico',
@@ -141,10 +143,13 @@ try {
     // 4. Educational Pillar Page URL (/karate-shotokan-jka/)
     sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/karate-shotokan-jka/</loc>\n    <lastmod>2026-08-14</lastmod>\n  </url>`);
 
+    // 5. Privacy policy
+    sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/politica-de-privacidad</loc>\n    <lastmod>2026-08-25</lastmod>\n  </url>`);
+
     const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.join('\n')}\n</urlset>\n`;
     const sitemapDistPath = path.join(distDir, 'sitemap.xml');
     fs.writeFileSync(sitemapDistPath, sitemapContent, 'utf-8');
-    console.log(`✓ Generated dynamic sitemap -> dist/sitemap.xml (${validArticles.length + 3} URLs)`);
+    console.log(`✓ Generated dynamic sitemap -> dist/sitemap.xml (${validArticles.length + 4} URLs)`);
 } catch (err) {
     console.error('Error generating dynamic sitemap.xml:', err);
 }
@@ -289,19 +294,8 @@ function generateArticleHtml(article) {
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
     <link rel="stylesheet" href="../../styles.css?v=92.0">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J390P89D7E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-J390P89D7E');
-    </script>
-
-    <!-- Vercel Analytics Integration -->
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <!-- Optional analytics are loaded only after the visitor grants consent. -->
+    <script defer src="/analytics-consent.js?v=1.0"></script>
 
     <!-- Schema.org NewsArticle JSON-LD -->
     <script type="application/ld+json">
@@ -433,6 +427,7 @@ ${JSON.stringify(ldJson, null, 4)}
             </div>
             <div class="footer-bottom-bar">
                 <p class="copyright-text">&copy; 2026 Dojo Samurai Villa Alemana. Todos los derechos reservados.</p>
+                <p><a href="/politica-de-privacidad">Política de privacidad</a> · <button type="button" class="footer-consent-link" data-open-consent>Preferencias de analítica</button></p>
             </div>
         </div>
     </footer>
@@ -527,19 +522,8 @@ function generateShotokanPillarHtml() {
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
     <link rel="stylesheet" href="../styles.css?v=92.0">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J390P89D7E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-J390P89D7E');
-    </script>
-
-    <!-- Vercel Analytics Integration -->
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <!-- Optional analytics are loaded only after the visitor grants consent. -->
+    <script defer src="/analytics-consent.js?v=1.0"></script>
 
     <!-- Schema.org WebPage & BreadcrumbList JSON-LD -->
     <script type="application/ld+json">
@@ -891,6 +875,7 @@ ${JSON.stringify(graphSchema, null, 4)}
             </div>
             <div class="footer-bottom-bar">
                 <p class="copyright-text">&copy; 2026 Dojo Samurai Villa Alemana. Todos los derechos reservados.</p>
+                <p><a href="/politica-de-privacidad">Política de privacidad</a> · <button type="button" class="footer-consent-link" data-open-consent>Preferencias de analítica</button></p>
             </div>
         </div>
     </footer>

@@ -1303,20 +1303,33 @@ a {
     }
 
     /* Hero CTA Buttons */
+    .hero-banner {
+        padding-bottom: 3.5rem !important;
+    }
+    .hero-promo-secondary-row {
+        margin-top: 0.85rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .scroll-chevron-down {
+        bottom: 12px !important;
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.25rem !important;
+    }
     .hero-cta-buttons {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
-        max-width: 340px !important;
+        max-width: 360px !important;
         margin-left: auto !important;
         margin-right: auto !important;
         align-items: center !important;
-        gap: 0.75rem !important;
+        gap: 0.65rem !important;
         box-sizing: border-box !important;
+        padding: 0 0.25rem !important;
     }
     .cta-primary-hero,
-    .btn-whatsapp-hero,
-    .btn-secondary-hero {
+    .btn-whatsapp-hero {
         width: 100% !important;
         max-width: 100% !important;
         min-height: 48px !important;
@@ -1327,6 +1340,24 @@ a {
         justify-content: center !important;
         align-items: center !important;
         display: inline-flex !important;
+        gap: 0.4rem !important;
+        margin: 0 !important;
+    }
+    .btn-secondary-hero {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 48px !important;
+        padding: 0.8rem 1rem !important;
+        font-size: clamp(0.86rem, 3.7vw, 0.95rem) !important;
+        line-height: 1.25 !important;
+        white-space: normal !important;
+        overflow-wrap: normal !important;
+        box-sizing: border-box !important;
+        justify-content: center !important;
+        align-items: center !important;
+        display: inline-flex !important;
+        text-align: center !important;
+        gap: 0.4rem !important;
         margin: 0 !important;
     }
 }
@@ -3099,14 +3130,86 @@ a.info-card-link:hover {
 .privacy-document a { color: #991b1b; font-weight: 600; }
 .privacy-preferences-btn { min-height: 44px; padding: 0.75rem 1rem; color: #fff; background: #0f172a; border: 0; border-radius: 7px; font: inherit; font-weight: 700; cursor: pointer; }
 .privacy-back-link { color: #fff; font-weight: 700; text-decoration: none; }
+.back-link-short { display: none; }
 .privacy-footer { margin-top: 0; }
 
 @media (max-width: 720px) {
     .consent-banner__content { align-items: stretch; flex-direction: column; gap: 1rem; }
     .consent-banner__actions { min-width: 0; justify-content: stretch; }
     .consent-btn { flex: 1 1 150px; }
-    .privacy-main { padding-top: 6.5rem; }
-    .privacy-page .logo { font-size: 0.8rem; }
+}
+
+@media (max-width: 640px) {
+    .privacy-page .nav-container {
+        gap: 0.5rem !important;
+    }
+    .privacy-page .logo {
+        font-size: 0.8rem !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    .privacy-back-link {
+        font-size: 0.82rem !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        padding: 0.35rem 0.75rem !important;
+        border-radius: 20px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    .back-link-full { display: none !important; }
+    .back-link-short { display: inline !important; }
+
+    .privacy-main {
+        padding: 5.25rem 0.5rem 2.5rem !important;
+    }
+    .privacy-document {
+        padding: 1.25rem 1rem !important;
+        border-radius: 12px !important;
+    }
+    .privacy-header {
+        padding-bottom: 1rem !important;
+    }
+    .privacy-eyebrow {
+        font-size: 0.82rem !important;
+        letter-spacing: 0.08em !important;
+        margin-bottom: 0.25rem !important;
+    }
+    .privacy-header h1 {
+        font-size: clamp(1.65rem, 5.5vw, 1.85rem) !important;
+        line-height: 1.25 !important;
+        margin: 0.2rem 0 0.5rem !important;
+    }
+    .privacy-lead {
+        font-size: 1.05rem !important;
+        line-height: 1.6 !important;
+    }
+    .privacy-updated {
+        font-size: 0.85rem !important;
+    }
+    .privacy-document section {
+        margin-top: 1.25rem !important;
+    }
+    .privacy-document h2 {
+        font-size: 1.22rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.4rem !important;
+    }
+    .privacy-document p,
+    .privacy-document li {
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
+    .privacy-document ul {
+        padding-left: 1.2rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+    .privacy-preferences-btn {
+        width: 100% !important;
+        margin-top: 0.75rem !important;
+    }
 }
 @media (max-width: 380px) {
     .promo-flyout-card {

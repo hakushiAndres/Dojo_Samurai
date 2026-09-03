@@ -387,26 +387,6 @@ a {
     margin-bottom: 0.75rem;
 }
 
-.promo-hero-pill {
-    background: rgba(37, 211, 102, 0.15) !important;
-    color: #4ade80 !important;
-    font-size: 0.78rem !important;
-    font-weight: 600 !important;
-    padding: 0.25rem 0.65rem !important;
-    border-radius: 20px !important;
-    border: 1px solid rgba(74, 222, 128, 0.4) !important;
-    text-decoration: none;
-    box-shadow: none !important;
-    transition: all 0.25s ease;
-}
-
-.promo-hero-pill:hover {
-    background: #25d366 !important;
-    color: #0f172a !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4) !important;
-}
-
 /* Main Header Navigation (Fixed Glassmorphic Header) */
 .main-nav {
     position: fixed;
@@ -817,11 +797,108 @@ a {
     transform: translateY(-2px);
 }
 
-.hero-promo-secondary-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.hero-promo-card {
     width: 100%;
+    max-width: 660px;
+    margin: 1.25rem auto 1rem;
+    padding: 1.2rem 1.4rem;
+    box-sizing: border-box;
+    color: #ffffff;
+    text-align: center;
+    background: #0f172a;
+    border: 1px solid rgba(239, 68, 68, 0.42);
+    border-left: 5px solid #b91c1c;
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
+}
+
+.hero-promo-label {
+    display: inline-block;
+    margin: 0 0 0.35rem;
+    color: #fecaca;
+    font-size: 0.875rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-promo-card h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.35rem, 2.3vw, 1.65rem);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero-promo-subtitle {
+    margin: 0.25rem 0 0.7rem;
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.hero-promo-copy,
+.hero-promo-secondary-copy {
+    max-width: 590px;
+    margin: 0 auto;
+    color: #e2e8f0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.hero-promo-secondary-copy {
+    margin-top: 0.35rem;
+    color: #cbd5e1;
+}
+
+.hero-promo-conditions {
+    margin: 0.7rem auto 0;
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+.hero-promo-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    min-height: 48px;
+    margin-top: 0.85rem;
+    padding: 0.72rem 1.15rem;
+    box-sizing: border-box;
+    color: #ffffff;
+    background: #1e293b;
+    border: 1px solid #64748b;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-promo-cta-icon {
+    flex: 0 0 auto;
+    color: #4ade80;
+    font-size: 0.85rem;
+}
+
+.hero-promo-cta:hover {
+    color: #ffffff;
+    background: #334155;
+    border-color: #4ade80;
+    transform: translateY(-1px);
+}
+
+.hero-promo-cta:focus-visible {
+    outline: 3px solid #fca5a5;
+    outline-offset: 3px;
 }
 
 .single-offer-grid {
@@ -883,7 +960,24 @@ a {
 
 .commercial-card.promo-card {
     background: linear-gradient(135deg, rgba(185, 28, 28, 0.25) 0%, rgba(30, 41, 59, 0.8) 100%);
-    border: 1px solid rgba(220, 38, 38, 0.4);
+    border: 1px solid rgba(239, 68, 68, 0.55);
+    border-left: 4px solid #ef4444;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.18);
+}
+
+.commercial-card.promo-card .commercial-icon {
+    background: rgba(185, 28, 28, 0.35);
+}
+
+.commercial-card.promo-card .commercial-info h3 {
+    color: #ffffff;
+}
+
+.promo-card-note {
+    margin-top: 0.4rem !important;
+    color: #cbd5e1 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
 }
 
 .commercial-icon {
@@ -1229,18 +1323,6 @@ body.in-testimonials-view .whatsapp-btn {
         display: inline-flex !important;
         justify-content: center !important;
     }
-    .promo-hero-pill {
-        font-size: clamp(0.72rem, 3vw, 0.8rem) !important;
-        padding: 0.4rem 0.8rem !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        text-align: center !important;
-        white-space: normal !important;
-        word-break: break-word !important;
-        line-height: 1.35 !important;
-        display: inline-block !important;
-    }
-
     .kanji-draw-box {
         padding: 0.25rem 0.75rem !important;
         gap: 0.2rem !important;
@@ -1315,9 +1397,30 @@ body.in-testimonials-view .whatsapp-btn {
     .hero-banner {
         padding-bottom: 3.5rem !important;
     }
-    .hero-promo-secondary-row {
-        margin-top: 0.85rem !important;
-        margin-bottom: 1rem !important;
+    .hero-promo-card {
+        max-width: 100%;
+        margin: 0.9rem auto 1.1rem;
+        padding: 1rem;
+        border-left-width: 4px;
+        border-radius: 14px;
+    }
+    .hero-promo-card h2 {
+        font-size: clamp(1.3rem, 6vw, 1.5rem);
+    }
+    .hero-promo-copy,
+    .hero-promo-secondary-copy {
+        font-size: 1rem;
+        line-height: 1.45;
+    }
+    .hero-promo-conditions {
+        font-size: 0.85rem;
+        line-height: 1.45;
+    }
+    .hero-promo-cta {
+        width: 100%;
+        min-width: 0;
+        padding: 0.75rem 0.9rem;
+        overflow-wrap: anywhere;
     }
     .scroll-chevron-down {
         bottom: 12px !important;

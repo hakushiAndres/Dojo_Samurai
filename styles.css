@@ -3462,6 +3462,7 @@ a.info-card-link:hover {
     }
 }
 
+@media (max-width: 600px) {
     .promo-reopen-bubble {
         top: auto;
         bottom: 85px;

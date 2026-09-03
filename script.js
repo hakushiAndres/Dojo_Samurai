@@ -385,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const testimonialDisclosure = document.getElementById('testimonial-disclosure');
     let lastTestimonialSubmitTime = 0;
     let isTestimonialSubmitting = false;
+    let hasTrackedTestimonialStart = false;
 
     const testimonialControlsReady = testimonialForm
         && testimonialNameInput
@@ -443,8 +444,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (testimonialDisclosure) {
             testimonialDisclosure.addEventListener('toggle', () => {
-                if (testimonialDisclosure.open) {
-                    trackGA4Event('testimonial_form_open', {
+                if (testimonialDisclosure.open && !hasTrackedTestimonialStart) {
+                    hasTrackedTestimonialStart = true;
+                    trackGA4Event('testimonial_start', {
+                        form_name: 'testimonial',
                         placement: 'testimonials_section'
                     });
                 }
@@ -478,10 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const testimonialHoneypot = document.getElementById('testimonial-company-hp');
             if (testimonialHoneypot && testimonialHoneypot.value !== '') {
-                testimonialForm.reset();
-                if (testimonialCharCount) testimonialCharCount.textContent = '0';
-                validateTestimonialForm();
-                showTestimonialMessage('Gracias. Recibimos tu testimonio para revisión.', false, true);
+                showTestimonialMessage('No pudimos procesar el envío. Revisa los campos e inténtalo nuevamente.', true, true);
                 return;
             }
 
@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error('Testimonial FormSubmit Error:', error);
 
-                trackGA4Event('form_submit_error', {
+                trackGA4Event('testimonial_submit_error', {
                     form_name: 'testimonial',
                     placement: 'testimonials_section'
                 });

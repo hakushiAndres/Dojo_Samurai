@@ -2437,7 +2437,7 @@ a.info-card-link:hover {
     margin-bottom: 1.5rem;
 }
 
-.modern-form input,
+.modern-form input:not([type="checkbox"]),
 .modern-form textarea {
     width: 100%;
     padding: 1.2rem;
@@ -2449,11 +2449,248 @@ a.info-card-link:hover {
     transition: var(--transition);
 }
 
-.modern-form input:focus,
+.modern-form input:not([type="checkbox"]):focus,
 .modern-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     background: rgba(0,0,0,0.4);
+}
+
+/* Testimonios de alumnos */
+.testimonials {
+    position: relative;
+    background: #f1f5f9;
+    border-top: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+}
+
+.testimonials-container {
+    max-width: 1040px;
+}
+
+.testimonials .section-header {
+    margin-bottom: 2.5rem;
+}
+
+.testimonials .section-desc {
+    max-width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.testimonial-invitation {
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 68%, #7f1d1d 100%);
+    border: 1px solid rgba(185, 28, 28, 0.45);
+    border-radius: 20px;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.2);
+    color: #f8fafc;
+}
+
+.testimonial-invitation__intro {
+    padding: 2.25rem 2.5rem 1.75rem;
+    text-align: center;
+}
+
+.testimonial-invitation__eyebrow {
+    margin: 0 0 0.55rem;
+    color: #fca5a5;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.testimonial-invitation h3 {
+    margin: 0 0 0.75rem;
+    color: #ffffff;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.2;
+}
+
+.testimonial-invitation__intro > p:last-child {
+    max-width: 660px;
+    margin: 0 auto;
+    color: #cbd5e1;
+    line-height: 1.65;
+}
+
+.testimonial-disclosure {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.testimonial-disclosure summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 54px;
+    padding: 0.85rem 1.5rem;
+    background: #b91c1c;
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+    list-style: none;
+    transition: background-color 0.2s ease;
+}
+
+.testimonial-disclosure summary::-webkit-details-marker {
+    display: none;
+}
+
+.testimonial-disclosure summary:hover {
+    background: #991b1b;
+}
+
+.testimonial-disclosure summary:focus-visible {
+    outline: 3px solid #fca5a5;
+    outline-offset: -4px;
+}
+
+.testimonial-disclosure__icon {
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.testimonial-disclosure[open] .testimonial-disclosure__icon {
+    transform: rotate(180deg);
+}
+
+.testimonial-form-wrapper.modern-form {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+    box-shadow: none;
+    background: rgba(2, 6, 23, 0.58);
+}
+
+.testimonial-review-notice {
+    margin: 0 0 1.5rem;
+    padding: 0.9rem 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 4px solid #ef4444;
+    border-radius: 8px;
+    color: #e2e8f0;
+    line-height: 1.55;
+}
+
+.testimonial-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.testimonial-form label,
+.testimonial-consents legend {
+    display: block;
+    margin-bottom: 0.55rem;
+    color: #f8fafc;
+    font-weight: 700;
+}
+
+.testimonial-form input::placeholder,
+.testimonial-form textarea::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+
+.testimonial-form input:not([type="checkbox"]):focus-visible,
+.testimonial-form textarea:focus-visible {
+    outline: 3px solid #fca5a5;
+    outline-offset: 2px;
+}
+
+.testimonial-form .word-counter-box {
+    color: #cbd5e1;
+}
+
+.testimonial-consents {
+    display: grid;
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: 0;
+}
+
+.testimonial-consents legend {
+    margin-bottom: 0.75rem;
+}
+
+.modern-form .testimonial-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 0;
+    color: #cbd5e1;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.modern-form .testimonial-checkbox input[type="checkbox"] {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    flex: 0 0 auto;
+    accent-color: #b91c1c;
+}
+
+.modern-form .testimonial-checkbox input[type="checkbox"]:focus-visible {
+    outline: 3px solid #fca5a5;
+    outline-offset: 3px;
+}
+
+.testimonial-privacy-note {
+    margin: 0 0 1.25rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.testimonial-privacy-note a {
+    color: #fecaca;
+    font-weight: 700;
+    text-underline-offset: 3px;
+}
+
+.testimonial-privacy-note a:hover {
+    color: #ffffff;
+}
+
+.form-honeypot {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+}
+
+@media (max-width: 640px) {
+    .testimonials .section-header {
+        margin-bottom: 1.75rem;
+    }
+
+    .testimonial-invitation {
+        border-radius: 16px;
+    }
+
+    .testimonial-invitation__intro,
+    .testimonial-form-wrapper.modern-form {
+        padding: 1.5rem 1.15rem;
+    }
+
+    .testimonial-form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .testimonial-disclosure summary {
+        justify-content: space-between;
+        padding-right: 1.15rem;
+        padding-left: 1.15rem;
+    }
 }
 
 .form-message {

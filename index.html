@@ -415,6 +415,92 @@
                 </div>
             </div>
         </div>
+        <a href="#testimonios" class="scroll-chevron-down" aria-label="Ir a Experiencias de nuestros alumnos">
+            <span class="chevron-icon">⌄</span>
+        </a>
+    </section>
+
+    <!-- Testimonios de alumnos: publicación siempre sujeta a revisión manual -->
+    <section id="testimonios" class="testimonials section" aria-labelledby="testimonials-title">
+        <div class="container testimonials-container">
+            <header class="section-header center">
+                <h2 id="testimonials-title" class="section-title">Experiencias de nuestros alumnos</h2>
+                <div class="title-underline" aria-hidden="true"></div>
+                <p class="section-desc">Conoce la experiencia de quienes entrenan actualmente en Dojo Samurai JKA Villa Alemana.</p>
+            </header>
+
+            <!-- Los testimonios reales y autorizados se incorporarán aquí después de su revisión. -->
+
+            <aside class="testimonial-invitation" aria-labelledby="testimonial-invitation-title">
+                <div class="testimonial-invitation__intro">
+                    <p class="testimonial-invitation__eyebrow">COMUNIDAD DOJO SAMURAI</p>
+                    <h3 id="testimonial-invitation-title">¿Entrenas con nosotros? Comparte tu experiencia</h3>
+                    <p>Tu experiencia puede ayudar a otras personas a conocer cómo se vive la práctica en el dojo.</p>
+                </div>
+
+                <details id="testimonial-disclosure" class="testimonial-disclosure">
+                    <summary>
+                        <span>Escribir mi testimonio</span>
+                        <span class="testimonial-disclosure__icon" aria-hidden="true">⌄</span>
+                    </summary>
+
+                    <div class="testimonial-form-wrapper modern-form">
+                        <p id="testimonial-review-notice" class="testimonial-review-notice">
+                            Tu envío llegará al dojo para revisión manual y no se publicará automáticamente.
+                        </p>
+
+                        <form id="testimonialForm" class="testimonial-form" action="https://formsubmit.co/samurai.jka.valemana@gmail.com" method="POST" aria-describedby="testimonial-review-notice testimonial-privacy-note">
+                            <input type="hidden" name="_subject" value="Nuevo Testimonio para Revisión - Dojo Samurai Villa Alemana">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+
+                            <div class="form-honeypot" aria-hidden="true">
+                                <label for="testimonial-company-hp">Empresa</label>
+                                <input type="text" id="testimonial-company-hp" name="_honey" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <div class="testimonial-form-grid">
+                                <div class="form-group">
+                                    <label for="testimonial-name">Nombre</label>
+                                    <input type="text" id="testimonial-name" name="Nombre" required minlength="2" maxlength="80" autocomplete="name" placeholder="Tu nombre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="testimonial-training-time">Tiempo entrenando en el dojo</label>
+                                    <input type="text" id="testimonial-training-time" name="Tiempo_entrenando" required minlength="2" maxlength="60" autocomplete="off" placeholder="Ej.: 8 meses">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="testimonial-text">Tu experiencia</label>
+                                <textarea id="testimonial-text" name="Testimonio" rows="6" required minlength="40" maxlength="800" aria-describedby="testimonial-char-counter" placeholder="Cuéntanos qué te motivó a comenzar, cómo ha sido tu experiencia y qué destacarías del dojo."></textarea>
+                                <div id="testimonial-char-counter" class="word-counter-box">
+                                    Entre 40 y 800 caracteres · <span id="testimonial-char-count">0</span> / 800
+                                </div>
+                            </div>
+
+                            <fieldset class="testimonial-consents">
+                                <legend>Autorizaciones</legend>
+                                <label class="testimonial-checkbox" for="testimonial-web-consent">
+                                    <input type="checkbox" id="testimonial-web-consent" name="Autorizacion_web" value="Sí, autorizo" required>
+                                    <span>Autorizo a Dojo Samurai JKA Villa Alemana a publicar mi nombre, tiempo entrenando y testimonio en su sitio web, después de su revisión. <strong>(Obligatoria)</strong></span>
+                                </label>
+                                <label class="testimonial-checkbox" for="testimonial-social-consent">
+                                    <input type="checkbox" id="testimonial-social-consent" name="Autorizacion_redes_sociales" value="Sí, autorizo">
+                                    <span>También autorizo su publicación en las redes sociales del dojo. <strong>(Opcional)</strong></span>
+                                </label>
+                            </fieldset>
+
+                            <p id="testimonial-privacy-note" class="testimonial-privacy-note">
+                                Puedes solicitar la corrección o eliminación de tu testimonio. Consulta nuestra <a href="/politica-de-privacidad">Política de Privacidad</a>.
+                            </p>
+
+                            <button type="submit" id="testimonial-submit-btn" class="btn btn-primary full-width" disabled>Enviar testimonio para revisión</button>
+                            <div id="testimonial-form-message" class="form-message hidden" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
+                        </form>
+                    </div>
+                </details>
+            </aside>
+        </div>
         <a href="#classes" class="scroll-chevron-down" aria-label="Ir a Nuestros Horarios">
             <span class="chevron-icon">⌄</span>
         </a>
@@ -1012,7 +1098,7 @@
         </div>
     </div>
 
-    <script defer src="script.js?v=92.0"></script>
+    <script defer src="script.js?v=93.0"></script>
 </body>
 
 </html>

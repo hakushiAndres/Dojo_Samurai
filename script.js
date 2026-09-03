@@ -372,6 +372,212 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Testimonial submission: independent from the contact/lead form.
+    const testimonialForm = document.getElementById('testimonialForm');
+    const testimonialNameInput = document.getElementById('testimonial-name');
+    const testimonialTrainingTimeInput = document.getElementById('testimonial-training-time');
+    const testimonialTextInput = document.getElementById('testimonial-text');
+    const testimonialWebConsent = document.getElementById('testimonial-web-consent');
+    const testimonialSocialConsent = document.getElementById('testimonial-social-consent');
+    const testimonialCharCount = document.getElementById('testimonial-char-count');
+    const testimonialSubmitBtn = document.getElementById('testimonial-submit-btn');
+    const testimonialFormMessage = document.getElementById('testimonial-form-message');
+    const testimonialDisclosure = document.getElementById('testimonial-disclosure');
+    let lastTestimonialSubmitTime = 0;
+    let isTestimonialSubmitting = false;
+
+    const testimonialControlsReady = testimonialForm
+        && testimonialNameInput
+        && testimonialTrainingTimeInput
+        && testimonialTextInput
+        && testimonialWebConsent
+        && testimonialSubmitBtn
+        && testimonialFormMessage;
+
+    const showTestimonialMessage = (message, isError = false, moveFocus = false) => {
+        if (!testimonialFormMessage) return;
+
+        testimonialFormMessage.setAttribute('role', isError ? 'alert' : 'status');
+        testimonialFormMessage.className = isError ? 'form-message error' : 'form-message';
+        testimonialFormMessage.textContent = message;
+
+        if (moveFocus) testimonialFormMessage.focus();
+    };
+
+    const clearTestimonialMessage = () => {
+        if (!testimonialFormMessage) return;
+
+        testimonialFormMessage.textContent = '';
+        testimonialFormMessage.className = 'form-message hidden';
+        testimonialFormMessage.setAttribute('role', 'status');
+    };
+
+    const validateTestimonialForm = () => {
+        if (!testimonialControlsReady) return false;
+
+        const nameLength = testimonialNameInput.value.trim().length;
+        const trainingTimeLength = testimonialTrainingTimeInput.value.trim().length;
+        const testimonialLength = testimonialTextInput.value.trim().length;
+
+        const isNameValid = nameLength >= 2 && nameLength <= 80;
+        const isTrainingTimeValid = trainingTimeLength >= 2 && trainingTimeLength <= 60;
+        const isTestimonialValid = testimonialLength >= 40 && testimonialLength <= 800;
+        const isWebConsentValid = testimonialWebConsent.checked;
+
+        testimonialNameInput.setCustomValidity(isNameValid ? '' : 'Ingresa un nombre de entre 2 y 80 caracteres.');
+        testimonialTrainingTimeInput.setCustomValidity(isTrainingTimeValid ? '' : 'Indica cuánto tiempo llevas entrenando.');
+        testimonialTextInput.setCustomValidity(isTestimonialValid ? '' : 'El testimonio debe tener entre 40 y 800 caracteres, sin contar espacios al inicio o al final.');
+        testimonialWebConsent.setCustomValidity(isWebConsentValid ? '' : 'Debes autorizar la publicación en el sitio web para enviar el testimonio.');
+
+        const isFormValid = isNameValid
+            && isTrainingTimeValid
+            && isTestimonialValid
+            && isWebConsentValid;
+
+        testimonialSubmitBtn.disabled = isTestimonialSubmitting || !isFormValid;
+        return isFormValid;
+    };
+
+    if (testimonialControlsReady) {
+        validateTestimonialForm();
+
+        if (testimonialDisclosure) {
+            testimonialDisclosure.addEventListener('toggle', () => {
+                if (testimonialDisclosure.open) {
+                    trackGA4Event('testimonial_form_open', {
+                        placement: 'testimonials_section'
+                    });
+                }
+            });
+        }
+
+        [testimonialNameInput, testimonialTrainingTimeInput, testimonialWebConsent].forEach(input => {
+            input.addEventListener('input', validateTestimonialForm);
+            input.addEventListener('change', validateTestimonialForm);
+            input.addEventListener('blur', validateTestimonialForm);
+        });
+
+        testimonialTextInput.addEventListener('input', () => {
+            const characterLength = testimonialTextInput.value.length;
+            if (testimonialCharCount) {
+                testimonialCharCount.textContent = characterLength;
+                testimonialCharCount.classList.toggle('limit-reached', characterLength >= 800);
+            }
+            validateTestimonialForm();
+        });
+
+        testimonialForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            if (isTestimonialSubmitting) {
+                showTestimonialMessage('Tu testimonio ya se está enviando. Espera un momento.', false);
+                return;
+            }
+
+            clearTestimonialMessage();
+
+            const testimonialHoneypot = document.getElementById('testimonial-company-hp');
+            if (testimonialHoneypot && testimonialHoneypot.value !== '') {
+                testimonialForm.reset();
+                if (testimonialCharCount) testimonialCharCount.textContent = '0';
+                validateTestimonialForm();
+                showTestimonialMessage('Gracias. Recibimos tu testimonio para revisión.', false, true);
+                return;
+            }
+
+            const now = Date.now();
+            if (now - lastTestimonialSubmitTime < 15000) {
+                showTestimonialMessage('Por favor espera unos segundos antes de enviar otro testimonio.', true, true);
+                return;
+            }
+
+            if (!validateTestimonialForm() || !testimonialForm.checkValidity()) {
+                showTestimonialMessage('Revisa los campos indicados y acepta la autorización obligatoria para el sitio web.', true);
+                testimonialForm.reportValidity();
+                return;
+            }
+
+            const testimonialFormData = new FormData();
+            testimonialFormData.append('Nombre', sanitizeInput(testimonialNameInput.value));
+            testimonialFormData.append('Tiempo_entrenando', sanitizeInput(testimonialTrainingTimeInput.value));
+            testimonialFormData.append('Testimonio', sanitizeInput(testimonialTextInput.value));
+            testimonialFormData.append('Autorizacion_web', 'Sí, autorizo');
+            testimonialFormData.append(
+                'Autorizacion_redes_sociales',
+                testimonialSocialConsent && testimonialSocialConsent.checked ? 'Sí, autorizo' : 'No'
+            );
+            testimonialFormData.append('_subject', 'Nuevo Testimonio para Revisión - Dojo Samurai Villa Alemana');
+            testimonialFormData.append('_template', 'table');
+            testimonialFormData.append('_captcha', 'false');
+
+            const originalButtonText = testimonialSubmitBtn.textContent;
+            isTestimonialSubmitting = true;
+            lastTestimonialSubmitTime = now;
+            testimonialForm.setAttribute('aria-busy', 'true');
+            testimonialSubmitBtn.textContent = 'Enviando...';
+            testimonialSubmitBtn.disabled = true;
+
+            const testimonialAbortController = new AbortController();
+            let didTestimonialTimeout = false;
+            const testimonialTimeoutId = setTimeout(() => {
+                didTestimonialTimeout = true;
+                testimonialAbortController.abort();
+            }, 20000);
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/samurai.jka.valemana@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: testimonialFormData,
+                    signal: testimonialAbortController.signal
+                });
+
+                if (!response.ok) {
+                    throw new Error('FormSubmit HTTP status: ' + response.status);
+                }
+
+                const data = await response.json();
+                const isSubmissionSuccessful = data && (data.success === true || data.success === 'true');
+                if (!isSubmissionSuccessful) {
+                    throw new Error('FormSubmit reported unsuccessful testimonial submission');
+                }
+
+                trackGA4Event('testimonial_submit', {
+                    form_name: 'testimonial',
+                    placement: 'testimonials_section'
+                });
+
+                testimonialForm.reset();
+                if (testimonialCharCount) {
+                    testimonialCharCount.textContent = '0';
+                    testimonialCharCount.classList.remove('limit-reached');
+                }
+                showTestimonialMessage('Gracias. Recibimos tu testimonio para revisión. No se publicará automáticamente.', false, true);
+            } catch (error) {
+                console.error('Testimonial FormSubmit Error:', error);
+
+                trackGA4Event('form_submit_error', {
+                    form_name: 'testimonial',
+                    placement: 'testimonials_section'
+                });
+
+                if (didTestimonialTimeout) {
+                    showTestimonialMessage('No pudimos confirmar el envío dentro del tiempo esperado. Tus datos siguen en el formulario para que puedas intentarlo nuevamente.', true, true);
+                } else {
+                    showTestimonialMessage('No pudimos enviar tu testimonio en este momento. Tus datos siguen en el formulario para que puedas intentarlo nuevamente más tarde.', true, true);
+                }
+            } finally {
+                clearTimeout(testimonialTimeoutId);
+                isTestimonialSubmitting = false;
+                testimonialForm.removeAttribute('aria-busy');
+                testimonialSubmitBtn.textContent = originalButtonText;
+                validateTestimonialForm();
+            }
+        });
+    }
+
     // Gallery Filters
     const filterBtns = document.querySelectorAll('.filter-btn');
     const photosGrid = document.getElementById('photos-grid');

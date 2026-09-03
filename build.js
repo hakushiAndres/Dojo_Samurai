@@ -49,6 +49,10 @@ staticItems.forEach(item => {
     }
 });
 
+// Compile approved testimonials into the copied homepage. The JSON contains
+// public display data only; submitted form data is never read or published.
+compileApprovedTestimonials();
+
 function copyDirSync(src, dest) {
     fs.mkdirSync(dest, { recursive: true });
     const entries = fs.readdirSync(src, { withFileTypes: true });
@@ -61,6 +65,122 @@ function copyDirSync(src, dest) {
             fs.copyFileSync(srcPath, destPath);
         }
     }
+}
+
+function compileApprovedTestimonials() {
+    const sourcePath = path.join(rootDir, 'data', 'testimonios.json');
+    const homepagePath = path.join(distDir, 'index.html');
+
+    if (!fs.existsSync(homepagePath)) {
+        console.warn('Homepage not found; approved testimonials were not compiled.');
+        return;
+    }
+
+    const testimonials = readApprovedTestimonials(sourcePath);
+    const homepage = fs.readFileSync(homepagePath, 'utf-8');
+    const startMarker = '<!-- TESTIMONIOS_APROBADOS_INICIO -->';
+    const endMarker = '<!-- TESTIMONIOS_APROBADOS_FIN -->';
+    const startIndex = homepage.indexOf(startMarker);
+    const endIndex = homepage.indexOf(endMarker);
+
+    if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) {
+        console.warn('Testimonial build markers not found in index.html; no testimonials were inserted.');
+        return;
+    }
+
+    const replacement = `${startMarker}\n${renderApprovedTestimonials(testimonials)}            ${endMarker}`;
+    const compiledHomepage = homepage.slice(0, startIndex)
+        + replacement
+        + homepage.slice(endIndex + endMarker.length);
+
+    fs.writeFileSync(homepagePath, compiledHomepage, 'utf-8');
+    console.log(`✓ Compiled ${testimonials.length} approved testimonial(s) -> dist/index.html`);
+}
+
+function readApprovedTestimonials(sourcePath) {
+    if (!fs.existsSync(sourcePath)) {
+        throw new Error('[Testimonios] Falta el archivo requerido data/testimonios.json.');
+    }
+
+    let data;
+    try {
+        data = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
+    } catch (err) {
+        throw new Error(`[Testimonios] JSON mal formado en data/testimonios.json: ${err.message}`);
+    }
+
+    if (!Array.isArray(data)) {
+        throw new Error('[Testimonios] La raíz de data/testimonios.json debe ser un array.');
+    }
+
+    const requiredFields = ['id', 'nombre', 'tiempoEntrenando', 'testimonio'];
+
+    data.forEach((item, index) => {
+        const entryNumber = index + 1;
+
+        if (!item || typeof item !== 'object' || Array.isArray(item)) {
+            throw new Error(`[Testimonios] La entrada ${entryNumber} debe ser un objeto.`);
+        }
+
+        requiredFields.forEach(field => {
+            if (!Object.prototype.hasOwnProperty.call(item, field)) {
+                throw new Error(`[Testimonios] La entrada ${entryNumber} no contiene el campo requerido "${field}".`);
+            }
+
+            if (typeof item[field] !== 'string') {
+                throw new Error(`[Testimonios] El campo "${field}" de la entrada ${entryNumber} debe ser texto; se recibió ${typeof item[field]}.`);
+            }
+
+            if (!item[field].trim()) {
+                throw new Error(`[Testimonios] El campo "${field}" de la entrada ${entryNumber} no puede estar vacío.`);
+            }
+        });
+    });
+
+    const testimonialIds = new Set();
+
+    data.forEach(item => {
+        if (testimonialIds.has(item.id)) {
+            throw new Error(`[Testimonios] El id "${item.id}" está duplicado en data/testimonios.json.`);
+        }
+
+        testimonialIds.add(item.id);
+    });
+
+    return data;
+}
+
+function renderApprovedTestimonials(testimonials) {
+    if (testimonials.length === 0) {
+        return '';
+    }
+
+    const cards = testimonials.map(item => `
+                    <article class="testimonial-card" data-testimonial-id="${escapeHtml(item.id)}">
+                        <blockquote class="testimonial-card__quote">
+                            <p>${escapeHtml(item.testimonio)}</p>
+                        </blockquote>
+                        <footer class="testimonial-card__attribution">
+                            <span class="testimonial-card__name">${escapeHtml(item.nombre)}</span>
+                            <span class="testimonial-card__training-time">${escapeHtml(item.tiempoEntrenando)}</span>
+                        </footer>
+                    </article>`).join('');
+
+    return `            <div class="published-testimonials" aria-label="Testimonios publicados">
+                <div class="published-testimonials__grid" data-count="${testimonials.length}">${cards}
+                </div>
+            </div>
+
+`;
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
 // Generate individual static HTML pages for news articles

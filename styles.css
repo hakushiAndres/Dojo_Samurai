@@ -2633,6 +2633,69 @@ a.info-card-link:hover {
     margin-left: auto;
 }
 
+.published-testimonials {
+    margin-bottom: 2.5rem;
+}
+
+.published-testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1.5rem;
+}
+
+.published-testimonials__grid[data-count="1"] {
+    grid-template-columns: minmax(0, 720px);
+    justify-content: center;
+}
+
+.testimonial-card {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    padding: 2rem;
+    background: #ffffff;
+    border: 1px solid #dbe3ec;
+    border-top: 4px solid #b91c1c;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.testimonial-card__quote {
+    margin: 0;
+    color: #334155;
+    font-size: 1.02rem;
+    line-height: 1.8;
+}
+
+.testimonial-card__quote p {
+    margin: 0;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.testimonial-card__attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.testimonial-card__name {
+    color: #0f172a;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 800;
+}
+
+.testimonial-card__training-time {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .testimonial-invitation {
     overflow: hidden;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 68%, #7f1d1d 100%);
@@ -2825,6 +2888,24 @@ a.info-card-link:hover {
 @media (max-width: 640px) {
     .testimonials .section-header {
         margin-bottom: 1.75rem;
+    }
+
+    .published-testimonials {
+        margin-bottom: 1.75rem;
+    }
+
+    .published-testimonials__grid {
+        gap: 1rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem 1.15rem;
+        border-radius: 14px;
+    }
+
+    .testimonial-card__quote {
+        font-size: 1rem;
+        line-height: 1.72;
     }
 
     .testimonial-invitation {

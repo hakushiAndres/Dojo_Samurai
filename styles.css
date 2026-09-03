@@ -107,6 +107,29 @@ a {
     box-shadow: 0 8px 25px rgba(239, 68, 68, 0.45);
 }
 
+#hero .scroll-chevron-down {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(15, 23, 42, 0.3);
+    color: #0f172a;
+}
+
+#hero .scroll-chevron-down .chevron-icon {
+    color: #0f172a;
+    opacity: 1;
+    font-weight: 800;
+    line-height: 1;
+}
+
+#hero .scroll-chevron-down:hover {
+    background: #b91c1c;
+    border-color: #ef4444;
+    color: #ffffff;
+}
+
+#hero .scroll-chevron-down:hover .chevron-icon {
+    color: #ffffff;
+}
+
 .section:not(.dark-card):not(.tournaments):not(.contact):not(.location) .scroll-chevron-down {
     background: rgba(15, 23, 42, 0.08);
     border-color: rgba(15, 23, 42, 0.2);
@@ -993,6 +1016,12 @@ a {
     justify-content: center;
 }
 
+.commercial-icon-svg {
+    display: block;
+    width: 26px;
+    height: 26px;
+}
+
 .commercial-info h3 {
     margin: 0 0 0.25rem 0;
     font-size: 0.82rem;
@@ -1399,27 +1428,41 @@ body.in-testimonials-view .whatsapp-btn {
     }
     .hero-promo-card {
         max-width: 100%;
-        margin: 0.9rem auto 1.1rem;
-        padding: 1rem;
+        margin: 0.75rem auto 0.9rem;
+        padding: 0.8rem 0.9rem;
         border-left-width: 4px;
         border-radius: 14px;
     }
+    .hero-promo-label {
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
+    }
     .hero-promo-card h2 {
         font-size: clamp(1.3rem, 6vw, 1.5rem);
+        line-height: 1.15;
+    }
+    .hero-promo-subtitle {
+        margin: 0.15rem 0 0.5rem;
+        line-height: 1.3;
     }
     .hero-promo-copy,
     .hero-promo-secondary-copy {
         font-size: 1rem;
-        line-height: 1.45;
+        line-height: 1.4;
+    }
+    .hero-promo-secondary-copy {
+        margin-top: 0.25rem;
     }
     .hero-promo-conditions {
+        margin-top: 0.5rem;
         font-size: 0.85rem;
-        line-height: 1.45;
+        line-height: 1.35;
     }
     .hero-promo-cta {
         width: 100%;
         min-width: 0;
-        padding: 0.75rem 0.9rem;
+        margin-top: 0.65rem;
+        padding: 0.65rem 0.85rem;
         overflow-wrap: anywhere;
     }
     .scroll-chevron-down {

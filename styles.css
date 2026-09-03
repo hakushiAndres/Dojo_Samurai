@@ -1174,6 +1174,15 @@ a {
     }
 }
 
+/* Hide floating navigation controls while Testimonials is in view */
+body.in-testimonials-view .back-to-top,
+body.in-testimonials-view .whatsapp-btn {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: scale(0.8) !important;
+}
+
 @media (max-width: 640px) {
     /* Unified Mobile Container Width & Gutter Architecture */
     .hero-banner {

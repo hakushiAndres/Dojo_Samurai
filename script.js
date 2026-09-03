@@ -139,6 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
         heroObserver.observe(heroElem);
     }
 
+    // Testimonials IntersectionObserver: Temporarily hide floating navigation controls
+    const testimonialsSection = document.getElementById('testimonios');
+    if (testimonialsSection && 'IntersectionObserver' in window) {
+        const testimonialsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                document.body.classList.toggle('in-testimonials-view', entry.isIntersecting);
+            });
+        }, { threshold: 0 });
+
+        testimonialsObserver.observe(testimonialsSection);
+    }
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');

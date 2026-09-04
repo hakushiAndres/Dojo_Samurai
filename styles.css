@@ -2899,13 +2899,33 @@ a.info-card-link:hover {
     }
 
     .testimonial-card {
-        padding: 1.5rem 1.15rem;
+        padding: 1rem 1.15rem;
         border-radius: 14px;
     }
 
     .testimonial-card__quote {
         font-size: 1rem;
-        line-height: 1.72;
+        line-height: 1.5;
+    }
+
+    .testimonial-card__quote p {
+        margin: 0;
+        line-height: inherit;
+    }
+
+    .testimonial-card__attribution {
+        gap: 0.125rem;
+        padding-top: 0.875rem;
+    }
+
+    .testimonial-card__name {
+        font-size: 1rem;
+        line-height: 1.25;
+    }
+
+    .testimonial-card__training-time {
+        font-size: 0.875rem;
+        line-height: 1.35;
     }
 
     .testimonial-invitation {

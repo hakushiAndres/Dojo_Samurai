@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+{{head}}
+</head>
+<body class="articles-page">
+{{navigation}}
+    <main id="contenido" class="articles-main">
+        <div class="container articles-reading-container">
+            <nav class="articles-breadcrumb" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/articulos/">Artículos</a><span aria-hidden="true">/</span><span aria-current="page">{{title}}</span></nav>
+            <article class="articles-reading">
+                <header class="articles-reading-header">
+                    <p class="articles-eyebrow">{{label}}</p>
+                    <h1>{{title}}</h1>
+                    <p class="articles-byline">Por {{author}} · <time datetime="{{datePublished}}">{{dateFormatted}}</time></p>
+                </header>
+{{image}}
+                <div class="articles-prose">
+{{content}}
+                </div>
+                <aside class="articles-cta" aria-label="Coordina tu primera clase">
+                    <p class="articles-eyebrow">TU PRIMER PASO EN EL DOJO</p>
+                    <p>Conversemos para coordinar tu primera visita y resolver tus dudas sobre las clases.</p>
+                    <a class="btn btn-primary" href="https://wa.me/56942825617?text=Hola,%20quisiera%20reservar%20una%20clase%20de%20prueba%20de%20Karate%20Shotokan%20JKA%20en%20Villa%20Alemana." target="_blank" rel="noopener noreferrer" data-track-event="click_whatsapp" data-track-intent="trial" data-track-placement="article_trial">Reserva tu clase de prueba</a>
+                </aside>
+                <a class="articles-back" href="/articulos/">← Volver a Artículos</a>
+            </article>
+        </div>
+    </main>
+{{footer}}
+</body>
+</html>

@@ -695,8 +695,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // Hybrid News / Blog System Module
+    // News module: editorial pages use static HTML and do not load news data.
     // ==========================================
+    if (!document.getElementById('home-news-grid') && !document.getElementById('noticias-grid-container')) return;
+
     const defaultNewsData = [
         {
             "id": "xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue",

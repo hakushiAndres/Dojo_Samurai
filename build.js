@@ -3,6 +3,9 @@ const path = require('path');
 
 const rootDir = __dirname;
 const distDir = path.join(rootDir, 'dist');
+const siteUrl = 'https://www.samuraijkavalemana.cl';
+// Validate public editorial input before replacing the previous distribution.
+const editorialArticles = readEditorialArticles();
 
 console.log('Building static site distribution to dist/...');
 
@@ -52,6 +55,7 @@ staticItems.forEach(item => {
 // Compile approved testimonials into the copied homepage. The JSON contains
 // public display data only; submitted form data is never read or published.
 compileApprovedTestimonials();
+compileEditorialArticles();
 
 function copyDirSync(src, dest) {
     fs.mkdirSync(dest, { recursive: true });
@@ -183,6 +187,196 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+// This collection contains public, approved content only. Unknown fields fail
+// validation, including draft/status flags: data/ is copied to the public build.
+function readEditorialArticles() {
+    const fail = message => { throw new Error(`[Artículos] ${message}`); };
+    let articles;
+    try {
+        articles = JSON.parse(fs.readFileSync(path.join(rootDir, 'data', 'articulos.json'), 'utf-8'));
+    } catch (err) {
+        fail(`No se pudo leer data/articulos.json: ${err.message}`);
+    }
+    if (!Array.isArray(articles)) fail('La raíz debe ser un array.');
+    const required = ['slug', 'title', 'seoTitle', 'description', 'excerpt', 'label', 'author', 'datePublished', 'dateModified', 'contentHtml'];
+    const allowed = new Set([...required, 'featured', 'image', 'imageAlt', 'imageWidth', 'imageHeight']);
+    const slugs = new Set();
+    articles.forEach((article, index) => {
+        if (!article || typeof article !== 'object' || Array.isArray(article)) fail(`Entrada ${index + 1}: se esperaba un objeto.`);
+        for (const key of Object.keys(article)) {
+            if (!allowed.has(key)) fail(`Entrada ${index + 1}: campo no admitido "${key}". Solo contenido público aprobado.`);
+        }
+        for (const key of required) {
+            if (typeof article[key] !== 'string' || !article[key].trim()) fail(`Entrada ${index + 1}: "${key}" debe ser texto no vacío.`);
+        }
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug)) fail(`Slug inválido: ${article.slug}`);
+        if (slugs.has(article.slug)) fail(`Slug duplicado: ${article.slug}`);
+        slugs.add(article.slug);
+        for (const key of ['datePublished', 'dateModified']) {
+            const value = article[key];
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(Date.parse(value)) || new Date(value).toISOString().slice(0, 10) !== value) fail(`Fecha inválida en ${article.slug}: ${key}`);
+        }
+        if (article.dateModified < article.datePublished) fail(`dateModified anterior a datePublished: ${article.slug}`);
+        if (article.featured !== undefined && typeof article.featured !== 'boolean') fail(`featured debe ser booleano: ${article.slug}`);
+        if (article.image !== undefined) {
+            if (typeof article.image !== 'string' || !/^\/assets\/[a-zA-Z0-9_/-]+\.(jpg|jpeg|png|webp)$/.test(article.image) || !fs.existsSync(path.join(rootDir, article.image.slice(1)))) fail(`Imagen local inválida o inexistente: ${article.slug}`);
+            if (typeof article.imageAlt !== 'string' || !article.imageAlt.trim()) fail(`Falta imageAlt: ${article.slug}`);
+            if (![article.imageWidth, article.imageHeight].every(value => Number.isInteger(value) && value > 0)) fail(`Dimensiones de imagen inválidas: ${article.slug}`);
+        } else if (['imageAlt', 'imageWidth', 'imageHeight'].some(key => article[key] !== undefined)) {
+            fail(`Los metadatos de imagen requieren image: ${article.slug}`);
+        }
+        // Small explicit HTML vocabulary for approved prose. All other fields
+        // are escaped at rendering; embedded content cannot add scripts/styles.
+        const stack = [];
+        const tags = article.contentHtml.match(/<[^>]*>/g) || [];
+        if (!tags.includes('<h2>')) fail(`Faltan subtítulos h2: ${article.slug}`);
+        if (article.contentHtml.replace(/<[^>]*>/g, '').includes('<')) fail(`HTML incompleto: ${article.slug}`);
+        for (const tag of tags) {
+            if (!/^<(?:\/?(?:p|h2|h3|ul|ol|li|strong|em)|p class="articles-lead"|a href="\/(?:[a-z0-9/#-]*)"|\/a)>$/.test(tag)) fail(`HTML no permitido en ${article.slug}: ${tag}`);
+            const name = tag.match(/^<\/?([a-z0-9]+)/)[1];
+            if (tag.startsWith('</')) {
+                if (stack.pop() !== name) fail(`HTML mal anidado: ${article.slug}`);
+            } else {
+                stack.push(name);
+            }
+        }
+        if (stack.length) fail(`HTML sin cerrar: ${article.slug}`);
+    });
+    return articles.sort((a, b) => b.datePublished.localeCompare(a.datePublished) || a.slug.localeCompare(b.slug));
+}
+
+function editorialJson(value) {
+    return JSON.stringify(value, null, 2).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
+}
+
+function renderEditorialTemplate(name, values) {
+    return fs.readFileSync(path.join(rootDir, 'templates', name), 'utf-8').replace(/\{\{(\w+)\}\}/g, (_, key) => {
+        if (!Object.prototype.hasOwnProperty.call(values, key)) throw new Error(`[Artículos] Variable de plantilla desconocida: ${key}`);
+        return values[key];
+    });
+}
+
+function editorialHead({ title, description, url, schema, article }) {
+    const imageUrl = article?.image ? siteUrl + article.image : siteUrl + '/og-image.jpg';
+    return `    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${escapeHtml(title)}</title>
+    <meta name="description" content="${escapeHtml(description)}">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="${escapeHtml(url)}">
+    <meta property="og:type" content="${article ? 'article' : 'website'}">
+    <meta property="og:locale" content="es_CL">
+    <meta property="og:site_name" content="Dojo Samurai JKA Villa Alemana">
+    <meta property="og:title" content="${escapeHtml(title)}">
+    <meta property="og:description" content="${escapeHtml(description)}">
+    <meta property="og:url" content="${escapeHtml(url)}">
+    <meta property="og:image" content="${escapeHtml(imageUrl)}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${escapeHtml(title)}">
+    <meta name="twitter:description" content="${escapeHtml(description)}">
+    <meta name="twitter:image" content="${escapeHtml(imageUrl)}">
+    ${article ? `<meta name="author" content="${escapeHtml(article.author)}">
+    <meta property="article:published_time" content="${article.datePublished}">
+    <meta property="article:modified_time" content="${article.dateModified}">` : ''}
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="/styles.css?v=94.0">
+    <script defer src="/analytics-consent.js?v=1.0"></script>
+    <script defer src="/script.js?v=94.0"></script>
+    <script type="application/ld+json">${editorialJson(schema)}</script>
+    <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}.articles-main{padding-top:2rem}}</style></noscript>`;
+}
+
+function editorialNavigation() {
+    return `    <a class="articles-skip" href="#contenido">Saltar al contenido</a>
+    <nav id="navbar" class="main-nav" aria-label="Navegación principal">
+        <div class="nav-container">
+            <a href="/" class="logo"><span class="logo-icon"><img src="/assets/ui/animacion/jka_logo.png" alt="Logo JKA" width="35" height="35"></span> Dojo Samurai JKA Villa Alemana</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="/#about">Nosotros</a></li>
+                <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
+                <li><a href="/#classes">Horarios</a></li>
+                <li><a href="/articulos/" class="active-nav">Artículos</a></li>
+                <li><a href="/noticias">Noticias</a></li>
+                <li><a href="/#contact">Contacto</a></li>
+            </ul>
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+        </div>
+    </nav>`;
+}
+
+function editorialFooter() {
+    return `    <footer id="footer" class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <div class="footer-col"><h2 class="footer-brand-title">DOJO SAMURAI VILLA ALEMANA</h2><p class="footer-brand-desc">Karate-Do Shotokan JKA. Técnica, disciplina y principios del Budō.</p></div>
+                <div class="footer-col"><h2 class="footer-col-title">NAVEGACIÓN</h2><ul class="footer-links-list"><li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li><li><a href="/articulos/">Artículos</a></li><li><a href="/noticias">Noticias</a></li><li><a href="/#classes">Horarios</a></li><li><a href="/#contact">Contacto</a></li></ul></div>
+                <div class="footer-col"><h2 class="footer-col-title">UBICACIÓN</h2><p class="footer-brand-desc">Balmaceda 188, Casa 2<br>Villa Alemana</p><a href="/#location">Cómo llegar</a></div>
+            </div>
+            <div class="footer-bottom-bar"><p class="copyright-text">&copy; ${new Date().getFullYear()} Dojo Samurai Villa Alemana.</p><p><a href="/politica-de-privacidad">Política de privacidad</a> · <button type="button" class="footer-consent-link" data-open-consent>Preferencias de analítica</button></p></div>
+        </div>
+    </footer>`;
+}
+
+function editorialCard(article, home = false) {
+    const url = `/articulos/${article.slug}/`;
+    const heading = home ? 'h3' : 'h2';
+    return `                <article class="articles-card${article.image ? '' : ' articles-card-text'}">
+                    ${article.image ? `<div class="articles-card-image"><img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt)}" loading="lazy" decoding="async" width="${article.imageWidth}" height="${article.imageHeight}"></div>` : ''}
+                    <div class="articles-card-body">
+                        <p class="articles-eyebrow">${escapeHtml(article.label)}</p>
+                        <${heading}><a href="${url}">${escapeHtml(article.title)}</a></${heading}>
+                        <p class="articles-excerpt">${escapeHtml(article.excerpt)}</p>
+                        <a class="articles-read" href="${url}">Leer artículo <span aria-hidden="true">→</span></a>
+                    </div>
+                </article>`;
+}
+
+function compileEditorialArticles() {
+    const hubUrl = siteUrl + '/articulos/';
+    const navigation = editorialNavigation();
+    const footer = editorialFooter();
+    const outputDir = path.join(distDir, 'articulos');
+    fs.mkdirSync(outputDir, { recursive: true });
+    const hubSchema = {
+        '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Artículos', url: hubUrl,
+        mainEntity: { '@type': 'ItemList', itemListElement: editorialArticles.map((article, index) => ({ '@type': 'ListItem', position: index + 1, name: article.title, url: `${hubUrl}${article.slug}/` })) }
+    };
+    const indexHtml = renderEditorialTemplate('articulos-index.html', {
+        head: editorialHead({ title: 'Artículos de Karate Shotokan JKA | Dojo Samurai JKA Villa Alemana', description: 'Artículos sobre Karate Shotokan JKA, entrenamiento, Budō y orientación para quienes desean comenzar a practicar Karate en Villa Alemana.', url: hubUrl, schema: hubSchema }),
+        navigation, footer, cards: editorialArticles.map(article => editorialCard(article)).join('\n') || '<p>Próximamente compartiremos nuevos artículos.</p>'
+    });
+    fs.writeFileSync(path.join(outputDir, 'index.html'), indexHtml, 'utf-8');
+    for (const article of editorialArticles) {
+        const url = `${hubUrl}${article.slug}/`;
+        const schema = { '@context': 'https://schema.org', '@graph': [
+            { '@type': 'Article', '@id': url + '#article', headline: article.title, description: article.description, datePublished: article.datePublished, dateModified: article.dateModified, author: { '@type': 'Person', name: article.author }, publisher: { '@type': 'Organization', name: 'Dojo Samurai JKA Villa Alemana', url: siteUrl + '/', logo: { '@type': 'ImageObject', url: siteUrl + '/assets/ui/animacion/jka_logo.png' } }, mainEntityOfPage: { '@type': 'WebPage', '@id': url }, ...(article.image ? { image: [siteUrl + article.image] } : {}) },
+            { '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl + '/' }, { '@type': 'ListItem', position: 2, name: 'Artículos', item: hubUrl }, { '@type': 'ListItem', position: 3, name: article.title, item: url } ] }
+        ] };
+        const html = renderEditorialTemplate('articulo.html', {
+            head: editorialHead({ title: article.seoTitle, description: article.description, url, schema, article }), navigation, footer,
+            title: escapeHtml(article.title), label: escapeHtml(article.label), author: escapeHtml(article.author), datePublished: article.datePublished,
+            dateFormatted: new Intl.DateTimeFormat('es-CL', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(article.datePublished)),
+            image: article.image ? `<img class="articles-cover" src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt)}" width="${article.imageWidth}" height="${article.imageHeight}" decoding="async">` : '',
+            content: article.contentHtml
+        });
+        const articleDir = path.join(outputDir, article.slug);
+        fs.mkdirSync(articleDir, { recursive: true });
+        fs.writeFileSync(path.join(articleDir, 'index.html'), html, 'utf-8');
+    }
+    const homepagePath = path.join(distDir, 'index.html');
+    const homepage = fs.readFileSync(homepagePath, 'utf-8');
+    const marker = /<!-- ARTICULOS_INICIO -->[\s\S]*?<!-- ARTICULOS_FIN -->/g;
+    if ((homepage.match(marker) || []).length !== 1) throw new Error('[Artículos] Se requiere un único par de marcadores en Home.');
+    const featured = editorialArticles.find(article => article.featured) || editorialArticles[0];
+    fs.writeFileSync(homepagePath, homepage.replace(marker, () => `<!-- ARTICULOS_INICIO -->\n${featured ? editorialCard(featured, true) : ''}\n            <!-- ARTICULOS_FIN -->`), 'utf-8');
+    console.log(`✓ Generated editorial index + ${editorialArticles.length} article(s); compiled featured Home card`);
+}
+
 // Generate individual static HTML pages for news articles
 const noticiasJsonPath = path.join(rootDir, 'data', 'noticias.json');
 const compiledArticles = [];
@@ -266,12 +460,21 @@ try {
     // 5. Privacy policy
     sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/politica-de-privacidad</loc>\n    <lastmod>2026-08-25</lastmod>\n  </url>`);
 
+    // Public editorial pages have already been generated successfully.
+    const editorialLastmod = editorialArticles.map(article => article.dateModified).sort().at(-1);
+    sitemapUrls.push(`  <url>\n    <loc>${siteUrl}/articulos/</loc>${editorialLastmod ? `\n    <lastmod>${editorialLastmod}</lastmod>` : ''}\n  </url>`);
+    for (const article of editorialArticles) {
+        const articlePath = path.join(distDir, 'articulos', article.slug, 'index.html');
+        if (!fs.existsSync(articlePath)) throw new Error(`[Artículos] Falta la página generada: ${article.slug}`);
+        sitemapUrls.push(`  <url>\n    <loc>${siteUrl}/articulos/${article.slug}/</loc>\n    <lastmod>${article.dateModified}</lastmod>\n  </url>`);
+    }
+
     const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapUrls.join('\n')}\n</urlset>\n`;
     const sitemapDistPath = path.join(distDir, 'sitemap.xml');
     fs.writeFileSync(sitemapDistPath, sitemapContent, 'utf-8');
-    console.log(`✓ Generated dynamic sitemap -> dist/sitemap.xml (${validArticles.length + 4} URLs)`);
+    console.log(`✓ Generated dynamic sitemap -> dist/sitemap.xml (${sitemapUrls.length} URLs)`);
 } catch (err) {
-    console.error('Error generating dynamic sitemap.xml:', err);
+    throw new Error(`Error generating dynamic sitemap.xml: ${err.message}`);
 }
 
 // Generate static pillar page for Karate Shotokan JKA
@@ -412,7 +615,7 @@ function generateArticleHtml(article) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
-    <link rel="stylesheet" href="../../styles.css?v=92.0">
+    <link rel="stylesheet" href="../../styles.css?v=94.0">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -421,6 +624,7 @@ function generateArticleHtml(article) {
     <script type="application/ld+json">
 ${JSON.stringify(ldJson, null, 4)}
     </script>
+    <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}}</style></noscript>
 </head>
 <body>
     <!-- Main Navigation Header -->
@@ -429,12 +633,13 @@ ${JSON.stringify(ldJson, null, 4)}
             <a href="../../index.html#hero" class="logo">
                 <span class="logo-icon"><img src="../../assets/ui/animacion/jka_logo.png" alt="Logo JKA" width="35" height="35" decoding="async"></span> Dojo Samurai JKA Villa Alemana
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="../../index.html#about">Nosotros</a></li>
                 <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                 <li><a href="../../index.html#grados">Grados</a></li>
                 <li><a href="../../index.html#classes">Horarios</a></li>
-                <li><a href="/noticias">Noticias y Blog</a></li>
+                <li><a href="/articulos/">Artículos</a></li>
+                <li><a href="/noticias">Noticias</a></li>
                 <li><a href="../../index.html#contact">Contacto</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu" role="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links" tabindex="0">
@@ -451,7 +656,7 @@ ${JSON.stringify(ldJson, null, 4)}
             <!-- Navigation Back Breadcrumb -->
             <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; font-size: 0.95rem; flex-wrap: wrap;">
                 <a href="/noticias" style="color: #b91c1c; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-                    ← Volver a Noticias y Blog
+                    ← Volver a Noticias
                 </a>
                 <span style="color: #94a3b8;">|</span>
                 <a href="../../index.html" style="color: #64748b; text-decoration: none;">Inicio</a>
@@ -519,7 +724,8 @@ ${JSON.stringify(ldJson, null, 4)}
                         <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                         <li><a href="../../index.html#grados">Grados</a></li>
                         <li><a href="../../index.html#classes">Horarios</a></li>
-                        <li><a href="/noticias">Noticias y Blog</a></li>
+                        <li><a href="/articulos/">Artículos</a></li>
+                        <li><a href="/noticias">Noticias</a></li>
                         <li><a href="../../index.html#contact">Contacto</a></li>
                     </ul>
                 </div>
@@ -552,7 +758,7 @@ ${JSON.stringify(ldJson, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../../script.js?v=92.0"></script>
+    <script defer src="../../script.js?v=94.0"></script>
 </body>
 </html>`;
 }
@@ -640,7 +846,7 @@ function generateShotokanPillarHtml() {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
-    <link rel="stylesheet" href="../styles.css?v=92.0">
+    <link rel="stylesheet" href="../styles.css?v=94.0">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -649,6 +855,7 @@ function generateShotokanPillarHtml() {
     <script type="application/ld+json">
 ${JSON.stringify(graphSchema, null, 4)}
     </script>
+    <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}}</style></noscript>
 </head>
 <body>
     <!-- Main Navigation Header -->
@@ -663,7 +870,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                 <li><a href="../index.html#grados">Grados</a></li>
                 <li><a href="../index.html#dojokun">Dojo Kun</a></li>
                 <li><a href="../index.html#classes">Horarios</a></li>
-                <li><a href="../index.html#tournaments">Torneos</a></li>
+                <li><a href="/articulos/">Artículos</a></li>
                 <li><a href="/noticias">Noticias</a></li>
                 <li><a href="../index.html#gallery">Galería</a></li>
                 <li><a href="../index.html#location">Ubicación</a></li>
@@ -967,7 +1174,8 @@ ${JSON.stringify(graphSchema, null, 4)}
                         <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                         <li><a href="../index.html#grados">Grados</a></li>
                         <li><a href="../index.html#classes">Horarios</a></li>
-                        <li><a href="/noticias">Noticias y Blog</a></li>
+                        <li><a href="/articulos/">Artículos</a></li>
+                        <li><a href="/noticias">Noticias</a></li>
                         <li><a href="../index.html#contact">Contacto</a></li>
                     </ul>
                 </div>
@@ -1000,7 +1208,7 @@ ${JSON.stringify(graphSchema, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../script.js?v=92.0"></script>
+    <script defer src="../script.js?v=94.0"></script>
 </body>
 </html>`;
 }

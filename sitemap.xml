@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Note: dist/sitemap.xml is dynamically generated during build.js compilation -->
+<!-- Reference snapshot only. build.js generates the deployed dist/sitemap.xml; this file is not copied. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.samuraijkavalemana.cl/</loc>
@@ -19,5 +19,17 @@
   <url>
     <loc>https://www.samuraijkavalemana.cl/karate-shotokan-jka/</loc>
     <lastmod>2026-08-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.samuraijkavalemana.cl/politica-de-privacidad</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.samuraijkavalemana.cl/articulos/</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.samuraijkavalemana.cl/articulos/empezar-karate-siendo-adulto/</loc>
+    <lastmod>2026-09-07</lastmod>
   </url>
 </urlset>

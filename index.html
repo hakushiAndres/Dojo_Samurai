@@ -61,7 +61,7 @@
         media="print" onload="this.media='all'">
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=94.0">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -98,6 +98,7 @@
       }
     }
     </script>
+    <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}}</style></noscript>
 </head>
 
 <body>
@@ -115,7 +116,7 @@
                 <li><a href="#grados">Grados</a></li>
                 <li><a href="#dojokun">Dojo Kun</a></li>
                 <li><a href="#classes">Horarios</a></li>
-                <li><a href="#tournaments">Torneos</a></li>
+                <li><a href="/articulos/">Artículos</a></li>
                 <li><a href="#noticias">Noticias</a></li>
                 <li><a href="#gallery">Galería</a></li>
                 <li><a href="#location">Ubicación</a></li>
@@ -653,66 +654,31 @@
                 </div>
             </div>
         </div>
-        <a href="#tournaments" class="scroll-chevron-down" aria-label="Ir a Torneos y Competencias JKA">
+        <a href="#articulos" class="scroll-chevron-down" aria-label="Ir a Artículos">
             <span class="chevron-icon">⌄</span>
         </a>
     </section>
-    <!-- Tournaments & Reviews Section -->
-    <section id="tournaments" class="tournaments section dark-card">
+    <!-- Editorial articles: public content is compiled from data/articulos.json. -->
+    <section id="articulos" class="articles-home section dark-card">
         <div class="container">
-            <div class="section-header center" style="margin-bottom: 3.5rem;">
-                <span class="badge red-badge">Experiencia y Logros</span>
-                <h2 class="section-title text-light">Torneos y Competencias JKA</h2>
-                <div class="title-underline" style="margin: 0 auto 1.5rem auto;"></div>
-                <p class="section-desc text-light" style="color: #cbd5e1; max-width: 700px; margin: 0 auto;">
-                    Nuestros alumnos y competidores representan los valores del Dojo Samurai en campeonatos regionales y
-                    nacionales con la disciplina de la Japan Karate Association.
-                </p>
-            </div>
-
-            <div class="tournament-grid">
-                <!-- Left: Review Card -->
-                <div class="tournament-review-card">
-                    <div class="review-badge">
-                        <span>🏆 Reseña de Competencia</span>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                    <h3 class="review-title">"El verdadero espíritu del Karate Shotokan en el tatami"</h3>
-                    <blockquote class="review-text">
-                        "Participar en los torneos oficiales de la JKA es el reflejo del trabajo diario en el dojo. No
-                        se trata solo de buscar una medalla, sino de demostrar temple, velocidad y precisión respetando
-                        el estricto código del Budo. Ver a nuestros competidores y practicantes adultos dar lo mejor de sí
-                        en Kata y Kumite es el mayor orgullo para Dojo Samurai Villa Alemana."
-                    </blockquote>
-                    <div class="review-author">
-                        <div class="author-avatar">🥋</div>
-                        <div class="author-info">
-                            <strong>Selección y Competidores JKA</strong>
-                            <span>Dojo Samurai Villa Alemana</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Tournament Photos Showcase -->
-                <div class="tournament-photos-grid">
-                    <div class="gallery-item tournament-photo-item">
-                        <img src="assets/galeria/adultos2.jpg" alt="Entrenamiento y Preparación Torneo JKA"
-                            class="lightbox-trigger" loading="lazy" decoding="async">
-                        <div class="photo-caption-tag">Equipo de Competidores</div>
-                    </div>
-                </div>
-            </div>
+            <header class="articles-home-header">
+                <p class="articles-eyebrow">CONOCIMIENTO · KARATE · BUDŌ</p>
+                <h2 class="section-title text-light">Artículos</h2>
+                <div class="title-underline"></div>
+                <p class="articles-intro">Contenidos sobre Karate Shotokan JKA, práctica, formación y principios del Budō, junto con orientación para quienes desean comenzar a entrenar.</p>
+            </header>
+            <!-- ARTICULOS_INICIO -->
+            <!-- ARTICULOS_FIN -->
+            <div class="articles-home-action"><a class="articles-all" href="/articulos/">Ver todos los artículos <span aria-hidden="true">→</span></a></div>
         </div>
-        <a href="#noticias" class="scroll-chevron-down" aria-label="Ir a Últimas Novedades">
-            <span class="chevron-icon">⌄</span>
-        </a>
+        <a href="#noticias" class="scroll-chevron-down" aria-label="Ir a Noticias del Dojo"><span class="chevron-icon">⌄</span></a>
     </section>
 
     <!-- Latest News Component Section (Landing Page Summary) -->
     <section id="noticias" class="noticias section" style="background-color: #ffffff; position: relative; padding-bottom: 7rem;">
         <div class="container">
             <div class="section-header center" style="margin-bottom: 3rem;">
-                <span class="badge red-badge" style="margin-bottom: 0.75rem;">📰 BLOG & COMUNICADOS</span>
+                <span class="badge red-badge" style="margin-bottom: 0.75rem;">NOTICIAS DEL DOJO</span>
                 <h2 class="section-title">Últimas Novedades</h2>
                 <div class="title-underline" style="margin: 0 auto 1.5rem auto;"></div>
                 <p class="section-desc" style="max-width: 780px; margin: 0 auto;">
@@ -1061,6 +1027,7 @@
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom-bar">
                 <p class="copyright-text">&copy; 2026 Dojo Samurai Villa Alemana. Todos los derechos reservados.</p>
+                <p><a href="/articulos/">Artículos</a> · <a href="/noticias">Noticias</a></p>
                 <p class="footer-subtitle-tag"><a href="/politica-de-privacidad">Política de privacidad</a> · <button type="button" class="footer-consent-link" data-open-consent>Preferencias de analítica</button></p>
             </div>
         </div>
@@ -1114,7 +1081,7 @@
         </div>
     </div>
 
-    <script defer src="script.js?v=93.0"></script>
+    <script defer src="script.js?v=94.0"></script>
 </body>
 
 </html>

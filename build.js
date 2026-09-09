@@ -284,7 +284,7 @@ function editorialHead({ title, description, url, schema, article }) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
-    <link rel="stylesheet" href="/styles.css?v=94.0">
+    <link rel="stylesheet" href="/styles.css?v=95.0">
     <script defer src="/analytics-consent.js?v=1.0"></script>
     <script defer src="/script.js?v=94.0"></script>
     <script type="application/ld+json">${editorialJson(schema)}</script>
@@ -299,7 +299,7 @@ function editorialNavigation() {
             <ul class="nav-links" id="nav-links">
                 <li><a href="/#about">Nosotros</a></li>
                 <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
-                <li><a href="/#classes">Horarios</a></li>
+                <li><a href="/#planes">Planes y horarios</a></li>
                 <li><a href="/articulos/" class="active-nav">Artículos</a></li>
                 <li><a href="/noticias">Noticias</a></li>
                 <li><a href="/#contact">Contacto</a></li>
@@ -314,7 +314,7 @@ function editorialFooter() {
         <div class="container footer-container">
             <div class="footer-grid">
                 <div class="footer-col"><h2 class="footer-brand-title">DOJO SAMURAI VILLA ALEMANA</h2><p class="footer-brand-desc">Karate-Do Shotokan JKA. Técnica, disciplina y principios del Budō.</p></div>
-                <div class="footer-col"><h2 class="footer-col-title">NAVEGACIÓN</h2><ul class="footer-links-list"><li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li><li><a href="/articulos/">Artículos</a></li><li><a href="/noticias">Noticias</a></li><li><a href="/#classes">Horarios</a></li><li><a href="/#contact">Contacto</a></li></ul></div>
+                <div class="footer-col"><h2 class="footer-col-title">NAVEGACIÓN</h2><ul class="footer-links-list"><li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li><li><a href="/articulos/">Artículos</a></li><li><a href="/noticias">Noticias</a></li><li><a href="/#planes">Planes y horarios</a></li><li><a href="/#contact">Contacto</a></li></ul></div>
                 <div class="footer-col"><h2 class="footer-col-title">UBICACIÓN</h2><p class="footer-brand-desc">Balmaceda 188, Casa 2<br>Villa Alemana</p><a href="/#location">Cómo llegar</a></div>
             </div>
             <div class="footer-bottom-bar"><p class="copyright-text">&copy; ${new Date().getFullYear()} Dojo Samurai Villa Alemana.</p><p><a href="/politica-de-privacidad">Política de privacidad</a> · <button type="button" class="footer-consent-link" data-open-consent>Preferencias de analítica</button></p></div>
@@ -615,7 +615,7 @@ function generateArticleHtml(article) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
-    <link rel="stylesheet" href="../../styles.css?v=94.0">
+    <link rel="stylesheet" href="../../styles.css?v=95.0">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -637,7 +637,7 @@ ${JSON.stringify(ldJson, null, 4)}
                 <li><a href="../../index.html#about">Nosotros</a></li>
                 <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                 <li><a href="../../index.html#grados">Grados</a></li>
-                <li><a href="../../index.html#classes">Horarios</a></li>
+                <li><a href="/#planes">Planes y horarios</a></li>
                 <li><a href="/articulos/">Artículos</a></li>
                 <li><a href="/noticias">Noticias</a></li>
                 <li><a href="../../index.html#contact">Contacto</a></li>
@@ -723,7 +723,7 @@ ${JSON.stringify(ldJson, null, 4)}
                         <li><a href="../../index.html#about">Nosotros</a></li>
                         <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                         <li><a href="../../index.html#grados">Grados</a></li>
-                        <li><a href="../../index.html#classes">Horarios</a></li>
+                        <li><a href="/#planes">Planes y horarios</a></li>
                         <li><a href="/articulos/">Artículos</a></li>
                         <li><a href="/noticias">Noticias</a></li>
                         <li><a href="../../index.html#contact">Contacto</a></li>
@@ -846,7 +846,7 @@ function generateShotokanPillarHtml() {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
-    <link rel="stylesheet" href="../styles.css?v=94.0">
+    <link rel="stylesheet" href="../styles.css?v=95.0">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -869,7 +869,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                 <li><a href="/karate-shotokan-jka/" class="active-nav">Shotokan JKA</a></li>
                 <li><a href="../index.html#grados">Grados</a></li>
                 <li><a href="../index.html#dojokun">Dojo Kun</a></li>
-                <li><a href="../index.html#classes">Horarios</a></li>
+                <li><a href="/#planes">Planes y horarios</a></li>
                 <li><a href="/articulos/">Artículos</a></li>
                 <li><a href="/noticias">Noticias</a></li>
                 <li><a href="../index.html#gallery">Galería</a></li>
@@ -1133,7 +1133,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                             🥋 Entrena Karate Shotokan JKA en Villa Alemana
                         </h3>
                         <p style="margin: 0; color: #334155; font-size: 1.05rem; line-height: 1.6;">
-                            Te invitamos a integrarte a nuestras clases para jóvenes y adultos (Martes y Jueves de 21:00 a 22:00 hrs). ¡Solicita tu clase de prueba sin costo!
+                            Clases para adultos desde los 18 años, de 21:00 a 22:00 hrs. Arma tu semana eligiendo 2 o 3 días entre lunes y viernes, según tu plan y los cupos. Sábado y domingo no están incluidos. Solicita tu clase de prueba sin costo.
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
                             <a href="https://wa.me/56942825617?text=Hola,%20le%C3%AD%20la%20gu%C3%ADa%20educativa%20de%20Karate%20Shotokan%20JKA%20y%20me%20gustar%C3%ADa%20consultar%20por%20clases" 
@@ -1141,9 +1141,9 @@ ${JSON.stringify(graphSchema, null, 4)}
                                style="background: #25d366; color: #ffffff; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
                                 💬 Consultar por WhatsApp
                             </a>
-                            <a href="../index.html#classes" 
+                            <a href="/#planes"
                                style="background: #0f172a; color: #ffffff; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
-                                📅 Ver Horarios y Ubicación
+                                Ver planes y horarios
                             </a>
                             <a href="/noticias" 
                                style="background: #ffffff; color: #0f172a; border: 1px solid #cbd5e1; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
@@ -1173,7 +1173,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                         <li><a href="../index.html#about">Nosotros</a></li>
                         <li><a href="/karate-shotokan-jka/">Shotokan JKA</a></li>
                         <li><a href="../index.html#grados">Grados</a></li>
-                        <li><a href="../index.html#classes">Horarios</a></li>
+                        <li><a href="/#planes">Planes y horarios</a></li>
                         <li><a href="/articulos/">Artículos</a></li>
                         <li><a href="/noticias">Noticias</a></li>
                         <li><a href="../index.html#contact">Contacto</a></li>

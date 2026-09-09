@@ -4469,3 +4469,46 @@ a.info-card-link:hover {
         max-width: 100%;
     }
 }
+
+/* Monthly plans share the site's typography, crimson accents and navy palette. */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .main-nav { padding: .75rem 1.5rem; }
+    .nav-container { flex-wrap: wrap; justify-content: center; gap: .65rem; }
+    .main-nav .logo { white-space: nowrap; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: .4rem 1.2rem; }
+    .nav-links a { font-size: .9rem; white-space: nowrap; }
+    #classes.plans-section, #planes.container { scroll-margin-top: 150px; }
+}
+.plans-section { min-height: auto; padding: 6rem 0; }
+#classes, #planes { scroll-margin-top: 100px; }
+.plans-section .section-header { text-align: center; margin-bottom: 2.5rem; }
+.plans-eyebrow { color: var(--primary-color); font-size: .85rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .8rem; }
+.plans-intro { max-width: 680px; margin: 1rem auto 0; color: #475569; font-size: 1.1rem; }
+.plans-schedule { display: flex; justify-content: space-between; gap: 1.5rem; max-width: 960px; margin: 0 auto 1.5rem; padding: 1.5rem 2rem; background: var(--dark-bg); color: var(--text-light); border-radius: 16px; }
+.plans-schedule strong, .plans-schedule span { display: block; }
+.plans-schedule strong { font-size: 1.2rem; }
+.plans-schedule span { color: #cbd5e1; margin-top: .25rem; }
+.plans-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+.plan-card { display: flex; flex-direction: column; padding: 2.25rem; background: var(--bg-color); border: 1px solid #cbd5e1; border-top: 3px solid var(--primary-color); border-radius: 16px; box-shadow: var(--shadow-sm); }
+.plan-label { color: #475569; font-size: .9rem; margin-bottom: .8rem; }
+.plan-card h3 { font-size: 2rem; }
+.plan-card h3 span { font-size: 1.1rem; font-weight: 600; }
+.plan-price { font-size: clamp(2.5rem, 4vw, 3.25rem); font-weight: 800; line-height: 1.2; margin: 1.5rem 0; color: var(--dark-bg); }
+.plan-price span { display: block; font-size: .95rem; font-weight: 400; color: #475569; margin-top: .4rem; }
+.plan-frequency { font-weight: 600; margin-bottom: .5rem; }
+.plan-description { color: #475569; margin-bottom: 1.75rem; }
+.plan-cta { margin-top: auto; font-size: 1rem; padding: .9rem 1rem; }
+.plan-cta span { margin-left: .35rem; }
+.plans-details { max-width: 850px; margin: 1.75rem auto 0; color: #475569; text-align: center; }
+.plans-details p + p { margin-top: .8rem; }
+.plans-details a { color: var(--primary-color); text-decoration: underline; text-underline-offset: 3px; }
+.plans-trial { padding-top: .75rem; }
+.plans-section a:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 5px; }
+@media (max-width: 640px) {
+    .plans-section { padding: 4rem 0; }
+    .plans-section .container { padding: 0 1.25rem; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .plans-schedule { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+    .plan-card { padding: 1.5rem; }
+    .plans-details { text-align: left; }
+}

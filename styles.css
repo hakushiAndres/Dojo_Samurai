@@ -2046,6 +2046,7 @@ body.in-testimonials-view .whatsapp-btn {
 /* Editorial collection: independent from news cards and their interactions. */
 .articles-home {
     background: var(--dark-bg);
+    border-top: 1px solid rgba(248, 250, 252, 0.18);
     position: relative;
     padding-bottom: 7rem;
 }

@@ -595,24 +595,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const photosGrid = document.getElementById('photos-grid');
     const videosGrid = document.getElementById('videos-grid');
 
+    // Add new photographs here; order controls both the layout and lightbox sequence.
+    const galleryPhotos = [
+        { image: 'assets/galeria/Screenshot_2026-09-09-14-24-00-241_com.miui.gallery.jpg', alt: 'Instructor guiando a practicantes adultos de Karate Shotokan JKA en Villa Alemana', category: 'Entrenamiento', description: 'Instrucción técnica durante una clase de adultos en el dojo.', order: 1, width: 1220, height: 1318 },
+        { image: 'assets/ui/yo.JPG', alt: 'Instructor de Dojo Samurai JKA Villa Alemana', category: 'Dojo', order: 2, width: 1920, height: 1280 },
+        { image: 'assets/galeria/Screenshot_2026-09-09-14-19-25-553_com.miui.gallery.jpg', alt: 'Adultos practicando posiciones y técnicas de Karate Shotokan JKA', category: 'Técnica', order: 3, width: 1220, height: 1324 },
+        { image: 'assets/galeria/adultos.jpg', alt: 'Grupo de adultos en clase de Karate Shotokan JKA', category: 'Entrenamiento', order: 4, width: 1157, height: 573 },
+        { image: 'assets/galeria/adultos2.jpg', alt: 'Practicantes adultos entrenando en Dojo Samurai', category: 'Entrenamiento', order: 5, width: 1155, height: 653 },
+        { image: 'assets/galeria/Screenshot_2026-09-09-14-23-44-653_com.miui.gallery.jpg', alt: 'Practicantes adultos coordinando técnicas de Karate Shotokan durante una clase', category: 'Técnica', order: 6, width: 1220, height: 1318 },
+        { image: 'assets/galeria/Screenshot_2026-09-09-14-18-39-567_com.miui.gallery.jpg', alt: 'Grupo de adultos realizando kihon en Dojo Samurai JKA Villa Alemana', category: 'Entrenamiento', order: 7, width: 1220, height: 1313 }
+    ].sort((a, b) => a.order - b.order);
+
+    if (photosGrid) {
+        galleryPhotos.forEach((photo, index) => {
+            const figure = document.createElement('figure');
+            figure.className = 'gallery-photo';
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'gallery-photo-button';
+            button.setAttribute('aria-label', `Ampliar fotografía: ${photo.alt}`);
+            const img = document.createElement('img');
+            img.src = photo.image;
+            img.alt = photo.alt;
+            img.width = photo.width;
+            img.height = photo.height;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            button.append(img);
+            button.addEventListener('click', () => openLightboxWithImages(galleryPhotos, index));
+            figure.append(button);
+            photosGrid.append(figure);
+        });
+    }
+
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 // Remove active class from all
-                filterBtns.forEach(b => b.classList.remove('active'));
+                filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
                 // Add active to clicked
                 btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
                 
                 const filter = btn.getAttribute('data-filter');
                 if (filter === 'photos') {
-                    photosGrid.style.display = 'grid';
-                    videosGrid.style.display = 'none';
+                    photosGrid.hidden = false;
+                    videosGrid.hidden = true;
                     // Pause all videos
                     const videos = videosGrid.querySelectorAll('video');
                     videos.forEach(v => v.pause());
                 } else if (filter === 'videos') {
-                    photosGrid.style.display = 'none';
-                    videosGrid.style.display = 'grid';
+                    photosGrid.hidden = true;
+                    videosGrid.hidden = false;
                 }
             });
         });
@@ -627,6 +661,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentCarouselImages = [];
     let currentImageIndex = 0;
+    let focusBeforeLightbox = null;
+
+    const updateLightboxImage = () => {
+        const item = currentCarouselImages[currentImageIndex];
+        const photo = typeof item === 'string' ? { image: item, alt: '' } : item;
+        lightboxImg.src = photo.image;
+        lightboxImg.alt = photo.alt || '';
+        document.getElementById('lightbox-caption').textContent = photo.description || '';
+        prevBtn.hidden = nextBtn.hidden = currentCarouselImages.length < 2;
+    };
 
     const openLightboxWithImages = (imagesArray, startIndex = 0) => {
         const lb = document.getElementById('lightbox');
@@ -636,9 +680,13 @@ document.addEventListener('DOMContentLoaded', () => {
         currentCarouselImages = imagesArray;
         currentImageIndex = startIndex < 0 ? 0 : (startIndex >= imagesArray.length ? 0 : startIndex);
 
-        lbImg.src = currentCarouselImages[currentImageIndex];
+        focusBeforeLightbox = document.activeElement;
+        updateLightboxImage();
         lb.style.zIndex = '10005';
         lb.classList.add('active');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
     };
 
     const showCarouselImage = (index) => {
@@ -649,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (index >= currentCarouselImages.length) currentImageIndex = 0;
         else currentImageIndex = index;
         
-        lbImg.src = currentCarouselImages[currentImageIndex];
+        updateLightboxImage();
     };
 
     const closeLightbox = () => {
@@ -657,6 +705,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const lbImg = document.getElementById('lightbox-img');
         if (!lb) return;
         lb.classList.remove('active');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (focusBeforeLightbox && focusBeforeLightbox.isConnected) focusBeforeLightbox.focus();
         setTimeout(() => {
             if (lbImg) lbImg.src = '';
         }, 300);
@@ -680,6 +731,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') showCarouselImage(currentImageIndex - 1);
             if (e.key === 'ArrowRight') showCarouselImage(currentImageIndex + 1);
+            if (e.key === 'Tab') {
+                const controls = [closeBtn, prevBtn, nextBtn].filter(button => !button.hidden);
+                const current = controls.indexOf(document.activeElement);
+                if (e.shiftKey && current <= 0) { e.preventDefault(); controls[controls.length - 1].focus(); }
+                else if (!e.shiftKey && current === controls.length - 1) { e.preventDefault(); controls[0].focus(); }
+            }
         }
     });
 

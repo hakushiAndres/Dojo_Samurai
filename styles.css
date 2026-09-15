@@ -2178,6 +2178,50 @@ body.in-testimonials-view .whatsapp-btn {
     background: #000;
 }
 
+/* Documentary gallery: a vertical reading sequence on small screens. */
+.gallery { background: var(--gray-light); border-block: 1px solid #cbd5e1; min-height: 0; }
+.gallery-heading { max-width: 620px; margin-bottom: 2rem; }
+.gallery-filters { justify-content: flex-start; }
+.gallery [hidden], .lightbox [hidden] { display: none !important; }
+.modern-gallery-grid.gallery-photo-sequence { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+.gallery-photo { min-width: 0; overflow: hidden; border-radius: 20px; background: #e2e8f0; box-shadow: var(--shadow-sm); }
+.gallery-photo:first-child { grid-column: 1 / -1; }
+.gallery-photo-button { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; text-align: left; overflow: hidden; }
+.gallery-photo-button::after { content: ''; position: absolute; inset: 0; background: rgba(15, 23, 42, 0); pointer-events: none; transition: background-color .25s ease; }
+.gallery-photo-button img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; transition: transform .25s ease; }
+.gallery-photo:first-child img { aspect-ratio: 16 / 9; }
+@media (hover: hover) and (pointer: fine) {
+    .gallery-photo-button:hover img { transform: scale(1.025); }
+    .gallery-photo-button:hover::after { background: rgba(15, 23, 42, .07); }
+}
+.gallery-photo-button:focus-visible, .filter-btn:focus-visible, .lightbox button:focus-visible, .gallery-cta a:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 4px; }
+.gallery-video-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.gallery-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 1.25rem 2.5rem; border-top: 1px solid #cbd5e1; margin-top: 2.5rem; padding-top: 2rem; }
+.gallery-cta h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); margin-bottom: .5rem; }
+.gallery-cta p { color: var(--gray-medium); max-width: 540px; }
+.gallery-cta .btn { text-align: center; }
+@media (min-width: 641px) {
+    .modern-gallery-grid.gallery-photo-sequence { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    .gallery-photo:first-child img { aspect-ratio: 16 / 7; }
+}
+
+.lightbox.active { display: flex; align-items: center; justify-content: center; padding: 4rem 4.5rem; }
+.lightbox-figure { max-width: 100%; max-height: 100%; min-width: 0; }
+.lightbox-content, .lightbox.active .lightbox-content { width: auto; height: auto; max-width: 100%; max-height: calc(100vh - 10rem); transform: none; box-shadow: none; border-radius: 0; }
+.lightbox-caption { color: #e2e8f0; text-align: center; margin-top: .75rem; font-size: .9rem; }
+.lightbox-caption:empty { display: none; }
+.lightbox-close { border: 0; background: none; line-height: 1; z-index: 2002; }
+.lightbox button:focus-visible { outline-color: white; }
+@media (max-width: 640px) {
+    .lightbox.active { padding: 4rem 2.5rem; }
+    .lightbox-content, .lightbox.active .lightbox-content { max-height: calc(100vh - 9rem); }
+    .lightbox-prev, .lightbox-next { font-size: 1.5rem; padding: .5rem; }
+    .modern-gallery-grid.gallery-photo-sequence { gap: .85rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .lightbox, .lightbox-content, .gallery-photo-button img, .gallery-photo-button::after { transition: none; }
+}
+
 /* Location Section Layout */
 .location {
     background-color: #0f172a;

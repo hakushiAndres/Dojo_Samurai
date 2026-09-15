@@ -763,43 +763,21 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery section" style="background-color: #f1f5f9; border-top: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1;">
+    <section id="gallery" class="gallery section">
         <div class="container">
-            <div class="section-header center" style="margin-bottom: 2rem;">
+            <div class="section-header gallery-heading">
                 <h2 class="section-title">Galería</h2>
-                <p class="section-desc">Conoce nuestro entrenamiento e instalaciones.</p>
+                <p class="section-desc">Una mirada a la práctica cotidiana del Karate Shotokan JKA en nuestro dojo.</p>
             </div>
 
-            <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="photos">Fotos</button>
-                <button class="filter-btn" data-filter="videos">Videos</button>
+            <div class="gallery-filters" aria-label="Contenido de la galería">
+                <button type="button" class="filter-btn active" data-filter="photos" aria-pressed="true" aria-controls="photos-grid">Fotos</button>
+                <button type="button" class="filter-btn" data-filter="videos" aria-pressed="false" aria-controls="videos-grid">Videos</button>
             </div>
 
-            <div class="modern-gallery-grid" id="photos-grid">
-                <div class="gallery-item">
-                    <img src="assets/galeria/Clases6.jpg" alt="Entrenamiento práctico de Karate Shotokan JKA en Dojo Samurai Villa Alemana" class="lightbox-trigger" width="1220" height="686" loading="lazy" decoding="async">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/ui/yo.JPG" alt="Sensei instructor principal de Karate en Dojo Samurai Villa Alemana" class="lightbox-trigger" width="1920" height="1280" loading="lazy" decoding="async">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/galeria/Clases1.jpg" alt="Práctica y formación técnica de Karate JKA en Dojo Samurai Villa Alemana" class="lightbox-trigger" width="1280" height="960" loading="lazy" decoding="async">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/galeria/adultos.jpg" alt="Clase de Karate Shotokan JKA para adultos en Villa Alemana" class="lightbox-trigger" width="1157" height="573" loading="lazy" decoding="async">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/galeria/adultos2.jpg" alt="Entrenamiento y preparación de competidores JKA en Dojo Samurai Villa Alemana" class="lightbox-trigger" width="1155" height="653" loading="lazy" decoding="async">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/galeria/Clases4.jpg" alt="Práctica de Katas y técnicas de Karate Shotokan en Villa Alemana" class="lightbox-trigger" width="1280" height="960" loading="lazy" decoding="async">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/galeria/Clases5.jpg" alt="Alumnos y practicantes de Karate Shotokan JKA Villa Alemana" class="lightbox-trigger" width="1280" height="960" loading="lazy" decoding="async">
-                </div>
-            </div>
+            <div class="modern-gallery-grid gallery-photo-sequence" id="photos-grid" aria-label="Fotografías del dojo"></div>
 
-            <div class="modern-gallery-grid" id="videos-grid" style="display: none;">
+            <div class="modern-gallery-grid gallery-video-grid" id="videos-grid" hidden>
                 <div class="gallery-item video-item">
                     <video controls preload="none">
                         <source src="assets/galeria/VID-20260219-WA0062.mp4" type="video/mp4">
@@ -815,6 +793,11 @@
                         <source src="assets/galeria/VID_20260317_080835_877.mp4" type="video/mp4">
                     </video>
                 </div>
+            </div>
+            <div class="gallery-cta">
+                <div><h3>¿Quieres conocer nuestro entrenamiento?</h3>
+                <p>Conoce el Karate Shotokan JKA y participa en una clase de prueba en Dojo Samurai Villa Alemana.</p></div>
+                <a class="btn btn-primary" href="https://wa.me/56942825617?text=Hola,%20quisiera%20reservar%20una%20clase%20de%20prueba%20de%20Karate%20Shotokan%20JKA%20en%20Villa%20Alemana." target="_blank" rel="noopener noreferrer" data-track-event="click_whatsapp" data-track-intent="trial" data-track-placement="gallery">Reservar clase de prueba</a>
             </div>
         </div>
         <a href="#location" class="scroll-chevron-down" aria-label="Ir a Ubicación">
@@ -1056,11 +1039,11 @@
     </button>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <button class="lightbox-prev">&#10094;</button>
-        <img class="lightbox-content" id="lightbox-img">
-        <button class="lightbox-next">&#10095;</button>
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visor de fotografías" aria-hidden="true" tabindex="-1">
+        <button type="button" class="lightbox-close" aria-label="Cerrar fotografía">&times;</button>
+        <button type="button" class="lightbox-prev" aria-label="Fotografía anterior">&#10094;</button>
+        <figure class="lightbox-figure"><img class="lightbox-content" id="lightbox-img" alt=""><figcaption id="lightbox-caption" class="lightbox-caption"></figcaption></figure>
+        <button type="button" class="lightbox-next" aria-label="Fotografía siguiente">&#10095;</button>
     </div>
 
     <!-- Full Article Reader Modal -->

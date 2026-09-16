@@ -354,7 +354,7 @@ function compileEditorialArticles() {
     for (const article of editorialArticles) {
         const url = `${hubUrl}${article.slug}/`;
         const schema = { '@context': 'https://schema.org', '@graph': [
-            { '@type': 'Article', '@id': url + '#article', headline: article.title, description: article.description, datePublished: article.datePublished, dateModified: article.dateModified, author: { '@type': 'Person', name: article.author }, publisher: { '@type': 'Organization', name: 'Dojo Samurai JKA Villa Alemana', url: siteUrl + '/', logo: { '@type': 'ImageObject', url: siteUrl + '/assets/ui/animacion/jka_logo.png' } }, mainEntityOfPage: { '@type': 'WebPage', '@id': url }, ...(article.image ? { image: [siteUrl + article.image] } : {}) },
+            { '@type': 'Article', '@id': url + '#article', headline: article.title, description: article.description, datePublished: article.datePublished, dateModified: article.dateModified, author: { '@type': 'Person', name: article.author }, publisher: { '@type': 'Organization', name: 'Dojo Samurai JKA Villa Alemana', url: siteUrl + '/' }, mainEntityOfPage: { '@type': 'WebPage', '@id': url }, ...(article.image ? { image: [siteUrl + article.image] } : {}) },
             { '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl + '/' }, { '@type': 'ListItem', position: 2, name: 'Artículos', item: hubUrl }, { '@type': 'ListItem', position: 3, name: article.title, item: url } ] }
         ] };
         const html = renderEditorialTemplate('articulo.html', {
@@ -458,7 +458,7 @@ try {
     sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/karate-shotokan-jka/</loc>\n    <lastmod>2026-08-14</lastmod>\n  </url>`);
 
     // 5. Privacy policy
-    sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/politica-de-privacidad</loc>\n    <lastmod>2026-08-25</lastmod>\n  </url>`);
+    sitemapUrls.push(`  <url>\n    <loc>https://www.samuraijkavalemana.cl/politica-de-privacidad</loc>\n    <lastmod>2026-09-02</lastmod>\n  </url>`);
 
     // Public editorial pages have already been generated successfully.
     const editorialLastmod = editorialArticles.map(article => article.dateModified).sort().at(-1);
@@ -496,6 +496,8 @@ function generateArticleHtml(article) {
     const fullUrl = `https://www.samuraijkavalemana.cl/noticias/${slug}/`;
     const imageUrl = `https://www.samuraijkavalemana.cl/${article.image}`;
     const authorName = article.author || 'Dojo Samurai Villa Alemana';
+    const seoTitle = article.seoTitle || article.title;
+    const seoDescription = article.seoDescription || article.excerpt;
     
     // Resolve relative asset paths in content HTML
     let resolvedContent = (article.content || '')
@@ -560,13 +562,9 @@ function generateArticleHtml(article) {
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Dojo Samurai JKA Villa Alemana",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.samuraijkavalemana.cl/assets/ui/animacion/jka_logo.png"
-            }
+            "name": "Dojo Samurai JKA Villa Alemana"
         },
-        "description": article.excerpt,
+        "description": seoDescription,
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": fullUrl
@@ -578,8 +576,8 @@ function generateArticleHtml(article) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${article.title} | Dojo Samurai JKA Villa Alemana</title>
-    <meta name="description" content="${article.excerpt}">
+    <title>${seoTitle}</title>
+    <meta name="description" content="${seoDescription}">
     <meta name="author" content="${authorName}">
     <meta name="robots" content="index, follow, max-image-preview:large">
 
@@ -591,7 +589,7 @@ function generateArticleHtml(article) {
     <meta property="og:locale" content="es_CL" />
     <meta property="og:site_name" content="Dojo Samurai Villa Alemana" />
     <meta property="og:title" content="${article.title}" />
-    <meta property="og:description" content="${article.excerpt}" />
+    <meta property="og:description" content="${seoDescription}" />
     <meta property="og:url" content="${fullUrl}" />
     <meta property="og:image" content="${imageUrl}" />
     <meta property="og:image:alt" content="${article.title}" />
@@ -599,7 +597,7 @@ function generateArticleHtml(article) {
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${article.title}" />
-    <meta name="twitter:description" content="${article.excerpt}" />
+    <meta name="twitter:description" content="${seoDescription}" />
     <meta name="twitter:image" content="${imageUrl}" />
 
     <!-- App Favicons -->
@@ -689,7 +687,7 @@ ${JSON.stringify(ldJson, null, 4)}
                         🥋 ¡Entrena Karate Shotokan JKA en Villa Alemana!
                     </h3>
                     <p style="margin: 0; color: #334155; font-size: 1rem; line-height: 1.6;">
-                        Únete a nuestras clases presenciales para jóvenes y adultos (desde los 18 años) en Balmaceda 188, Casa 2 (Gimnasio VIPALU). ¡Primera clase de prueba totalmente gratuita!
+                        Únete a nuestras clases presenciales para adultos desde los 18 años en Balmaceda 188, Casa 2 (Gimnasio VIPALU). ¡Primera clase de prueba totalmente gratuita!
                     </p>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
                         <a href="https://wa.me/56942825617?text=Hola,%20le%C3%AD%20el%20art%C3%ADculo%20'${encodeURIComponent(article.title)}'%20y%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20una%20clase%20de%20prueba" 
@@ -1113,7 +1111,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                         <li><strong>Adultos enfocados en salud y superación personal:</strong> Personas interesadas en fortalecer la condición física, flexibilidad, coordinación motor, templanza y manejo del estrés diario.</li>
                     </ul>
                     <p style="background: #fff1f2; border: 1px solid #fecdd3; padding: 0.85rem 1.25rem; border-radius: 10px; color: #9f1239; font-size: 0.95rem; font-weight: 600;">
-                        ℹ️ <strong>Información importante sobre nuestra oferta actual:</strong> Las clases en Dojo Samurai JKA Villa Alemana están dirigidas de forma exclusiva a <strong>jóvenes y adultos desde los 18 años de edad</strong>.
+                        ℹ️ <strong>Información importante sobre nuestra oferta actual:</strong> Las clases en Dojo Samurai JKA Villa Alemana están dirigidas de forma exclusiva a <strong>adultos desde los 18 años de edad</strong>.
                     </p>
 
                     <!-- Section 10: Dojo Samurai vs VIPALU -->

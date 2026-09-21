@@ -232,7 +232,7 @@ function readEditorialArticles() {
         if (!tags.includes('<h2>')) fail(`Faltan subtítulos h2: ${article.slug}`);
         if (article.contentHtml.replace(/<[^>]*>/g, '').includes('<')) fail(`HTML incompleto: ${article.slug}`);
         for (const tag of tags) {
-            if (!/^<(?:\/?(?:p|h2|h3|ul|ol|li|strong|em)|p class="articles-lead"|a href="\/(?:[a-z0-9/#-]*)"|\/a)>$/.test(tag)) fail(`HTML no permitido en ${article.slug}: ${tag}`);
+            if (!/^<(?:\/?(?:p|h2|h3|ul|ol|li|strong|em)|p class="articles-lead"|a href="(?:\/(?:[a-z0-9/#-]*)|https:\/\/(?:www\.)?jka\.or\.jp\/[a-zA-Z0-9_./-]+)"|\/a)>$/.test(tag)) fail(`HTML no permitido en ${article.slug}: ${tag}`);
             const name = tag.match(/^<\/?([a-z0-9]+)/)[1];
             if (tag.startsWith('</')) {
                 if (stack.pop() !== name) fail(`HTML mal anidado: ${article.slug}`);

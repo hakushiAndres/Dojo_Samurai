@@ -820,110 +820,6 @@ a {
     transform: translateY(-2px);
 }
 
-.hero-promo-card {
-    width: 100%;
-    max-width: 660px;
-    margin: 1.25rem auto 1rem;
-    padding: 1.2rem 1.4rem;
-    box-sizing: border-box;
-    color: #ffffff;
-    text-align: center;
-    background: #0f172a;
-    border: 1px solid rgba(239, 68, 68, 0.42);
-    border-left: 5px solid #b91c1c;
-    border-radius: 16px;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
-}
-
-.hero-promo-label {
-    display: inline-block;
-    margin: 0 0 0.35rem;
-    color: #fecaca;
-    font-size: 0.875rem;
-    font-weight: 800;
-    line-height: 1.3;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.hero-promo-card h2 {
-    margin: 0;
-    color: #ffffff;
-    font-size: clamp(1.35rem, 2.3vw, 1.65rem);
-    font-weight: 800;
-    line-height: 1.2;
-}
-
-.hero-promo-subtitle {
-    margin: 0.25rem 0 0.7rem;
-    color: #f8fafc;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.4;
-}
-
-.hero-promo-copy,
-.hero-promo-secondary-copy {
-    max-width: 590px;
-    margin: 0 auto;
-    color: #e2e8f0;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.hero-promo-secondary-copy {
-    margin-top: 0.35rem;
-    color: #cbd5e1;
-}
-
-.hero-promo-conditions {
-    margin: 0.7rem auto 0;
-    color: #cbd5e1;
-    font-size: 0.875rem;
-    line-height: 1.45;
-}
-
-.hero-promo-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    max-width: 100%;
-    min-height: 48px;
-    margin-top: 0.85rem;
-    padding: 0.72rem 1.15rem;
-    box-sizing: border-box;
-    color: #ffffff;
-    background: #1e293b;
-    border: 1px solid #64748b;
-    border-radius: 999px;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.3;
-    text-align: center;
-    text-decoration: none;
-    white-space: normal;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.hero-promo-cta-icon {
-    flex: 0 0 auto;
-    color: #4ade80;
-    font-size: 0.85rem;
-}
-
-.hero-promo-cta:hover {
-    color: #ffffff;
-    background: #334155;
-    border-color: #4ade80;
-    transform: translateY(-1px);
-}
-
-.hero-promo-cta:focus-visible {
-    outline: 3px solid #fca5a5;
-    outline-offset: 3px;
-}
-
 .single-offer-grid {
     max-width: 840px;
     margin: 0 auto;
@@ -961,7 +857,7 @@ a {
 
 .commercial-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
 }
 
@@ -979,28 +875,6 @@ a {
 .commercial-card:hover {
     transform: translateY(-2px);
     border-color: rgba(220, 38, 38, 0.4);
-}
-
-.commercial-card.promo-card {
-    background: linear-gradient(135deg, rgba(185, 28, 28, 0.25) 0%, rgba(30, 41, 59, 0.8) 100%);
-    border: 1px solid rgba(239, 68, 68, 0.55);
-    border-left: 4px solid #ef4444;
-    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.18);
-}
-
-.commercial-card.promo-card .commercial-icon {
-    background: rgba(185, 28, 28, 0.35);
-}
-
-.commercial-card.promo-card .commercial-info h3 {
-    color: #ffffff;
-}
-
-.promo-card-note {
-    margin-top: 0.4rem !important;
-    color: #cbd5e1 !important;
-    font-size: 0.875rem !important;
-    line-height: 1.4 !important;
 }
 
 .commercial-icon {
@@ -1425,45 +1299,6 @@ body.in-testimonials-view .whatsapp-btn {
     /* Hero CTA Buttons */
     .hero-banner {
         padding-bottom: 3.5rem !important;
-    }
-    .hero-promo-card {
-        max-width: 100%;
-        margin: 0.75rem auto 0.9rem;
-        padding: 0.8rem 0.9rem;
-        border-left-width: 4px;
-        border-radius: 14px;
-    }
-    .hero-promo-label {
-        margin-bottom: 0.2rem;
-        line-height: 1.2;
-    }
-    .hero-promo-card h2 {
-        font-size: clamp(1.3rem, 6vw, 1.5rem);
-        line-height: 1.15;
-    }
-    .hero-promo-subtitle {
-        margin: 0.15rem 0 0.5rem;
-        line-height: 1.3;
-    }
-    .hero-promo-copy,
-    .hero-promo-secondary-copy {
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-    .hero-promo-secondary-copy {
-        margin-top: 0.25rem;
-    }
-    .hero-promo-conditions {
-        margin-top: 0.5rem;
-        font-size: 0.85rem;
-        line-height: 1.35;
-    }
-    .hero-promo-cta {
-        width: 100%;
-        min-width: 0;
-        margin-top: 0.65rem;
-        padding: 0.65rem 0.85rem;
-        overflow-wrap: anywhere;
     }
     .scroll-chevron-down {
         bottom: 12px !important;
@@ -4556,4 +4391,55 @@ a.info-card-link:hover {
     .plans-schedule { flex-direction: column; padding: 1.5rem; gap: 1rem; }
     .plan-card { padding: 1.5rem; }
     .plans-details { text-align: left; }
+}
+
+/* Single contextual October 2026 promotion; regular plan prices remain below. */
+.october-promo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto 1.5rem;
+    padding: 1.5rem 2rem;
+    background: #f8fafc;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+}
+.october-promo-heading { grid-column: 1 / -1; }
+.october-promo-label { color: #475569; font-size: .875rem; font-weight: 600; margin-bottom: .4rem; }
+.october-promo h3 { font-size: clamp(1.3rem, 2.5vw, 1.65rem); line-height: 1.3; }
+.october-promo-prices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1.5rem; }
+.october-promo-prices dt { font-size: .95rem; font-weight: 600; }
+.october-promo-prices dd { color: #475569; font-size: .9rem; }
+.october-promo-prices strong { color: #0f172a; font-size: 1.65rem; font-weight: 800; white-space: nowrap; }
+.october-promo-prices dd span { display: block; }
+.october-promo-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 48px;
+    padding: .75rem 1rem;
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #0f172a;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+.october-promo-cta:hover { background: #334155; color: #ffffff; }
+.plans-section .october-promo-cta:focus-visible { outline: 3px solid #0f172a; outline-offset: 4px; }
+.october-promo-conditions { grid-column: 1 / -1; color: #475569; font-size: .875rem; line-height: 1.5; }
+@media (max-width: 900px) {
+    .october-promo { grid-template-columns: minmax(0, 1fr); }
+    .october-promo-cta { justify-self: start; }
+}
+@media (max-width: 640px) {
+    .october-promo { padding: 1.25rem; gap: .9rem; }
+    .october-promo-prices { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+    .october-promo-prices dd span { font-size: .875rem; }
+    .october-promo-cta { justify-self: stretch; }
 }

@@ -115,11 +115,11 @@
     <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}}</style></noscript>
 </head>
 
-<body>
+<body class="home-page">
 
 
     <!-- Main Navigation Header -->
-    <nav id="navbar" class="main-nav">
+    <nav id="navbar" class="main-nav home-nav">
         <div class="nav-container">
             <a href="#hero" class="logo">
                 <span class="logo-icon"><img src="assets/ui/animacion/jka_logo.png" alt="Logo JKA" width="35" height="35" decoding="async"></span> Dojo Samurai JKA Villa Alemana
@@ -143,6 +143,14 @@
             </div>
         </div>
     </nav>
+
+    <!-- Compact notice: remove with the October 2026 promotion after it ends. -->
+    <aside class="top-promo-bar" aria-label="Promoción de octubre de 2026">
+        <div class="top-promo-bar__inner">
+            <p><strong>10%</strong><span class="top-promo-bar__detail"> de descuento</span> en tu primera mensualidad durante octubre</p>
+            <a class="top-promo-bar__cta" href="#promo-octubre-2026" data-track-event="click_promo" data-track-intent="promo_octubre_2026" data-track-placement="top_promo_bar">Ver promoción <span aria-hidden="true">→</span></a>
+        </div>
+    </aside>
 
     <!-- Transparent Banner Hero -->
     <header id="hero" class="hero-banner">
@@ -522,7 +530,7 @@
                 <p class="plans-intro">Karate Shotokan JKA para adultos desde los 18 años en Villa Alemana. Elige la frecuencia de entrenamiento que se ajuste a tu semana.</p>
             </div>
             <!-- Promoción temporal: retirar al finalizar octubre de 2026. -->
-            <aside class="october-promo" aria-labelledby="october-promo-title">
+            <aside id="promo-octubre-2026" class="october-promo" aria-labelledby="october-promo-title" tabindex="-1">
                 <div class="october-promo-heading">
                     <p class="october-promo-label">Nuevos alumnos · Octubre 2026</p>
                     <h3 id="october-promo-title">10% de descuento en tu primera mensualidad</h3>

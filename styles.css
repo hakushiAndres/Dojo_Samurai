@@ -4393,6 +4393,58 @@ a.info-card-link:hover {
     .plans-details { text-align: left; }
 }
 
+/* Home notice stays in flow below the sticky navigation, without covering the hero. */
+.home-page { overflow-x: clip; } /* Avoid creating a body scroll container above the sticky header. */
+.main-nav.home-nav { position: sticky; }
+.top-promo-bar { background: var(--dark-bg); color: #ffffff; border-bottom: 1px solid #334155; }
+.top-promo-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    min-height: 48px;
+    margin: 0 auto;
+    padding: 2px 1.25rem;
+    font-size: .9375rem;
+    line-height: 1.4;
+}
+.top-promo-bar p { min-width: 0; }
+.top-promo-bar strong { color: #fca5a5; font-weight: 800; }
+.top-promo-bar__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 0 .5rem;
+    color: #ffffff;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.top-promo-bar__cta:hover { text-decoration-thickness: 2px; }
+.top-promo-bar__cta:focus-visible { outline: 2px solid #ffffff; outline-offset: 1px; border-radius: 2px; }
+.top-promo-bar + .hero-banner { padding-top: 2.75rem; }
+#promo-octubre-2026 { scroll-margin-top: 100px; }
+#promo-octubre-2026:focus-visible { outline: 3px solid var(--dark-bg); outline-offset: 4px; }
+@media (min-width: 769px) and (max-width: 1200px) {
+    #promo-octubre-2026 { scroll-margin-top: 150px; }
+}
+@media (max-width: 768px) {
+    .top-promo-bar + .hero-banner { padding-top: 1.5rem !important; }
+}
+@media (max-width: 600px) {
+    .top-promo-bar__inner { gap: .5rem; padding: 4px .75rem; font-size: .8125rem; }
+    .top-promo-bar__detail { display: none; }
+    .top-promo-bar__cta { gap: .25rem; padding: 0 .25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html:has(.top-promo-bar) { scroll-behavior: auto; }
+}
+
 /* Single contextual October 2026 promotion; regular plan prices remain below. */
 .october-promo {
     display: grid;

@@ -205,6 +205,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message');
     const charCountSpan = document.getElementById('char-count');
     const submitBtn = document.getElementById('submit-btn');
+    const contactWhatsAppFallback = document.getElementById('contact-whatsapp-fallback');
+    let isContactSubmitting = false;
+
+    // A single, persistent polite status region announces each result once.
+    const showContactMessage = (message, isError = false) => {
+        if (!formMessage) return;
+        formMessage.className = isError ? 'form-message error' : 'form-message';
+        formMessage.textContent = message;
+    };
+
+    if (contactWhatsAppFallback) {
+        contactWhatsAppFallback.addEventListener('click', () => {
+            trackGA4Event('click_whatsapp', {
+                intent: 'form_fallback',
+                placement: 'contact_form_fallback'
+            });
+        });
+    }
 
     // Email validation regex
     const isValidEmail = (email) => {
@@ -227,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isFormValid = isNameValid && isEmailValid && isPhoneValid && isMessageValid;
 
-        if (isFormValid) {
+        if (isFormValid && !isContactSubmitting) {
             submitBtn.removeAttribute('disabled');
         } else {
             submitBtn.setAttribute('disabled', 'true');
@@ -268,28 +286,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            if (isContactSubmitting) return;
             
             // 1. Anti-Spam Honeypot Verification
             const hpInput = document.getElementById('website_hp');
             if (hpInput && hpInput.value !== '') {
                 // Silent block for automated bots
-                formMessage.textContent = '¡Gracias! Tu mensaje ha sido procesado.';
-                formMessage.className = 'form-message';
-                contactForm.reset();
+                showContactMessage('¡Gracias! Tu mensaje ha sido procesado.');
                 return;
             }
 
             // 2. Client-Side Submission Cooldown (Rate Limiting)
             const now = Date.now();
             if (now - lastSubmitTime < 15000) { // 15 seconds cooldown
-                formMessage.textContent = 'Por favor espera unos segundos antes de enviar otro mensaje.';
-                formMessage.className = 'form-message error';
+                showContactMessage('Por favor espera unos segundos antes de enviar otro mensaje.', true);
                 return;
             }
             
             if (!validateForm()) {
-                formMessage.textContent = 'Por favor completa todos los campos correctamente.';
-                formMessage.className = 'form-message error';
+                showContactMessage('Por favor completa todos los campos correctamente.', true);
                 return;
             }
 
@@ -300,6 +315,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageVal = sanitizeInput(messageInput.value);
 
             const originalText = submitBtn.textContent;
+            isContactSubmitting = true;
+            submitBtn.setAttribute('aria-busy', 'true');
+            if (contactWhatsAppFallback) contactWhatsAppFallback.hidden = true;
+            showContactMessage('Enviando tu mensaje...');
             submitBtn.textContent = 'Enviando...';
             submitBtn.setAttribute('disabled', 'true');
             lastSubmitTime = Date.now();
@@ -338,18 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     placement: 'contact_section'
                 });
 
-                submitBtn.textContent = originalText;
                 contactForm.reset();
                 if (charCountSpan) charCountSpan.textContent = '0';
-                validateForm(); // Re-disable submit button after reset
-                
-                formMessage.textContent = '¡Gracias! Tu mensaje ha sido enviado exitosamente. Nos pondremos en contacto pronto.';
-                formMessage.className = 'form-message';
-                
-                setTimeout(() => {
-                    formMessage.className = 'form-message hidden';
-                    formMessage.textContent = '';
-                }, 6000);
+                showContactMessage('¡Gracias! Tu mensaje ha sido enviado exitosamente. Nos pondremos en contacto pronto.');
             })
             .catch(error => {
                 console.error('FormSubmit Error:', error);
@@ -360,26 +370,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     placement: 'contact_section'
                 });
 
+                showContactMessage('No pudimos confirmar el envío. Tus datos siguen en el formulario. Puedes intentarlo nuevamente o continuar por WhatsApp.', true);
+                if (contactWhatsAppFallback) {
+                    const waMsg = encodeURIComponent(`Hola Dojo Samurai, me gustaría enviar una consulta:\n- Nombre: ${nameVal}\n- Correo: ${emailVal}\n- Teléfono: ${phoneVal}\n- Mensaje: ${messageVal}`);
+                    contactWhatsAppFallback.href = `https://wa.me/56942825617?text=${waMsg}`;
+                    contactWhatsAppFallback.hidden = false;
+                }
+            })
+            .finally(() => {
+                isContactSubmitting = false;
+                submitBtn.removeAttribute('aria-busy');
                 submitBtn.textContent = originalText;
                 validateForm();
-                
-                // Show fallback message and open WhatsApp automatically as instant backup
-                formMessage.textContent = 'Procesando mensaje por WhatsApp... Redirigiendo...';
-                formMessage.className = 'form-message';
-
-                setTimeout(() => {
-                    // GA4 Intent Event: Form fallback to WhatsApp (Not a confirmed lead)
-                    trackGA4Event('click_whatsapp', {
-                        intent: 'form_fallback',
-                        placement: 'contact_form_fallback'
-                    });
-
-                    const waMsg = encodeURIComponent(`Hola Dojo Samurai, me gustaría enviar una consulta:\n- Nombre: ${nameVal}\n- Correo: ${emailVal}\n- Teléfono: ${phoneVal}\n- Mensaje: ${messageVal}`);
-                    window.open(`https://wa.me/56942825617?text=${waMsg}`, '_blank');
-                    contactForm.reset();
-                    if (charCountSpan) charCountSpan.textContent = '0';
-                    validateForm();
-                }, 1200);
             });
         });
     }
@@ -743,10 +745,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gallery Triggers on Homepage
     const galleryTriggers = document.querySelectorAll('.lightbox-trigger');
     if (galleryTriggers.length > 0) {
-        const galleryImageSrcs = Array.from(galleryTriggers).map(img => img.src);
-        galleryTriggers.forEach((img, index) => {
-            img.addEventListener('click', () => {
-                openLightboxWithImages(galleryImageSrcs, index);
+        const galleryImages = Array.from(galleryTriggers).map(trigger => {
+            const img = trigger.querySelector('img') || trigger;
+            return { image: img.src, alt: img.alt };
+        });
+        galleryTriggers.forEach((trigger, index) => {
+            trigger.addEventListener('click', () => {
+                trigger.focus();
+                openLightboxWithImages(galleryImages, index);
             });
         });
     }
@@ -851,8 +857,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Modal Reader Logic
     let currentOpenArticle = null;
+    let focusBeforeArticleModal = null;
+    let articleCloseTimeoutId = null;
 
-    const openArticleModal = (articleId) => {
+    const openArticleModal = (articleId, opener = document.activeElement) => {
         let article = allNewsArticles.find(a => a.id === articleId || a.slug === articleId);
         if (!article) {
             article = defaultNewsData.find(a => a.id === articleId || a.slug === articleId) || defaultNewsData[0];
@@ -865,6 +873,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        clearTimeout(articleCloseTimeoutId);
+        if (!modal.classList.contains('active')) {
+            focusBeforeArticleModal = opener;
+        }
         currentOpenArticle = article;
         const catEl = document.getElementById('modal-article-category');
         const dateEl = document.getElementById('modal-article-date');
@@ -889,6 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.visibility = 'visible';
         modal.style.pointerEvents = 'auto';
         document.body.style.overflow = 'hidden';
+        document.getElementById('close-article-modal').focus();
     };
 
     window.openArticleModal = openArticleModal;
@@ -897,12 +910,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('article-reader-modal');
         if (!modal) return;
         modal.classList.remove('active');
-        setTimeout(() => {
+        document.body.style.overflow = '';
+        // News can be re-rendered while the modal is open; find its replacement opener.
+        const replacementCard = Array.from(document.querySelectorAll('[data-id]'))
+            .find(card => card.getAttribute('data-id') === currentOpenArticle?.id);
+        const returnTarget = focusBeforeArticleModal?.isConnected
+            ? focusBeforeArticleModal
+            : replacementCard?.querySelector('a[href], button');
+        if (returnTarget) returnTarget.focus();
+        articleCloseTimeoutId = setTimeout(() => {
             modal.classList.add('hidden');
             modal.style.display = 'none';
-            document.body.style.overflow = '';
         }, 300);
     };
+
+    const articleModalControls = (modal) => Array.from(modal.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(control => control.tabIndex >= 0 && control.getClientRects().length > 0);
+
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('article-reader-modal');
+        // The existing lightbox handles its own keyboard controls above the news modal.
+        if (!modal?.classList.contains('active') || lightbox?.classList.contains('active') || lightbox?.contains(e.target)) return;
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            closeArticleModal();
+        } else if (e.key === 'Tab') {
+            const controls = articleModalControls(modal);
+            const first = controls[0];
+            const last = controls[controls.length - 1];
+            if (!first) return;
+            const outside = !controls.includes(document.activeElement);
+            if (e.shiftKey && (document.activeElement === first || outside)) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && (document.activeElement === last || outside)) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
+
+    document.addEventListener('focusin', (e) => {
+        const modal = document.getElementById('article-reader-modal');
+        if (!modal?.classList.contains('active') || lightbox?.classList.contains('active')) return;
+        // Keep the news overlay scroll lock when its nested lightbox returns focus.
+        document.body.style.overflow = 'hidden';
+        if (!modal.contains(e.target)) {
+            document.getElementById('close-article-modal').focus();
+        }
+    });
 
     document.addEventListener('click', (e) => {
         const modal = document.getElementById('article-reader-modal');
@@ -945,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (articleId && articleId !== 'null' && articleId !== '') {
                 e.preventDefault();
                 e.stopPropagation();
-                openArticleModal(articleId);
+                openArticleModal(articleId, newsCardOrBtn);
                 return;
             }
         }
@@ -996,7 +1053,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = e.target.closest('[data-id]');
             if (btn) {
                 const id = btn.getAttribute('data-id');
-                openArticleModal(id);
+                const opener = e.target.closest('a[href], button') || btn.querySelector('a[href], button');
+                openArticleModal(id, opener || document.activeElement);
             }
         });
     }
@@ -1059,7 +1117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = e.target.closest('button[data-id]');
             if (btn) {
                 const id = btn.getAttribute('data-id');
-                openArticleModal(id);
+                openArticleModal(id, btn);
             }
         });
 

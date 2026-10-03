@@ -1534,6 +1534,18 @@ body.in-testimonials-view .whatsapp-btn {
     text-align: center;
 }
 
+.grados-zoom-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    border-radius: 12px;
+    cursor: zoom-in;
+}
+
+.grados-zoom-button:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 4px; }
+
 .grados-img {
     width: 100%;
     height: auto;
@@ -2429,6 +2441,12 @@ a.info-card-link:hover {
     border-color: var(--primary-color);
     background: rgba(0,0,0,0.4);
 }
+
+.contact-form .form-group label { display: block; margin-bottom: .4rem; color: var(--text-light); font-weight: 600; }
+.contact-form .form-message:empty { margin: 0; padding: 0; border: 0; background: none; }
+.contact-form .contact-whatsapp-fallback { display: inline-block; margin-top: .75rem; color: #fecaca; text-decoration: underline; text-underline-offset: 3px; }
+.contact-form .contact-whatsapp-fallback[hidden] { display: none; }
+.contact-form .contact-whatsapp-fallback:focus-visible { outline: 3px solid #fca5a5; outline-offset: 4px; }
 
 /* Testimonios de alumnos */
 .testimonials {

@@ -615,7 +615,9 @@
 
             <div class="grados-container">
                 <div class="grados-image-box modern-image">
-                    <img src="assets/ui/grados_jka.png" alt="Tabla oficial de Grados y Cinturones Karate Shotokan JKA Chile" class="grados-img lightbox-trigger" width="551" height="513" loading="lazy" decoding="async">
+                    <button type="button" class="grados-zoom-button lightbox-trigger" aria-label="Ampliar tabla de grados JKA">
+                        <img src="assets/ui/grados_jka.png" alt="Tabla oficial de Grados y Cinturones Karate Shotokan JKA Chile" class="grados-img" width="551" height="513" loading="lazy" decoding="async">
+                    </button>
                     <div class="grados-img-caption">
                         <span>🥋 Esquema oficial de grados Kyu y Dan JKA Chile</span>
                     </div>
@@ -938,15 +940,19 @@
                             <input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" autocomplete="name" required placeholder="Tu nombre completo">
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" autocomplete="email" required placeholder="tu@email.com">
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" required placeholder="+56 9 1234 5678 (Teléfono)" pattern="[0-9+ ]{8,15}" title="Ingresa un número válido de teléfono">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="+56 9 1234 5678 (Teléfono)" pattern="[0-9+ ]{8,15}" title="Ingresa un número válido de teléfono">
                         </div>
                         <div class="form-group">
+                            <label for="message">Mensaje</label>
                             <textarea id="message" name="message" rows="4" required maxlength="500"
                                 placeholder="Escribe tu mensaje aquí (máximo 500 caracteres)..."></textarea>
                             <div class="word-counter-box">
@@ -954,7 +960,8 @@
                             </div>
                         </div>
                         <button type="submit" id="submit-btn" class="btn btn-primary full-width" disabled>Enviar Mensaje</button>
-                        <div id="form-message" class="form-message hidden"></div>
+                        <div id="form-message" class="form-message" role="status" aria-atomic="true"></div>
+                        <a id="contact-whatsapp-fallback" class="contact-whatsapp-fallback" hidden target="_blank" rel="noopener noreferrer">Continuar consulta por WhatsApp</a>
                     </form>
                 </div>
             </div>
@@ -1066,7 +1073,7 @@
     <!-- Full Article Reader Modal -->
     <div id="article-reader-modal" class="article-modal-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="modal-article-title">
         <div class="article-modal-card">
-            <button id="close-article-modal" class="article-modal-close-btn" title="Cerrar noticia">✕</button>
+            <button type="button" id="close-article-modal" class="article-modal-close-btn" aria-label="Cerrar noticia" title="Cerrar noticia">✕</button>
             <div class="article-modal-header">
                 <span id="modal-article-category" class="badge badge-solid">Categoría</span>
                 <span id="modal-article-date" class="modal-article-date">Fecha</span>

@@ -2,6 +2,13 @@
   "version": 2,
   "outputDirectory": "dist",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/noticias/",
+      "destination": "/noticias",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

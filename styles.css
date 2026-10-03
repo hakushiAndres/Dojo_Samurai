@@ -4396,21 +4396,45 @@ a.info-card-link:hover {
 /* Home notice stays in flow below the sticky navigation, without covering the hero. */
 .home-page { overflow-x: clip; } /* Avoid creating a body scroll container above the sticky header. */
 .main-nav.home-nav { position: sticky; }
-.top-promo-bar { background: var(--dark-bg); color: #ffffff; border-bottom: 1px solid #334155; }
+.top-promo-bar {
+    background: #faf7f2;
+    color: var(--text-color);
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 1px solid #ded8cf;
+}
 .top-promo-bar__inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
     max-width: 1200px;
-    min-height: 48px;
+    min-height: 88px;
     margin: 0 auto;
-    padding: 2px 1.25rem;
+    padding: .875rem 1.25rem;
     font-size: .9375rem;
     line-height: 1.4;
 }
-.top-promo-bar p { min-width: 0; }
-.top-promo-bar strong { color: #fca5a5; font-weight: 800; }
+.top-promo-bar__message {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    min-width: 0;
+}
+.top-promo-bar__badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding: .5rem .875rem;
+    border: 1px solid #d7b4ae;
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+.top-promo-bar__badge strong { font-size: 2rem; font-weight: 800; }
+.top-promo-bar__badge span { font-size: .75rem; font-weight: 600; }
+.top-promo-bar__text { max-width: 32ch; font-weight: 500; }
 .top-promo-bar__cta {
     display: inline-flex;
     align-items: center;
@@ -4418,15 +4442,17 @@ a.info-card-link:hover {
     gap: .4rem;
     flex-shrink: 0;
     min-height: 44px;
-    padding: 0 .5rem;
+    padding: .625rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    background: var(--primary-color);
     color: #ffffff;
     font-weight: 600;
     white-space: nowrap;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    text-decoration: none;
 }
-.top-promo-bar__cta:hover { text-decoration-thickness: 2px; }
-.top-promo-bar__cta:focus-visible { outline: 2px solid #ffffff; outline-offset: 1px; border-radius: 2px; }
+.top-promo-bar__cta:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.top-promo-bar__cta:focus-visible { outline: 3px solid var(--dark-bg); outline-offset: 4px; }
 .top-promo-bar + .hero-banner { padding-top: 2.75rem; }
 #promo-octubre-2026 { scroll-margin-top: 100px; }
 #promo-octubre-2026:focus-visible { outline: 3px solid var(--dark-bg); outline-offset: 4px; }
@@ -4437,9 +4463,11 @@ a.info-card-link:hover {
     .top-promo-bar + .hero-banner { padding-top: 1.5rem !important; }
 }
 @media (max-width: 600px) {
-    .top-promo-bar__inner { gap: .5rem; padding: 4px .75rem; font-size: .8125rem; }
-    .top-promo-bar__detail { display: none; }
-    .top-promo-bar__cta { gap: .25rem; padding: 0 .25rem; }
+    .top-promo-bar__inner { flex-direction: column; gap: .875rem; padding: 1rem; }
+    .top-promo-bar__message { width: 100%; justify-content: center; gap: .875rem; }
+    .top-promo-bar__badge { padding: .5rem .625rem; }
+    .top-promo-bar__text { max-width: 25ch; }
+    .top-promo-bar__cta { align-self: stretch; }
 }
 @media (prefers-reduced-motion: reduce) {
     html:has(.top-promo-bar) { scroll-behavior: auto; }

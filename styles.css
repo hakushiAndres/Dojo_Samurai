@@ -4429,10 +4429,11 @@ a.info-card-link:hover {
     border-bottom: 1px solid #ded8cf;
 }
 .top-promo-bar__inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "badge message cta" "badge microcopy cta";
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
+    gap: .25rem 1.5rem;
     max-width: 1200px;
     min-height: 88px;
     margin: 0 auto;
@@ -4441,27 +4442,31 @@ a.info-card-link:hover {
     line-height: 1.4;
 }
 .top-promo-bar__message {
+    grid-area: message;
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: .125rem 1rem;
     min-width: 0;
 }
 .top-promo-bar__badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    padding: .5rem .875rem;
-    border: 1px solid #d7b4ae;
-    border-radius: 6px;
-    background: #ffffff;
-    color: var(--primary-color);
+    grid-area: badge;
+    justify-self: start;
+    padding: .5rem .75rem;
+    border-radius: 4px;
+    background: var(--primary-color);
+    color: #ffffff;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    white-space: nowrap;
     line-height: 1.2;
 }
-.top-promo-bar__badge strong { font-size: 2rem; font-weight: 800; }
-.top-promo-bar__badge span { font-size: .75rem; font-weight: 600; }
+.top-promo-bar__benefit { color: var(--primary-color); font-size: 1.75rem; font-weight: 800; line-height: 1.2; }
 .top-promo-bar__text { max-width: 32ch; font-weight: 500; }
+.top-promo-bar__microcopy { grid-area: microcopy; color: #475569; font-size: .75rem; }
 .top-promo-bar__cta {
+    grid-area: cta;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -4489,11 +4494,18 @@ a.info-card-link:hover {
     .top-promo-bar + .hero-banner { padding-top: 1.5rem !important; }
 }
 @media (max-width: 600px) {
-    .top-promo-bar__inner { flex-direction: column; gap: .875rem; padding: 1rem; }
-    .top-promo-bar__message { width: 100%; justify-content: center; gap: .875rem; }
-    .top-promo-bar__badge { padding: .5rem .625rem; }
-    .top-promo-bar__text { max-width: 25ch; }
-    .top-promo-bar__cta { align-self: stretch; }
+    .top-promo-bar__inner {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas: "badge benefit" "text text" "cta cta";
+        gap: .5rem .625rem;
+        padding: .875rem 1rem;
+    }
+    .top-promo-bar__message { display: contents; }
+    .top-promo-bar__badge { padding: .45rem .625rem; font-size: .6875rem; }
+    .top-promo-bar__benefit { grid-area: benefit; font-size: clamp(1.125rem, 4.8vw, 1.5rem); }
+    .top-promo-bar__text { grid-area: text; max-width: none; font-size: .8125rem; text-align: center; }
+    .top-promo-bar__cta { min-width: 0; white-space: normal; text-align: center; }
+    .top-promo-bar__microcopy { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
     html:has(.top-promo-bar) { scroll-behavior: auto; }

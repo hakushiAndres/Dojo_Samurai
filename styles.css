@@ -518,6 +518,13 @@ a {
 
 .menu-toggle {
     display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    border: 0;
+    background: none;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
@@ -3884,7 +3891,7 @@ a.info-card-link:hover {
 }
 
 .news-header-badge {
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, #c92a2a 0%, #b91c1c 100%);
     color: #ffffff;
     font-size: 0.85rem;
     padding: 0.35rem 0.85rem;
@@ -3984,7 +3991,8 @@ a.info-card-link:hover {
 }
 
 #news-search-input:focus {
-    outline: none;
+    outline: 3px solid #0f172a;
+    outline-offset: 3px;
     border-color: #ef4444;
     background: #ffffff;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
@@ -4115,7 +4123,7 @@ a.info-card-link:hover {
 }
 
 .news-hero-badge-strip {
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    background: linear-gradient(135deg, #c92a2a 0%, #b91c1c 100%);
     color: #ffffff;
     padding: 0.45rem 1.4rem;
     font-size: 0.78rem;
@@ -4190,7 +4198,7 @@ a.info-card-link:hover {
 }
 
 .news-hero-card.gold-theme .news-hero-badge-strip {
-    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    background: linear-gradient(135deg, #b75d06 0%, #b45309 100%);
 }
 
 .news-hero-card.gold-theme:hover .news-hero-title {
@@ -4540,4 +4548,53 @@ a.info-card-link:hover {
     .october-promo-prices { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
     .october-promo-prices dd span { font-size: .875rem; }
     .october-promo-cta { justify-self: stretch; }
+}
+
+/* B5.3: dual-tone focus stays visible on both navy and light surfaces.
+   Scope excludes the contact form, gallery, news modal, grades and promo. */
+:is(.main-nav, .about, .dojokun, .news-toolbar,
+    .news-card, .news-hero-card, .articles-home, .footer, .testimonial-form)
+    :is(a, button, input, textarea, select, summary, [tabindex]):focus-visible,
+.inyo-symbol-container:focus-visible,
+.back-to-top:focus-visible, .whatsapp-btn:focus-visible,
+.scroll-chevron-down:focus-visible {
+    outline: 3px solid #f8fafc;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px #0f172a;
+}
+
+.nav-links a:focus-visible { display: inline-block; }
+
+/* Keep final states visible; only decorative motion is disabled. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .hero-text-box {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .kanji-svg path, .kanji-svg.animated path {
+        animation: none;
+        transition: none;
+        opacity: 1;
+        stroke-dashoffset: 0 !important; /* JS initializes an inline offset. */
+    }
+
+    .scroll-chevron-down, .pulse-dot, .whatsapp-btn { animation: none; }
+
+    .main-nav .nav-links, .main-nav .bar, .main-nav a::after,
+    .hero-content .btn, .scroll-chevron-down, .back-to-top, .whatsapp-btn,
+    .inyo-symbol-img, .inyo-tooltip, .testimonial-disclosure__icon,
+    .news-card, .news-card-img, .news-hero-img, .news-read-more-btn {
+        transition: none;
+    }
+
+    .scroll-chevron-down:hover { transform: translateX(-50%); }
+    .whatsapp-btn:hover, .news-card:hover, .news-card:hover .news-card-img,
+    .news-hero-card:hover .news-hero-img, .news-read-more-btn:hover,
+    .inyo-symbol-container:is(:hover, :focus, .active) .inyo-symbol-img {
+        transform: none;
+    }
 }

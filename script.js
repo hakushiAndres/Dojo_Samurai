@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     // GA4 Event Tracking Helper (Safe execution check)
     const trackGA4Event = (eventName, params = {}) => {
         if (typeof window.gtag === 'function') {
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: reducedMotion.matches ? 'auto' : 'smooth'
             });
         });
     }
@@ -157,36 +158,106 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.nav-links a');
 
     if (menuToggle && navLinks) {
-        const toggleMenu = (e) => {
-            if (e) e.stopPropagation();
-            const isActive = menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-            if (isActive) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        };
-
-        const closeMenu = () => {
+        // The full-height mobile overlay is modal; desktop navigation is not.
+        const mobileViewport = window.matchMedia('(max-width: 768px)');
+        let menuOpener = null;
+        let previousOverflow = '';
+        let inertElements = [];
+        const menuControls = () => [...links, menuToggle].filter(control => control.getClientRects().length > 0);
+        const closeMenu = (restoreFocus = true) => {
+            if (!navLinks.classList.contains('active')) return;
             menuToggle.classList.remove('active');
             navLinks.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+            inertElements.forEach(([element, wasInert]) => { element.inert = wasInert; });
+            inertElements = [];
+            document.body.style.overflow = previousOverflow;
+            if (restoreFocus && menuOpener?.isConnected) menuOpener.focus();
+        };
+
+        const toggleMenu = (e) => {
+            if (e) e.stopPropagation();
+            if (!mobileViewport.matches) return;
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+                return;
+            }
+            menuOpener = menuToggle;
+            previousOverflow = document.body.style.overflow;
+            menuToggle.classList.add('active');
+            navLinks.classList.add('active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            // Disable background branches, preserving any pre-existing inert state.
+            let branch = navLinks.parentElement;
+            const background = [...branch.children].filter(element => element !== navLinks && element !== menuToggle);
+            while (branch !== document.body) {
+                background.push(...[...branch.parentElement.children].filter(element => element !== branch));
+                branch = branch.parentElement;
+            }
+            inertElements = background.map(element => [element, element.inert]);
+            inertElements.forEach(([element]) => { element.inert = true; });
+            document.body.style.overflow = 'hidden';
+            menuControls()[0]?.focus();
         };
 
         menuToggle.addEventListener('click', toggleMenu);
 
         menuToggle.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+            if (menuToggle.tagName !== 'BUTTON' && (e.key === 'Enter' || e.key === ' ')) {
                 e.preventDefault();
                 toggleMenu(e);
             }
         });
 
         links.forEach(link => {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', () => {
+                if (!navLinks.classList.contains('active')) return;
+                closeMenu();
+                const destination = new URL(link.href, window.location.href);
+                if (destination.origin === window.location.origin && destination.pathname === window.location.pathname && destination.hash) {
+                    const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)));
+                    if (target) {
+                        const temporaryTabindex = !target.hasAttribute('tabindex');
+                        if (temporaryTabindex) target.setAttribute('tabindex', '-1');
+                        target.focus({ preventScroll: true });
+                        if (temporaryTabindex) target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!navLinks.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeMenu();
+            } else if (e.key === 'Tab') {
+                const controls = menuControls();
+                const first = controls[0];
+                const last = controls[controls.length - 1];
+                const outside = !controls.includes(document.activeElement);
+                if (e.shiftKey && (document.activeElement === first || outside)) {
+                    e.preventDefault();
+                    last?.focus();
+                } else if (!e.shiftKey && (document.activeElement === last || outside)) {
+                    e.preventDefault();
+                    first?.focus();
+                }
+            }
+        });
+
+        document.addEventListener('focusin', (e) => {
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && e.target !== menuToggle) {
+                menuControls()[0]?.focus();
+            }
+        });
+
+        mobileViewport.addEventListener('change', () => {
+            if (!mobileViewport.matches) {
+                const toggleHadFocus = document.activeElement === menuToggle;
+                closeMenu(false);
+                if (toggleHadFocus) links[0]?.focus();
+            }
         });
 
         document.addEventListener('click', (e) => {

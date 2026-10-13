@@ -4610,3 +4610,271 @@ a.info-card-link:hover {
         transform: none;
     }
 }
+
+/* Home visual V2: isolated presentation layer; inner pages retain their styles.
+   Existing content, navigation, forms, tracking and decorative motion are preserved. */
+.home-page {
+    --home-ivory: #faf8f4;
+    --home-ink: #0f172a;
+    --home-muted: #475569;
+    --home-line: #dcd9d2;
+    --home-radius: 8px;
+    --home-gutter: clamp(1rem, 4vw, 2.5rem);
+    --home-section-space: clamp(3.5rem, 7vw, 6.5rem);
+    --home-card-space: clamp(1.25rem, 3vw, 2rem);
+    --home-title-size: clamp(1.75rem, 2.5vw + 1rem, 3rem);
+    --home-body-size: clamp(1rem, .3vw + .95rem, 1.125rem);
+}
+
+.home-page :is(main > section:not(.contact):not(.location):not(.gallery), .site-footer) > .container {
+    max-width: 1200px;
+    padding-inline: var(--home-gutter);
+}
+
+.home-page main > :is(.section, .es-para-ti-section, .pilares-section):not(.contact):not(.location):not(.gallery) {
+    min-height: auto;
+    padding-block: var(--home-section-space);
+}
+.home-page main > section:has(> .scroll-chevron-down):not(.contact):not(.location):not(.gallery) {
+    padding-bottom: calc(var(--home-section-space) + 1rem);
+}
+.home-page #noticias { padding-bottom: calc(var(--home-section-space) + 1rem) !important; }
+
+.home-page :is(.section-header, .articles-home-header) {
+    margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.home-page main > section:not(.contact):not(.location):not(.gallery) .section-title {
+    font-size: var(--home-title-size);
+    line-height: 1.15;
+    letter-spacing: -.025em;
+    font-weight: 700;
+    text-wrap: balance;
+}
+
+.home-page :is(.plans-eyebrow, .articles-eyebrow, .testimonial-invitation__eyebrow) {
+    font-size: .8125rem;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.home-page :is(.section-subtitle-text, .plans-intro, .articles-intro, .testimonials .section-desc) {
+    max-width: 65ch;
+    margin-inline: auto;
+    font-size: var(--home-body-size);
+    line-height: 1.75;
+}
+
+.home-page :is(.about-text, .shotokan-content) > p {
+    max-width: 68ch;
+    font-size: var(--home-body-size);
+    line-height: 1.8;
+}
+
+.home-page .title-underline { width: 48px; height: 3px; box-shadow: none; }
+.home-page :is(.es-para-ti-section, .testimonials, .plans-section) { background: var(--home-ivory); }
+.home-page :is(.pilares-section, .articles-home, .testimonial-invitation) { background: var(--home-ink); }
+.home-page .testimonials { border-color: var(--home-line); }
+
+/* Light editorial hero: keep the original image and make the reading order quieter. */
+.home-page .hero-banner {
+    min-height: 640px;
+    padding-block: clamp(2.5rem, 5vw, 4.5rem) 4.5rem;
+    border-bottom: 1px solid var(--home-line);
+}
+
+.home-page .hero-banner-overlay { background: rgba(255, 255, 255, .88); }
+.home-page .hero-container { max-width: 1200px; padding-inline: var(--home-gutter); }
+.home-page .hero-content { width: 100%; max-width: 860px; gap: 1.25rem; }
+.home-page .hero-text-box { width: 100%; max-width: 800px; }
+.home-page .kanji-draw-box { background: transparent; border-radius: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.home-page .kanji-svg { width: 230px; filter: none; }
+.home-page .kanji-svg path { stroke: #b91c1c; }
+.home-page .kanji-sublabel { color: var(--home-muted); letter-spacing: .16em; font-weight: 600; }
+.home-page .hero-badges-row { margin: 0 0 1.25rem; }
+.home-page .main-dojo-badge {
+    background: transparent;
+    color: var(--home-ink);
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    font-size: .8125rem;
+    letter-spacing: .08em;
+    line-height: 1.5;
+}
+.home-page .hero-title {
+    max-width: 19ch;
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.25rem, 3.5vw + 1rem, 4.25rem);
+    line-height: 1.06;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+}
+.home-page .hero-subtitle { max-width: 54ch; font-size: var(--home-body-size); line-height: 1.75; margin-bottom: 1.5rem; }
+.home-page .hero-quick-info-strip { gap: .5rem 1rem; margin: 0 0 2rem; }
+.home-page .info-pill { background: #fff; border: 1px solid var(--home-line); border-left: 2px solid #b91c1c; border-radius: 4px; box-shadow: none; font-size: .875rem; }
+.home-page .hero-cta-buttons { gap: .75rem; max-width: none; }
+
+/* Anchor CTAs only: form controls and modal actions keep their current styling. */
+.home-page :is(.hero-cta-buttons, .plans-section, .gallery-cta, .cta-action) a.btn,
+.home-page :is(.october-promo-cta, .top-promo-bar__cta, .news-cta-btn) {
+    min-height: 48px;
+    padding: .75rem 1.25rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: normal;
+    text-align: center;
+    box-shadow: none;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.home-page :is(.cta-primary-hero, .plan-cta, .gallery-cta .btn, .cta-action .btn, .october-promo-cta, .news-cta-btn) {
+    background: #b91c1c !important;
+    color: #fff !important;
+    border: 1px solid #b91c1c !important;
+}
+.home-page :is(.cta-primary-hero, .plan-cta, .gallery-cta .btn, .cta-action .btn, .october-promo-cta, .news-cta-btn):hover {
+    background: #991b1b !important;
+    border-color: #991b1b !important;
+    transform: none;
+    box-shadow: none;
+}
+.home-page .btn-secondary-hero { background: #fff !important; color: #0f172a !important; border: 1px solid #0f172a !important; }
+.home-page .btn-secondary-hero:hover { background: #f1f5f9 !important; color: #0f172a !important; border-color: #0f172a !important; transform: none; box-shadow: none; }
+.home-page :is(.hero-cta-buttons, .plans-section, .gallery-cta, .cta-action) a.btn:focus-visible,
+.home-page .plans-section .october-promo-cta:focus-visible,
+.home-page .site-footer :is(a, button):focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px #0f172a;
+}
+.home-page :is(.text-link-discreet, .articles-read, .articles-all) { min-height: 44px; display: inline-flex; align-items: center; line-height: 1.5; }
+.home-page :is(.text-link-discreet, .articles-read, .articles-all):hover { transform: none; text-decoration: underline; text-underline-offset: .25em; }
+
+/* Shared card proportions; dark information panels retain their own palette. */
+.home-page :is(.plan-card, .perfil-card, .diferenciador-card, .testimonial-card, .articles-card) {
+    border-radius: var(--home-radius);
+    border-color: var(--home-line);
+    box-shadow: none;
+}
+.home-page :is(.plan-card, .perfil-card, .diferenciador-card, .testimonial-card, .pilar-card) { padding: var(--home-card-space); }
+.home-page :is(.commercial-card, .pilar-card, .testimonial-invitation) { border-radius: var(--home-radius); box-shadow: none; }
+.home-page :is(.commercial-card, .pilar-card) { background: #182235; }
+.home-page :is(.commercial-card, .perfil-card, .diferenciador-card, .pilar-card):hover { transform: none; box-shadow: none; }
+.home-page :is(.perfiles-grid, .diferenciadores-grid, .pilares-grid, .plans-grid, .published-testimonials__grid) { gap: clamp(1rem, 2.5vw, 1.75rem); }
+.home-page :is(.perfil-card, .pilar-card) h3 { font-size: 1.25rem; line-height: 1.3; letter-spacing: -.01em; }
+.home-page :is(.perfil-card, .pilar-card, .diferenciador-card) p { font-size: 1rem; line-height: 1.7; }
+.home-page .commercial-summary-section { padding-block: 2rem; border-top-width: 1px; }
+.home-page .commercial-card { padding: 1.25rem; }
+.home-page .perfil-icon { background: transparent; border-radius: 0; }
+.home-page #noticias .red-badge { background: transparent; color: #b91c1c; border: 0; border-radius: 0; padding: 0; font-size: .8125rem; letter-spacing: .12em; }
+
+/* Plans: price, frequency and action have distinct spacing, without new content. */
+.home-page :is(.plans-grid, .plans-schedule, .october-promo) { max-width: 1040px; }
+.home-page .plan-card { border-top: 2px solid #b91c1c; }
+.home-page .plan-label { font-size: .875rem; margin-bottom: 1rem; }
+.home-page .plan-card h3 { font-size: clamp(1.75rem, 2.5vw, 2.25rem); letter-spacing: -.025em; }
+.home-page .plan-price { font-size: clamp(2.5rem, 4vw, 3.25rem); letter-spacing: -.035em; margin-block: 1.75rem 1.25rem; }
+.home-page .plan-price span { letter-spacing: normal; }
+.home-page .plan-description { margin-bottom: 2rem; line-height: 1.7; }
+.home-page .plans-schedule { padding: var(--home-card-space); border-radius: var(--home-radius); }
+.home-page .october-promo { background: #fff; border-color: var(--home-line); border-left: 3px solid #b91c1c; border-radius: var(--home-radius); padding: var(--home-card-space); }
+.home-page .october-promo h3 { font-weight: 700; letter-spacing: -.015em; }
+.home-page .october-promo-conditions { line-height: 1.7; }
+
+/* Editorial cards on Home only, including cards populated by existing JS/build. */
+.home-page .articles-card { background: #fff; }
+.home-page .articles-card-body { padding: clamp(1.5rem, 4vw, 3rem); }
+.home-page .articles-card h3 { font-size: clamp(1.5rem, 2vw + .5rem, 2.25rem); font-weight: 700; line-height: 1.25; letter-spacing: -.025em; text-wrap: balance; }
+.home-page .articles-excerpt { font-size: 1rem; }
+.home-page #home-news-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 2rem; }
+.home-page #home-news-grid .news-card {
+    background: #fff !important;
+    color: var(--home-ink);
+    border: 1px solid var(--home-line) !important;
+    border-radius: var(--home-radius) !important;
+    box-shadow: none !important;
+}
+.home-page #home-news-grid .news-card:hover { transform: none; border-color: #b8b2a8 !important; }
+.home-page #home-news-grid .news-hero-badge-strip { background: #0f172a; color: #fff; padding: .75rem 1.5rem; border-radius: 0; letter-spacing: .06em; gap: .75rem; flex-wrap: wrap; }
+.home-page #home-news-grid .news-category-badge { background: #0f172a; border-radius: 4px; backdrop-filter: none; }
+.home-page #home-news-grid :is(.news-card-body, .news-hero-body) { padding: var(--home-card-space); min-width: 0; }
+.home-page #home-news-grid :is(.news-card-title, .news-hero-title) { color: #0f172a !important; font-size: clamp(1.25rem, 1.1vw + 1rem, 1.75rem); font-weight: 700; line-height: 1.3; letter-spacing: -.015em; text-wrap: balance; }
+.home-page #home-news-grid .news-card:hover :is(.news-card-title, .news-hero-title) { color: #991b1b !important; }
+.home-page #home-news-grid .news-card-meta { color: #475569; font-size: .875rem; flex-wrap: wrap; gap: .35rem 1rem; }
+.home-page #home-news-grid :is(.news-card-excerpt, .news-hero-excerpt) { color: #475569; font-size: 1rem; line-height: 1.75; }
+.home-page #home-news-grid :is(.news-card-img, .news-hero-img),
+.home-page #home-news-grid .news-card:hover :is(.news-card-img, .news-hero-img) { transform: none; }
+.home-page #home-news-grid .news-hero-img { object-fit: contain; background: #f1f0ec; }
+.home-page #home-news-grid .news-read-more-btn { min-height: 44px; padding: .5rem 0; border: 0; border-radius: 0; background: transparent; color: #b91c1c; box-shadow: none; line-height: 1.5; white-space: normal; text-align: left; }
+.home-page #home-news-grid .news-read-more-btn:hover { color: #991b1b; background: transparent; transform: none; }
+.home-page #home-news-grid a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #0f172a; }
+
+.home-page .testimonial-card { border-top-width: 2px; }
+.home-page .testimonial-card__quote { font-size: 1rem; line-height: 1.8; }
+.home-page .testimonial-card__name { font-size: 1.125rem; font-weight: 700; }
+.home-page .testimonial-card__training-time { color: #475569; font-size: .875rem; }
+.home-page .testimonial-card__attribution { margin-top: 1.5rem; padding-top: 1.25rem; border-color: var(--home-line); }
+.home-page .testimonial-invitation { border-color: #334155; }
+
+/* Calm closing rhythm; preserve the footer's links and column contents. */
+.home-page .site-footer { background: var(--home-ivory); padding-block: 4rem 2rem; border-color: var(--home-line); }
+.home-page .footer-top-accent { height: 2px; margin-bottom: 2.5rem; }
+.home-page .footer-grid { gap: 2.5rem; padding-bottom: 2.5rem; }
+.home-page .footer-grid > div { min-width: 0; }
+.home-page .footer-brand-title { font-size: 1.125rem; line-height: 1.4; letter-spacing: .025em; }
+.home-page .footer-col-title { font-size: .8125rem; letter-spacing: .12em; }
+.home-page .footer-brand-desc { max-width: 42ch; font-size: 1rem; line-height: 1.75; }
+.home-page .footer-contact-list a { overflow-wrap: anywhere; min-height: 44px; }
+.home-page .footer-institution-list a.footer-active-link { min-height: 44px; }
+.home-page .footer-institution-list a.footer-active-link:hover,
+.home-page .footer-institution-list a.footer-active-link:hover .link-arrow { transform: none; }
+.home-page :is(.copyright-text, .footer-subtitle-tag) { color: #475569; }
+.home-page .footer-bottom-bar { border-color: var(--home-line); padding-top: 1.5rem; gap: 1rem; line-height: 1.6; }
+
+@media (min-width: 1100px) {
+    .home-page .hero-banner { background-position: right center !important; background-size: auto 100% !important; }
+    .home-page .hero-banner-overlay { background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .98) 42%, rgba(255, 255, 255, .3) 100%); }
+    .home-page .hero-container { justify-content: flex-start; }
+    .home-page .hero-content { max-width: 680px; margin-inline: 0; align-items: flex-start; }
+    .home-page :is(.hero-text-box, .hero-badges-row, .kanji-hero-wrapper, .hero-quick-info-strip, .hero-cta-buttons) { align-items: flex-start; justify-content: flex-start; text-align: left; }
+    .home-page .kanji-hero-wrapper { width: auto; }
+    .home-page .kanji-draw-box { align-items: flex-start; padding-inline: 0; }
+    .home-page .hero-subtitle { text-align: left; }
+    .home-page .hero-title { max-width: 18ch; }
+}
+
+@media (max-width: 768px) {
+    .home-page .hero-banner { min-height: auto !important; padding: 2rem 0 4rem !important; }
+    .home-page .hero-container { padding-inline: var(--home-gutter); }
+    .home-page .hero-content { gap: 1rem; }
+    .home-page .hero-title { font-size: clamp(1.875rem, 5vw + .75rem, 2.875rem) !important; line-height: 1.12 !important; letter-spacing: -.025em; margin-bottom: 1.25rem !important; }
+    .home-page .hero-subtitle { font-size: 1rem !important; line-height: 1.7 !important; margin-bottom: 1.5rem !important; }
+    .home-page .main-dojo-badge { font-size: .8125rem !important; padding: 0 !important; }
+    .home-page .hero-badges-row { margin-bottom: 1rem !important; }
+    .home-page .info-pill { font-size: .875rem !important; padding: .5rem .75rem !important; border-left-width: 2px !important; }
+    .home-page .hero-quick-info-strip { margin-bottom: 1.5rem !important; gap: .5rem !important; }
+    .home-page .hero-cta-buttons { padding: 0 !important; gap: .75rem !important; }
+    .home-page .hero-cta-buttons .btn { min-height: 48px !important; padding: .75rem 1rem !important; font-size: 1rem !important; line-height: 1.4 !important; white-space: normal !important; border-radius: 6px; }
+    .home-page .hero-banner-overlay { background: rgba(255, 255, 255, .92); }
+    .home-page :is(.articles-card, .articles-card-text) { grid-template-columns: minmax(0, 1fr); }
+    .home-page .articles-card-image img { min-height: 0; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+    .home-page #home-news-grid .news-hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .home-page #home-news-grid .news-hero-img-wrapper { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+    .home-page .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .home-page .footer-bottom-bar { flex-direction: column; align-items: flex-start; text-align: left; }
+}
+
+@media (max-width: 600px) {
+    .home-page :is(.perfiles-grid, .diferenciadores-grid, .commercial-grid) { grid-template-columns: minmax(0, 1fr); }
+    .home-page .october-promo-prices { grid-template-columns: minmax(0, 1fr); }
+    .home-page .articles-card h3 { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-page :is(.hero-cta-buttons, .plans-section, .gallery-cta, .cta-action) a.btn,
+    .home-page :is(.october-promo-cta, .top-promo-bar__cta, .news-cta-btn) { transition: none; }
+}

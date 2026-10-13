@@ -286,7 +286,7 @@ function editorialHead({ title, description, url, schema, article }) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
     <link rel="stylesheet" href="/styles.css?v=95.0">
     <script defer src="/analytics-consent.js?v=1.0"></script>
-    <script defer src="/script.js?v=94.0"></script>
+    <script defer src="/script.js?v=94.1"></script>
     <script type="application/ld+json">${editorialJson(schema)}</script>
     <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}.articles-main{padding-top:2rem}}</style></noscript>`;
 }
@@ -353,6 +353,12 @@ function compileEditorialArticles() {
     fs.writeFileSync(path.join(outputDir, 'index.html'), indexHtml, 'utf-8');
     for (const article of editorialArticles) {
         const url = `${hubUrl}${article.slug}/`;
+        const whatsappTopics = {
+            'empezar-karate-siendo-adulto': 'empezar Karate siendo adulto',
+            'que-es-karate-shotokan-que-se-aprende-en-una-clase': 'Karate Shotokan'
+        };
+        const whatsappTopic = whatsappTopics[article.slug] || article.title;
+        const whatsappMessage = `Hola, leí el artículo sobre ${whatsappTopic} en la web de Dojo Samurai JKA. Quisiera consultar por una clase de prueba.`;
         const schema = { '@context': 'https://schema.org', '@graph': [
             { '@type': 'Article', '@id': url + '#article', headline: article.title, description: article.description, datePublished: article.datePublished, dateModified: article.dateModified, author: { '@type': 'Person', name: article.author }, publisher: { '@type': 'Organization', name: 'Dojo Samurai JKA Villa Alemana', url: siteUrl + '/' }, mainEntityOfPage: { '@type': 'WebPage', '@id': url }, ...(article.image ? { image: [siteUrl + article.image] } : {}) },
             { '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl + '/' }, { '@type': 'ListItem', position: 2, name: 'Artículos', item: hubUrl }, { '@type': 'ListItem', position: 3, name: article.title, item: url } ] }
@@ -362,7 +368,9 @@ function compileEditorialArticles() {
             title: escapeHtml(article.title), label: escapeHtml(article.label), author: escapeHtml(article.author), datePublished: article.datePublished,
             dateFormatted: new Intl.DateTimeFormat('es-CL', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(article.datePublished)),
             image: article.image ? `<img class="articles-cover" src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt)}" width="${article.imageWidth}" height="${article.imageHeight}" decoding="async">` : '',
-            content: article.contentHtml
+            content: article.contentHtml,
+            slug: escapeHtml(article.slug),
+            whatsappHref: escapeHtml(`https://wa.me/56942825617?text=${encodeURIComponent(whatsappMessage)}`)
         });
         const articleDir = path.join(outputDir, article.slug);
         fs.mkdirSync(articleDir, { recursive: true });
@@ -493,6 +501,12 @@ try {
 
 function generateArticleHtml(article) {
     const slug = article.slug || article.id;
+    const whatsappTopics = {
+        '50-aniversario-dojo-samurai-jka-vina-del-mar': 'el 50.º aniversario de Dojo Samurai JKA Viña del Mar',
+        'xv-seminario-tecnico-jka-vina-del-mar-2026-shihan-mitsuo-inoue': 'el XV Seminario Técnico JKA Viña del Mar 2026 con Shihan Mitsuo Inoue'
+    };
+    const whatsappTopic = whatsappTopics[slug] || article.title;
+    const whatsappMessage = `Hola, leí la noticia sobre ${whatsappTopic} en la web de Dojo Samurai JKA y quisiera hacer una consulta.`;
     const fullUrl = `https://www.samuraijkavalemana.cl/noticias/${slug}/`;
     const imageUrl = `https://www.samuraijkavalemana.cl/${article.image}`;
     const authorName = article.author || 'Dojo Samurai Villa Alemana';
@@ -690,7 +704,7 @@ ${JSON.stringify(ldJson, null, 4)}
                         Únete a nuestras clases presenciales para adultos desde los 18 años en Balmaceda 188, Casa 2 (Gimnasio VIPALU). ¡Primera clase de prueba totalmente gratuita!
                     </p>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                        <a href="https://wa.me/56942825617?text=Hola,%20le%C3%AD%20el%20art%C3%ADculo%20'${encodeURIComponent(article.title)}'%20y%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20una%20clase%20de%20prueba" 
+                        <a href="${escapeHtml(`https://wa.me/56942825617?text=${encodeURIComponent(whatsappMessage)}`)}" data-track-event="click_whatsapp" data-track-intent="consulta_noticia" data-track-placement="noticia" data-track-content-type="noticia" data-track-content-slug="${escapeHtml(slug)}"
                            target="_blank" rel="noopener noreferrer" 
                            style="background: #25d366; color: #ffffff; padding: 0.75rem 1.4rem; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
                             💬 Consultar por WhatsApp
@@ -731,7 +745,7 @@ ${JSON.stringify(ldJson, null, 4)}
                     <h4 class="footer-col-title">UBICACIÓN & CONTACTO</h4>
                     <ul class="footer-contact-list">
                         <li>
-                            <a href="https://wa.me/56942825617?text=¡Hola!%20Me%20gustaría%20pedir%20información%20sobre%20las%20clases%20de%20Karate" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/56942825617?text=Hola%2C%20encontr%C3%A9%20el%20contacto%20al%20final%20de%20la%20p%C3%A1gina%20de%20Dojo%20Samurai%20JKA%20y%20quisiera%20informaci%C3%B3n%20sobre%20las%20clases." target="_blank" rel="noopener noreferrer" data-track-event="click_whatsapp" data-track-intent="consulta_general" data-track-placement="footer">
                                 <span class="footer-list-icon">💬</span> WhatsApp (+56 9 4282 5617)
                             </a>
                         </li>
@@ -756,7 +770,7 @@ ${JSON.stringify(ldJson, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../../script.js?v=94.0"></script>
+    <script defer src="../../script.js?v=94.1"></script>
 </body>
 </html>`;
 }
@@ -1134,9 +1148,9 @@ ${JSON.stringify(graphSchema, null, 4)}
                             Clases para adultos desde los 18 años, de 21:00 a 22:00 hrs. Arma tu semana eligiendo 2 o 3 días entre lunes y viernes, según tu plan y los cupos. Sábado y domingo no están incluidos. Solicita tu clase de prueba sin costo.
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <a href="https://wa.me/56942825617?text=Hola,%20le%C3%AD%20la%20gu%C3%ADa%20educativa%20de%20Karate%20Shotokan%20JKA%20y%20me%20gustar%C3%ADa%20consultar%20por%20clases" 
+                            <a href="https://wa.me/56942825617?text=Hola%2C%20le%C3%AD%20la%20gu%C3%ADa%20de%20Karate%20Shotokan%20JKA%20en%20la%20web%20del%20dojo%20y%20quisiera%20consultar%20c%C3%B3mo%20comenzar."
                                target="_blank" rel="noopener noreferrer" 
-                               style="background: #25d366; color: #ffffff; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">
+                               style="background: #25d366; color: #ffffff; padding: 0.8rem 1.5rem; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(37,211,102,0.3);" data-track-event="click_whatsapp" data-track-intent="comenzar_karate" data-track-placement="guia_jka">
                                 💬 Consultar por WhatsApp
                             </a>
                             <a href="/#planes"
@@ -1181,7 +1195,7 @@ ${JSON.stringify(graphSchema, null, 4)}
                     <h4 class="footer-col-title">UBICACIÓN & CONTACTO</h4>
                     <ul class="footer-contact-list">
                         <li>
-                            <a href="https://wa.me/56942825617?text=¡Hola!%20Me%20gustaría%20pedir%20información%20sobre%20las%20clases%20de%20Karate" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/56942825617?text=Hola%2C%20encontr%C3%A9%20el%20contacto%20al%20final%20de%20la%20p%C3%A1gina%20de%20Dojo%20Samurai%20JKA%20y%20quisiera%20informaci%C3%B3n%20sobre%20las%20clases." target="_blank" rel="noopener noreferrer" data-track-event="click_whatsapp" data-track-intent="consulta_general" data-track-placement="footer">
                                 <span class="footer-list-icon">💬</span> WhatsApp (+56 9 4282 5617)
                             </a>
                         </li>
@@ -1206,7 +1220,7 @@ ${JSON.stringify(graphSchema, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../script.js?v=94.0"></script>
+    <script defer src="../script.js?v=94.1"></script>
 </body>
 </html>`;
 }

@@ -286,7 +286,7 @@ function editorialHead({ title, description, url, schema, article }) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
     <link rel="stylesheet" href="/styles.css?v=95.0">
     <script defer src="/analytics-consent.js?v=1.0"></script>
-    <script defer src="/script.js?v=94.1"></script>
+    <script defer src="/script.js?v=94.2"></script>
     <script type="application/ld+json">${editorialJson(schema)}</script>
     <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}.articles-main{padding-top:2rem}}</style></noscript>`;
 }
@@ -770,7 +770,7 @@ ${JSON.stringify(ldJson, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../../script.js?v=94.1"></script>
+    <script defer src="../../script.js?v=94.2"></script>
 </body>
 </html>`;
 }
@@ -1220,7 +1220,7 @@ ${JSON.stringify(graphSchema, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../script.js?v=94.1"></script>
+    <script defer src="../script.js?v=94.2"></script>
 </body>
 </html>`;
 }

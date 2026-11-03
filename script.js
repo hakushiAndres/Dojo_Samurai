@@ -676,13 +676,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add new photographs here; order controls both the layout and lightbox sequence.
     const galleryPhotos = [
-        { image: 'assets/galeria/Screenshot_2026-09-09-14-24-00-241_com.miui.gallery.jpg', alt: 'Instructor guiando a practicantes adultos de Karate Shotokan JKA en Villa Alemana', category: 'Entrenamiento', description: 'Instrucción técnica durante una clase de adultos en el dojo.', order: 1, width: 1220, height: 1318 },
-        { image: 'assets/ui/yo.JPG', alt: 'Instructor de Dojo Samurai JKA Villa Alemana', category: 'Dojo', order: 2, width: 1920, height: 1280 },
-        { image: 'assets/galeria/Screenshot_2026-09-09-14-19-25-553_com.miui.gallery.jpg', alt: 'Adultos practicando posiciones y técnicas de Karate Shotokan JKA', category: 'Técnica', order: 3, width: 1220, height: 1324 },
-        { image: 'assets/galeria/adultos.jpg', alt: 'Grupo de adultos en clase de Karate Shotokan JKA', category: 'Entrenamiento', order: 4, width: 1157, height: 573 },
-        { image: 'assets/galeria/adultos2.jpg', alt: 'Practicantes adultos entrenando en Dojo Samurai', category: 'Entrenamiento', order: 5, width: 1155, height: 653 },
-        { image: 'assets/galeria/Screenshot_2026-09-09-14-23-44-653_com.miui.gallery.jpg', alt: 'Practicantes adultos coordinando técnicas de Karate Shotokan durante una clase', category: 'Técnica', order: 6, width: 1220, height: 1318 },
-        { image: 'assets/galeria/Screenshot_2026-09-09-14-18-39-567_com.miui.gallery.jpg', alt: 'Grupo de adultos realizando kihon en Dojo Samurai JKA Villa Alemana', category: 'Entrenamiento', order: 7, width: 1220, height: 1313 }
+        { image: "assets/galeria/kihon-karate-adultos-01.webp", alt: "Practicantes adultos realizando golpes de puño en una clase de karate", category: "Entrenamiento", description: "Práctica grupal de golpes de puño en el dojo.", order: 1, width: 1800, height: 1200 },
+        { image: "assets/galeria/correccion-tecnica-karate-02.webp", alt: "Instructor corrigiendo la posición del brazo de un practicante de karate", category: "Técnica", description: "Corrección de la posición del brazo durante la clase.", order: 2, width: 1600, height: 1067 },
+        { image: "assets/galeria/entrenamiento-grupal-karate-03.webp", alt: "Grupo de practicantes adultos de karate entrenando posiciones y técnicas de brazos", category: "Entrenamiento", description: "Trabajo técnico en grupo durante la clase.", order: 3, width: 1600, height: 1067 },
+        { image: "assets/galeria/clase-karate-adultos-04.webp", alt: "Practicantes de karate durante la clase, con una alumna extendiendo un brazo al fondo", category: "Entrenamiento", description: "Una toma cercana de la práctica en clase.", order: 4, width: 1600, height: 1067 },
+        { image: "assets/galeria/grupo-karate-seiza-05.webp", alt: "Grupo de practicantes de karate sentados en seiza sobre el suelo del dojo", category: "Dojo", description: "El grupo reunido en seiza durante la clase.", order: 5, width: 1600, height: 1067 }
     ].sort((a, b) => a.order - b.order);
 
     if (photosGrid) {

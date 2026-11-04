@@ -4878,3 +4878,91 @@ a.info-card-link:hover {
     .home-page :is(.hero-cta-buttons, .plans-section, .gallery-cta, .cta-action) a.btn,
     .home-page :is(.october-promo-cta, .top-promo-bar__cta, .news-cta-btn) { transition: none; }
 }
+
+/* Galería editorial V2. Scoped to the gallery and its viewer. */
+.gallery-editorial { background: #f5f4f0; border-block-color: #dedbd4; }
+.gallery-editorial > .container { max-width: 1200px; padding-inline: 2rem; }
+.gallery-editorial .gallery-heading { max-width: 620px; margin-bottom: 2rem; }
+.gallery-editorial .gallery-filters { margin-bottom: 2.75rem; }
+.gallery-editorial .gallery-photo-sequence { display: block; }
+.gallery-editorial .gallery-chapter + .gallery-chapter { margin-top: clamp(3.5rem, 7vw, 6rem); }
+.gallery-editorial .gallery-chapter-title {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 0 0 1.5rem; padding-top: 1rem; border-top: 1px solid #d1cec6;
+    color: #30332f; font-size: .75rem; font-weight: 600; line-height: 1.5;
+    letter-spacing: .15em; text-transform: uppercase;
+}
+.gallery-editorial .gallery-chapter-title span { color: #777970; font-variant-numeric: tabular-nums; letter-spacing: .05em; }
+.gallery-editorial .gallery-editorial-grid {
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.7vw, 2rem); align-items: center;
+}
+.gallery-editorial .gallery-photo {
+    grid-column: span 8; min-width: 0; margin: 0; overflow: hidden;
+    border: 0; border-radius: 2px; background: #e5e2db; box-shadow: none;
+}
+.gallery-editorial .gallery-photo--portrait { grid-column: span 4; }
+.gallery-editorial .gallery-photo--wide { grid-column: 1 / -1; }
+.gallery-editorial .gallery-photo--landscape:has(+ .gallery-photo--landscape),
+.gallery-editorial .gallery-photo--landscape + .gallery-photo--landscape { grid-column: span 6; }
+.gallery-editorial .gallery-photo-button { overflow: hidden; border-radius: 0; }
+.gallery-editorial .gallery-photo-button::after { content: none; }
+.gallery-editorial .gallery-photo-button img {
+    display: block; width: 100%; height: auto; aspect-ratio: var(--photo-ratio);
+    object-fit: contain; transform: none; transition: transform 180ms ease;
+}
+.gallery-editorial .gallery-photo--wide img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 55%; }
+.gallery-editorial .gallery-chapter--dojo .gallery-photo--wide img { aspect-ratio: var(--photo-ratio); object-fit: contain; }
+.gallery-editorial .gallery-photo:focus-within { outline: 3px solid var(--primary-color); outline-offset: 5px; overflow: visible; }
+.gallery-editorial .gallery-photo-button:focus-visible { outline: none; }
+.gallery-editorial .gallery-retry { background: none; border: 0; padding: .5rem; color: var(--primary-color); text-decoration: underline; cursor: pointer; font: inherit; }
+.gallery-editorial .gallery-retry:focus-visible { outline: 3px solid var(--primary-color); outline-offset: 3px; }
+.gallery-editorial .gallery-cta { margin-top: clamp(3rem, 6vw, 5rem); }
+@media (hover: hover) and (pointer: fine) {
+    .gallery-editorial .gallery-photo-button:hover img { transform: scale(1.015); }
+}
+
+.lightbox-editorial { background: #0b0c0c; backdrop-filter: none; overscroll-behavior: contain; }
+.lightbox-editorial[hidden] { display: none !important; }
+.lightbox-editorial.active { display: flex; align-items: center; justify-content: center; padding: 4.5rem 5rem; opacity: 1; }
+.lightbox-editorial .lightbox-figure { display: flex; flex-direction: column; align-items: center; min-width: 0; margin: 0; max-width: 100%; max-height: 100%; }
+.lightbox-editorial.active .lightbox-content {
+    width: auto; height: auto; max-width: 100%; max-height: calc(100vh - 12rem); max-height: calc(100dvh - 12rem);
+    margin: 0; object-fit: contain; border-radius: 0; box-shadow: none; transform: none; transition: none;
+    touch-action: pan-y pinch-zoom; user-select: none;
+}
+.lightbox-editorial .lightbox-caption { max-width: 65ch; margin-top: 1rem; color: #c5c6c2; font-size: .875rem; line-height: 1.5; }
+.lightbox-editorial .lightbox-counter { position: absolute; left: 1.5rem; top: 1.5rem; margin: 0; color: #c5c6c2; font-size: .8rem; letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+.lightbox-editorial :is(.lightbox-close, .lightbox-prev, .lightbox-next) {
+    display: grid; place-items: center; width: 48px; height: 48px; padding: 0;
+    border: 1px solid transparent; border-radius: 0; background: transparent; color: #eee;
+    font-weight: 400; transition: color 150ms ease, border-color 150ms ease;
+}
+.lightbox-editorial .lightbox-close { top: 1rem; right: 1rem; font-size: 2rem; }
+.lightbox-editorial .lightbox-prev { left: 1rem; top: 50%; font-size: 1.5rem; }
+.lightbox-editorial .lightbox-next { right: 1rem; top: 50%; font-size: 1.5rem; }
+.lightbox-editorial :is(.lightbox-close, .lightbox-prev, .lightbox-next):hover { color: white; border-color: #62645f; background: transparent; }
+.lightbox-editorial button:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+
+@media (max-width: 767px) {
+    .gallery-editorial > .container { padding-inline: 20px; }
+    .gallery-editorial .gallery-editorial-grid { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+    .gallery-editorial .gallery-photo,
+    .gallery-editorial .gallery-chapter .gallery-editorial-grid .gallery-photo { grid-column: 1; }
+    .gallery-editorial .gallery-photo--wide img { aspect-ratio: var(--photo-ratio); object-fit: contain; }
+    .gallery-editorial .gallery-photo--portrait { width: 100%; }
+    .gallery-editorial .gallery-chapter-title { font-size: .6875rem; margin-bottom: 1.25rem; }
+    .gallery-editorial .gallery-filters { gap: .75rem; margin-bottom: 2rem; }
+    .gallery-editorial .filter-btn { min-height: 44px; }
+    .lightbox-editorial.active { padding: 4.5rem 1rem 6rem; }
+    .lightbox-editorial.active .lightbox-content { max-height: calc(100vh - 14rem); max-height: calc(100dvh - 14rem); }
+    .lightbox-editorial .lightbox-caption { font-size: .8125rem; }
+    .lightbox-editorial :is(.lightbox-prev, .lightbox-next) { top: auto; bottom: max(1rem, env(safe-area-inset-bottom)); transform: none; }
+    .lightbox-editorial .lightbox-prev { left: calc(50% - 60px); }
+    .lightbox-editorial .lightbox-next { right: calc(50% - 60px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .gallery-editorial .gallery-photo-button img,
+    .gallery-editorial .gallery-photo-button:hover img { transform: none; transition: none; }
+    .lightbox-editorial, .lightbox-editorial button { transition: none; }
+}

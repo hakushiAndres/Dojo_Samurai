@@ -1,0 +1,44 @@
+[
+  {
+    "source": "001-66.jpg",
+    "name": "posiciones-karate-grupo-09",
+    "longEdge": 1600,
+    "quality": 76,
+    "previewWidth": 800
+  },
+  {
+    "source": "001-67.jpg",
+    "name": "practica-tecnica-grupo-10",
+    "longEdge": 1600,
+    "quality": 76,
+    "previewWidth": 800
+  },
+  {
+    "source": "001-84.jpg",
+    "name": "golpe-puno-karate-07",
+    "longEdge": 1600,
+    "quality": 76,
+    "previewWidth": 800
+  },
+  {
+    "source": "001-130.jpg",
+    "name": "postura-karate-adulto-13",
+    "longEdge": 1600,
+    "quality": 76,
+    "previewWidth": 800
+  },
+  {
+    "source": "001-131.jpg",
+    "name": "concentracion-karate-adulto-14",
+    "longEdge": 1600,
+    "quality": 76,
+    "previewWidth": 800
+  },
+  {
+    "source": "001-132.jpg",
+    "name": "posicion-karate-adulto-06",
+    "longEdge": 1600,
+    "quality": 78,
+    "previewWidth": 800
+  }
+]

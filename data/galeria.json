@@ -1,0 +1,200 @@
+[
+  {
+    "id": "kihon-en-grupo",
+    "image": "assets/galeria/kihon-karate-adultos-01.webp",
+    "alt": "Practicantes adultos realizando golpes de puño en una clase de karate",
+    "description": "La práctica compartida: repetir, observar y volver a empezar.",
+    "section": "Entrenamiento",
+    "layout": "wide",
+    "order": 1,
+    "width": 1800,
+    "height": 1200,
+    "sources": [
+      {
+        "image": "assets/galeria/kihon-karate-adultos-01-800w.webp",
+        "width": 800,
+        "height": 533
+      }
+    ]
+  },
+  {
+    "id": "sesion-postura-karate-adulto-13",
+    "image": "assets/galeria/postura-karate-adulto-13.webp",
+    "alt": "Practicante con cinturón negro y las piernas separadas frente a una cortina y un espejo",
+    "description": "Trabajo individual de posición.",
+    "section": "Entrenamiento",
+    "layout": "portrait",
+    "width": 1067,
+    "height": 1600,
+    "sources": [
+      {
+        "image": "assets/galeria/postura-karate-adulto-13-800w.webp",
+        "width": 800,
+        "height": 1200
+      }
+    ],
+    "order": 2
+  },
+  {
+    "id": "trabajo-en-grupo",
+    "image": "assets/galeria/entrenamiento-grupal-karate-03.webp",
+    "alt": "Grupo de practicantes adultos de karate entrenando posiciones y técnicas de brazos",
+    "description": "Posición, coordinación y trabajo en grupo.",
+    "section": "Entrenamiento",
+    "layout": "landscape",
+    "order": 3,
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "image": "assets/galeria/entrenamiento-grupal-karate-03-800w.webp",
+        "width": 800,
+        "height": 534
+      }
+    ]
+  },
+  {
+    "id": "sesion-posiciones-karate-grupo-09",
+    "image": "assets/galeria/posiciones-karate-grupo-09.webp",
+    "alt": "Practicantes de karate en posiciones amplias, distribuidos en varias filas",
+    "description": "Una secuencia de entrenamiento en grupo.",
+    "section": "Entrenamiento",
+    "layout": "wide",
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "image": "assets/galeria/posiciones-karate-grupo-09-800w.webp",
+        "width": 800,
+        "height": 533
+      }
+    ],
+    "order": 4
+  },
+  {
+    "id": "sesion-posicion-karate-adulto-06",
+    "image": "assets/galeria/posicion-karate-adulto-06.webp",
+    "alt": "Practicante con cinturón negro en posición amplia, con una mano abierta extendida",
+    "description": "Atención a la postura y al gesto.",
+    "section": "Técnica",
+    "layout": "portrait",
+    "width": 1067,
+    "height": 1600,
+    "sources": [
+      {
+        "image": "assets/galeria/posicion-karate-adulto-06-800w.webp",
+        "width": 800,
+        "height": 1200
+      }
+    ],
+    "order": 5
+  },
+  {
+    "id": "correccion-del-brazo",
+    "image": "assets/galeria/correccion-tecnica-karate-02.webp",
+    "alt": "Instructor corrigiendo la posición del brazo de un practicante de karate",
+    "description": "El detalle se trabaja de cerca.",
+    "section": "Técnica",
+    "layout": "landscape",
+    "order": 6,
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "image": "assets/galeria/correccion-tecnica-karate-02-800w.webp",
+        "width": 800,
+        "height": 534
+      }
+    ]
+  },
+  {
+    "id": "sesion-golpe-puno-karate-07",
+    "image": "assets/galeria/golpe-puno-karate-07.webp",
+    "alt": "Practicante adulto ejecutando un golpe de puño con otros alumnos al fondo",
+    "description": "Acción individual durante el trabajo en grupo.",
+    "section": "Técnica",
+    "layout": "portrait",
+    "width": 1067,
+    "height": 1600,
+    "sources": [
+      {
+        "image": "assets/galeria/golpe-puno-karate-07-800w.webp",
+        "width": 800,
+        "height": 1200
+      }
+    ],
+    "order": 7
+  },
+  {
+    "id": "sesion-practica-tecnica-grupo-10",
+    "image": "assets/galeria/practica-tecnica-grupo-10.webp",
+    "alt": "Grupo de karate trabajando técnicas de brazos con las piernas flexionadas",
+    "description": "Continuación del trabajo técnico en clase.",
+    "section": "Técnica",
+    "layout": "landscape",
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "image": "assets/galeria/practica-tecnica-grupo-10-800w.webp",
+        "width": 800,
+        "height": 533
+      }
+    ],
+    "order": 8
+  },
+  {
+    "id": "sesion-concentracion-karate-adulto-14",
+    "image": "assets/galeria/concentracion-karate-adulto-14.webp",
+    "alt": "Practicante con cinturón negro flexionando las piernas durante un ejercicio de posición",
+    "description": "Atención a la posición de las piernas.",
+    "section": "Dojo",
+    "layout": "portrait",
+    "width": 1067,
+    "height": 1600,
+    "sources": [
+      {
+        "image": "assets/galeria/concentracion-karate-adulto-14-800w.webp",
+        "width": 800,
+        "height": 1200
+      }
+    ],
+    "order": 9
+  },
+  {
+    "id": "momento-de-clase",
+    "image": "assets/galeria/clase-karate-adultos-04.webp",
+    "alt": "Practicantes de karate durante la clase, con una alumna extendiendo un brazo al fondo",
+    "description": "Distintas experiencias, un mismo espacio de práctica.",
+    "section": "Dojo",
+    "layout": "landscape",
+    "order": 10,
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "image": "assets/galeria/clase-karate-adultos-04-800w.webp",
+        "width": 800,
+        "height": 534
+      }
+    ]
+  },
+  {
+    "id": "grupo-en-seiza",
+    "image": "assets/galeria/grupo-karate-seiza-05.webp",
+    "alt": "Grupo de practicantes de karate sentados en seiza sobre el suelo del dojo",
+    "description": "Un momento de quietud compartida en el dojo.",
+    "section": "Dojo",
+    "layout": "wide",
+    "order": 11,
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "image": "assets/galeria/grupo-karate-seiza-05-800w.webp",
+        "width": 800,
+        "height": 534
+      }
+    ]
+  }
+]

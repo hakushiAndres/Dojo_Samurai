@@ -674,36 +674,102 @@ document.addEventListener('DOMContentLoaded', () => {
     const photosGrid = document.getElementById('photos-grid');
     const videosGrid = document.getElementById('videos-grid');
 
-    // Add new photographs here; order controls both the layout and lightbox sequence.
-    const galleryPhotos = [
-        { image: "assets/galeria/kihon-karate-adultos-01.webp", alt: "Practicantes adultos realizando golpes de puño en una clase de karate", category: "Entrenamiento", description: "Práctica grupal de golpes de puño en el dojo.", order: 1, width: 1800, height: 1200 },
-        { image: "assets/galeria/correccion-tecnica-karate-02.webp", alt: "Instructor corrigiendo la posición del brazo de un practicante de karate", category: "Técnica", description: "Corrección de la posición del brazo durante la clase.", order: 2, width: 1600, height: 1067 },
-        { image: "assets/galeria/entrenamiento-grupal-karate-03.webp", alt: "Grupo de practicantes adultos de karate entrenando posiciones y técnicas de brazos", category: "Entrenamiento", description: "Trabajo técnico en grupo durante la clase.", order: 3, width: 1600, height: 1067 },
-        { image: "assets/galeria/clase-karate-adultos-04.webp", alt: "Practicantes de karate durante la clase, con una alumna extendiendo un brazo al fondo", category: "Entrenamiento", description: "Una toma cercana de la práctica en clase.", order: 4, width: 1600, height: 1067 },
-        { image: "assets/galeria/grupo-karate-seiza-05.webp", alt: "Grupo de practicantes de karate sentados en seiza sobre el suelo del dojo", category: "Dojo", description: "El grupo reunido en seiza durante la clase.", order: 5, width: 1600, height: 1067 }
-    ].sort((a, b) => a.order - b.order);
-
-    if (photosGrid) {
-        galleryPhotos.forEach((photo, index) => {
-            const figure = document.createElement('figure');
-            figure.className = 'gallery-photo';
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'gallery-photo-button';
-            button.setAttribute('aria-label', `Ampliar fotografía: ${photo.alt}`);
-            const img = document.createElement('img');
-            img.src = photo.image;
-            img.alt = photo.alt;
-            img.width = photo.width;
-            img.height = photo.height;
-            img.loading = 'lazy';
-            img.decoding = 'async';
-            button.append(img);
-            button.addEventListener('click', () => openLightboxWithImages(galleryPhotos, index));
-            figure.append(button);
-            photosGrid.append(figure);
+    // data/galeria.json is the only editorial source. Production HTML is built
+    // ahead of time; the fetch fallback also supports previewing the source tree.
+    let galleryPhotos = [];
+    const gallerySections = { Entrenamiento: 'entrenamiento', 'Técnica': 'tecnica', Dojo: 'dojo' };
+    const gallerySizes = (photo) => {
+        const mobile = '(max-width: 767px) calc(100vw - 40px)';
+        if (photo.layout === 'wide') return `${mobile}, (max-width: 1199px) calc(100vw - 64px), 1136px`;
+        if (photo.layout === 'portrait') return `${mobile}, (max-width: 1199px) calc((100vw - 96px) / 3), 357px`;
+        return `${mobile}, (max-width: 1199px) calc((100vw - 96px) * 2 / 3), 747px`;
+    };
+    const renderGalleryPreview = () => {
+        const fragment = document.createDocumentFragment();
+        [...new Set(galleryPhotos.map(photo => photo.section))].forEach((section, chapter) => {
+            const block = document.createElement('section');
+            const sectionId = gallerySections[section];
+            block.className = `gallery-chapter gallery-chapter--${sectionId}`;
+            block.setAttribute('aria-labelledby', `gallery-chapter-${sectionId}`);
+            const heading = document.createElement('h3');
+            heading.id = `gallery-chapter-${sectionId}`;
+            heading.className = 'gallery-chapter-title';
+            const number = document.createElement('span');
+            number.setAttribute('aria-hidden', 'true');
+            number.textContent = String(chapter + 1).padStart(2, '0');
+            heading.append(number, section);
+            const grid = document.createElement('div');
+            grid.className = 'gallery-editorial-grid';
+            galleryPhotos.forEach((photo, index) => {
+                if (photo.section !== section) return;
+                const figure = document.createElement('figure');
+                figure.className = `gallery-photo gallery-photo--${photo.layout}`;
+                figure.style.setProperty('--photo-ratio', `${photo.width} / ${photo.height}`);
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'gallery-photo-button';
+                button.dataset.galleryIndex = index;
+                button.setAttribute('aria-label', `Ampliar fotografía ${index + 1} de ${galleryPhotos.length}: ${photo.alt}`);
+                const img = document.createElement('img');
+                img.srcset = [...photo.sources, photo].sort((a, b) => a.width - b.width).map(source => `${source.image} ${source.width}w`).join(', ');
+                img.sizes = gallerySizes(photo);
+                img.src = photo.image;
+                img.alt = photo.alt;
+                img.width = photo.width;
+                img.height = photo.height;
+                img.loading = index === 0 ? 'eager' : 'lazy';
+                if (index === 0) img.fetchPriority = 'high';
+                img.decoding = 'async';
+                button.append(img);
+                figure.append(button);
+                grid.append(figure);
+            });
+            block.append(heading, grid);
+            fragment.append(block);
         });
-    }
+        photosGrid.replaceChildren(fragment);
+    };
+    const loadEditorialGallery = async () => {
+        if (!photosGrid) return;
+        try {
+            const embedded = document.getElementById('gallery-data');
+            let data;
+            if (embedded) data = JSON.parse(embedded.textContent);
+            else {
+                const response = await fetch('data/galeria.json');
+                if (!response.ok) throw new Error(`Gallery HTTP ${response.status}`);
+                data = await response.json();
+            }
+            if (!Array.isArray(data) || !data.length || data.some(photo => !Object.hasOwn(gallerySections, photo.section) || !['wide', 'landscape', 'portrait'].includes(photo.layout)
+                || !/^assets\/galeria\/[a-z0-9-]+\.webp$/.test(photo.image) || typeof photo.alt !== 'string' || !Array.isArray(photo.sources))) throw new Error('Invalid gallery data');
+            galleryPhotos = [...data].sort((a, b) => a.order - b.order);
+            if (!embedded) renderGalleryPreview();
+            photosGrid.addEventListener('click', (event) => {
+                const button = event.target.closest('[data-gallery-index]');
+                if (!button || !photosGrid.contains(button)) return;
+                const index = Number(button.dataset.galleryIndex);
+                if (Number.isInteger(index) && galleryPhotos[index]) {
+                    button.focus({ preventScroll: true });
+                    openLightboxWithImages(galleryPhotos, index);
+                }
+            });
+        } catch (error) {
+            console.error('No se pudo cargar la galería:', error);
+            // Keep pre-rendered images visible if only enhancement failed.
+            if (!photosGrid.querySelector('.gallery-photo')) {
+                const message = document.createElement('p');
+                message.setAttribute('role', 'status');
+                message.textContent = 'No pudimos cargar las fotografías. ';
+                const retry = document.createElement('button');
+                retry.type = 'button';
+                retry.className = 'gallery-retry';
+                retry.textContent = 'Volver a intentar';
+                retry.addEventListener('click', loadEditorialGallery, { once: true });
+                message.append(retry);
+                photosGrid.replaceChildren(message);
+            }
+        }
+    };
 
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
@@ -735,17 +801,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.lightbox-close');
     const prevBtn = document.querySelector('.lightbox-prev');
     const nextBtn = document.querySelector('.lightbox-next');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const editorialLightbox = lightbox?.classList.contains('lightbox-editorial');
     
     let currentCarouselImages = [];
     let currentImageIndex = 0;
     let focusBeforeLightbox = null;
+    let overflowBeforeLightbox = '';
+    let inertBeforeLightbox = [];
 
     const updateLightboxImage = () => {
         const item = currentCarouselImages[currentImageIndex];
         const photo = typeof item === 'string' ? { image: item, alt: '' } : item;
         lightboxImg.src = photo.image;
         lightboxImg.alt = photo.alt || '';
-        document.getElementById('lightbox-caption').textContent = photo.description || '';
+        for (const dimension of ['width', 'height']) {
+            if (photo[dimension]) lightboxImg.setAttribute(dimension, photo[dimension]);
+            else lightboxImg.removeAttribute(dimension);
+        }
+        const caption = document.getElementById('lightbox-caption');
+        if (caption) caption.textContent = photo.description || '';
+        if (lightboxCounter) lightboxCounter.textContent = `${String(currentImageIndex + 1).padStart(2, '0')} / ${String(currentCarouselImages.length).padStart(2, '0')}`;
         prevBtn.hidden = nextBtn.hidden = currentCarouselImages.length < 2;
     };
 
@@ -758,12 +834,20 @@ document.addEventListener('DOMContentLoaded', () => {
         currentImageIndex = startIndex < 0 ? 0 : (startIndex >= imagesArray.length ? 0 : startIndex);
 
         focusBeforeLightbox = document.activeElement;
+        overflowBeforeLightbox = document.body.style.overflow;
         updateLightboxImage();
         lb.style.zIndex = '10005';
+        lb.hidden = false;
         lb.classList.add('active');
         lb.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
         closeBtn.focus();
+        if (editorialLightbox) {
+            inertBeforeLightbox = Array.from(document.body.children)
+                .filter(element => element !== lb && !['SCRIPT', 'STYLE', 'LINK'].includes(element.tagName))
+                .map(element => ({ element, inert: element.inert }));
+            inertBeforeLightbox.forEach(({ element }) => { element.inert = true; });
+        }
     };
 
     const showCarouselImage = (index) => {
@@ -782,12 +866,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const lbImg = document.getElementById('lightbox-img');
         if (!lb) return;
         lb.classList.remove('active');
+        lb.hidden = true;
         lb.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+        document.body.style.overflow = overflowBeforeLightbox;
+        inertBeforeLightbox.forEach(({ element, inert }) => { element.inert = inert; });
+        inertBeforeLightbox = [];
         if (focusBeforeLightbox && focusBeforeLightbox.isConnected) focusBeforeLightbox.focus();
-        setTimeout(() => {
-            if (lbImg) lbImg.src = '';
-        }, 300);
+        if (lbImg) lbImg.removeAttribute('src');
     };
 
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
@@ -805,6 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         const lb = document.getElementById('lightbox');
         if (lb && lb.classList.contains('active')) {
+            if (['Escape', 'ArrowLeft', 'ArrowRight'].includes(e.key)) e.preventDefault();
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') showCarouselImage(currentImageIndex - 1);
             if (e.key === 'ArrowRight') showCarouselImage(currentImageIndex + 1);
@@ -816,6 +902,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Touch-only, horizontal gestures on the image. A vertical gesture or a
+    // second pointer cancels navigation; mouse dragging remains unaffected.
+    if (editorialLightbox && lightboxImg) {
+        let swipeStart = null;
+        lightboxImg.addEventListener('pointerdown', (event) => {
+            if (event.pointerType !== 'touch') return;
+            if (!event.isPrimary) { swipeStart = null; return; }
+            swipeStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+            lightboxImg.setPointerCapture(event.pointerId);
+        });
+        lightboxImg.addEventListener('pointerup', (event) => {
+            if (!swipeStart || swipeStart.id !== event.pointerId) return;
+            const dx = event.clientX - swipeStart.x;
+            const dy = event.clientY - swipeStart.y;
+            swipeStart = null;
+            if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && lightbox.classList.contains('active')) {
+                showCarouselImage(currentImageIndex + (dx < 0 ? 1 : -1));
+            }
+        });
+        for (const name of ['pointercancel', 'lostpointercapture']) lightboxImg.addEventListener(name, () => { swipeStart = null; });
+    }
+
+    loadEditorialGallery();
 
     // Gallery Triggers on Homepage
     const galleryTriggers = document.querySelectorAll('.lightbox-trigger');

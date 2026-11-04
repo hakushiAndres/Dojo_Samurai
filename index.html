@@ -784,7 +784,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery section">
+    <section id="gallery" class="gallery gallery-editorial section">
         <div class="container">
             <div class="section-header gallery-heading">
                 <h2 class="section-title">Galería</h2>
@@ -796,7 +796,12 @@
                 <button type="button" class="filter-btn" data-filter="videos" aria-pressed="false" aria-controls="videos-grid">Videos</button>
             </div>
 
-            <div class="modern-gallery-grid gallery-photo-sequence" id="photos-grid" aria-label="Fotografías del dojo"></div>
+            <div class="gallery-photo-sequence" id="photos-grid" aria-label="Fotografías del dojo">
+                <!-- GALERIA_V2_START -->
+                <p class="gallery-loading" role="status">Cargando fotografías…</p>
+                <noscript><p>Conoce nuestra práctica en <a href="assets/galeria/kihon-karate-adultos-01.webp">una fotografía del entrenamiento</a>.</p></noscript>
+                <!-- GALERIA_V2_END -->
+            </div>
 
             <div class="modern-gallery-grid gallery-video-grid" id="videos-grid" hidden>
                 <div class="gallery-item video-item">
@@ -1065,7 +1070,8 @@
     </button>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visor de fotografías" aria-hidden="true" tabindex="-1">
+    <div id="lightbox" class="lightbox lightbox-editorial" role="dialog" aria-modal="true" aria-label="Visor de fotografías" aria-hidden="true" tabindex="-1" hidden>
+        <p id="lightbox-counter" class="lightbox-counter" aria-live="polite" aria-atomic="true"></p>
         <button type="button" class="lightbox-close" aria-label="Cerrar fotografía">&times;</button>
         <button type="button" class="lightbox-prev" aria-label="Fotografía anterior">&#10094;</button>
         <figure class="lightbox-figure"><img class="lightbox-content" id="lightbox-img" alt=""><figcaption id="lightbox-caption" class="lightbox-caption"></figcaption></figure>
@@ -1097,7 +1103,7 @@
         </div>
     </div>
 
-    <script defer src="script.js?v=94.2"></script>
+    <script defer src="script.js?v=95.0"></script>
 </body>
 
 </html>

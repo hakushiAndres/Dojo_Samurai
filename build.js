@@ -4,6 +4,9 @@ const path = require('path');
 const rootDir = __dirname;
 const distDir = path.join(rootDir, 'dist');
 const siteUrl = 'https://www.samuraijkavalemana.cl';
+const { readGallery, compileGallery } = require('./scripts/gallery-build');
+// Fail before replacing dist if selected gallery files or metadata are invalid.
+const galleryPhotos = readGallery(rootDir);
 // Validate public editorial input before replacing the previous distribution.
 const editorialArticles = readEditorialArticles();
 
@@ -54,6 +57,9 @@ staticItems.forEach(item => {
 
 // Compile approved testimonials into the copied homepage. The JSON contains
 // public display data only; submitted form data is never read or published.
+const galleryHomepagePath = path.join(distDir, 'index.html');
+fs.writeFileSync(galleryHomepagePath, compileGallery(fs.readFileSync(galleryHomepagePath, 'utf8'), galleryPhotos), 'utf8');
+console.log(`✓ Compiled ${galleryPhotos.length} editorial gallery photographs -> dist/index.html`);
 compileApprovedTestimonials();
 compileEditorialArticles();
 
@@ -63,6 +69,8 @@ function copyDirSync(src, dest) {
     for (const entry of entries) {
         const srcPath = path.join(src, entry.name);
         const destPath = path.join(dest, entry.name);
+        // Full-resolution originals are local editorial input, never web output.
+        if (srcPath === path.join(rootDir, 'assets', 'galeria', 'web')) continue;
         if (entry.isDirectory()) {
             copyDirSync(srcPath, destPath);
         } else {
@@ -284,9 +292,9 @@ function editorialHead({ title, description, url, schema, article }) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
-    <link rel="stylesheet" href="/styles.css?v=95.0">
+    <link rel="stylesheet" href="/styles.css?v=95.1">
     <script defer src="/analytics-consent.js?v=1.0"></script>
-    <script defer src="/script.js?v=94.2"></script>
+    <script defer src="/script.js?v=95.0"></script>
     <script type="application/ld+json">${editorialJson(schema)}</script>
     <noscript><style>@media(max-width:768px){.main-nav{position:relative}.main-nav .nav-container{flex-wrap:wrap}.main-nav .nav-links{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;height:auto;flex-direction:row;flex-wrap:wrap;gap:.5rem 1rem;padding:1rem}.main-nav .menu-toggle{display:none}.articles-main{padding-top:2rem}}</style></noscript>`;
 }
@@ -627,7 +635,7 @@ function generateArticleHtml(article) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
-    <link rel="stylesheet" href="../../styles.css?v=95.0">
+    <link rel="stylesheet" href="../../styles.css?v=95.1">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -770,7 +778,7 @@ ${JSON.stringify(ldJson, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../../script.js?v=94.2"></script>
+    <script defer src="../../script.js?v=95.0"></script>
 </body>
 </html>`;
 }
@@ -858,7 +866,7 @@ function generateShotokanPillarHtml() {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"></noscript>
-    <link rel="stylesheet" href="../styles.css?v=95.0">
+    <link rel="stylesheet" href="../styles.css?v=95.1">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -1220,7 +1228,7 @@ ${JSON.stringify(graphSchema, null, 4)}
         </div>
     </footer>
 
-    <script defer src="../script.js?v=94.2"></script>
+    <script defer src="../script.js?v=95.0"></script>
 </body>
 </html>`;
 }

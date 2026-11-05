@@ -61,7 +61,7 @@
         media="print" onload="this.media='all'">
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=96.1">
+    <link rel="stylesheet" href="styles.css?v=96.3">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -147,11 +147,13 @@
     <!-- Happy Hours campaign: remove after November 15, 2026 or when places fill. -->
     <aside class="happy-hours-bar" aria-label="Promoción Happy Hours de noviembre de 2026">
         <div class="happy-hours-bar__inner">
-            <span class="happy-hours-bar__badge">HAPPY HOURS · 10 CUPOS</span>
-            <p class="happy-hours-bar__message">
-                <strong>3 meses de Karate por el precio de 2</strong>
-                <span>Hasta el <time datetime="2026-11-15">15 de noviembre de 2026</time> · Alumnos nuevos 18+</span>
-            </p>
+            <div class="happy-hours-bar__content">
+                <span class="happy-hours-bar__badge">HAPPY HOURS · 10 CUPOS</span>
+                <p class="happy-hours-bar__message">
+                    <strong>3 meses de Karate por el precio de 2</strong>
+                    <span>Hasta el <time datetime="2026-11-15">15 de noviembre de 2026</time> · Alumnos nuevos 18+</span>
+                </p>
+            </div>
             <a class="happy-hours-bar__cta" href="#promo-happy-hours-2026" aria-label="Ver condiciones de la promoción: 3 meses de Karate por el precio de 2" data-track-event="click_promo" data-track-intent="happy_hours_3x2_nov_2026" data-track-placement="top_promo_bar">Ver promoción <span aria-hidden="true">→</span></a>
         </div>
     </aside>
@@ -551,13 +553,13 @@
                 <div class="happy-hours-grid">
                     <div class="happy-hours-plan">
                         <h4>2 días por semana</h4>
-                        <p class="happy-hours-price">Mensualidad regular: <strong>$38.000</strong> <span>CLP / mes</span></p>
-                        <p>Paga 2 mensualidades y entrena 3 meses.</p>
+                        <p class="happy-hours-price"><span class="happy-hours-price__label">Mensualidad regular:</span> <strong>$38.000</strong> <span>CLP / mes</span></p>
+                        <p class="happy-hours-benefit">Paga 2 mensualidades y entrena 3 meses.</p>
                     </div>
                     <div class="happy-hours-plan">
                         <h4>3 días por semana</h4>
-                        <p class="happy-hours-price">Mensualidad regular: <strong>$45.000</strong> <span>CLP / mes</span></p>
-                        <p>Paga 2 mensualidades y entrena 3 meses.</p>
+                        <p class="happy-hours-price"><span class="happy-hours-price__label">Mensualidad regular:</span> <strong>$45.000</strong> <span>CLP / mes</span></p>
+                        <p class="happy-hours-benefit">Paga 2 mensualidades y entrena 3 meses.</p>
                     </div>
                 </div>
                 <div class="happy-hours-footer">

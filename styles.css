@@ -4422,6 +4422,74 @@ a.info-card-link:hover {
 /* Home scroll container and sticky navigation. */
 .home-page { overflow-x: clip; } /* Avoid creating a body scroll container above the sticky header. */
 .main-nav.home-nav { position: sticky; }
+
+/* Happy Hours — November 2026. Static campaign; removal is managed separately. */
+.happy-hours-bar { background: #f5f3ed; color: #0f172a; border-bottom: 1px solid #dedbd4; }
+.happy-hours-bar__inner {
+    display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+    gap: .5rem 1.25rem; max-width: 1200px; margin: 0 auto; padding: .5rem 2rem;
+}
+.happy-hours-bar__badge { color: #991b1b; font-size: .6875rem; font-weight: 700; letter-spacing: .035em; line-height: 1.4; }
+.happy-hours-bar__message { min-width: 0; margin: 0; line-height: 1.4; }
+.happy-hours-bar__message strong { display: block; font-size: .9375rem; font-weight: 600; }
+.happy-hours-bar__message > span { display: block; margin-top: .125rem; color: #475569; font-size: .75rem; }
+.happy-hours-bar__cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 44px; max-width: 100%; padding: .5rem .75rem; border: 1px solid #b91c1c;
+    border-radius: 4px; color: #991b1b; font-size: .8125rem; font-weight: 600; text-align: center;
+}
+.happy-hours-bar__cta:hover { background: #ede8de; }
+.happy-hours-promo {
+    max-width: 1040px; margin: 0 auto 2rem; padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid #d7d8d5; border-left: 3px solid #b91c1c; border-radius: 6px;
+    background: #faf9f5; color: #0f172a; scroll-margin-top: 110px;
+}
+.happy-hours-badge { margin: 0 0 .5rem; color: #991b1b; font-size: .75rem; font-weight: 700; letter-spacing: .12em; }
+.happy-hours-promo__heading h3 { margin: 0 0 .75rem; font-size: clamp(1.4rem, 2.4vw, 1.875rem); line-height: 1.25; }
+.happy-hours-promo__heading > p:last-child { max-width: 65ch; margin: 0; color: #475569; line-height: 1.6; }
+.happy-hours-eligibility { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.25rem 0; padding: 0; list-style: none; font-size: .875rem; line-height: 1.5; }
+.happy-hours-eligibility li { min-width: 0; }
+.happy-hours-eligibility strong { color: #991b1b; }
+.happy-hours-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.happy-hours-plan { min-width: 0; padding: 1.25rem; border: 1px solid #dedbd4; border-radius: 4px; background: #fff; }
+.happy-hours-plan h4 { margin: 0 0 .75rem; color: #0f172a; font-size: 1.125rem; line-height: 1.4; }
+.happy-hours-plan p { margin: 0; color: #475569; font-size: .9375rem; line-height: 1.6; }
+.happy-hours-plan .happy-hours-price { margin-bottom: .75rem; font-size: .8125rem; }
+.happy-hours-price strong { display: block; color: #0f172a; font-size: 1.625rem; line-height: 1.3; }
+.happy-hours-price span { font-size: .8125rem; }
+.happy-hours-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; margin-top: 1.25rem; }
+.happy-hours-footer > p { flex: 1 1 24rem; min-width: 0; margin: 0; color: #475569; font-size: .875rem; line-height: 1.6; }
+.happy-hours-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 48px; max-width: 100%; padding: .75rem 1rem; border: 1px solid #b91c1c;
+    border-radius: 4px; background: #b91c1c; color: #fff; font-size: .9375rem; font-weight: 600;
+    line-height: 1.5; text-align: center;
+}
+.happy-hours-cta:hover { background: #991b1b; border-color: #991b1b; color: #fff; }
+.happy-hours-bar__cta:focus-visible,
+.happy-hours-promo:focus-visible,
+.plans-section .happy-hours-cta:focus-visible { outline: 3px solid #0f172a; outline-offset: 4px; }
+@media (min-width: 769px) and (max-width: 1200px) {
+    .happy-hours-promo { scroll-margin-top: 160px; }
+}
+@media (max-width: 767px) {
+    .happy-hours-bar__inner { grid-template-columns: minmax(0, 1fr) auto; gap: .25rem .5rem; padding: .5rem 20px; }
+    .happy-hours-bar__message { grid-column: 1 / -1; }
+    .happy-hours-bar__badge { grid-row: 2; }
+    .happy-hours-bar__cta { grid-row: 2; justify-self: end; padding-inline: .625rem; }
+    .happy-hours-bar__message strong { font-size: .875rem; }
+    .happy-hours-bar__message > span { font-size: .6875rem; }
+}
+@media (max-width: 640px) {
+    .happy-hours-grid { grid-template-columns: minmax(0, 1fr); }
+    .happy-hours-plan { padding: 1rem; }
+    .happy-hours-eligibility { gap: .375rem 1rem; }
+    .happy-hours-cta { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .happy-hours-bar__cta, .happy-hours-cta { transition: none; }
+}
+
 /* B5.3: dual-tone focus stays visible on both navy and light surfaces.
    Scope excludes the contact form, gallery, news modal, grades and promo. */
 :is(.main-nav, .about, .dojokun, .news-toolbar,

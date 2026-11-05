@@ -61,7 +61,7 @@
         media="print" onload="this.media='all'">
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=96.0">
+    <link rel="stylesheet" href="styles.css?v=96.1">
 
     <!-- Optional analytics are loaded only after the visitor grants consent. -->
     <script defer src="/analytics-consent.js?v=1.0"></script>
@@ -143,6 +143,18 @@
             </button>
         </div>
     </nav>
+
+    <!-- Happy Hours campaign: remove after November 15, 2026 or when places fill. -->
+    <aside class="happy-hours-bar" aria-label="Promoción Happy Hours de noviembre de 2026">
+        <div class="happy-hours-bar__inner">
+            <span class="happy-hours-bar__badge">HAPPY HOURS · 10 CUPOS</span>
+            <p class="happy-hours-bar__message">
+                <strong>3 meses de Karate por el precio de 2</strong>
+                <span>Hasta el <time datetime="2026-11-15">15 de noviembre de 2026</time> · Alumnos nuevos 18+</span>
+            </p>
+            <a class="happy-hours-bar__cta" href="#promo-happy-hours-2026" aria-label="Ver condiciones de la promoción: 3 meses de Karate por el precio de 2" data-track-event="click_promo" data-track-intent="happy_hours_3x2_nov_2026" data-track-placement="top_promo_bar">Ver promoción <span aria-hidden="true">→</span></a>
+        </div>
+    </aside>
 
     <!-- Transparent Banner Hero -->
     <header id="hero" class="hero-banner">
@@ -525,6 +537,34 @@
                 <p><strong>Ármalo como quieras</strong><span>Elige 2 o 3 días entre lunes y viernes, según tu disponibilidad.</span></p>
                 <p><strong>21:00–22:00 hrs</strong><span>Horario de las clases</span></p>
             </div>
+            <aside id="promo-happy-hours-2026" class="happy-hours-promo" aria-labelledby="happy-hours-title" tabindex="-1">
+                <div class="happy-hours-promo__heading">
+                    <p class="happy-hours-badge">HAPPY HOURS</p>
+                    <h3 id="happy-hours-title">3 meses de Karate por el precio de 2</h3>
+                    <p>Paga el equivalente a 2 mensualidades y entrena durante 3 meses.</p>
+                </div>
+                <ul class="happy-hours-eligibility" aria-label="Cupos y requisitos de la promoción">
+                    <li><strong>Solo 10 cupos</strong></li>
+                    <li>Alumnos nuevos</li>
+                    <li>Adultos desde 18 años</li>
+                </ul>
+                <div class="happy-hours-grid">
+                    <div class="happy-hours-plan">
+                        <h4>2 días por semana</h4>
+                        <p class="happy-hours-price">Mensualidad regular: <strong>$38.000</strong> <span>CLP / mes</span></p>
+                        <p>Paga 2 mensualidades y entrena 3 meses.</p>
+                    </div>
+                    <div class="happy-hours-plan">
+                        <h4>3 días por semana</h4>
+                        <p class="happy-hours-price">Mensualidad regular: <strong>$45.000</strong> <span>CLP / mes</span></p>
+                        <p>Paga 2 mensualidades y entrena 3 meses.</p>
+                    </div>
+                </div>
+                <div class="happy-hours-footer">
+                    <p id="happy-hours-conditions">Válido hasta el <time datetime="2026-11-15">15 de noviembre de 2026</time> o hasta agotar cupos.</p>
+                    <a class="happy-hours-cta" href="https://wa.me/56942825617?text=Hola%2C%20vi%20la%20promoci%C3%B3n%20Happy%20Hours%20de%20Dojo%20Samurai%20JKA%20Villa%20Alemana%3A%203%20meses%20de%20Karate%20por%20el%20precio%20de%202.%20Quisiera%20consultar%20si%20a%C3%BAn%20quedan%20cupos%20y%20conocer%20las%20opciones%20de%202%20o%203%20d%C3%ADas%20por%20semana." target="_blank" rel="noopener noreferrer" aria-describedby="happy-hours-conditions" data-track-event="click_whatsapp" data-track-intent="happy_hours_3x2_nov_2026" data-track-placement="promo_happy_hours">Consultar cupos por WhatsApp <span aria-hidden="true">↗</span></a>
+                </div>
+            </aside>
             <div class="plans-grid">
                 <article class="plan-card" aria-labelledby="plan-2-title">
                     <p class="plan-label">Entrenamiento regular</p>

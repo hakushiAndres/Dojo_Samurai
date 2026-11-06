@@ -158,11 +158,10 @@
         </div>
     </aside>
 
-    <!-- Transparent Banner Hero -->
-    <header id="hero" class="hero-banner">
-        <div class="hero-banner-overlay"></div>
-        <div class="container hero-container">
-            <div class="hero-content">
+    <!-- Home V3 / Phase 1: photographic editorial hero -->
+    <header id="hero" class="hero-v3">
+        <div class="hero-v3__layout">
+            <div class="hero-v3__content">
                 <!-- SVG Kanji Stroke Animation (Shotokan / 松濤館) -->
                 <div class="kanji-hero-wrapper">
                     <div class="kanji-draw-box">
@@ -214,31 +213,39 @@
                     </div>
                 </div>
 
-                <div class="hero-text-box">
-                    <div class="hero-badges-row">
-                        <span class="badge main-dojo-badge">🥋 DOJO SAMURAI JKA VILLA ALEMANA</span>
+                <div class="hero-v3__text">
+                    <div class="hero-v3__eyebrow">
+                        <span >DOJO SAMURAI JKA VILLA ALEMANA</span>
                     </div>
-                    <h1 class="hero-title" style="color: #0f172a !important; font-weight: 800 !important; text-shadow: none !important;">
+                    <h1 class="hero-v3__title">
                         Karate Shotokan JKA en Villa Alemana
                     </h1>
-                    <p class="hero-subtitle" style="color: #1e293b !important; font-weight: 600 !important; text-shadow: none !important;">
+                    <p class="hero-v3__subtitle">
                         Clases para adultos desde los 18 años. Formación técnica, disciplina marcial y desarrollo personal.
                     </p>
-                    <div class="hero-quick-info-strip">
-                        <span class="info-pill">📅 <strong>Planes de 2 o 3 días</strong></span>
-                        <span class="info-pill">⏰ <strong>21:00–22:00</strong> <span class="info-pill-extra">hrs</span></span>
-                        <span class="info-pill">📍 <strong>Balmaceda 188, Casa 2</strong> <span class="info-pill-extra">· Villa Alemana</span></span>
-                    </div>
-                    <div class="hero-cta-buttons">
-                        <a href="https://wa.me/56942825617?text=Hola%2C%20vi%20la%20opci%C3%B3n%20de%20clase%20de%20prueba%20en%20la%20web%20de%20Dojo%20Samurai%20JKA.%20%C2%BFHay%20disponibilidad%20para%20coordinar%20una%20visita%3F" target="_blank" rel="noopener noreferrer" class="btn cta-primary-hero" data-track-event="click_whatsapp" data-track-intent="clase_prueba" data-track-placement="hero">
+                    <div class="hero-v3__actions">
+                        <a href="https://wa.me/56942825617?text=Hola%2C%20vi%20la%20opci%C3%B3n%20de%20clase%20de%20prueba%20en%20la%20web%20de%20Dojo%20Samurai%20JKA.%20%C2%BFHay%20disponibilidad%20para%20coordinar%20una%20visita%3F" target="_blank" rel="noopener noreferrer" class="hero-v3__primary" data-track-event="click_whatsapp" data-track-intent="clase_prueba" data-track-placement="hero">
                             🥋 Reserva tu clase de prueba
                         </a>
-                        <a href="#planes" class="btn btn-secondary-hero">
+                        <a href="#planes" class="hero-v3__secondary">
                             Ver planes y horarios
                         </a>
                     </div>
+                    <dl class="hero-v3__facts">
+                        <div><dt>Planes</dt><dd>2 o 3 días por semana</dd></div>
+                        <div><dt>Horario</dt><dd>21:00–22:00 hrs</dd></div>
+                        <div><dt>Ubicación</dt><dd>Balmaceda 188, Casa 2<span>Villa Alemana</span></dd></div>
+                    </dl>
                 </div>
             </div>
+            <figure class="hero-v3__media">
+                <!-- HOME_V3_PROVISIONAL_IMAGE: replace after the future photo import. -->
+                <img src="assets/galeria/golpe-puno-karate-07.webp"
+                     srcset="assets/galeria/golpe-puno-karate-07-800w.webp 800w, assets/galeria/golpe-puno-karate-07.webp 1067w"
+                     sizes="(min-width: 1200px) 480px, (min-width: 960px) 42vw, (min-width: 768px) 640px, calc(100vw - 40px)"
+                     width="1067" height="1600" fetchpriority="high" decoding="async"
+                     alt="Practicante adulto ejecutando un golpe de puño con otros alumnos al fondo">
+            </figure>
         </div>
         <a href="#oferta-resumen" class="scroll-chevron-down" aria-label="Ir a Resumen de Oferta">
             <span class="chevron-icon">⌄</span>
@@ -278,152 +285,176 @@
     </section>
 
     <!-- Bloque "¿Es para ti?" -->
-    <section id="es-para-ti" class="es-para-ti-section">
-        <div class="container">
-            <div class="section-header center" style="margin-bottom: 3rem;">
-                <h2 class="section-title">¿Es para ti el Karate Shotokan JKA?</h2>
-                <div class="title-underline" style="margin: 0 auto 1.25rem auto;"></div>
-                <p class="section-subtitle-text">Nuestra escuela brinda una formación estructurada y tradicional orientada a adultos desde los 18 años.</p>
+    <section id="es-para-ti" class="audience-editorial" aria-labelledby="audience-editorial-title">
+        <div class="audience-editorial__inner">
+            <div class="audience-editorial__intro">
+                <h2 id="audience-editorial-title">¿Es para ti el Karate Shotokan JKA?</h2>
+                <p>Nuestra escuela brinda una formación estructurada y tradicional orientada a adultos desde los 18 años.</p>
             </div>
-            <div class="perfiles-grid">
-                <div class="perfil-card">
-                    <div class="perfil-icon">🌱</div>
-                    <h3>Principiante Sin Experiencia</h3>
-                    <p>Si nunca has practicado artes marciales y deseas comenzar desde cero en un ambiente estructurado, seguro y de respeto mutuo.</p>
-                </div>
-                <div class="perfil-card">
-                    <div class="perfil-icon">🥋</div>
-                    <h3>Retorno al Karate-Do</h3>
-                    <p>Si practicaste anteriormente y buscas reencontrarte con la técnica, la disciplina marcial y la constancia del entrenamiento tradicional.</p>
-                </div>
-                <div class="perfil-card">
-                    <div class="perfil-icon">💪</div>
-                    <h3>Condición Física y Salud</h3>
-                    <p>Si buscas fortalecer tu cuerpo, mejorar tu flexibilidad, aumentar tu resistencia y canalizar el estrés diario de forma constructiva.</p>
-                </div>
-                <div class="perfil-card">
-                    <div class="perfil-icon">🏛️</div>
-                    <h3>Formación Shotokan JKA</h3>
-                    <p>Si valoras una enseñanza técnica rigurosa, estructurada y vinculada a la tradición del Karate Shotokan JKA.</p>
-                </div>
-            </div>
+            <ol class="audience-editorial__grid" role="list">
+                <li class="audience-editorial__item">
+                    <span class="audience-editorial__number">01</span>
+                    <div class="audience-editorial__content">
+                        <h3 class="audience-editorial__title">Principiante Sin Experiencia</h3>
+                        <p class="audience-editorial__text">Si nunca has practicado artes marciales y deseas comenzar desde cero en un ambiente estructurado, seguro y de respeto mutuo.</p>
+                    </div>
+                </li>
+                <li class="audience-editorial__item">
+                    <span class="audience-editorial__number">02</span>
+                    <div class="audience-editorial__content">
+                        <h3 class="audience-editorial__title">Retorno al Karate-Do</h3>
+                        <p class="audience-editorial__text">Si practicaste anteriormente y buscas reencontrarte con la técnica, la disciplina marcial y la constancia del entrenamiento tradicional.</p>
+                    </div>
+                </li>
+                <li class="audience-editorial__item">
+                    <span class="audience-editorial__number">03</span>
+                    <div class="audience-editorial__content">
+                        <h3 class="audience-editorial__title">Condición Física y Salud</h3>
+                        <p class="audience-editorial__text">Si buscas fortalecer tu cuerpo, mejorar tu flexibilidad, aumentar tu resistencia y canalizar el estrés diario de forma constructiva.</p>
+                    </div>
+                </li>
+                <li class="audience-editorial__item">
+                    <span class="audience-editorial__number">04</span>
+                    <div class="audience-editorial__content">
+                        <h3 class="audience-editorial__title">Formación Shotokan JKA</h3>
+                        <p class="audience-editorial__text">Si valoras una enseñanza técnica rigurosa, estructurada y vinculada a la tradición del Karate Shotokan JKA.</p>
+                    </div>
+                </li>
+            </ol>
         </div>
     </section>
 
-    <!-- Bloque "Kihon · Kata · Kumite" -->
-    <section id="pilares-entrenamiento" class="pilares-section dark-card">
-        <div class="container">
-            <div class="section-header center" style="margin-bottom: 3rem;">
-                <h2 class="section-title text-light">Kihon, Kata y Kumite: los pilares del entrenamiento</h2>
-                <div class="title-underline" style="margin: 0 auto 1.25rem auto;"></div>
-                <p class="section-subtitle-text text-light-subtle">La metodología del Karate Shotokan JKA se estructura en tres componentes esenciales que se practican en cada sesión.</p>
+    <!-- Home V3 / Phase 1: three editorial training chapters -->
+    <section id="pilares-entrenamiento" class="training-editorial" aria-labelledby="training-editorial-title">
+        <div class="training-editorial__inner">
+            <div class="training-editorial__intro">
+                <h2 id="training-editorial-title">Kihon, Kata y Kumite: los pilares del entrenamiento</h2>
+                <p>La metodología del Karate Shotokan JKA se estructura en tres componentes esenciales que se practican en cada sesión.</p>
             </div>
-            <div class="pilares-grid">
-                <div class="pilar-card">
-                    <div class="pilar-badge">FUNDAMENTOS</div>
-                    <h3>Kihon</h3>
-                    <p class="pilar-tagline">Técnica Base y Biomecánica</p>
-                    <p>Práctica sistemática de posturas, desplazamientos, bloqueos y golpes. Desarrolla estabilidad, coordinación, velocidad, precisión y potencia técnica.</p>
+            <article class="training-editorial__chapter" aria-labelledby="training-kihon">
+                <div class="training-editorial__content">
+                    <div class="training-editorial__index">
+                        <span class="training-editorial__number" aria-hidden="true">01</span>
+                        <span class="training-editorial__kanji" lang="ja">基本</span>
+                    </div>
+                    <p class="training-editorial__eyebrow">FUNDAMENTOS</p>
+                    <h3 id="training-kihon">Kihon</h3>
+                    <p class="training-editorial__tagline">Técnica Base y Biomecánica</p>
+                    <p class="training-editorial__description">Práctica sistemática de posturas, desplazamientos, bloqueos y golpes. Desarrolla estabilidad, coordinación, velocidad, precisión y potencia técnica.</p>
                 </div>
-                <div class="pilar-card">
-                    <div class="pilar-badge">FORMA</div>
-                    <h3>Kata</h3>
-                    <p class="pilar-tagline">Secuencia Formal de Movimiento</p>
-                    <p>Secuencia formal de técnicas y desplazamientos que integra precisión, ritmo, equilibrio y concentración. Cultiva la memoria corporal y la comprensión del movimiento.</p>
+                <figure class="training-editorial__media training-editorial__media--kihon">
+                    <!-- HOME_V3_PROVISIONAL_IMAGE: provisional reference; alt describes the actual scene. -->
+                    <img src="assets/galeria/kihon-karate-adultos-01.webp"
+                         srcset="assets/galeria/kihon-karate-adultos-01-800w.webp 800w, assets/galeria/kihon-karate-adultos-01.webp 1800w"
+                         sizes="(min-width: 1200px) 600px, (min-width: 768px) 52vw, calc(100vw - 40px)"
+                         width="1800" height="1200" loading="lazy" decoding="async"
+                         alt="Practicantes adultos realizando golpes de puño en una clase de karate">
+                </figure>
+            </article>
+            <article class="training-editorial__chapter" aria-labelledby="training-kata">
+                <div class="training-editorial__content">
+                    <div class="training-editorial__index">
+                        <span class="training-editorial__number" aria-hidden="true">02</span>
+                        <span class="training-editorial__kanji" lang="ja">型</span>
+                    </div>
+                    <p class="training-editorial__eyebrow">FORMA</p>
+                    <h3 id="training-kata">Kata</h3>
+                    <p class="training-editorial__tagline">Secuencia Formal de Movimiento</p>
+                    <p class="training-editorial__description">Secuencia formal de técnicas y desplazamientos que integra precisión, ritmo, equilibrio y concentración. Cultiva la memoria corporal y la comprensión del movimiento.</p>
                 </div>
-                <div class="pilar-card">
-                    <div class="pilar-badge">APLICACIÓN</div>
-                    <h3>Kumite</h3>
-                    <p class="pilar-tagline">Trabajo en Pareja y Control</p>
-                    <p>Trabajo progresivo en pareja bajo estrictas normas de control y seguridad. Desarrolla noción de distancia (Ma-ai), tiempo (Timing), reacción, autocontrol y respeto.</p>
+                <figure class="training-editorial__media training-editorial__media--kata">
+                    <!-- HOME_V3_PROVISIONAL_IMAGE: provisional reference; alt describes the actual scene. -->
+                    <img src="assets/galeria/posicion-karate-adulto-06.webp"
+                         srcset="assets/galeria/posicion-karate-adulto-06-800w.webp 800w, assets/galeria/posicion-karate-adulto-06.webp 1067w"
+                         sizes="(min-width: 1200px) 600px, (min-width: 768px) 52vw, calc(100vw - 40px)"
+                         width="1067" height="1600" loading="lazy" decoding="async"
+                         alt="Practicante con cinturón negro en posición amplia, con una mano abierta extendida">
+                </figure>
+            </article>
+            <article class="training-editorial__chapter" aria-labelledby="training-kumite">
+                <div class="training-editorial__content">
+                    <div class="training-editorial__index">
+                        <span class="training-editorial__number" aria-hidden="true">03</span>
+                        <span class="training-editorial__kanji" lang="ja">組手</span>
+                    </div>
+                    <p class="training-editorial__eyebrow">APLICACIÓN</p>
+                    <h3 id="training-kumite">Kumite</h3>
+                    <p class="training-editorial__tagline">Trabajo en Pareja y Control</p>
+                    <p class="training-editorial__description">Trabajo progresivo en pareja bajo estrictas normas de control y seguridad. Desarrolla noción de distancia (Ma-ai), tiempo (Timing), reacción, autocontrol y respeto.</p>
                 </div>
-            </div>
+                <figure class="training-editorial__media training-editorial__media--kumite">
+                    <!-- HOME_V3_PROVISIONAL_IMAGE: provisional reference; alt describes the actual scene. -->
+                    <img src="assets/galeria/correccion-tecnica-karate-02.webp"
+                         srcset="assets/galeria/correccion-tecnica-karate-02-800w.webp 800w, assets/galeria/correccion-tecnica-karate-02.webp 1600w"
+                         sizes="(min-width: 1200px) 600px, (min-width: 768px) 52vw, calc(100vw - 40px)"
+                         width="1600" height="1067" loading="lazy" decoding="async"
+                         alt="Instructor corrigiendo la posición del brazo de un practicante de karate">
+                </figure>
+            </article>
         </div>
     </section>
 
     <!-- Propuesta de Valor Section (#about) -->
-    <section id="about" class="about section">
-        <div id="diferenciadores" class="container about-container">
-            <div class="about-text">
-                <h2 class="section-title">¿Por qué entrenar en Dojo Samurai?</h2>
-                <div class="title-underline"></div>
-                <p class="lead-text"><strong>Dojo Samurai JKA Villa Alemana</strong> ofrece formación en Karate-Do Shotokan tradicional para adultos desde los 18 años, con una enseñanza progresiva, exigente y orientada al desarrollo técnico, físico y personal.</p>
+    <section id="about" class="about-editorial" aria-labelledby="about-editorial-title">
+        <div id="diferenciadores" class="about-editorial__inner">
+            <div class="about-editorial__layout">
+                <div class="about-editorial__intro">
+                    <h2 id="about-editorial-title">¿Por qué entrenar en Dojo Samurai?</h2>
+                    <p class="about-editorial__lead"><strong>Dojo Samurai JKA Villa Alemana</strong> ofrece formación en Karate-Do Shotokan tradicional para adultos desde los 18 años, con una enseñanza progresiva, exigente y orientada al desarrollo técnico, físico y personal.</p>
                 <p><strong>Dojo Samurai JKA Villa Alemana</strong> está dirigido por <strong>Andrés Castro Fernández, 2.º Dan JKA</strong>, instructor responsable de las clases y del proceso formativo de sus alumnos. Su formación en Karate Shotokan JKA tiene como maestro y referente técnico a <strong>Sensei Raúl Puchi Zarecht, 6.º Dan JKA</strong>.</p>
-
-                <!-- 4 Diferenciadores Clave -->
-                <div class="diferenciadores-grid">
-                    <div class="diferenciador-card">
-                        <div class="diferenciador-header">
-                            <span class="diferenciador-num">01</span>
-                            <h3>Formación Shotokan JKA</h3>
-                        </div>
-                        <p>Entrenamiento técnico progresivo basado en los fundamentos del Karate-Do Shotokan JKA.</p>
-                    </div>
-                    <div class="diferenciador-card">
-                        <div class="diferenciador-header">
-                            <span class="diferenciador-num">02</span>
-                            <h3>Formación y Referencia Técnica</h3>
-                        </div>
-                        <p>La enseñanza del dojo está a cargo de Andrés Castro Fernández, 2.º Dan JKA, siguiendo una línea de formación en Karate Shotokan JKA que tiene como maestro y referente técnico a Sensei Raúl Puchi Zarecht, 6.º Dan JKA.</p>
-                    </div>
-                    <div class="diferenciador-card">
-                        <div class="diferenciador-header">
-                            <span class="diferenciador-num">03</span>
-                            <h3>Entrenamiento para Adultos</h3>
-                        </div>
-                        <p>Clases dirigidas actualmente a adultos desde los 18 años, con un enfoque acorde a su etapa de aprendizaje y condición física.</p>
-                    </div>
-                    <div class="diferenciador-card">
-                        <div class="diferenciador-header">
-                            <span class="diferenciador-num">04</span>
-                            <h3>Ambiente Marcial y Comunidad</h3>
-                        </div>
-                        <p>Un espacio basado en respeto, disciplina, compañerismo y progreso constante.</p>
-                    </div>
                 </div>
-
-                <!-- Tarjetas de Valores Culturales -->
-                <div class="values-grid">
-                    <div class="value-card value-card-bg1">
-                        <div class="value-card-overlay"></div>
-                        <div class="value-card-content">
-                            <span class="value-icon">🥋</span>
-                            <h4>Disciplina</h4>
-                            <p>Constancia y rigor en cada entrenamiento.</p>
+                <ol class="about-editorial__principles" role="list">
+                    <li class="about-editorial__item">
+                        <span class="about-editorial__number">01</span>
+                        <div>
+                            <h3 class="about-editorial__title">Formación Shotokan JKA</h3>
+                            <p class="about-editorial__text">Entrenamiento técnico progresivo basado en los fundamentos del Karate-Do Shotokan JKA.</p>
                         </div>
-                    </div>
-                    <div class="value-card value-card-bg2">
-                        <div class="value-card-overlay"></div>
-                        <div class="value-card-content">
-                            <span class="value-icon">🙏</span>
-                            <h4>Respeto</h4>
-                            <p>Hacia el dojo, los compañeros y la vida diaria.</p>
+                    </li>
+                    <li class="about-editorial__item">
+                        <span class="about-editorial__number">02</span>
+                        <div>
+                            <h3 class="about-editorial__title">Formación y Referencia Técnica</h3>
+                            <p class="about-editorial__text">La enseñanza del dojo está a cargo de Andrés Castro Fernández, 2.º Dan JKA, siguiendo una línea de formación en Karate Shotokan JKA que tiene como maestro y referente técnico a Sensei Raúl Puchi Zarecht, 6.º Dan JKA.</p>
                         </div>
-                    </div>
-                    <div class="value-card value-card-bg3">
-                        <div class="value-card-overlay"></div>
-                        <div class="value-card-content">
-                            <span class="value-icon">🎯</span>
-                            <h4>Enfoque</h4>
-                            <p>Concentración y templanza bajo cualquier desafío.</p>
+                    </li>
+                    <li class="about-editorial__item">
+                        <span class="about-editorial__number">03</span>
+                        <div>
+                            <h3 class="about-editorial__title">Entrenamiento para Adultos</h3>
+                            <p class="about-editorial__text">Clases dirigidas actualmente a adultos desde los 18 años, con un enfoque acorde a su etapa de aprendizaje y condición física.</p>
                         </div>
-                    </div>
-                    <div class="value-card value-card-bg4">
-                        <div class="value-card-overlay"></div>
-                        <div class="value-card-content">
-                            <span class="value-icon">🔥</span>
-                            <h4>Compromiso</h4>
-                            <p>Perseverancia, entrega y lealtad constante en el camino del Karate-Do.</p>
+                    </li>
+                    <li class="about-editorial__item">
+                        <span class="about-editorial__number">04</span>
+                        <div>
+                            <h3 class="about-editorial__title">Ambiente Marcial y Comunidad</h3>
+                            <p class="about-editorial__text">Un espacio basado en respeto, disciplina, compañerismo y progreso constante.</p>
                         </div>
-                    </div>
-                </div>
-
-                <div class="about-pillar-link-wrapper">
-                    <a href="/karate-shotokan-jka/" class="text-link-discreet">Conocer más sobre el Karate Shotokan JKA →</a>
-                </div>
+                    </li>
+                </ol>
             </div>
-            <div class="about-image-container modern-image inyo-symbol-container" tabindex="0" aria-label="Símbolo Inyo JKA">
-                <img src="assets/ui/jka2.png" alt="Insignia oficial Japan Karate Association JKA Chile - Símbolo Inyo" class="about-img inyo-symbol-img" width="250" height="250" loading="lazy" decoding="async">
+            <ul class="about-editorial__values" role="list">
+                <li>
+                    <h4>Disciplina</h4>
+                    <p>Constancia y rigor en cada entrenamiento.</p>
+                </li>
+                <li>
+                    <h4>Respeto</h4>
+                    <p>Hacia el dojo, los compañeros y la vida diaria.</p>
+                </li>
+                <li>
+                    <h4>Enfoque</h4>
+                    <p>Concentración y templanza bajo cualquier desafío.</p>
+                </li>
+                <li>
+                    <h4>Compromiso</h4>
+                    <p>Perseverancia, entrega y lealtad constante en el camino del Karate-Do.</p>
+                </li>
+            </ul>
+            <div class="about-editorial__closing">
+            <div class="about-editorial__symbol inyo-symbol-container" tabindex="0" aria-label="Símbolo Inyo JKA">
+                <img src="assets/ui/jka2.png" alt="Insignia oficial Japan Karate Association JKA Chile - Símbolo Inyo" class="about-editorial__symbol-img inyo-symbol-img" width="250" height="250" loading="lazy" decoding="async">
                 <div class="inyo-tooltip">
                     <div class="inyo-tooltip-header">
                         <span class="inyo-badge">☯ Símbolo Inyo (陰陽)</span>
@@ -433,14 +464,16 @@
                     </p>
                 </div>
             </div>
+                <a href="/karate-shotokan-jka/" class="about-editorial__link">Conocer más sobre el Karate Shotokan JKA →</a>
+            </div>
         </div>
-        <a href="#testimonios" class="scroll-chevron-down" aria-label="Ir a Experiencias de nuestros alumnos">
+        <a href="#testimonios" class="about-editorial__next" aria-label="Ir a Experiencias de nuestros alumnos">
             <span class="chevron-icon">⌄</span>
         </a>
     </section>
 
     <!-- Testimonios de alumnos: publicación siempre sujeta a revisión manual -->
-    <section id="testimonios" class="testimonials section" aria-labelledby="testimonials-title">
+    <section id="testimonios" class="testimonials section testimonials-editorial" aria-labelledby="testimonials-title">
         <div class="container testimonials-container">
             <header class="section-header center">
                 <h2 id="testimonials-title" class="section-title">Experiencias de nuestros alumnos</h2>
@@ -452,7 +485,7 @@
             <!-- El build inserta aquí únicamente los testimonios aprobados de data/testimonios.json. -->
             <!-- TESTIMONIOS_APROBADOS_FIN -->
 
-            <aside class="testimonial-invitation" aria-labelledby="testimonial-invitation-title">
+            <aside class="testimonial-invitation testimonials-editorial__invitation" aria-labelledby="testimonial-invitation-title">
                 <div class="testimonial-invitation__intro">
                     <p class="testimonial-invitation__eyebrow">COMUNIDAD DOJO SAMURAI</p>
                     <h3 id="testimonial-invitation-title">¿Entrenas con nosotros? Comparte tu experiencia</h3>
@@ -460,12 +493,12 @@
                 </div>
 
                 <details id="testimonial-disclosure" class="testimonial-disclosure">
-                    <summary>
+                    <summary class="testimonials-editorial__summary">
                         <span>Escribir mi testimonio</span>
                         <span class="testimonial-disclosure__icon" aria-hidden="true">⌄</span>
                     </summary>
 
-                    <div class="testimonial-form-wrapper modern-form">
+                    <div class="testimonial-form-wrapper modern-form testimonials-editorial__form">
                         <p id="testimonial-review-notice" class="testimonial-review-notice">
                             Tu envío llegará al dojo para revisión manual y no se publicará automáticamente.
                         </p>

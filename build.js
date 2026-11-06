@@ -168,18 +168,19 @@ function renderApprovedTestimonials(testimonials) {
     }
 
     const cards = testimonials.map(item => `
-                    <article class="testimonial-card" data-testimonial-id="${escapeHtml(item.id)}">
-                        <blockquote class="testimonial-card__quote">
+                    <article class="testimonial-card testimonials-editorial__item" data-testimonial-id="${escapeHtml(item.id)}">
+                        <span class="testimonials-editorial__mark" aria-hidden="true">“</span>
+                        <blockquote class="testimonial-card__quote testimonials-editorial__quote">
                             <p>${escapeHtml(item.testimonio)}</p>
                         </blockquote>
                         <footer class="testimonial-card__attribution">
-                            <span class="testimonial-card__name">${escapeHtml(item.nombre)}</span>
-                            <span class="testimonial-card__training-time">${escapeHtml(item.tiempoEntrenando)}</span>
+                            <span class="testimonial-card__name testimonials-editorial__author">${escapeHtml(item.nombre)}</span>
+                            <span class="testimonial-card__training-time testimonials-editorial__meta">${escapeHtml(item.tiempoEntrenando)}</span>
                         </footer>
                     </article>`).join('');
 
     return `            <div class="published-testimonials" aria-label="Testimonios publicados">
-                <div class="published-testimonials__grid" data-count="${testimonials.length}">${cards}
+                <div class="published-testimonials__grid testimonials-editorial__grid" data-count="${testimonials.length}">${cards}
                 </div>
             </div>
 

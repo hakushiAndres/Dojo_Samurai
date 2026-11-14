@@ -979,7 +979,22 @@ document.addEventListener('DOMContentLoaded', () => {
             "content": "<p class=\"news-lead-paragraph\"><strong>¡Celebración histórica de 50 Años de Trayectoria!</strong> El sábado 8 de agosto se realizó una clase especial con motivo de las bodas de oro del <strong>Dojo Samurai JKA Viña del Mar</strong>.</p><div class=\"news-highlight-box\" style=\"background: rgba(15,23,42,0.04); border-left: 4px solid #0f172a; padding: 1.25rem 1.5rem; border-radius: 12px; margin: 1.5rem 0;\"><h4 style=\"margin-top: 0; color: #0f172a; font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem;\">🥋 Dirección de la Clase Especial</h4><p style=\"margin: 0; color: #334155; font-size: 0.98rem; line-height: 1.6;\">La clase estuvo magistralmente dirigida por <strong>Sensei Raúl Puchi (6to Dan JKA)</strong>, cuya presencia transmitió profunda energía, técnica y motivación a todos los alumnos asistentes. Posterior a la práctica, se compartió una inolvidable convivencia fraternal.</p></div><p>En este mes de aniversario queremos expresar nuestros más sinceros deseos y felicitaciones para el <strong>Honbu Dojo</strong> y para Sensei Raúl Puchi por sus 50 años de trayectoria ininterrumpida y su inquebrantable compromiso con la enseñanza del Karate Do Shotokan JKA en Chile. <em>Ossu.</em></p><div class=\"news-gallery-grid\" style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0001.webp\" alt=\"50 Años Dojo Samurai JKA\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0002.webp\" alt=\"Clase Especial Sensei Raúl Puchi\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0005.webp\" alt=\"Convivencia 50 Aniversario Dojo Samurai\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0006.webp\" alt=\"Alumnos en Clase Aniversario\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0007.webp\" alt=\"Celebración Honbu Dojo Samurai\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"><img src=\"assets/noticias/Aniversario/IMG-20260810-WA0008.webp\" alt=\"Sensei Raúl Puchi 6to Dan JKA\" style=\"width:100%; border-radius:12px; height: 180px; object-fit: cover;\"></div>"
         }
     ];
-    let allNewsArticles = [...defaultNewsData];
+    const listingGrid = document.getElementById('noticias-grid-container');
+    const listingApi = window.DojoNewsListing;
+    let allNewsArticles;
+    if (listingGrid) {
+        try {
+            const snapshot = JSON.parse(document.getElementById('news-listing-data').textContent);
+            if (!Array.isArray(snapshot) || !listingApi) throw new Error('Listado sin datos o renderizador.');
+            allNewsArticles = listingApi.selectArticles(snapshot);
+        } catch (error) {
+            // Preserve build-generated cards if enhancement cannot initialize.
+            console.warn('Se conserva el listado de noticias generado durante el build.');
+            return;
+        }
+    } else {
+        allNewsArticles = [...defaultNewsData];
+    }
 
     // Helper to render modern news cards HTML (Featured vs Standard)
     const createNewsCardHTML = (article, index = 0) => {
@@ -1049,7 +1064,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openArticleModal = (articleId, opener = document.activeElement) => {
         let article = allNewsArticles.find(a => a.id === articleId || a.slug === articleId);
-        if (!article) {
+        if (!article && !listingGrid) {
             article = defaultNewsData.find(a => a.id === articleId || a.slug === articleId) || defaultNewsData[0];
         }
         if (!article) return;
@@ -1262,14 +1277,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const filterAndRenderNoticias = () => {
         if (!noticiasGridContainer) return;
-        let filtered = allNewsArticles.filter(art => {
-            const matchesCat = activeCategory === 'all' || art.category === activeCategory;
-            const matchesSearch = searchQuery === '' || 
-                art.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                art.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-            return matchesCat && matchesSearch;
-        }).sort((a, b) => Number(b.featured === true) - Number(a.featured === true)
-            || (b.datePublished || b.date || '').localeCompare(a.datePublished || a.date || ''));
+        const filtered = listingApi.selectArticles(allNewsArticles, activeCategory, searchQuery);
 
         if (filtered.length === 0) {
             noticiasGridContainer.innerHTML = `
@@ -1280,7 +1288,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         } else {
-            noticiasGridContainer.innerHTML = filtered.map((art, idx) => createNewsCardHTML(art, idx)).join('');
+            noticiasGridContainer.innerHTML = listingApi.renderCards(filtered);
         }
     };
 
@@ -1328,7 +1336,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Try fetching external JSON data asynchronously with cache buster
+    // The listing already has this build's complete public snapshot. Never let
+    // an older network response or Home's legacy fallback replace those cards.
+    if (noticiasGridContainer) return;
+
+    // Homepage data loading remains unchanged.
     fetch('data/noticias.json?v=' + Date.now())
         .then(res => {
             if (!res.ok) throw new Error('Noticias JSON offline');

@@ -32,6 +32,8 @@ function publicArticle(article) {
 const publicNews = allNews.filter(article => article.status !== 'draft').map(publicArticle);
 const buildNews = previewNews ? allNews.map(article => article.status === 'draft' ? article : publicArticle(article)) : publicNews;
 const siteUrl = 'https://www.samuraijkavalemana.cl';
+const newsListing = require('./assets/js/news-listing');
+const { createHash } = require('crypto');
 const { readGallery, compileGallery } = require('./scripts/gallery-build');
 // Fail before replacing dist if selected gallery files or metadata are invalid.
 const galleryPhotos = readGallery(rootDir);
@@ -460,20 +462,25 @@ if (fs.existsSync(noticiasJsonPath)) {
     }
 }
 
-// Preserve the existing listing and add the institutional card when included.
-const hospitalForListing = buildNews.find(article => article.slug === hospitalSlug);
-if (hospitalForListing) {
-    const article = hospitalForListing;
-    const listingPath = path.join(distDir, 'noticias.html');
-    const marker = '<div id="noticias-grid-container" class="news-cards-grid">';
-    const responsive = article.publicationMode === 'text-only' ? '' : `srcset="/${article.imageSmall} 800w, /${article.image} 1280w" sizes="(max-width: 768px) 100vw, 400px"`;
-    const card = `<article class="news-card${article.featured ? ' news-hero-card' : ''}" data-id="${article.id}"${article.featured ? ' style="grid-column: 1 / -1;"' : ''}>
-        ${article.featured ? `<div class="news-hero-badge-strip"><span>${escapeHtml(article.badgeText)}</span><span>JKA CHILE 2026</span></div>` : ''}
-        <div class="news-hero-grid"><div class="news-hero-img-wrapper"><img class="news-hero-img" src="/${article.image}" ${responsive} width="${article.imageWidth}" height="${article.imageHeight}" loading="lazy" decoding="async" alt="${escapeHtml(article.imageAlt)}"><span class="news-category-badge badge-red">Comunidad</span></div><div class="news-hero-body"><p>${article.dateFormatted}</p><h2 class="news-hero-title">${escapeHtml(article.title)}</h2><p class="news-hero-excerpt">${escapeHtml(article.excerpt)}</p><a class="btn btn-primary news-read-more-btn" href="/noticias/${article.slug}/">Leer noticia completa →</a></div></div></article>`;
-    let listing = fs.readFileSync(listingPath, 'utf8').replace(marker, marker + '\n' + card);
-    if (previewNews) listing = listing.replace('index, follow, max-image-preview:large', 'noindex, nofollow');
-    fs.writeFileSync(listingPath, listing);
+// One public snapshot and renderer for initial HTML, search and category filters.
+// Draft previews may generate individual pages, but never enter this listing.
+const listingPath = path.join(distDir, 'noticias.html');
+const listingArticles = newsListing.selectArticles(publicNews)
+    .map(({ status, publicationChecks, publicationMode, ...article }) => article);
+const listingMarker = /<!-- NOTICIAS_INICIO -->[\s\S]*?<!-- NOTICIAS_FIN -->/g;
+let listing = fs.readFileSync(listingPath, 'utf8');
+if ((listing.match(listingMarker) || []).length !== 1
+    || ['<!-- NOTICIAS_DATOS -->', '<!-- NOTICIAS_SCRIPTS -->'].some(marker => listing.split(marker).length !== 2)) {
+    throw new Error('[Noticias] Se requieren marcadores únicos de tarjetas, datos y scripts.');
 }
+listing = listing.replace(listingMarker, () => `<!-- NOTICIAS_INICIO -->\n${newsListing.renderCards(listingArticles)}\n                <!-- NOTICIAS_FIN -->`)
+    .replace('<!-- NOTICIAS_DATOS -->', () => `<script type="application/json" id="news-listing-data">${editorialJson(listingArticles)}</script>`);
+// Content hashes keep a refreshed document from reusing an older JS renderer.
+const contentHash = file => createHash('sha256').update(fs.readFileSync(path.join(rootDir, file))).digest('hex').slice(0, 12);
+listing = listing.replace('<!-- NOTICIAS_SCRIPTS -->',
+    `<script defer src="/assets/js/news-listing.js?v=${contentHash('assets/js/news-listing.js')}"></script>\n    <script defer src="/script.js?v=${contentHash('script.js')}"></script>`);
+if (previewNews) listing = listing.replace('index, follow, max-image-preview:large', 'noindex, nofollow');
+fs.writeFileSync(listingPath, listing);
 
 // Dynamically generate dist/sitemap.xml during build
 try {

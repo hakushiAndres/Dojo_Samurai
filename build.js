@@ -2,7 +2,34 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = __dirname;
-const distDir = path.join(rootDir, 'dist');
+// Draft previews are local artifacts, outside the deployment directory.
+const previewNews = process.argv.includes('--preview-news');
+const distDir = path.join(rootDir, previewNews ? 'scratch/quilpue-preview' : 'dist');
+const allNews = JSON.parse(fs.readFileSync(path.join(rootDir, 'data/noticias.json'), 'utf8'));
+const hospitalSlug = 'karate-defensa-personal-hospital-quilpue';
+const hospitalNews = allNews.find(article => article.slug === hospitalSlug);
+const hospitalPhotosAuthorized = ['participants', 'minorGuardian', 'certificatesReviewed']
+    .every(key => hospitalNews?.publicationChecks?.[key] === true);
+if (hospitalNews && hospitalNews.status !== 'draft') {
+    const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
+        && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+    if (hospitalNews.status !== 'published' || !validDate(hospitalNews.date) || !validDate(hospitalNews.datePublished)
+        || hospitalNews.datePublished < hospitalNews.date
+        || !['text-only', 'photos'].includes(hospitalNews.publicationMode)
+        || (hospitalNews.publicationMode === 'photos' && !hospitalPhotosAuthorized)) {
+        throw new Error('[Noticias] Hospital de Quilpué: faltan fechas reales o autorizaciones de publicación. Mantener status: draft.');
+    }
+}
+// Keep approved source prose intact. The text-only projection removes photo
+// figures and uses the existing institutional mark, including in public JSON.
+function publicArticle(article) {
+    if (article.slug !== hospitalSlug || article.publicationMode !== 'text-only') return article;
+    return { ...article, content: article.content.replace(/<figure\b[^>]*>[\s\S]*?<\/figure>/g, ''),
+        image: 'assets/ui/animacion/jka_logo.png', imageSmall: 'assets/ui/animacion/jka_logo.png',
+        imageAlt: 'Emblema institucional de la Japan Karate Association (JKA)', imageWidth: 84, imageHeight: 84 };
+}
+const publicNews = allNews.filter(article => article.status !== 'draft').map(publicArticle);
+const buildNews = previewNews ? allNews.map(article => article.status === 'draft' ? article : publicArticle(article)) : publicNews;
 const siteUrl = 'https://www.samuraijkavalemana.cl';
 const { readGallery, compileGallery } = require('./scripts/gallery-build');
 // Fail before replacing dist if selected gallery files or metadata are invalid.
@@ -55,6 +82,9 @@ staticItems.forEach(item => {
     }
 });
 
+// Never ship editorial drafts or their approval checklist through the public JSON.
+fs.writeFileSync(path.join(distDir, 'data/noticias.json'), JSON.stringify(buildNews.map(({ status, publicationChecks, publicationMode, ...article }) => article), null, 2) + '\n');
+
 // Compile approved testimonials into the copied homepage. The JSON contains
 // public display data only; submitted form data is never read or published.
 const galleryHomepagePath = path.join(distDir, 'index.html');
@@ -71,6 +101,11 @@ function copyDirSync(src, dest) {
         const destPath = path.join(dest, entry.name);
         // Full-resolution originals are local editorial input, never web output.
         if (srcPath === path.join(rootDir, 'assets', 'galeria', 'web')) continue;
+        // The supplied package is local input; only selected WebP assets may ship.
+        if (srcPath === path.join(rootDir, 'assets/noticias/noticia_hospital_quilpue_web')) continue;
+        if (srcPath === path.join(rootDir, 'assets/noticias/Hospital-Quilpue')
+            && (!hospitalPhotosAuthorized || hospitalNews?.publicationMode !== 'photos'
+                || !buildNews.some(article => article.slug === hospitalSlug))) continue;
         if (entry.isDirectory()) {
             copyDirSync(srcPath, destPath);
         } else {
@@ -400,7 +435,7 @@ const compiledArticles = [];
 
 if (fs.existsSync(noticiasJsonPath)) {
     try {
-        const newsArticles = JSON.parse(fs.readFileSync(noticiasJsonPath, 'utf-8'));
+        const newsArticles = buildNews;
         const noticiasDistDir = path.join(distDir, 'noticias');
         if (!fs.existsSync(noticiasDistDir)) {
             fs.mkdirSync(noticiasDistDir, { recursive: true });
@@ -420,8 +455,21 @@ if (fs.existsSync(noticiasJsonPath)) {
             console.log(`✓ Generated article page -> dist/noticias/${slug}/index.html`);
         });
     } catch (err) {
-        console.error('Error generating static article pages:', err);
+        throw new Error(`Error generating static article pages: ${err.message}`);
     }
+}
+
+// Preserve the existing listing and add the institutional card when included.
+const hospitalForListing = buildNews.find(article => article.slug === hospitalSlug);
+if (hospitalForListing) {
+    const article = hospitalForListing;
+    const listingPath = path.join(distDir, 'noticias.html');
+    const marker = '<div id="noticias-grid-container" class="news-cards-grid">';
+    const responsive = article.publicationMode === 'text-only' ? '' : `srcset="/${article.imageSmall} 800w, /${article.image} 1280w" sizes="(max-width: 768px) 100vw, 400px"`;
+    const card = `<article class="news-card" data-id="${article.id}"><a href="/noticias/${article.slug}/"><img src="/${article.image}" ${responsive} width="${article.imageWidth}" height="${article.imageHeight}" loading="lazy" decoding="async" alt="${escapeHtml(article.imageAlt)}" style="display:block;max-width:100%;height:auto"><div class="news-card-body"><span class="news-category-badge">Comunidad</span><p>${article.dateFormatted}</p><h2>${escapeHtml(article.title)}</h2><p>${escapeHtml(article.excerpt)}</p><span>Leer noticia completa →</span></div></a></article>`;
+    let listing = fs.readFileSync(listingPath, 'utf8').replace(marker, marker + '\n' + card);
+    if (previewNews) listing = listing.replace('index, follow, max-image-preview:large', 'noindex, nofollow');
+    fs.writeFileSync(listingPath, listing);
 }
 
 // Dynamically generate dist/sitemap.xml during build
@@ -435,14 +483,15 @@ try {
     const dates = [];
 
     compiledArticles.forEach(article => {
+        if (article.status === 'draft') return;
         const slug = article.slug || article.id;
         const generatedFilePath = path.join(distDir, 'noticias', slug, 'index.html');
         
         // Verify physical file existence before adding to sitemap
         if (fs.existsSync(generatedFilePath)) {
             validArticles.push(article);
-            if (article.date) {
-                dates.push(article.date);
+            if (article.datePublished || article.date) {
+                dates.push(article.datePublished || article.date);
             }
         } else {
             console.error(`❌ Error: Article page dist/noticias/${slug}/index.html missing. Excluded from sitemap.`);
@@ -464,8 +513,8 @@ try {
     validArticles.forEach(article => {
         const slug = article.slug || article.id;
         const articleUrl = `https://www.samuraijkavalemana.cl/noticias/${slug}/`;
-        if (article.date) {
-            sitemapUrls.push(`  <url>\n    <loc>${articleUrl}</loc>\n    <lastmod>${article.date}</lastmod>\n  </url>`);
+        if (article.datePublished || article.date) {
+            sitemapUrls.push(`  <url>\n    <loc>${articleUrl}</loc>\n    <lastmod>${article.datePublished || article.date}</lastmod>\n  </url>`);
         } else {
             sitemapUrls.push(`  <url>\n    <loc>${articleUrl}</loc>\n  </url>`);
         }
@@ -594,7 +643,7 @@ function generateArticleHtml(article) {
         }
     };
 
-    return `<!DOCTYPE html>
+    let html = `<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -782,6 +831,26 @@ ${JSON.stringify(ldJson, null, 4)}
     <script defer src="../../script.js?v=95.0"></script>
 </body>
 </html>`;
+    if (slug === hospitalSlug) {
+        const alt = escapeHtml(article.imageAlt);
+        const cover = article.publicationMode === 'text-only' ? '' : `<figure><img src="/${article.image}" srcset="/${article.imageSmall} 800w, /${article.image} 1280w" sizes="(max-width: 860px) 100vw, 730px" width="1280" height="720" decoding="async" alt="${alt}"><figcaption>Participantes e instructor al cierre del taller en el Hospital de Quilpué.</figcaption></figure>`;
+        const styles = `<style>
+        .single-article-card { overflow-wrap: anywhere; }
+        .single-article-body figure { margin: 1.5rem 0; }
+        .single-article-body figure img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 12px; }
+        .single-article-body figure img[width="720"] { width: min(100%, 720px); margin-inline: auto; }
+        .single-article-body figcaption { margin-top: .5rem; color: #64748b; font-size: .9rem; line-height: 1.5; }
+        @media(max-width: 600px) { .single-article-card { padding: 1.25rem !important; } }
+        </style>`;
+        ldJson.datePublished = article.datePublished || undefined;
+        ldJson.dateModified = article.datePublished || undefined;
+        html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${JSON.stringify(ldJson, null, 4)}</script>`);
+        html = html.replace(resolvedContent, cover + resolvedContent)
+            .replace('</head>', `${styles}${article.datePublished ? `<meta property="article:published_time" content="${article.datePublished}">` : ''}</head>`)
+            .replace(`<meta property="og:image:alt" content="${article.title}" />`, `<meta property="og:image:alt" content="${alt}" />\n    <meta property="og:image:width" content="${article.imageWidth}"><meta property="og:image:height" content="${article.imageHeight}">`);
+        if (article.status === 'draft') html = html.replace('index, follow, max-image-preview:large', 'noindex, nofollow');
+    }
+    return html;
 }
 
 function generateShotokanPillarHtml() {

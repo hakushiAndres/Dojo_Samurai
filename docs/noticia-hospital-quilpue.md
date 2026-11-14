@@ -1,41 +1,56 @@
-﻿# Noticia Hospital de Quilpué — publicación textual
+﻿# Noticia Hospital de Quilpué — destacada con fotografías
 
-Evento: 2026-11-11. Publicación: 2026-11-14. Categoría: Comunidad.
+Evento: 2026-11-11. Publicación original: 2026-11-14.
+Actualización fotográfica: 2026-11-14. Categoría: Comunidad.
 URL: https://www.samuraijkavalemana.cl/noticias/karate-defensa-personal-hospital-quilpue/
 
-Se activa únicamente esta entrada con `status: published` y `publicationMode: text-only`.
-El texto aprobado permanece intacto en el origen. El build omite las figuras
-fotográficas en HTML y JSON públicos. Se conserva literalmente la prosa aprobada,
-incluida su mención a las fotografías de la jornada, aunque estas quedan retenidas.
-La tarjeta y los metadatos sociales usan el emblema JKA ya existente en el sitio:
-`assets/ui/animacion/jka_logo.png` (84 × 84). No se utiliza la portada fotográfica.
+Se actualiza exclusivamente la noticia existente: `featured: true`, etiqueta
+`ACTIVIDAD DEL DOJO` y `publicationMode: photos`. Se mantienen slug, título,
+descripción SEO, fechas originales y prosa aprobada. Las noticias anteriores
+conservan todos sus datos e indicadores featured. El listado ordena primero las
+destacadas y, entre ellas, por datePublished o date descendente.
 
-## Privacidad
+## Autorización y protección de datos
 
-No hay constancia verificada de autorizaciones. Los tres controles de
-`publicationChecks` siguen en `false`, sin registrar permisos inexistentes:
-- Difusión de participantes identificables, incluidas personas en reflejos.
-- Autorización del representante de la menor.
-- Revisión y autorización de información personal visible en certificados.
+El usuario confirmó en la solicitud de esta actualización que cuenta con la
+autorización de difusión de los participantes, incluida la menor. Por esa
+confirmación se registran participants y minorGuardian en true. No se han creado
+consentimientos individuales ni se afirma disponer de documentos de respaldo.
 
-La revisión previa documentó texto personal visible en la fotografía de entrega.
-No se considera resuelto. Las seis WebP y el paquete original permanecen locales,
-sin stage, commit ni copia a dist. El build excluye la carpeta Hospital-Quilpue
-salvo que el modo sea `photos` y los tres controles estén verificados.
+Se revisaron visualmente las tres fotografías y ampliaciones de los certificados.
+Se pixelaron selectivamente nombres, firmas y texto personal de los certificados:
+seis áreas en la foto grupal (incluye certificados superpuestos), una en el saludo
+y una en la entrega. No se modificaron rostros ni se generó contenido artificial.
+Se preservaron composición, dimensiones, colores y contexto de la ceremonia.
+certificatesReviewed se registra en true por esa revisión y ocultación, sin
+interpretarlo como autorización adicional para divulgar datos personales.
 
-## Mecanismo
+Los archivos publicados son las tres WebP seleccionadas y sus variantes -800w.
+La grupal mide 1280 × 720; su variante, 800 × 450. Las interiores miden 720 × 1280;
+sus variantes -800w se regeneraron a 450 × 800. Los descriptores srcset reflejan
+el ancho real, aunque el sufijo del nombre sea heredado.
+Los originales sin ocultación y el paquete suministrado permanecen locales,
+fuera del commit y de dist. No se publica el paquete original ni scratch.
 
-El build valida estado, fechas reales y modo de publicación antes de reemplazar
-dist. El modo `photos` requiere los tres controles; `text-only` mantiene el bloqueo
-de las fotografías y proyecta una versión pública sin sus figuras ni referencias.
-NewsArticle, article:published_time y sitemap usan datePublished; la fecha visible
-conserva la del evento. El JSON público omite controles internos y modo de publicación.
+## Presentación y controles
 
-`node build.js --preview-news` genera una vista local en scratch/quilpue-preview,
-separada de dist. Los borradores se omiten del sitemap y usan noindex/nofollow.
-No compartir vistas de borradores con material pendiente de autorización.
+La grupal es la única portada del artículo, de la tarjeta y de OG, Twitter y
+NewsArticle. Se muestran saludo y entrega como interiores con ALT, dimensiones,
+srcset, sizes, lazy loading, decoding async y pies de foto. No se repite la portada.
+El build sigue rechazando el modo photos si falta cualquiera de los tres controles.
+El modo text-only continúa disponible y excluye fotografías y referencias del
+HTML y JSON públicos. Los controles internos no se incluyen en el JSON público.
 
-Validación: npm.cmd run build, node --check build.js, node --check script.js,
-node --test tests/gallery.test.js tests/hospital-news.test.js y git diff --check.
-La publicación se realiza mediante push a origin/main y la integración Git existente
-del proyecto samurai12/dojo-samurai, sin crear un proyecto adicional.
+NewsArticle mantiene datePublished y utiliza dateModified para la actualización.
+Al realizarse ambos cambios el 2026-11-14, sus fechas coinciden. Canonical y URL
+permanecen sin cambios. El sitemap mantiene la URL y la fecha correctas.
+
+## Validación y despliegue
+
+Ejecutar npm.cmd run build, node --check build.js, node --check script.js,
+node --test tests/gallery.test.js, node --test tests/hospital-news.test.js y
+git diff --check. Las pruebas comprueban privacidad, tres fotografías y variantes,
+metadatos, primer puesto destacado en el renderizador real y Galería V2.
+Se comparan Home, Happy Hours, prosa aprobada y noticias anteriores con el estado previo.
+Publicar por push a origin/main y la integración Git existente de
+samurai12/dojo-samurai; comprobar READY y los recursos públicos.

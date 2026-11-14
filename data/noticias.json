@@ -46,19 +46,21 @@
     "image": "assets/noticias/Hospital-Quilpue/cierre-taller-karate-defensa-personal-hospital-quilpue.webp",
     "excerpt": "La actividad acercó principios del Karate-Do y nociones básicas de prevención, atención al entorno, distancia y desescalamiento de conflictos.",
     "readTime": "3 min de lectura",
-    "featured": false,
+    "featured": true,
     "content": "<p class=\"news-lead-paragraph\"><strong>Dojo Samurai JKA Villa Alemana finalizó el Taller de Karate y Defensa Personal desarrollado en el Hospital de Quilpué</strong>, una instancia orientada a acercar algunos principios del Karate-Do y entregar nociones básicas de prevención y seguridad personal.</p><p>A lo largo de las jornadas se trabajaron ejercicios progresivos y conceptos fundamentales relacionados con la atención al entorno, la prevención de situaciones de riesgo, el manejo de la distancia y la importancia de evitar o desescalar un conflicto siempre que sea posible.</p><p>El taller también permitió abordar principios básicos de defensa personal desde una perspectiva responsable, enfatizando que la primera herramienta frente a una situación de peligro es reconocer el riesgo, mantener la atención, evitar exponerse innecesariamente y buscar una salida segura antes de recurrir a una respuesta física.</p><h2>Karate-Do, prevención y autocontrol</h2><p>En el trabajo práctico se incorporaron ejercicios simples de postura, desplazamiento, reacción y control, adaptados a personas sin necesidad de experiencia previa en artes marciales.</p><p>La actividad fue dirigida por <strong>Andrés Castro Fernández, 2.º Dan JKA</strong> e instructor de Dojo Samurai JKA Villa Alemana.</p><p>Más allá de la ejecución técnica, uno de los objetivos principales fue transmitir que muchos de los principios desarrollados mediante la práctica del Karate-Do —como la concentración, el autocontrol, la percepción de la distancia y la capacidad de reaccionar bajo presión— pueden tener una aplicación práctica en distintos contextos de la vida cotidiana.</p><h2>Una jornada de cierre y reconocimiento</h2><p>El encuentro final incluyó una entrega de certificados y un momento de reconocimiento a las personas participantes, como se aprecia en las fotografías de la jornada.</p><figure><img src=\"/assets/noticias/Hospital-Quilpue/saludo-karate-cierre-taller-hospital-quilpue.webp\" width=\"720\" height=\"1280\" loading=\"lazy\" decoding=\"async\" alt=\"Saludo y apretón de manos entre el instructor y un participante durante la ceremonia de cierre\"><figcaption>Saludo durante la jornada de cierre del taller.</figcaption></figure><p>Desde Dojo Samurai JKA Villa Alemana agradecemos al Hospital de Quilpué y a todas las personas que participaron en este taller por su disposición, compromiso y respeto durante cada jornada.</p><p>Esperamos que las nociones y herramientas trabajadas puedan contribuir a una mayor conciencia del entorno, prevención y seguridad personal.</p><figure><img src=\"/assets/noticias/Hospital-Quilpue/entrega-certificado-taller-karate-hospital-quilpue.webp\" width=\"720\" height=\"1280\" loading=\"lazy\" decoding=\"async\" alt=\"Participante con certificado junto al instructor de Karate Shotokan al cierre del taller\"><figcaption>Entrega de certificados al finalizar la actividad.</figcaption></figure>",
     "datePublished": "2026-11-14",
     "status": "published",
-    "publicationMode": "text-only",
+    "publicationMode": "photos",
     "publicationChecks": {
-      "participants": false,
-      "minorGuardian": false,
-      "certificatesReviewed": false
+      "participants": true,
+      "minorGuardian": true,
+      "certificatesReviewed": true
     },
     "imageAlt": "Portada: grupo de participantes con certificados y su instructor al cierre del taller",
     "imageWidth": 1280,
     "imageHeight": 720,
-    "imageSmall": "assets/noticias/Hospital-Quilpue/cierre-taller-karate-defensa-personal-hospital-quilpue-800w.webp"
+    "imageSmall": "assets/noticias/Hospital-Quilpue/cierre-taller-karate-defensa-personal-hospital-quilpue-800w.webp",
+    "badgeText": "ACTIVIDAD DEL DOJO",
+    "dateModified": "2026-11-14"
   }
 ]

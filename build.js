@@ -15,6 +15,7 @@ if (hospitalNews && hospitalNews.status !== 'draft') {
         && Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
     if (hospitalNews.status !== 'published' || !validDate(hospitalNews.date) || !validDate(hospitalNews.datePublished)
         || hospitalNews.datePublished < hospitalNews.date
+        || (hospitalNews.dateModified !== undefined && (!validDate(hospitalNews.dateModified) || hospitalNews.dateModified < hospitalNews.datePublished))
         || !['text-only', 'photos'].includes(hospitalNews.publicationMode)
         || (hospitalNews.publicationMode === 'photos' && !hospitalPhotosAuthorized)) {
         throw new Error('[Noticias] Hospital de Quilpué: faltan fechas reales o autorizaciones de publicación. Mantener status: draft.');
@@ -466,7 +467,9 @@ if (hospitalForListing) {
     const listingPath = path.join(distDir, 'noticias.html');
     const marker = '<div id="noticias-grid-container" class="news-cards-grid">';
     const responsive = article.publicationMode === 'text-only' ? '' : `srcset="/${article.imageSmall} 800w, /${article.image} 1280w" sizes="(max-width: 768px) 100vw, 400px"`;
-    const card = `<article class="news-card" data-id="${article.id}"><a href="/noticias/${article.slug}/"><img src="/${article.image}" ${responsive} width="${article.imageWidth}" height="${article.imageHeight}" loading="lazy" decoding="async" alt="${escapeHtml(article.imageAlt)}" style="display:block;max-width:100%;height:auto"><div class="news-card-body"><span class="news-category-badge">Comunidad</span><p>${article.dateFormatted}</p><h2>${escapeHtml(article.title)}</h2><p>${escapeHtml(article.excerpt)}</p><span>Leer noticia completa →</span></div></a></article>`;
+    const card = `<article class="news-card${article.featured ? ' news-hero-card' : ''}" data-id="${article.id}"${article.featured ? ' style="grid-column: 1 / -1;"' : ''}>
+        ${article.featured ? `<div class="news-hero-badge-strip"><span>${escapeHtml(article.badgeText)}</span><span>JKA CHILE 2026</span></div>` : ''}
+        <div class="news-hero-grid"><div class="news-hero-img-wrapper"><img class="news-hero-img" src="/${article.image}" ${responsive} width="${article.imageWidth}" height="${article.imageHeight}" loading="lazy" decoding="async" alt="${escapeHtml(article.imageAlt)}"><span class="news-category-badge badge-red">Comunidad</span></div><div class="news-hero-body"><p>${article.dateFormatted}</p><h2 class="news-hero-title">${escapeHtml(article.title)}</h2><p class="news-hero-excerpt">${escapeHtml(article.excerpt)}</p><a class="btn btn-primary news-read-more-btn" href="/noticias/${article.slug}/">Leer noticia completa →</a></div></div></article>`;
     let listing = fs.readFileSync(listingPath, 'utf8').replace(marker, marker + '\n' + card);
     if (previewNews) listing = listing.replace('index, follow, max-image-preview:large', 'noindex, nofollow');
     fs.writeFileSync(listingPath, listing);
@@ -833,6 +836,10 @@ ${JSON.stringify(ldJson, null, 4)}
 </html>`;
     if (slug === hospitalSlug) {
         const alt = escapeHtml(article.imageAlt);
+        const originalContent = resolvedContent;
+        // The portrait variants are 450 × 800, despite their legacy -800w suffix.
+        resolvedContent = resolvedContent.replace(/(<img src="\.\.\/\.\.\/assets\/noticias\/Hospital-Quilpue\/([^"/]+)\.webp")/g,
+            '$1 srcset="/assets/noticias/Hospital-Quilpue/$2-800w.webp 450w, /assets/noticias/Hospital-Quilpue/$2.webp 720w" sizes="(max-width: 600px) calc(100vw - 5.5rem), 720px"');
         const cover = article.publicationMode === 'text-only' ? '' : `<figure><img src="/${article.image}" srcset="/${article.imageSmall} 800w, /${article.image} 1280w" sizes="(max-width: 860px) 100vw, 730px" width="1280" height="720" decoding="async" alt="${alt}"><figcaption>Participantes e instructor al cierre del taller en el Hospital de Quilpué.</figcaption></figure>`;
         const styles = `<style>
         .single-article-card { overflow-wrap: anywhere; }
@@ -843,10 +850,10 @@ ${JSON.stringify(ldJson, null, 4)}
         @media(max-width: 600px) { .single-article-card { padding: 1.25rem !important; } }
         </style>`;
         ldJson.datePublished = article.datePublished || undefined;
-        ldJson.dateModified = article.datePublished || undefined;
+        ldJson.dateModified = article.dateModified || article.datePublished || undefined;
         html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${JSON.stringify(ldJson, null, 4)}</script>`);
-        html = html.replace(resolvedContent, cover + resolvedContent)
-            .replace('</head>', `${styles}${article.datePublished ? `<meta property="article:published_time" content="${article.datePublished}">` : ''}</head>`)
+        html = html.replace(originalContent, cover + resolvedContent)
+            .replace('</head>', `${styles}${article.datePublished ? `<meta property="article:published_time" content="${article.datePublished}"><meta property="article:modified_time" content="${ldJson.dateModified}">` : ''}</head>`)
             .replace(`<meta property="og:image:alt" content="${article.title}" />`, `<meta property="og:image:alt" content="${alt}" />\n    <meta property="og:image:width" content="${article.imageWidth}"><meta property="og:image:height" content="${article.imageHeight}">`);
         if (article.status === 'draft') html = html.replace('index, follow, max-image-preview:large', 'noindex, nofollow');
     }

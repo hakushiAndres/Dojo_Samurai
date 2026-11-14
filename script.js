@@ -990,6 +990,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const badgeTag = isGoldTheme ? '🏆' : '📜';
         const articleSlug = article.slug || article.id;
         const articleUrl = `/noticias/${articleSlug}/`;
+        const hospitalPhoto = articleSlug === 'karate-defensa-personal-hospital-quilpue';
+        const photoAttributes = hospitalPhoto ? `srcset="${article.imageSmall} 800w, ${article.image} 1280w" sizes="(max-width: 768px) 100vw, 50vw" width="1280" height="720" decoding="async"` : '';
 
         if (isFeatured) {
             return `
@@ -1000,8 +1002,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="news-hero-grid">
                         <div class="news-hero-img-wrapper">
-                            <img src="${article.image}" alt="${article.title}" class="news-hero-img" loading="lazy">
-                            <span class="news-category-badge badge-red">${badgeTag} ${article.category}</span>
+                            <img src="${article.image}" alt="${article.imageAlt || article.title}" class="news-hero-img" loading="lazy" ${photoAttributes}>
+                            <span class="news-category-badge badge-red">${hospitalPhoto ? '' : badgeTag + ' '}${article.category}</span>
                         </div>
                         <div class="news-hero-body">
                             <div class="news-card-meta">
@@ -1266,7 +1268,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 art.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                 art.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesCat && matchesSearch;
-        });
+        }).sort((a, b) => Number(b.featured === true) - Number(a.featured === true)
+            || (b.datePublished || b.date || '').localeCompare(a.datePublished || a.date || ''));
 
         if (filtered.length === 0) {
             noticiasGridContainer.innerHTML = `

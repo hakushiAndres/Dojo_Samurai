@@ -5259,3 +5259,49 @@ a.info-card-link:hover {
     .gallery-editorial .gallery-photo-button:hover img { transform: none; transition: none; }
     .lightbox-editorial, .lightbox-editorial button { transition: none; }
 }
+/* Editorial sharing, scoped to generated individual news pages. */
+.news-share {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border-block: 1px solid #ddd8cf;
+    background: #faf8f4;
+    color: #0f172a;
+    overflow-wrap: anywhere;
+}
+.news-share[hidden], .news-share__menu[hidden] { display: none; }
+.news-share__intro h2 { margin: 0 0 .5rem; font-size: 1.2rem; line-height: 1.4; }
+.news-share__intro p { margin: 0 0 1rem; line-height: 1.6; }
+.news-share__trigger, .news-share__option {
+    box-sizing: border-box;
+    min-height: 44px;
+    min-width: 44px;
+    max-width: 100%;
+    padding: .7rem 1rem;
+    font: inherit;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.news-share__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    border: 1px solid #0f172a;
+    background: #0f172a;
+    color: #faf8f4;
+    font-weight: 600;
+}
+.news-share__trigger svg { flex-shrink: 0; }
+.news-share__trigger:hover { background: #b91c1c; border-color: #b91c1c; }
+.news-share__menu { display: flex; flex-direction: column; align-items: stretch; gap: .25rem; margin-top: .75rem; }
+.news-share__option { display: block; border: 1px solid #ddd8cf; background: transparent; color: #0f172a; text-decoration: none; }
+.news-share__option:hover { border-color: #b91c1c; color: #b91c1c; }
+.news-share__trigger:focus-visible, .news-share__option:focus-visible { outline: 3px solid #b91c1c; outline-offset: 3px; }
+.news-share__status { margin: .75rem 0 0; font-size: .95rem; }
+.news-share__status:empty { margin: 0; }
+.news-share__copy-field { position: fixed; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; }
+@media (max-width: 480px) {
+    .news-share { padding: 1rem; }
+    .news-share__trigger { width: 100%; justify-content: center; }
+}

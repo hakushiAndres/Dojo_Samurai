@@ -763,6 +763,23 @@ ${JSON.stringify(ldJson, null, 4)}
                     ${resolvedContent}
                 </div>
 
+                <section class="news-share" aria-labelledby="news-share-title" hidden>
+                    <div class="news-share__intro">
+                        <h2 id="news-share-title">¿Te pareció interesante esta noticia?</h2>
+                        <p>Compártela con otras personas interesadas en el Karate-Do.</p>
+                    </div>
+                    <button type="button" class="news-share__trigger" aria-expanded="false" aria-controls="news-share-options">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg>
+                        Compartir noticia
+                    </button>
+                    <div id="news-share-options" class="news-share__menu" role="group" aria-label="Opciones para compartir noticia" hidden>
+                        <a class="news-share__option" data-share-method="whatsapp" target="_blank" rel="noopener noreferrer">Compartir por WhatsApp</a>
+                        <a class="news-share__option" data-share-method="facebook" target="_blank" rel="noopener noreferrer">Compartir en Facebook</a>
+                        <button type="button" class="news-share__option" data-share-method="copy">Copiar enlace</button>
+                    </div>
+                    <p class="news-share__status" role="status" aria-live="polite" aria-atomic="true"></p>
+                </section>
+
                 <!-- Call to Action Footer -->
                 <div style="margin-top: 3rem; padding: 1.75rem; background: rgba(185, 28, 28, 0.04); border-left: 4px solid #b91c1c; border-radius: 14px; display: flex; flex-direction: column; gap: 1rem;">
                     <h3 style="margin: 0; color: #b91c1c; font-size: 1.25rem; font-weight: 800;">
@@ -841,6 +858,8 @@ ${JSON.stringify(ldJson, null, 4)}
     <script defer src="../../script.js?v=95.0"></script>
 </body>
 </html>`;
+    // Load the shared enhancement only on individual news pages.
+    html = html.replace('</body>', '    <script defer src="/assets/js/news-share.js?v=1.0"></script>\n</body>');
     if (slug === hospitalSlug) {
         const alt = escapeHtml(article.imageAlt);
         const originalContent = resolvedContent;

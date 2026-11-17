@@ -4643,6 +4643,55 @@ a.info-card-link:hover {
 .home-page .plan-description { margin-bottom: 2rem; line-height: 1.7; }
 .home-page .plans-schedule { padding: var(--home-card-space); border-radius: var(--home-radius); }
 
+/* Children's programme: scoped to its own block, aligned with Home V3. */
+.home-page .kids-program {
+    position: relative;
+    max-width: 1040px;
+    margin: 3.5rem auto 0;
+    padding: var(--home-card-space);
+    border: 1px solid var(--home-line);
+    border-top: 2px solid var(--home-red);
+    border-radius: var(--home-radius);
+    background: #fff;
+    color: var(--home-ink);
+    scroll-margin-top: 120px;
+}
+.home-page .kids-program__illustration {
+    position: absolute;
+    top: -20px;
+    right: 12px;
+    width: 140px;
+    height: auto;
+    transform: rotate(10deg);
+    transform-origin: center;
+    pointer-events: none;
+    user-select: none;
+}
+.home-page .kids-program__heading { padding-right: 168px; min-height: 140px; }
+.home-page .kids-program__eyebrow { color: var(--home-red); font-size: .8125rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .75rem; }
+.home-page .kids-program h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -.025em; margin-bottom: .75rem; }
+.home-page .kids-program__heading > p:last-child { color: var(--home-muted); }
+.home-page .kids-program__details { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1.5rem; padding-block: 1.5rem; border-block: 1px solid var(--home-line); }
+.home-page .kids-program__schedule { display: grid; gap: .75rem; margin: 0; }
+.home-page .kids-program__schedule dt { color: var(--home-muted); font-size: .875rem; }
+.home-page .kids-program__schedule dd { margin: .15rem 0 0; font-weight: 600; }
+.home-page .kids-program__price { flex-shrink: 0; margin: 0; font-size: 2.25rem; line-height: 1.2; font-weight: 800; letter-spacing: -.035em; }
+.home-page .kids-program__price span { display: block; margin-top: .35rem; font-size: .875rem; font-weight: 400; letter-spacing: normal; color: var(--home-muted); }
+.home-page .kids-program__location { margin: 1.25rem 0; color: var(--home-muted); }
+.home-page .kids-program__location a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.home-page .kids-program__cta { max-width: 100%; white-space: normal; text-align: center; gap: .5rem; }
+@media (max-width: 1024px) {
+    .home-page .kids-program__illustration { width: 120px; }
+    .home-page .kids-program__heading { padding-right: 144px; min-height: 120px; }
+}
+@media (max-width: 640px) {
+    .home-page .kids-program { margin-top: 3rem; }
+    .home-page .kids-program__illustration { width: 88px; top: -14px; right: 10px; }
+    .home-page .kids-program__heading { padding-right: 96px; min-height: 100px; }
+    .home-page .kids-program__details { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .home-page .kids-program__cta { width: 100%; font-size: .9rem; padding-inline: .75rem; }
+}
+
 /* Editorial cards on Home only, including cards populated by existing JS/build. */
 .home-page .articles-card { background: #fff; }
 .home-page .articles-card-body { padding: clamp(1.5rem, 4vw, 3rem); }
